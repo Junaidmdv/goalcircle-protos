@@ -2,7 +2,7 @@ syntax = 'proto3';
 
 package auth; 
 
-option go_package = "github.com/Junaidmdv/goalcirlcle-protos/user/v1";  
+option go_package = "github.com/Junaidmdv/goalcirlcle-protos/user/v1;userv1";  
 import "google/protobuf/timestamp.proto"; 
 import "google/protobuf/empty.proto";
 

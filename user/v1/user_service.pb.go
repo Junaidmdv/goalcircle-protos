@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: user_service.proto
 
-package v1
+package userv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -2216,7 +2216,7 @@ const file_user_service_proto_rawDesc = "" +
 	"\x1aAdminUserManagementService\x129\n" +
 	"\bGetUsers\x12\x16.google.protobuf.Empty\x1a\x15.auth.GetUserResponse\x123\n" +
 	"\tBlockUser\x12\x12.auth.BlockUserReq\x1a\x12.auth.BlockUserRes\x129\n" +
-	"\vUnBlockUser\x12\x14.auth.UnblockUserReq\x1a\x14.auth.UnblockUserResB1Z/github.com/Junaidmdv/goalcirlcle-protos/user/v1b\x06proto3"
+	"\vUnBlockUser\x12\x14.auth.UnblockUserReq\x1a\x14.auth.UnblockUserResB8Z6github.com/Junaidmdv/goalcirlcle-protos/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_service_proto_rawDescOnce sync.Once
