@@ -263,8 +263,8 @@ message GetUserResponse{
 }
 
 message GetUserReq{
-    string page=1; 
-    string limit=2; 
+    int32 page=1; 
+    int32 limit=2; 
     string filter=3;  
     string Search=4;
 }

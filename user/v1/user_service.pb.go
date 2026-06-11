@@ -2048,8 +2048,8 @@ func (x *GetUserResponse) GetUsers() []*User {
 
 type GetUserReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          string                 `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
-	Limit         string                 `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Filter        string                 `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
 	Search        string                 `protobuf:"bytes,4,opt,name=Search,proto3" json:"Search,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -2086,18 +2086,18 @@ func (*GetUserReq) Descriptor() ([]byte, []int) {
 	return file_user_service_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *GetUserReq) GetPage() string {
+func (x *GetUserReq) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
-	return ""
+	return 0
 }
 
-func (x *GetUserReq) GetLimit() string {
+func (x *GetUserReq) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
-	return ""
+	return 0
 }
 
 func (x *GetUserReq) GetFilter() string {
@@ -2263,8 +2263,8 @@ const file_user_service_proto_rawDesc = "" +
 	".auth.UserR\x05users\"f\n" +
 	"\n" +
 	"GetUserReq\x12\x12\n" +
-	"\x04page\x18\x01 \x01(\tR\x04page\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\tR\x05limit\x12\x16\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06filter\x18\x03 \x01(\tR\x06filter\x12\x16\n" +
 	"\x06Search\x18\x04 \x01(\tR\x06Search2\xb4\x06\n" +
 	"\vAuthService\x129\n" +
