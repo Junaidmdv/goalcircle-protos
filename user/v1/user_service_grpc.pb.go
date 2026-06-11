@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -741,7 +740,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AdminUserManagementServiceClient interface {
-	GetUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUserResponse, error)
+	GetUsers(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResponse, error)
 	BlockUser(ctx context.Context, in *BlockUserReq, opts ...grpc.CallOption) (*BlockUserRes, error)
 	UnBlockUser(ctx context.Context, in *UnblockUserReq, opts ...grpc.CallOption) (*UnblockUserRes, error)
 }
@@ -754,7 +753,7 @@ func NewAdminUserManagementServiceClient(cc grpc.ClientConnInterface) AdminUserM
 	return &adminUserManagementServiceClient{cc}
 }
 
-func (c *adminUserManagementServiceClient) GetUsers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUserResponse, error) {
+func (c *adminUserManagementServiceClient) GetUsers(ctx context.Context, in *GetUserReq, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserResponse)
 	err := c.cc.Invoke(ctx, AdminUserManagementService_GetUsers_FullMethodName, in, out, cOpts...)
@@ -788,7 +787,7 @@ func (c *adminUserManagementServiceClient) UnBlockUser(ctx context.Context, in *
 // All implementations must embed UnimplementedAdminUserManagementServiceServer
 // for forward compatibility.
 type AdminUserManagementServiceServer interface {
-	GetUsers(context.Context, *emptypb.Empty) (*GetUserResponse, error)
+	GetUsers(context.Context, *GetUserReq) (*GetUserResponse, error)
 	BlockUser(context.Context, *BlockUserReq) (*BlockUserRes, error)
 	UnBlockUser(context.Context, *UnblockUserReq) (*UnblockUserRes, error)
 	mustEmbedUnimplementedAdminUserManagementServiceServer()
@@ -801,7 +800,7 @@ type AdminUserManagementServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedAdminUserManagementServiceServer struct{}
 
-func (UnimplementedAdminUserManagementServiceServer) GetUsers(context.Context, *emptypb.Empty) (*GetUserResponse, error) {
+func (UnimplementedAdminUserManagementServiceServer) GetUsers(context.Context, *GetUserReq) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsers not implemented")
 }
 func (UnimplementedAdminUserManagementServiceServer) BlockUser(context.Context, *BlockUserReq) (*BlockUserRes, error) {
@@ -833,7 +832,7 @@ func RegisterAdminUserManagementServiceServer(s grpc.ServiceRegistrar, srv Admin
 }
 
 func _AdminUserManagementService_GetUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -845,7 +844,7 @@ func _AdminUserManagementService_GetUsers_Handler(srv interface{}, ctx context.C
 		FullMethod: AdminUserManagementService_GetUsers_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AdminUserManagementServiceServer).GetUsers(ctx, req.(*emptypb.Empty))
+		return srv.(AdminUserManagementServiceServer).GetUsers(ctx, req.(*GetUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

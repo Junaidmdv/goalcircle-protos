@@ -4,7 +4,6 @@ package auth;
 
 option go_package = "github.com/Junaidmdv/goalcirlcle-protos/user/v1;userv1";  
 import "google/protobuf/timestamp.proto"; 
-import "google/protobuf/empty.proto";
 
 message RegisterRequest { 
     string email =1; 
@@ -263,8 +262,14 @@ message GetUserResponse{
   repeated User users=1;
 }
 
+message GetUserReq{
+    string page=1; 
+    string limit=2; 
+    string filter=3; 
+}
+
 service  AdminUserManagementService { 
-   rpc  GetUsers(google.protobuf.Empty)returns(GetUserResponse);
+   rpc  GetUsers(GetUserReq)returns(GetUserResponse);
    rpc BlockUser(BlockUserReq)returns(BlockUserRes); 
    rpc UnBlockUser(UnblockUserReq)returns(UnblockUserRes);
 }  

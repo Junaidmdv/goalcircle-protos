@@ -9,7 +9,6 @@ package userv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -2047,11 +2046,71 @@ func (x *GetUserResponse) GetUsers() []*User {
 	return nil
 }
 
+type GetUserReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          string                 `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         string                 `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Filter        string                 `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserReq) Reset() {
+	*x = GetUserReq{}
+	mi := &file_user_service_proto_msgTypes[36]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserReq) ProtoMessage() {}
+
+func (x *GetUserReq) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_proto_msgTypes[36]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserReq.ProtoReflect.Descriptor instead.
+func (*GetUserReq) Descriptor() ([]byte, []int) {
+	return file_user_service_proto_rawDescGZIP(), []int{36}
+}
+
+func (x *GetUserReq) GetPage() string {
+	if x != nil {
+		return x.Page
+	}
+	return ""
+}
+
+func (x *GetUserReq) GetLimit() string {
+	if x != nil {
+		return x.Limit
+	}
+	return ""
+}
+
+func (x *GetUserReq) GetFilter() string {
+	if x != nil {
+		return x.Filter
+	}
+	return ""
+}
+
 var File_user_service_proto protoreflect.FileDescriptor
 
 const file_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12user_service.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\"n\n" +
+	"\x12user_service.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\"n\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12)\n" +
@@ -2193,7 +2252,12 @@ const file_user_service_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"3\n" +
 	"\x0fGetUserResponse\x12 \n" +
 	"\x05users\x18\x01 \x03(\v2\n" +
-	".auth.UserR\x05users2\xb4\x06\n" +
+	".auth.UserR\x05users\"N\n" +
+	"\n" +
+	"GetUserReq\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\tR\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\tR\x05limit\x12\x16\n" +
+	"\x06filter\x18\x03 \x01(\tR\x06filter2\xb4\x06\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x123\n" +
 	"\tVerfiyOtp\x12\x12.auth.VerifyOtpReq\x1a\x12.auth.VerifyOtpRes\x120\n" +
@@ -2212,9 +2276,9 @@ const file_user_service_proto_rawDesc = "" +
 	"\x10AdminAuthService\x12H\n" +
 	"\rAdminRegister\x12\x1a.auth.AdminRegisterRequest\x1a\x1b.auth.AdminRegisterResponse\x12?\n" +
 	"\n" +
-	"AdminLogin\x12\x17.auth.AdminLoginRequest\x1a\x18.auth.AdminLoginResponse2\xc7\x01\n" +
-	"\x1aAdminUserManagementService\x129\n" +
-	"\bGetUsers\x12\x16.google.protobuf.Empty\x1a\x15.auth.GetUserResponse\x123\n" +
+	"AdminLogin\x12\x17.auth.AdminLoginRequest\x1a\x18.auth.AdminLoginResponse2\xc1\x01\n" +
+	"\x1aAdminUserManagementService\x123\n" +
+	"\bGetUsers\x12\x10.auth.GetUserReq\x1a\x15.auth.GetUserResponse\x123\n" +
 	"\tBlockUser\x12\x12.auth.BlockUserReq\x1a\x12.auth.BlockUserRes\x129\n" +
 	"\vUnBlockUser\x12\x14.auth.UnblockUserReq\x1a\x14.auth.UnblockUserResB8Z6github.com/Junaidmdv/goalcirlcle-protos/user/v1;userv1b\x06proto3"
 
@@ -2230,7 +2294,7 @@ func file_user_service_proto_rawDescGZIP() []byte {
 	return file_user_service_proto_rawDescData
 }
 
-var file_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_user_service_proto_goTypes = []any{
 	(*RegisterRequest)(nil),         // 0: auth.RegisterRequest
 	(*RegisterResponse)(nil),        // 1: auth.RegisterResponse
@@ -2268,25 +2332,25 @@ var file_user_service_proto_goTypes = []any{
 	(*UnblockUserRes)(nil),          // 33: auth.UnblockUserRes
 	(*User)(nil),                    // 34: auth.User
 	(*GetUserResponse)(nil),         // 35: auth.GetUserResponse
-	(*timestamppb.Timestamp)(nil),   // 36: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),           // 37: google.protobuf.Empty
+	(*GetUserReq)(nil),              // 36: auth.GetUserReq
+	(*timestamppb.Timestamp)(nil),   // 37: google.protobuf.Timestamp
 }
 var file_user_service_proto_depIdxs = []int32{
-	36, // 0: auth.RegisterResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
-	36, // 1: auth.VerifyOtpRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 2: auth.VerifyOtpRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 3: auth.LoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 4: auth.LoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 5: auth.ResendOtpRes.otp_expiry:type_name -> google.protobuf.Timestamp
-	36, // 6: auth.ForgotPasswordRes.otp_expiry:type_name -> google.protobuf.Timestamp
-	36, // 7: auth.VerifyForgotPasswordRes.reset_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 8: auth.RenewAccessTokenRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 9: auth.GoogleAuthRes.expires_at:type_name -> google.protobuf.Timestamp
-	36, // 10: auth.GoogleCallbackRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 11: auth.GoogleCallbackRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 12: auth.AdminLoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 13: auth.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	36, // 14: auth.User.created_at:type_name -> google.protobuf.Timestamp
+	37, // 0: auth.RegisterResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	37, // 1: auth.VerifyOtpRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 2: auth.VerifyOtpRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 3: auth.LoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 4: auth.LoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 5: auth.ResendOtpRes.otp_expiry:type_name -> google.protobuf.Timestamp
+	37, // 6: auth.ForgotPasswordRes.otp_expiry:type_name -> google.protobuf.Timestamp
+	37, // 7: auth.VerifyForgotPasswordRes.reset_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 8: auth.RenewAccessTokenRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 9: auth.GoogleAuthRes.expires_at:type_name -> google.protobuf.Timestamp
+	37, // 10: auth.GoogleCallbackRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 11: auth.GoogleCallbackRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 12: auth.AdminLoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 13: auth.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	37, // 14: auth.User.created_at:type_name -> google.protobuf.Timestamp
 	34, // 15: auth.GetUserResponse.users:type_name -> auth.User
 	0,  // 16: auth.AuthService.Register:input_type -> auth.RegisterRequest
 	2,  // 17: auth.AuthService.VerfiyOtp:input_type -> auth.VerifyOtpReq
@@ -2303,7 +2367,7 @@ var file_user_service_proto_depIdxs = []int32{
 	24, // 28: auth.AuthService.ChangePassword:input_type -> auth.ChangePasswordReq
 	26, // 29: auth.AdminAuthService.AdminRegister:input_type -> auth.AdminRegisterRequest
 	28, // 30: auth.AdminAuthService.AdminLogin:input_type -> auth.AdminLoginRequest
-	37, // 31: auth.AdminUserManagementService.GetUsers:input_type -> google.protobuf.Empty
+	36, // 31: auth.AdminUserManagementService.GetUsers:input_type -> auth.GetUserReq
 	30, // 32: auth.AdminUserManagementService.BlockUser:input_type -> auth.BlockUserReq
 	32, // 33: auth.AdminUserManagementService.UnBlockUser:input_type -> auth.UnblockUserReq
 	1,  // 34: auth.AuthService.Register:output_type -> auth.RegisterResponse
@@ -2343,7 +2407,7 @@ func file_user_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_service_proto_rawDesc), len(file_user_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   36,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   3,
 		},
