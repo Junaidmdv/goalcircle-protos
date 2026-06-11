@@ -265,7 +265,8 @@ message GetUserResponse{
 message GetUserReq{
     string page=1; 
     string limit=2; 
-    string filter=3; 
+    string filter=3;  
+    string Search=4;
 }
 
 service  AdminUserManagementService { 

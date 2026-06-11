@@ -2051,6 +2051,7 @@ type GetUserReq struct {
 	Page          string                 `protobuf:"bytes,1,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         string                 `protobuf:"bytes,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	Filter        string                 `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
+	Search        string                 `protobuf:"bytes,4,opt,name=Search,proto3" json:"Search,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2102,6 +2103,13 @@ func (x *GetUserReq) GetLimit() string {
 func (x *GetUserReq) GetFilter() string {
 	if x != nil {
 		return x.Filter
+	}
+	return ""
+}
+
+func (x *GetUserReq) GetSearch() string {
+	if x != nil {
+		return x.Search
 	}
 	return ""
 }
@@ -2252,12 +2260,13 @@ const file_user_service_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"3\n" +
 	"\x0fGetUserResponse\x12 \n" +
 	"\x05users\x18\x01 \x03(\v2\n" +
-	".auth.UserR\x05users\"N\n" +
+	".auth.UserR\x05users\"f\n" +
 	"\n" +
 	"GetUserReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\tR\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\tR\x05limit\x12\x16\n" +
-	"\x06filter\x18\x03 \x01(\tR\x06filter2\xb4\x06\n" +
+	"\x06filter\x18\x03 \x01(\tR\x06filter\x12\x16\n" +
+	"\x06Search\x18\x04 \x01(\tR\x06Search2\xb4\x06\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x123\n" +
 	"\tVerfiyOtp\x12\x12.auth.VerifyOtpReq\x1a\x12.auth.VerifyOtpRes\x120\n" +
