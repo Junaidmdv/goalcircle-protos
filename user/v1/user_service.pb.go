@@ -2002,16 +2002,85 @@ func (x *User) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type Paginate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TotalPage     int32                  `protobuf:"varint,1,opt,name=total_page,json=totalPage,proto3" json:"total_page,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	TotalItem     int32                  `protobuf:"varint,4,opt,name=totalItem,proto3" json:"totalItem,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Paginate) Reset() {
+	*x = Paginate{}
+	mi := &file_user_service_proto_msgTypes[35]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Paginate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Paginate) ProtoMessage() {}
+
+func (x *Paginate) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_proto_msgTypes[35]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Paginate.ProtoReflect.Descriptor instead.
+func (*Paginate) Descriptor() ([]byte, []int) {
+	return file_user_service_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *Paginate) GetTotalPage() int32 {
+	if x != nil {
+		return x.TotalPage
+	}
+	return 0
+}
+
+func (x *Paginate) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *Paginate) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *Paginate) GetTotalItem() int32 {
+	if x != nil {
+		return x.TotalItem
+	}
+	return 0
+}
+
 type GetUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Users         []*User                `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
+	Paginate      *Paginate              `protobuf:"bytes,2,opt,name=paginate,proto3" json:"paginate,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetUserResponse) Reset() {
 	*x = GetUserResponse{}
-	mi := &file_user_service_proto_msgTypes[35]
+	mi := &file_user_service_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2023,7 +2092,7 @@ func (x *GetUserResponse) String() string {
 func (*GetUserResponse) ProtoMessage() {}
 
 func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[35]
+	mi := &file_user_service_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2036,12 +2105,19 @@ func (x *GetUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserResponse.ProtoReflect.Descriptor instead.
 func (*GetUserResponse) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{35}
+	return file_user_service_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *GetUserResponse) GetUsers() []*User {
 	if x != nil {
 		return x.Users
+	}
+	return nil
+}
+
+func (x *GetUserResponse) GetPaginate() *Paginate {
+	if x != nil {
+		return x.Paginate
 	}
 	return nil
 }
@@ -2059,7 +2135,7 @@ type GetUserReq struct {
 
 func (x *GetUserReq) Reset() {
 	*x = GetUserReq{}
-	mi := &file_user_service_proto_msgTypes[36]
+	mi := &file_user_service_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2071,7 +2147,7 @@ func (x *GetUserReq) String() string {
 func (*GetUserReq) ProtoMessage() {}
 
 func (x *GetUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[36]
+	mi := &file_user_service_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2084,7 +2160,7 @@ func (x *GetUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserReq.ProtoReflect.Descriptor instead.
 func (*GetUserReq) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{36}
+	return file_user_service_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *GetUserReq) GetPage() int32 {
@@ -2120,50 +2196,6 @@ func (x *GetUserReq) GetSearch() string {
 		return x.Search
 	}
 	return ""
-}
-
-type Paginate struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TotalPage     int32                  `protobuf:"varint,1,opt,name=total_page,json=totalPage,proto3" json:"total_page,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Paginate) Reset() {
-	*x = Paginate{}
-	mi := &file_user_service_proto_msgTypes[37]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Paginate) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Paginate) ProtoMessage() {}
-
-func (x *Paginate) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[37]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Paginate.ProtoReflect.Descriptor instead.
-func (*Paginate) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{37}
-}
-
-func (x *Paginate) GetTotalPage() int32 {
-	if x != nil {
-		return x.TotalPage
-	}
-	return 0
 }
 
 var File_user_service_proto protoreflect.FileDescriptor
@@ -2309,10 +2341,17 @@ const file_user_service_proto_rawDesc = "" +
 	"\n" +
 	"is_blocked\x18\x04 \x01(\bR\tisBlocked\x129\n" +
 	"\n" +
-	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"3\n" +
+	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"q\n" +
+	"\bPaginate\x12\x1d\n" +
+	"\n" +
+	"total_page\x18\x01 \x01(\x05R\ttotalPage\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x1c\n" +
+	"\ttotalItem\x18\x04 \x01(\x05R\ttotalItem\"_\n" +
 	"\x0fGetUserResponse\x12 \n" +
 	"\x05users\x18\x01 \x03(\v2\n" +
-	".auth.UserR\x05users\"\x81\x01\n" +
+	".auth.UserR\x05users\x12*\n" +
+	"\bpaginate\x18\x02 \x01(\v2\x0e.auth.PaginateR\bpaginate\"\x81\x01\n" +
 	"\n" +
 	"GetUserReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
@@ -2320,10 +2359,7 @@ const file_user_service_proto_rawDesc = "" +
 	"\n" +
 	"is_blocked\x18\x03 \x01(\bR\tisBlocked\x12\x12\n" +
 	"\x04role\x18\x04 \x01(\tR\x04role\x12\x16\n" +
-	"\x06search\x18\x05 \x01(\tR\x06search\")\n" +
-	"\bPaginate\x12\x1d\n" +
-	"\n" +
-	"total_page\x18\x01 \x01(\x05R\ttotalPage2\xb4\x06\n" +
+	"\x06search\x18\x05 \x01(\tR\x06search2\xb4\x06\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x123\n" +
 	"\tVerfiyOtp\x12\x12.auth.VerifyOtpReq\x1a\x12.auth.VerifyOtpRes\x120\n" +
@@ -2397,9 +2433,9 @@ var file_user_service_proto_goTypes = []any{
 	(*UnblockUserReq)(nil),          // 32: auth.UnblockUserReq
 	(*UnblockUserRes)(nil),          // 33: auth.UnblockUserRes
 	(*User)(nil),                    // 34: auth.User
-	(*GetUserResponse)(nil),         // 35: auth.GetUserResponse
-	(*GetUserReq)(nil),              // 36: auth.GetUserReq
-	(*Paginate)(nil),                // 37: auth.Paginate
+	(*Paginate)(nil),                // 35: auth.Paginate
+	(*GetUserResponse)(nil),         // 36: auth.GetUserResponse
+	(*GetUserReq)(nil),              // 37: auth.GetUserReq
 	(*timestamppb.Timestamp)(nil),   // 38: google.protobuf.Timestamp
 }
 var file_user_service_proto_depIdxs = []int32{
@@ -2419,47 +2455,48 @@ var file_user_service_proto_depIdxs = []int32{
 	38, // 13: auth.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
 	38, // 14: auth.User.created_at:type_name -> google.protobuf.Timestamp
 	34, // 15: auth.GetUserResponse.users:type_name -> auth.User
-	0,  // 16: auth.AuthService.Register:input_type -> auth.RegisterRequest
-	2,  // 17: auth.AuthService.VerfiyOtp:input_type -> auth.VerifyOtpReq
-	4,  // 18: auth.AuthService.Login:input_type -> auth.LoginRequest
-	6,  // 19: auth.AuthService.ResendOtp:input_type -> auth.ResendOtpReq
-	8,  // 20: auth.AuthService.ForgotPassword:input_type -> auth.ForgotPasswordReq
-	10, // 21: auth.AuthService.VerifyForgotPassword:input_type -> auth.VerifyForgotPasswordReq
-	12, // 22: auth.AuthService.ResetPassword:input_type -> auth.ResetPasswordReq
-	14, // 23: auth.AuthService.RenweAccessToken:input_type -> auth.RenewAccessTokenReq
-	16, // 24: auth.AuthService.LogOut:input_type -> auth.LogOutReq
-	18, // 25: auth.AuthService.AddUserRole:input_type -> auth.AddUserRoleReq
-	20, // 26: auth.AuthService.GoogleAuth:input_type -> auth.GoogleAuthReq
-	22, // 27: auth.AuthService.GoogleAuthCallback:input_type -> auth.GoogleCallbackReq
-	24, // 28: auth.AuthService.ChangePassword:input_type -> auth.ChangePasswordReq
-	26, // 29: auth.AdminAuthService.AdminRegister:input_type -> auth.AdminRegisterRequest
-	28, // 30: auth.AdminAuthService.AdminLogin:input_type -> auth.AdminLoginRequest
-	36, // 31: auth.AdminUserManagementService.GetUsers:input_type -> auth.GetUserReq
-	30, // 32: auth.AdminUserManagementService.BlockUser:input_type -> auth.BlockUserReq
-	32, // 33: auth.AdminUserManagementService.UnBlockUser:input_type -> auth.UnblockUserReq
-	1,  // 34: auth.AuthService.Register:output_type -> auth.RegisterResponse
-	3,  // 35: auth.AuthService.VerfiyOtp:output_type -> auth.VerifyOtpRes
-	5,  // 36: auth.AuthService.Login:output_type -> auth.LoginResponse
-	7,  // 37: auth.AuthService.ResendOtp:output_type -> auth.ResendOtpRes
-	9,  // 38: auth.AuthService.ForgotPassword:output_type -> auth.ForgotPasswordRes
-	11, // 39: auth.AuthService.VerifyForgotPassword:output_type -> auth.VerifyForgotPasswordRes
-	13, // 40: auth.AuthService.ResetPassword:output_type -> auth.ResetPasswordRes
-	15, // 41: auth.AuthService.RenweAccessToken:output_type -> auth.RenewAccessTokenRes
-	17, // 42: auth.AuthService.LogOut:output_type -> auth.LogOutRes
-	19, // 43: auth.AuthService.AddUserRole:output_type -> auth.AddUserRoleRes
-	21, // 44: auth.AuthService.GoogleAuth:output_type -> auth.GoogleAuthRes
-	23, // 45: auth.AuthService.GoogleAuthCallback:output_type -> auth.GoogleCallbackRes
-	25, // 46: auth.AuthService.ChangePassword:output_type -> auth.ChangePasswordRes
-	27, // 47: auth.AdminAuthService.AdminRegister:output_type -> auth.AdminRegisterResponse
-	29, // 48: auth.AdminAuthService.AdminLogin:output_type -> auth.AdminLoginResponse
-	35, // 49: auth.AdminUserManagementService.GetUsers:output_type -> auth.GetUserResponse
-	31, // 50: auth.AdminUserManagementService.BlockUser:output_type -> auth.BlockUserRes
-	33, // 51: auth.AdminUserManagementService.UnBlockUser:output_type -> auth.UnblockUserRes
-	34, // [34:52] is the sub-list for method output_type
-	16, // [16:34] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	35, // 16: auth.GetUserResponse.paginate:type_name -> auth.Paginate
+	0,  // 17: auth.AuthService.Register:input_type -> auth.RegisterRequest
+	2,  // 18: auth.AuthService.VerfiyOtp:input_type -> auth.VerifyOtpReq
+	4,  // 19: auth.AuthService.Login:input_type -> auth.LoginRequest
+	6,  // 20: auth.AuthService.ResendOtp:input_type -> auth.ResendOtpReq
+	8,  // 21: auth.AuthService.ForgotPassword:input_type -> auth.ForgotPasswordReq
+	10, // 22: auth.AuthService.VerifyForgotPassword:input_type -> auth.VerifyForgotPasswordReq
+	12, // 23: auth.AuthService.ResetPassword:input_type -> auth.ResetPasswordReq
+	14, // 24: auth.AuthService.RenweAccessToken:input_type -> auth.RenewAccessTokenReq
+	16, // 25: auth.AuthService.LogOut:input_type -> auth.LogOutReq
+	18, // 26: auth.AuthService.AddUserRole:input_type -> auth.AddUserRoleReq
+	20, // 27: auth.AuthService.GoogleAuth:input_type -> auth.GoogleAuthReq
+	22, // 28: auth.AuthService.GoogleAuthCallback:input_type -> auth.GoogleCallbackReq
+	24, // 29: auth.AuthService.ChangePassword:input_type -> auth.ChangePasswordReq
+	26, // 30: auth.AdminAuthService.AdminRegister:input_type -> auth.AdminRegisterRequest
+	28, // 31: auth.AdminAuthService.AdminLogin:input_type -> auth.AdminLoginRequest
+	37, // 32: auth.AdminUserManagementService.GetUsers:input_type -> auth.GetUserReq
+	30, // 33: auth.AdminUserManagementService.BlockUser:input_type -> auth.BlockUserReq
+	32, // 34: auth.AdminUserManagementService.UnBlockUser:input_type -> auth.UnblockUserReq
+	1,  // 35: auth.AuthService.Register:output_type -> auth.RegisterResponse
+	3,  // 36: auth.AuthService.VerfiyOtp:output_type -> auth.VerifyOtpRes
+	5,  // 37: auth.AuthService.Login:output_type -> auth.LoginResponse
+	7,  // 38: auth.AuthService.ResendOtp:output_type -> auth.ResendOtpRes
+	9,  // 39: auth.AuthService.ForgotPassword:output_type -> auth.ForgotPasswordRes
+	11, // 40: auth.AuthService.VerifyForgotPassword:output_type -> auth.VerifyForgotPasswordRes
+	13, // 41: auth.AuthService.ResetPassword:output_type -> auth.ResetPasswordRes
+	15, // 42: auth.AuthService.RenweAccessToken:output_type -> auth.RenewAccessTokenRes
+	17, // 43: auth.AuthService.LogOut:output_type -> auth.LogOutRes
+	19, // 44: auth.AuthService.AddUserRole:output_type -> auth.AddUserRoleRes
+	21, // 45: auth.AuthService.GoogleAuth:output_type -> auth.GoogleAuthRes
+	23, // 46: auth.AuthService.GoogleAuthCallback:output_type -> auth.GoogleCallbackRes
+	25, // 47: auth.AuthService.ChangePassword:output_type -> auth.ChangePasswordRes
+	27, // 48: auth.AdminAuthService.AdminRegister:output_type -> auth.AdminRegisterResponse
+	29, // 49: auth.AdminAuthService.AdminLogin:output_type -> auth.AdminLoginResponse
+	36, // 50: auth.AdminUserManagementService.GetUsers:output_type -> auth.GetUserResponse
+	31, // 51: auth.AdminUserManagementService.BlockUser:output_type -> auth.BlockUserRes
+	33, // 52: auth.AdminUserManagementService.UnBlockUser:output_type -> auth.UnblockUserRes
+	35, // [35:53] is the sub-list for method output_type
+	17, // [17:35] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_user_service_proto_init() }

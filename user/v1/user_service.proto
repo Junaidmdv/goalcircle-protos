@@ -258,8 +258,17 @@ message User{
    google.protobuf.Timestamp created_at = 5; 
 }
 
+message Paginate{
+   int32 total_page=1;  
+   int32 page=2; 
+   int32 limit=3; 
+   int32 totalItem=4;
+}
+
 message GetUserResponse{
-  repeated User users=1;
+  repeated User users=1;  
+  Paginate paginate = 2;
+
 }
 
 message GetUserReq{
@@ -271,9 +280,7 @@ message GetUserReq{
 }
 
 
-message Paginate{
-   int32 total_page=1; 
-}
+
 
 
 service  AdminUserManagementService { 
