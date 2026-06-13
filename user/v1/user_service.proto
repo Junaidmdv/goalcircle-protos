@@ -263,11 +263,18 @@ message GetUserResponse{
 }
 
 message GetUserReq{
-    int32 page=1; 
-    int32 limit=2; 
-    string filter=3;  
-    string Search=4;
+    int32  page=1; 
+    int32  limit=2; 
+    bool   is_blocked=3;
+    string role=4;
+    string search=5;
 }
+
+
+message Paginate{
+   int32 total_page=1; 
+}
+
 
 service  AdminUserManagementService { 
    rpc  GetUsers(GetUserReq)returns(GetUserResponse);

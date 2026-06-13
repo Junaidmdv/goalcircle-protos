@@ -2050,8 +2050,9 @@ type GetUserReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Filter        string                 `protobuf:"bytes,3,opt,name=filter,proto3" json:"filter,omitempty"`
-	Search        string                 `protobuf:"bytes,4,opt,name=Search,proto3" json:"Search,omitempty"`
+	IsBlocked     bool                   `protobuf:"varint,3,opt,name=is_blocked,json=isBlocked,proto3" json:"is_blocked,omitempty"`
+	Role          string                 `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
+	Search        string                 `protobuf:"bytes,5,opt,name=search,proto3" json:"search,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2100,9 +2101,16 @@ func (x *GetUserReq) GetLimit() int32 {
 	return 0
 }
 
-func (x *GetUserReq) GetFilter() string {
+func (x *GetUserReq) GetIsBlocked() bool {
 	if x != nil {
-		return x.Filter
+		return x.IsBlocked
+	}
+	return false
+}
+
+func (x *GetUserReq) GetRole() string {
+	if x != nil {
+		return x.Role
 	}
 	return ""
 }
@@ -2112,6 +2120,50 @@ func (x *GetUserReq) GetSearch() string {
 		return x.Search
 	}
 	return ""
+}
+
+type Paginate struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TotalPage     int32                  `protobuf:"varint,1,opt,name=total_page,json=totalPage,proto3" json:"total_page,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Paginate) Reset() {
+	*x = Paginate{}
+	mi := &file_user_service_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Paginate) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Paginate) ProtoMessage() {}
+
+func (x *Paginate) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Paginate.ProtoReflect.Descriptor instead.
+func (*Paginate) Descriptor() ([]byte, []int) {
+	return file_user_service_proto_rawDescGZIP(), []int{37}
+}
+
+func (x *Paginate) GetTotalPage() int32 {
+	if x != nil {
+		return x.TotalPage
+	}
+	return 0
 }
 
 var File_user_service_proto protoreflect.FileDescriptor
@@ -2260,13 +2312,18 @@ const file_user_service_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"3\n" +
 	"\x0fGetUserResponse\x12 \n" +
 	"\x05users\x18\x01 \x03(\v2\n" +
-	".auth.UserR\x05users\"f\n" +
+	".auth.UserR\x05users\"\x81\x01\n" +
 	"\n" +
 	"GetUserReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06filter\x18\x03 \x01(\tR\x06filter\x12\x16\n" +
-	"\x06Search\x18\x04 \x01(\tR\x06Search2\xb4\x06\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1d\n" +
+	"\n" +
+	"is_blocked\x18\x03 \x01(\bR\tisBlocked\x12\x12\n" +
+	"\x04role\x18\x04 \x01(\tR\x04role\x12\x16\n" +
+	"\x06search\x18\x05 \x01(\tR\x06search\")\n" +
+	"\bPaginate\x12\x1d\n" +
+	"\n" +
+	"total_page\x18\x01 \x01(\x05R\ttotalPage2\xb4\x06\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x123\n" +
 	"\tVerfiyOtp\x12\x12.auth.VerifyOtpReq\x1a\x12.auth.VerifyOtpRes\x120\n" +
@@ -2303,7 +2360,7 @@ func file_user_service_proto_rawDescGZIP() []byte {
 	return file_user_service_proto_rawDescData
 }
 
-var file_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_user_service_proto_goTypes = []any{
 	(*RegisterRequest)(nil),         // 0: auth.RegisterRequest
 	(*RegisterResponse)(nil),        // 1: auth.RegisterResponse
@@ -2342,24 +2399,25 @@ var file_user_service_proto_goTypes = []any{
 	(*User)(nil),                    // 34: auth.User
 	(*GetUserResponse)(nil),         // 35: auth.GetUserResponse
 	(*GetUserReq)(nil),              // 36: auth.GetUserReq
-	(*timestamppb.Timestamp)(nil),   // 37: google.protobuf.Timestamp
+	(*Paginate)(nil),                // 37: auth.Paginate
+	(*timestamppb.Timestamp)(nil),   // 38: google.protobuf.Timestamp
 }
 var file_user_service_proto_depIdxs = []int32{
-	37, // 0: auth.RegisterResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
-	37, // 1: auth.VerifyOtpRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 2: auth.VerifyOtpRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 3: auth.LoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 4: auth.LoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 5: auth.ResendOtpRes.otp_expiry:type_name -> google.protobuf.Timestamp
-	37, // 6: auth.ForgotPasswordRes.otp_expiry:type_name -> google.protobuf.Timestamp
-	37, // 7: auth.VerifyForgotPasswordRes.reset_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 8: auth.RenewAccessTokenRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 9: auth.GoogleAuthRes.expires_at:type_name -> google.protobuf.Timestamp
-	37, // 10: auth.GoogleCallbackRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 11: auth.GoogleCallbackRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 12: auth.AdminLoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 13: auth.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	37, // 14: auth.User.created_at:type_name -> google.protobuf.Timestamp
+	38, // 0: auth.RegisterResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	38, // 1: auth.VerifyOtpRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 2: auth.VerifyOtpRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 3: auth.LoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 4: auth.LoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 5: auth.ResendOtpRes.otp_expiry:type_name -> google.protobuf.Timestamp
+	38, // 6: auth.ForgotPasswordRes.otp_expiry:type_name -> google.protobuf.Timestamp
+	38, // 7: auth.VerifyForgotPasswordRes.reset_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 8: auth.RenewAccessTokenRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 9: auth.GoogleAuthRes.expires_at:type_name -> google.protobuf.Timestamp
+	38, // 10: auth.GoogleCallbackRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 11: auth.GoogleCallbackRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 12: auth.AdminLoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 13: auth.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 14: auth.User.created_at:type_name -> google.protobuf.Timestamp
 	34, // 15: auth.GetUserResponse.users:type_name -> auth.User
 	0,  // 16: auth.AuthService.Register:input_type -> auth.RegisterRequest
 	2,  // 17: auth.AuthService.VerfiyOtp:input_type -> auth.VerifyOtpReq
@@ -2416,7 +2474,7 @@ func file_user_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_service_proto_rawDesc), len(file_user_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   37,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   3,
 		},
