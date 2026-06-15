@@ -1,0 +1,28 @@
+syntax ='proto3'; 
+
+package team; 
+
+option go_package = "github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1";  
+
+
+
+
+message CreateTeamReq{
+    string name=1; 
+    string short_name=2; 
+    string city=3; 
+    string description = 4; 
+    string user_id=5; 
+}
+
+message CreateTeamRes{   
+    string user_id=1; 
+    string team_code=2; 
+} 
+
+
+service TeamService {
+   rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes);
+}
+
+
