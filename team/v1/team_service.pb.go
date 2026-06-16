@@ -24,10 +24,10 @@ const (
 type CreateTeamReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	ShortName     string                 `protobuf:"bytes,2,opt,name=short_name,json=shortName,proto3" json:"short_name,omitempty"`
-	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
-	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	UserId        string                 `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	City          string                 `protobuf:"bytes,2,opt,name=city,proto3" json:"city,omitempty"`
+	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,5,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -69,13 +69,6 @@ func (x *CreateTeamReq) GetName() string {
 	return ""
 }
 
-func (x *CreateTeamReq) GetShortName() string {
-	if x != nil {
-		return x.ShortName
-	}
-	return ""
-}
-
 func (x *CreateTeamReq) GetCity() string {
 	if x != nil {
 		return x.City
@@ -93,6 +86,13 @@ func (x *CreateTeamReq) GetDescription() string {
 func (x *CreateTeamReq) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *CreateTeamReq) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -153,14 +153,13 @@ var File_team_service_proto protoreflect.FileDescriptor
 
 const file_team_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12team_service.proto\x12\x04team\"\x91\x01\n" +
+	"\x12team_service.proto\x12\x04team\"\x97\x01\n" +
 	"\rCreateTeamReq\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x1d\n" +
-	"\n" +
-	"short_name\x18\x02 \x01(\tR\tshortName\x12\x12\n" +
-	"\x04city\x18\x03 \x01(\tR\x04city\x12 \n" +
-	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x17\n" +
-	"\auser_id\x18\x05 \x01(\tR\x06userId\"E\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04city\x18\x02 \x01(\tR\x04city\x12 \n" +
+	"\vdescription\x18\x03 \x01(\tR\vdescription\x12\x17\n" +
+	"\auser_id\x18\x04 \x01(\tR\x06userId\x12#\n" +
+	"\rrefresh_token\x18\x05 \x01(\tR\frefreshToken\"E\n" +
 	"\rCreateTeamRes\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tteam_code\x18\x02 \x01(\tR\bteamCode2E\n" +
