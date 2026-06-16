@@ -116,14 +116,6 @@ message LogOutRes{
    bool success=1;
 } 
 
-message AddUserRoleReq{
-   string user_id=1; 
-   string role=2;
-} 
-
-message AddUserRoleRes{
-   bool success=1;
-}
 
 message GoogleAuthReq{
     string session_id=1; 
@@ -163,6 +155,23 @@ message ChangePasswordRes{
    bool success=1;
 }
 
+
+message AddUserRoleReq{
+   string user_id=1; 
+   string role=2;
+}  
+
+message AddUserRoleRes{
+   string session_id=1;
+   string user_id=2; 
+   string email=3;
+   string access_token=4; 
+   google.protobuf.Timestamp access_token_expiry=5;  
+   string refresh_token=6; 
+   google.protobuf.Timestamp refresh_token_expiry=7;
+}
+
+
 // authentication of users services
 service AuthService{ 
   //rpc ValidateToken(ValidateTokenReq) returns (ValidateTokenRes);
@@ -192,8 +201,6 @@ service AuthService{
   rpc GoogleAuthCallback(GoogleCallbackReq)returns(GoogleCallbackRes);   
 
   rpc ChangePassword(ChangePasswordReq)returns(ChangePasswordRes);
-  
-  
 }
 
 

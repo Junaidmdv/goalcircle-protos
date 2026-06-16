@@ -19,19 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_Register_FullMethodName             = "/auth.AuthService/Register"
-	AuthService_VerfiyOtp_FullMethodName            = "/auth.AuthService/VerfiyOtp"
-	AuthService_Login_FullMethodName                = "/auth.AuthService/Login"
-	AuthService_ResendOtp_FullMethodName            = "/auth.AuthService/ResendOtp"
-	AuthService_ForgotPassword_FullMethodName       = "/auth.AuthService/ForgotPassword"
-	AuthService_VerifyForgotPassword_FullMethodName = "/auth.AuthService/VerifyForgotPassword"
-	AuthService_ResetPassword_FullMethodName        = "/auth.AuthService/ResetPassword"
-	AuthService_RenweAccessToken_FullMethodName     = "/auth.AuthService/RenweAccessToken"
-	AuthService_LogOut_FullMethodName               = "/auth.AuthService/LogOut"
-	AuthService_AddUserRole_FullMethodName          = "/auth.AuthService/AddUserRole"
-	AuthService_GoogleAuth_FullMethodName           = "/auth.AuthService/GoogleAuth"
-	AuthService_GoogleAuthCallback_FullMethodName   = "/auth.AuthService/GoogleAuthCallback"
-	AuthService_ChangePassword_FullMethodName       = "/auth.AuthService/ChangePassword"
+	AuthService_Register_FullMethodName             = "/user.AuthService/Register"
+	AuthService_VerfiyOtp_FullMethodName            = "/user.AuthService/VerfiyOtp"
+	AuthService_Login_FullMethodName                = "/user.AuthService/Login"
+	AuthService_ResendOtp_FullMethodName            = "/user.AuthService/ResendOtp"
+	AuthService_ForgotPassword_FullMethodName       = "/user.AuthService/ForgotPassword"
+	AuthService_VerifyForgotPassword_FullMethodName = "/user.AuthService/VerifyForgotPassword"
+	AuthService_ResetPassword_FullMethodName        = "/user.AuthService/ResetPassword"
+	AuthService_RenweAccessToken_FullMethodName     = "/user.AuthService/RenweAccessToken"
+	AuthService_LogOut_FullMethodName               = "/user.AuthService/LogOut"
+	AuthService_AddUserRole_FullMethodName          = "/user.AuthService/AddUserRole"
+	AuthService_GoogleAuth_FullMethodName           = "/user.AuthService/GoogleAuth"
+	AuthService_GoogleAuthCallback_FullMethodName   = "/user.AuthService/GoogleAuthCallback"
+	AuthService_ChangePassword_FullMethodName       = "/user.AuthService/ChangePassword"
 )
 
 // AuthServiceClient is the client API for AuthService service.
@@ -530,7 +530,7 @@ func _AuthService_ChangePassword_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.AuthService",
+	ServiceName: "user.AuthService",
 	HandlerType: (*AuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -591,8 +591,8 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	AdminAuthService_AdminRegister_FullMethodName = "/auth.AdminAuthService/AdminRegister"
-	AdminAuthService_AdminLogin_FullMethodName    = "/auth.AdminAuthService/AdminLogin"
+	AdminAuthService_AdminRegister_FullMethodName = "/user.AdminAuthService/AdminRegister"
+	AdminAuthService_AdminLogin_FullMethodName    = "/user.AdminAuthService/AdminLogin"
 )
 
 // AdminAuthServiceClient is the client API for AdminAuthService service.
@@ -714,7 +714,7 @@ func _AdminAuthService_AdminLogin_Handler(srv interface{}, ctx context.Context, 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AdminAuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.AdminAuthService",
+	ServiceName: "user.AdminAuthService",
 	HandlerType: (*AdminAuthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -731,9 +731,9 @@ var AdminAuthService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	AdminUserManagementService_GetUsers_FullMethodName    = "/auth.AdminUserManagementService/GetUsers"
-	AdminUserManagementService_BlockUser_FullMethodName   = "/auth.AdminUserManagementService/BlockUser"
-	AdminUserManagementService_UnBlockUser_FullMethodName = "/auth.AdminUserManagementService/UnBlockUser"
+	AdminUserManagementService_GetUsers_FullMethodName    = "/user.AdminUserManagementService/GetUsers"
+	AdminUserManagementService_BlockUser_FullMethodName   = "/user.AdminUserManagementService/BlockUser"
+	AdminUserManagementService_UnBlockUser_FullMethodName = "/user.AdminUserManagementService/UnBlockUser"
 )
 
 // AdminUserManagementServiceClient is the client API for AdminUserManagementService service.
@@ -889,7 +889,7 @@ func _AdminUserManagementService_UnBlockUser_Handler(srv interface{}, ctx contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AdminUserManagementService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.AdminUserManagementService",
+	ServiceName: "user.AdminUserManagementService",
 	HandlerType: (*AdminUserManagementServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

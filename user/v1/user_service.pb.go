@@ -1046,102 +1046,6 @@ func (x *LogOutRes) GetSuccess() bool {
 	return false
 }
 
-type AddUserRoleReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddUserRoleReq) Reset() {
-	*x = AddUserRoleReq{}
-	mi := &file_user_service_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddUserRoleReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddUserRoleReq) ProtoMessage() {}
-
-func (x *AddUserRoleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddUserRoleReq.ProtoReflect.Descriptor instead.
-func (*AddUserRoleReq) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *AddUserRoleReq) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *AddUserRoleReq) GetRole() string {
-	if x != nil {
-		return x.Role
-	}
-	return ""
-}
-
-type AddUserRoleRes struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddUserRoleRes) Reset() {
-	*x = AddUserRoleRes{}
-	mi := &file_user_service_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddUserRoleRes) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddUserRoleRes) ProtoMessage() {}
-
-func (x *AddUserRoleRes) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddUserRoleRes.ProtoReflect.Descriptor instead.
-func (*AddUserRoleRes) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *AddUserRoleRes) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
 type GoogleAuthReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
@@ -1151,7 +1055,7 @@ type GoogleAuthReq struct {
 
 func (x *GoogleAuthReq) Reset() {
 	*x = GoogleAuthReq{}
-	mi := &file_user_service_proto_msgTypes[20]
+	mi := &file_user_service_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1163,7 +1067,7 @@ func (x *GoogleAuthReq) String() string {
 func (*GoogleAuthReq) ProtoMessage() {}
 
 func (x *GoogleAuthReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[20]
+	mi := &file_user_service_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1176,7 +1080,7 @@ func (x *GoogleAuthReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleAuthReq.ProtoReflect.Descriptor instead.
 func (*GoogleAuthReq) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{20}
+	return file_user_service_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GoogleAuthReq) GetSessionId() string {
@@ -1197,7 +1101,7 @@ type GoogleAuthRes struct {
 
 func (x *GoogleAuthRes) Reset() {
 	*x = GoogleAuthRes{}
-	mi := &file_user_service_proto_msgTypes[21]
+	mi := &file_user_service_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1209,7 +1113,7 @@ func (x *GoogleAuthRes) String() string {
 func (*GoogleAuthRes) ProtoMessage() {}
 
 func (x *GoogleAuthRes) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[21]
+	mi := &file_user_service_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1222,7 +1126,7 @@ func (x *GoogleAuthRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleAuthRes.ProtoReflect.Descriptor instead.
 func (*GoogleAuthRes) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{21}
+	return file_user_service_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GoogleAuthRes) GetRedirectUrl() string {
@@ -1255,7 +1159,7 @@ type GoogleCallbackReq struct {
 
 func (x *GoogleCallbackReq) Reset() {
 	*x = GoogleCallbackReq{}
-	mi := &file_user_service_proto_msgTypes[22]
+	mi := &file_user_service_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1267,7 +1171,7 @@ func (x *GoogleCallbackReq) String() string {
 func (*GoogleCallbackReq) ProtoMessage() {}
 
 func (x *GoogleCallbackReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[22]
+	mi := &file_user_service_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1280,7 +1184,7 @@ func (x *GoogleCallbackReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleCallbackReq.ProtoReflect.Descriptor instead.
 func (*GoogleCallbackReq) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{22}
+	return file_user_service_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *GoogleCallbackReq) GetCallbackCode() string {
@@ -1305,7 +1209,7 @@ type GoogleCallbackRes struct {
 
 func (x *GoogleCallbackRes) Reset() {
 	*x = GoogleCallbackRes{}
-	mi := &file_user_service_proto_msgTypes[23]
+	mi := &file_user_service_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1317,7 +1221,7 @@ func (x *GoogleCallbackRes) String() string {
 func (*GoogleCallbackRes) ProtoMessage() {}
 
 func (x *GoogleCallbackRes) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[23]
+	mi := &file_user_service_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1330,7 +1234,7 @@ func (x *GoogleCallbackRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleCallbackRes.ProtoReflect.Descriptor instead.
 func (*GoogleCallbackRes) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{23}
+	return file_user_service_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GoogleCallbackRes) GetSessionId() string {
@@ -1393,7 +1297,7 @@ type ChangePasswordReq struct {
 
 func (x *ChangePasswordReq) Reset() {
 	*x = ChangePasswordReq{}
-	mi := &file_user_service_proto_msgTypes[24]
+	mi := &file_user_service_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1405,7 +1309,7 @@ func (x *ChangePasswordReq) String() string {
 func (*ChangePasswordReq) ProtoMessage() {}
 
 func (x *ChangePasswordReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[24]
+	mi := &file_user_service_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1418,7 +1322,7 @@ func (x *ChangePasswordReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangePasswordReq.ProtoReflect.Descriptor instead.
 func (*ChangePasswordReq) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{24}
+	return file_user_service_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *ChangePasswordReq) GetUserId() string {
@@ -1451,7 +1355,7 @@ type ChangePasswordRes struct {
 
 func (x *ChangePasswordRes) Reset() {
 	*x = ChangePasswordRes{}
-	mi := &file_user_service_proto_msgTypes[25]
+	mi := &file_user_service_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1463,7 +1367,7 @@ func (x *ChangePasswordRes) String() string {
 func (*ChangePasswordRes) ProtoMessage() {}
 
 func (x *ChangePasswordRes) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[25]
+	mi := &file_user_service_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1476,7 +1380,7 @@ func (x *ChangePasswordRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangePasswordRes.ProtoReflect.Descriptor instead.
 func (*ChangePasswordRes) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{25}
+	return file_user_service_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *ChangePasswordRes) GetSuccess() bool {
@@ -1484,6 +1388,150 @@ func (x *ChangePasswordRes) GetSuccess() bool {
 		return x.Success
 	}
 	return false
+}
+
+type AddUserRoleReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddUserRoleReq) Reset() {
+	*x = AddUserRoleReq{}
+	mi := &file_user_service_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddUserRoleReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddUserRoleReq) ProtoMessage() {}
+
+func (x *AddUserRoleReq) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddUserRoleReq.ProtoReflect.Descriptor instead.
+func (*AddUserRoleReq) Descriptor() ([]byte, []int) {
+	return file_user_service_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *AddUserRoleReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *AddUserRoleReq) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+type AddUserRoleRes struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	SessionId          string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	UserId             string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Email              string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	AccessToken        string                 `protobuf:"bytes,4,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessTokenExpiry  *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=access_token_expiry,json=accessTokenExpiry,proto3" json:"access_token_expiry,omitempty"`
+	RefreshToken       string                 `protobuf:"bytes,6,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshTokenExpiry *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=refresh_token_expiry,json=refreshTokenExpiry,proto3" json:"refresh_token_expiry,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *AddUserRoleRes) Reset() {
+	*x = AddUserRoleRes{}
+	mi := &file_user_service_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddUserRoleRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddUserRoleRes) ProtoMessage() {}
+
+func (x *AddUserRoleRes) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddUserRoleRes.ProtoReflect.Descriptor instead.
+func (*AddUserRoleRes) Descriptor() ([]byte, []int) {
+	return file_user_service_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *AddUserRoleRes) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+func (x *AddUserRoleRes) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *AddUserRoleRes) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *AddUserRoleRes) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *AddUserRoleRes) GetAccessTokenExpiry() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AccessTokenExpiry
+	}
+	return nil
+}
+
+func (x *AddUserRoleRes) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *AddUserRoleRes) GetRefreshTokenExpiry() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RefreshTokenExpiry
+	}
+	return nil
 }
 
 type AdminRegisterRequest struct {
@@ -2202,7 +2250,7 @@ var File_user_service_proto protoreflect.FileDescriptor
 
 const file_user_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12user_service.proto\x12\x04auth\x1a\x1fgoogle/protobuf/timestamp.proto\"n\n" +
+	"\x12user_service.proto\x12\x04user\x1a\x1fgoogle/protobuf/timestamp.proto\"n\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12)\n" +
@@ -2275,11 +2323,6 @@ const file_user_service_proto_rawDesc = "" +
 	"\tLogOutReq\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\"%\n" +
 	"\tLogOutRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"=\n" +
-	"\x0eAddUserRoleReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04role\x18\x02 \x01(\tR\x04role\"*\n" +
-	"\x0eAddUserRoleRes\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\".\n" +
 	"\rGoogleAuthReq\x12\x1d\n" +
 	"\n" +
@@ -2305,7 +2348,19 @@ const file_user_service_proto_rawDesc = "" +
 	"\fold_password\x18\x02 \x01(\tR\voldPassword\x12!\n" +
 	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"-\n" +
 	"\x11ChangePasswordRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x90\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"=\n" +
+	"\x0eAddUserRoleReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\"\xc0\x02\n" +
+	"\x0eAddUserRoleRes\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x12!\n" +
+	"\faccess_token\x18\x04 \x01(\tR\vaccessToken\x12J\n" +
+	"\x13access_token_expiry\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x11accessTokenExpiry\x12#\n" +
+	"\rrefresh_token\x18\x06 \x01(\tR\frefreshToken\x12L\n" +
+	"\x14refresh_token_expiry\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"\x90\x01\n" +
 	"\x14AdminRegisterRequest\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
@@ -2350,8 +2405,8 @@ const file_user_service_proto_rawDesc = "" +
 	"\ttotalItem\x18\x04 \x01(\x05R\ttotalItem\"_\n" +
 	"\x0fGetUserResponse\x12 \n" +
 	"\x05users\x18\x01 \x03(\v2\n" +
-	".auth.UserR\x05users\x12*\n" +
-	"\bpaginate\x18\x02 \x01(\v2\x0e.auth.PaginateR\bpaginate\"\x81\x01\n" +
+	".user.UserR\x05users\x12*\n" +
+	"\bpaginate\x18\x02 \x01(\v2\x0e.user.PaginateR\bpaginate\"\x81\x01\n" +
 	"\n" +
 	"GetUserReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
@@ -2361,28 +2416,28 @@ const file_user_service_proto_rawDesc = "" +
 	"\x04role\x18\x04 \x01(\tR\x04role\x12\x16\n" +
 	"\x06search\x18\x05 \x01(\tR\x06search2\xb4\x06\n" +
 	"\vAuthService\x129\n" +
-	"\bRegister\x12\x15.auth.RegisterRequest\x1a\x16.auth.RegisterResponse\x123\n" +
-	"\tVerfiyOtp\x12\x12.auth.VerifyOtpReq\x1a\x12.auth.VerifyOtpRes\x120\n" +
-	"\x05Login\x12\x12.auth.LoginRequest\x1a\x13.auth.LoginResponse\x123\n" +
-	"\tResendOtp\x12\x12.auth.ResendOtpReq\x1a\x12.auth.ResendOtpRes\x12B\n" +
-	"\x0eForgotPassword\x12\x17.auth.ForgotPasswordReq\x1a\x17.auth.ForgotPasswordRes\x12T\n" +
-	"\x14VerifyForgotPassword\x12\x1d.auth.VerifyForgotPasswordReq\x1a\x1d.auth.VerifyForgotPasswordRes\x12?\n" +
-	"\rResetPassword\x12\x16.auth.ResetPasswordReq\x1a\x16.auth.ResetPasswordRes\x12H\n" +
-	"\x10RenweAccessToken\x12\x19.auth.RenewAccessTokenReq\x1a\x19.auth.RenewAccessTokenRes\x12*\n" +
-	"\x06LogOut\x12\x0f.auth.LogOutReq\x1a\x0f.auth.LogOutRes\x129\n" +
-	"\vAddUserRole\x12\x14.auth.AddUserRoleReq\x1a\x14.auth.AddUserRoleRes\x126\n" +
+	"\bRegister\x12\x15.user.RegisterRequest\x1a\x16.user.RegisterResponse\x123\n" +
+	"\tVerfiyOtp\x12\x12.user.VerifyOtpReq\x1a\x12.user.VerifyOtpRes\x120\n" +
+	"\x05Login\x12\x12.user.LoginRequest\x1a\x13.user.LoginResponse\x123\n" +
+	"\tResendOtp\x12\x12.user.ResendOtpReq\x1a\x12.user.ResendOtpRes\x12B\n" +
+	"\x0eForgotPassword\x12\x17.user.ForgotPasswordReq\x1a\x17.user.ForgotPasswordRes\x12T\n" +
+	"\x14VerifyForgotPassword\x12\x1d.user.VerifyForgotPasswordReq\x1a\x1d.user.VerifyForgotPasswordRes\x12?\n" +
+	"\rResetPassword\x12\x16.user.ResetPasswordReq\x1a\x16.user.ResetPasswordRes\x12H\n" +
+	"\x10RenweAccessToken\x12\x19.user.RenewAccessTokenReq\x1a\x19.user.RenewAccessTokenRes\x12*\n" +
+	"\x06LogOut\x12\x0f.user.LogOutReq\x1a\x0f.user.LogOutRes\x129\n" +
+	"\vAddUserRole\x12\x14.user.AddUserRoleReq\x1a\x14.user.AddUserRoleRes\x126\n" +
 	"\n" +
-	"GoogleAuth\x12\x13.auth.GoogleAuthReq\x1a\x13.auth.GoogleAuthRes\x12F\n" +
-	"\x12GoogleAuthCallback\x12\x17.auth.GoogleCallbackReq\x1a\x17.auth.GoogleCallbackRes\x12B\n" +
-	"\x0eChangePassword\x12\x17.auth.ChangePasswordReq\x1a\x17.auth.ChangePasswordRes2\x9d\x01\n" +
+	"GoogleAuth\x12\x13.user.GoogleAuthReq\x1a\x13.user.GoogleAuthRes\x12F\n" +
+	"\x12GoogleAuthCallback\x12\x17.user.GoogleCallbackReq\x1a\x17.user.GoogleCallbackRes\x12B\n" +
+	"\x0eChangePassword\x12\x17.user.ChangePasswordReq\x1a\x17.user.ChangePasswordRes2\x9d\x01\n" +
 	"\x10AdminAuthService\x12H\n" +
-	"\rAdminRegister\x12\x1a.auth.AdminRegisterRequest\x1a\x1b.auth.AdminRegisterResponse\x12?\n" +
+	"\rAdminRegister\x12\x1a.user.AdminRegisterRequest\x1a\x1b.user.AdminRegisterResponse\x12?\n" +
 	"\n" +
-	"AdminLogin\x12\x17.auth.AdminLoginRequest\x1a\x18.auth.AdminLoginResponse2\xc1\x01\n" +
+	"AdminLogin\x12\x17.user.AdminLoginRequest\x1a\x18.user.AdminLoginResponse2\xc1\x01\n" +
 	"\x1aAdminUserManagementService\x123\n" +
-	"\bGetUsers\x12\x10.auth.GetUserReq\x1a\x15.auth.GetUserResponse\x123\n" +
-	"\tBlockUser\x12\x12.auth.BlockUserReq\x1a\x12.auth.BlockUserRes\x129\n" +
-	"\vUnBlockUser\x12\x14.auth.UnblockUserReq\x1a\x14.auth.UnblockUserResB8Z6github.com/Junaidmdv/goalcirlcle-protos/user/v1;userv1b\x06proto3"
+	"\bGetUsers\x12\x10.user.GetUserReq\x1a\x15.user.GetUserResponse\x123\n" +
+	"\tBlockUser\x12\x12.user.BlockUserReq\x1a\x12.user.BlockUserRes\x129\n" +
+	"\vUnBlockUser\x12\x14.user.UnblockUserReq\x1a\x14.user.UnblockUserResB8Z6github.com/Junaidmdv/goalcirlcle-protos/user/v1;userv1b\x06proto3"
 
 var (
 	file_user_service_proto_rawDescOnce sync.Once
@@ -2398,105 +2453,107 @@ func file_user_service_proto_rawDescGZIP() []byte {
 
 var file_user_service_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_user_service_proto_goTypes = []any{
-	(*RegisterRequest)(nil),         // 0: auth.RegisterRequest
-	(*RegisterResponse)(nil),        // 1: auth.RegisterResponse
-	(*VerifyOtpReq)(nil),            // 2: auth.VerifyOtpReq
-	(*VerifyOtpRes)(nil),            // 3: auth.VerifyOtpRes
-	(*LoginRequest)(nil),            // 4: auth.LoginRequest
-	(*LoginResponse)(nil),           // 5: auth.LoginResponse
-	(*ResendOtpReq)(nil),            // 6: auth.ResendOtpReq
-	(*ResendOtpRes)(nil),            // 7: auth.ResendOtpRes
-	(*ForgotPasswordReq)(nil),       // 8: auth.ForgotPasswordReq
-	(*ForgotPasswordRes)(nil),       // 9: auth.ForgotPasswordRes
-	(*VerifyForgotPasswordReq)(nil), // 10: auth.VerifyForgotPasswordReq
-	(*VerifyForgotPasswordRes)(nil), // 11: auth.VerifyForgotPasswordRes
-	(*ResetPasswordReq)(nil),        // 12: auth.ResetPasswordReq
-	(*ResetPasswordRes)(nil),        // 13: auth.ResetPasswordRes
-	(*RenewAccessTokenReq)(nil),     // 14: auth.RenewAccessTokenReq
-	(*RenewAccessTokenRes)(nil),     // 15: auth.RenewAccessTokenRes
-	(*LogOutReq)(nil),               // 16: auth.LogOutReq
-	(*LogOutRes)(nil),               // 17: auth.LogOutRes
-	(*AddUserRoleReq)(nil),          // 18: auth.AddUserRoleReq
-	(*AddUserRoleRes)(nil),          // 19: auth.AddUserRoleRes
-	(*GoogleAuthReq)(nil),           // 20: auth.GoogleAuthReq
-	(*GoogleAuthRes)(nil),           // 21: auth.GoogleAuthRes
-	(*GoogleCallbackReq)(nil),       // 22: auth.GoogleCallbackReq
-	(*GoogleCallbackRes)(nil),       // 23: auth.GoogleCallbackRes
-	(*ChangePasswordReq)(nil),       // 24: auth.ChangePasswordReq
-	(*ChangePasswordRes)(nil),       // 25: auth.ChangePasswordRes
-	(*AdminRegisterRequest)(nil),    // 26: auth.AdminRegisterRequest
-	(*AdminRegisterResponse)(nil),   // 27: auth.AdminRegisterResponse
-	(*AdminLoginRequest)(nil),       // 28: auth.AdminLoginRequest
-	(*AdminLoginResponse)(nil),      // 29: auth.AdminLoginResponse
-	(*BlockUserReq)(nil),            // 30: auth.BlockUserReq
-	(*BlockUserRes)(nil),            // 31: auth.BlockUserRes
-	(*UnblockUserReq)(nil),          // 32: auth.UnblockUserReq
-	(*UnblockUserRes)(nil),          // 33: auth.UnblockUserRes
-	(*User)(nil),                    // 34: auth.User
-	(*Paginate)(nil),                // 35: auth.Paginate
-	(*GetUserResponse)(nil),         // 36: auth.GetUserResponse
-	(*GetUserReq)(nil),              // 37: auth.GetUserReq
+	(*RegisterRequest)(nil),         // 0: user.RegisterRequest
+	(*RegisterResponse)(nil),        // 1: user.RegisterResponse
+	(*VerifyOtpReq)(nil),            // 2: user.VerifyOtpReq
+	(*VerifyOtpRes)(nil),            // 3: user.VerifyOtpRes
+	(*LoginRequest)(nil),            // 4: user.LoginRequest
+	(*LoginResponse)(nil),           // 5: user.LoginResponse
+	(*ResendOtpReq)(nil),            // 6: user.ResendOtpReq
+	(*ResendOtpRes)(nil),            // 7: user.ResendOtpRes
+	(*ForgotPasswordReq)(nil),       // 8: user.ForgotPasswordReq
+	(*ForgotPasswordRes)(nil),       // 9: user.ForgotPasswordRes
+	(*VerifyForgotPasswordReq)(nil), // 10: user.VerifyForgotPasswordReq
+	(*VerifyForgotPasswordRes)(nil), // 11: user.VerifyForgotPasswordRes
+	(*ResetPasswordReq)(nil),        // 12: user.ResetPasswordReq
+	(*ResetPasswordRes)(nil),        // 13: user.ResetPasswordRes
+	(*RenewAccessTokenReq)(nil),     // 14: user.RenewAccessTokenReq
+	(*RenewAccessTokenRes)(nil),     // 15: user.RenewAccessTokenRes
+	(*LogOutReq)(nil),               // 16: user.LogOutReq
+	(*LogOutRes)(nil),               // 17: user.LogOutRes
+	(*GoogleAuthReq)(nil),           // 18: user.GoogleAuthReq
+	(*GoogleAuthRes)(nil),           // 19: user.GoogleAuthRes
+	(*GoogleCallbackReq)(nil),       // 20: user.GoogleCallbackReq
+	(*GoogleCallbackRes)(nil),       // 21: user.GoogleCallbackRes
+	(*ChangePasswordReq)(nil),       // 22: user.ChangePasswordReq
+	(*ChangePasswordRes)(nil),       // 23: user.ChangePasswordRes
+	(*AddUserRoleReq)(nil),          // 24: user.AddUserRoleReq
+	(*AddUserRoleRes)(nil),          // 25: user.AddUserRoleRes
+	(*AdminRegisterRequest)(nil),    // 26: user.AdminRegisterRequest
+	(*AdminRegisterResponse)(nil),   // 27: user.AdminRegisterResponse
+	(*AdminLoginRequest)(nil),       // 28: user.AdminLoginRequest
+	(*AdminLoginResponse)(nil),      // 29: user.AdminLoginResponse
+	(*BlockUserReq)(nil),            // 30: user.BlockUserReq
+	(*BlockUserRes)(nil),            // 31: user.BlockUserRes
+	(*UnblockUserReq)(nil),          // 32: user.UnblockUserReq
+	(*UnblockUserRes)(nil),          // 33: user.UnblockUserRes
+	(*User)(nil),                    // 34: user.User
+	(*Paginate)(nil),                // 35: user.Paginate
+	(*GetUserResponse)(nil),         // 36: user.GetUserResponse
+	(*GetUserReq)(nil),              // 37: user.GetUserReq
 	(*timestamppb.Timestamp)(nil),   // 38: google.protobuf.Timestamp
 }
 var file_user_service_proto_depIdxs = []int32{
-	38, // 0: auth.RegisterResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
-	38, // 1: auth.VerifyOtpRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 2: auth.VerifyOtpRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 3: auth.LoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 4: auth.LoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 5: auth.ResendOtpRes.otp_expiry:type_name -> google.protobuf.Timestamp
-	38, // 6: auth.ForgotPasswordRes.otp_expiry:type_name -> google.protobuf.Timestamp
-	38, // 7: auth.VerifyForgotPasswordRes.reset_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 8: auth.RenewAccessTokenRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 9: auth.GoogleAuthRes.expires_at:type_name -> google.protobuf.Timestamp
-	38, // 10: auth.GoogleCallbackRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 11: auth.GoogleCallbackRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 12: auth.AdminLoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 13: auth.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
-	38, // 14: auth.User.created_at:type_name -> google.protobuf.Timestamp
-	34, // 15: auth.GetUserResponse.users:type_name -> auth.User
-	35, // 16: auth.GetUserResponse.paginate:type_name -> auth.Paginate
-	0,  // 17: auth.AuthService.Register:input_type -> auth.RegisterRequest
-	2,  // 18: auth.AuthService.VerfiyOtp:input_type -> auth.VerifyOtpReq
-	4,  // 19: auth.AuthService.Login:input_type -> auth.LoginRequest
-	6,  // 20: auth.AuthService.ResendOtp:input_type -> auth.ResendOtpReq
-	8,  // 21: auth.AuthService.ForgotPassword:input_type -> auth.ForgotPasswordReq
-	10, // 22: auth.AuthService.VerifyForgotPassword:input_type -> auth.VerifyForgotPasswordReq
-	12, // 23: auth.AuthService.ResetPassword:input_type -> auth.ResetPasswordReq
-	14, // 24: auth.AuthService.RenweAccessToken:input_type -> auth.RenewAccessTokenReq
-	16, // 25: auth.AuthService.LogOut:input_type -> auth.LogOutReq
-	18, // 26: auth.AuthService.AddUserRole:input_type -> auth.AddUserRoleReq
-	20, // 27: auth.AuthService.GoogleAuth:input_type -> auth.GoogleAuthReq
-	22, // 28: auth.AuthService.GoogleAuthCallback:input_type -> auth.GoogleCallbackReq
-	24, // 29: auth.AuthService.ChangePassword:input_type -> auth.ChangePasswordReq
-	26, // 30: auth.AdminAuthService.AdminRegister:input_type -> auth.AdminRegisterRequest
-	28, // 31: auth.AdminAuthService.AdminLogin:input_type -> auth.AdminLoginRequest
-	37, // 32: auth.AdminUserManagementService.GetUsers:input_type -> auth.GetUserReq
-	30, // 33: auth.AdminUserManagementService.BlockUser:input_type -> auth.BlockUserReq
-	32, // 34: auth.AdminUserManagementService.UnBlockUser:input_type -> auth.UnblockUserReq
-	1,  // 35: auth.AuthService.Register:output_type -> auth.RegisterResponse
-	3,  // 36: auth.AuthService.VerfiyOtp:output_type -> auth.VerifyOtpRes
-	5,  // 37: auth.AuthService.Login:output_type -> auth.LoginResponse
-	7,  // 38: auth.AuthService.ResendOtp:output_type -> auth.ResendOtpRes
-	9,  // 39: auth.AuthService.ForgotPassword:output_type -> auth.ForgotPasswordRes
-	11, // 40: auth.AuthService.VerifyForgotPassword:output_type -> auth.VerifyForgotPasswordRes
-	13, // 41: auth.AuthService.ResetPassword:output_type -> auth.ResetPasswordRes
-	15, // 42: auth.AuthService.RenweAccessToken:output_type -> auth.RenewAccessTokenRes
-	17, // 43: auth.AuthService.LogOut:output_type -> auth.LogOutRes
-	19, // 44: auth.AuthService.AddUserRole:output_type -> auth.AddUserRoleRes
-	21, // 45: auth.AuthService.GoogleAuth:output_type -> auth.GoogleAuthRes
-	23, // 46: auth.AuthService.GoogleAuthCallback:output_type -> auth.GoogleCallbackRes
-	25, // 47: auth.AuthService.ChangePassword:output_type -> auth.ChangePasswordRes
-	27, // 48: auth.AdminAuthService.AdminRegister:output_type -> auth.AdminRegisterResponse
-	29, // 49: auth.AdminAuthService.AdminLogin:output_type -> auth.AdminLoginResponse
-	36, // 50: auth.AdminUserManagementService.GetUsers:output_type -> auth.GetUserResponse
-	31, // 51: auth.AdminUserManagementService.BlockUser:output_type -> auth.BlockUserRes
-	33, // 52: auth.AdminUserManagementService.UnBlockUser:output_type -> auth.UnblockUserRes
-	35, // [35:53] is the sub-list for method output_type
-	17, // [17:35] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	38, // 0: user.RegisterResponse.otp_expires_at:type_name -> google.protobuf.Timestamp
+	38, // 1: user.VerifyOtpRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 2: user.VerifyOtpRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 3: user.LoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 4: user.LoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 5: user.ResendOtpRes.otp_expiry:type_name -> google.protobuf.Timestamp
+	38, // 6: user.ForgotPasswordRes.otp_expiry:type_name -> google.protobuf.Timestamp
+	38, // 7: user.VerifyForgotPasswordRes.reset_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 8: user.RenewAccessTokenRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 9: user.GoogleAuthRes.expires_at:type_name -> google.protobuf.Timestamp
+	38, // 10: user.GoogleCallbackRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 11: user.GoogleCallbackRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 12: user.AddUserRoleRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 13: user.AddUserRoleRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 14: user.AdminLoginResponse.access_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 15: user.AdminLoginResponse.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	38, // 16: user.User.created_at:type_name -> google.protobuf.Timestamp
+	34, // 17: user.GetUserResponse.users:type_name -> user.User
+	35, // 18: user.GetUserResponse.paginate:type_name -> user.Paginate
+	0,  // 19: user.AuthService.Register:input_type -> user.RegisterRequest
+	2,  // 20: user.AuthService.VerfiyOtp:input_type -> user.VerifyOtpReq
+	4,  // 21: user.AuthService.Login:input_type -> user.LoginRequest
+	6,  // 22: user.AuthService.ResendOtp:input_type -> user.ResendOtpReq
+	8,  // 23: user.AuthService.ForgotPassword:input_type -> user.ForgotPasswordReq
+	10, // 24: user.AuthService.VerifyForgotPassword:input_type -> user.VerifyForgotPasswordReq
+	12, // 25: user.AuthService.ResetPassword:input_type -> user.ResetPasswordReq
+	14, // 26: user.AuthService.RenweAccessToken:input_type -> user.RenewAccessTokenReq
+	16, // 27: user.AuthService.LogOut:input_type -> user.LogOutReq
+	24, // 28: user.AuthService.AddUserRole:input_type -> user.AddUserRoleReq
+	18, // 29: user.AuthService.GoogleAuth:input_type -> user.GoogleAuthReq
+	20, // 30: user.AuthService.GoogleAuthCallback:input_type -> user.GoogleCallbackReq
+	22, // 31: user.AuthService.ChangePassword:input_type -> user.ChangePasswordReq
+	26, // 32: user.AdminAuthService.AdminRegister:input_type -> user.AdminRegisterRequest
+	28, // 33: user.AdminAuthService.AdminLogin:input_type -> user.AdminLoginRequest
+	37, // 34: user.AdminUserManagementService.GetUsers:input_type -> user.GetUserReq
+	30, // 35: user.AdminUserManagementService.BlockUser:input_type -> user.BlockUserReq
+	32, // 36: user.AdminUserManagementService.UnBlockUser:input_type -> user.UnblockUserReq
+	1,  // 37: user.AuthService.Register:output_type -> user.RegisterResponse
+	3,  // 38: user.AuthService.VerfiyOtp:output_type -> user.VerifyOtpRes
+	5,  // 39: user.AuthService.Login:output_type -> user.LoginResponse
+	7,  // 40: user.AuthService.ResendOtp:output_type -> user.ResendOtpRes
+	9,  // 41: user.AuthService.ForgotPassword:output_type -> user.ForgotPasswordRes
+	11, // 42: user.AuthService.VerifyForgotPassword:output_type -> user.VerifyForgotPasswordRes
+	13, // 43: user.AuthService.ResetPassword:output_type -> user.ResetPasswordRes
+	15, // 44: user.AuthService.RenweAccessToken:output_type -> user.RenewAccessTokenRes
+	17, // 45: user.AuthService.LogOut:output_type -> user.LogOutRes
+	25, // 46: user.AuthService.AddUserRole:output_type -> user.AddUserRoleRes
+	19, // 47: user.AuthService.GoogleAuth:output_type -> user.GoogleAuthRes
+	21, // 48: user.AuthService.GoogleAuthCallback:output_type -> user.GoogleCallbackRes
+	23, // 49: user.AuthService.ChangePassword:output_type -> user.ChangePasswordRes
+	27, // 50: user.AdminAuthService.AdminRegister:output_type -> user.AdminRegisterResponse
+	29, // 51: user.AdminAuthService.AdminLogin:output_type -> user.AdminLoginResponse
+	36, // 52: user.AdminUserManagementService.GetUsers:output_type -> user.GetUserResponse
+	31, // 53: user.AdminUserManagementService.BlockUser:output_type -> user.BlockUserRes
+	33, // 54: user.AdminUserManagementService.UnBlockUser:output_type -> user.UnblockUserRes
+	37, // [37:55] is the sub-list for method output_type
+	19, // [19:37] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_user_service_proto_init() }
