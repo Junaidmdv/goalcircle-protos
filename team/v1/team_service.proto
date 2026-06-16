@@ -11,7 +11,8 @@ message CreateTeamReq{
     string name=1; 
     string city=2; 
     string description = 3; 
-    string user_id=4; 
+    string user_id=4;  
+    string refresh_token=5; 
 }
 
 message CreateTeamRes{   

@@ -158,7 +158,8 @@ message ChangePasswordRes{
 
 message AddUserRoleReq{
    string user_id=1; 
-   string role=2;
+   string role=2; 
+   string refresh_token=3; 
 }  
 
 message AddUserRoleRes{

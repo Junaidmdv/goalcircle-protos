@@ -1394,6 +1394,7 @@ type AddUserRoleReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,3,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1438,6 +1439,13 @@ func (x *AddUserRoleReq) GetUserId() string {
 func (x *AddUserRoleReq) GetRole() string {
 	if x != nil {
 		return x.Role
+	}
+	return ""
+}
+
+func (x *AddUserRoleReq) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -2348,10 +2356,11 @@ const file_user_service_proto_rawDesc = "" +
 	"\fold_password\x18\x02 \x01(\tR\voldPassword\x12!\n" +
 	"\fnew_password\x18\x03 \x01(\tR\vnewPassword\"-\n" +
 	"\x11ChangePasswordRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"=\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"b\n" +
 	"\x0eAddUserRoleReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04role\x18\x02 \x01(\tR\x04role\"\xc0\x02\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\x12#\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"\xc0\x02\n" +
 	"\x0eAddUserRoleRes\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
