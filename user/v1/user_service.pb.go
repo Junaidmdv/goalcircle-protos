@@ -1809,6 +1809,7 @@ func (x *AdminLoginResponse) GetRefreshTokenExpiry() *timestamppb.Timestamp {
 type BlockUserReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1846,6 +1847,13 @@ func (*BlockUserReq) Descriptor() ([]byte, []int) {
 func (x *BlockUserReq) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *BlockUserReq) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -1897,6 +1905,7 @@ func (x *BlockUserRes) GetSuccess() bool {
 type UnblockUserReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1934,6 +1943,13 @@ func (*UnblockUserReq) Descriptor() ([]byte, []int) {
 func (x *UnblockUserReq) GetUserId() string {
 	if x != nil {
 		return x.UserId
+	}
+	return ""
+}
+
+func (x *UnblockUserReq) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -2389,13 +2405,15 @@ const file_user_service_proto_rawDesc = "" +
 	"\faccess_token\x18\x05 \x01(\tR\vaccessToken\x12J\n" +
 	"\x13access_token_expiry\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x11accessTokenExpiry\x12#\n" +
 	"\rrefresh_token\x18\a \x01(\tR\frefreshToken\x12L\n" +
-	"\x14refresh_token_expiry\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"'\n" +
+	"\x14refresh_token_expiry\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"L\n" +
 	"\fBlockUserReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"(\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"(\n" +
 	"\fBlockUserRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\")\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"N\n" +
 	"\x0eUnblockUserReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"*\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"*\n" +
 	"\x0eUnblockUserRes\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xa3\x01\n" +
 	"\x04User\x12\x17\n" +

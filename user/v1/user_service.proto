@@ -242,7 +242,8 @@ service AdminAuthService{
 
 
 message BlockUserReq{
-  string user_id=1;
+  string user_id=1; 
+  string refresh_token=2; 
 } 
 
 message BlockUserRes{
@@ -251,7 +252,8 @@ message BlockUserRes{
 
 
 message UnblockUserReq{
-  string user_id=1;
+  string user_id=1; 
+  string refresh_token=2; 
 } 
 
 message UnblockUserRes{
