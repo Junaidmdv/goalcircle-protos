@@ -170,7 +170,21 @@ message AddUserRoleRes{
    google.protobuf.Timestamp access_token_expiry=5;  
    string refresh_token=6; 
    google.protobuf.Timestamp refresh_token_expiry=7;
+}  
+
+
+message RemoveUserRoleRes{
+   string user_id=1; 
+   string refresh_token=2;
 }
+
+
+message RemoveUserRoleReq{
+   string session_id=1;
+   string user_id=2; 
+   string email=3;
+}
+
 
 
 // authentication of users services
@@ -195,7 +209,9 @@ service AuthService{
 
   rpc LogOut(LogOutReq)returns(LogOutRes);
 
-  rpc AddUserRole(AddUserRoleReq)returns(AddUserRoleRes);  
+  rpc AddUserRole(AddUserRoleReq)returns(AddUserRoleRes);   
+
+  rpc RemoveUserRole(RemoveUserRoleReq)returns(RemoveUserRoleRes);
 
   rpc GoogleAuth(GoogleAuthReq)returns(GoogleAuthRes);  
 

@@ -29,6 +29,7 @@ const (
 	AuthService_RenweAccessToken_FullMethodName     = "/user.AuthService/RenweAccessToken"
 	AuthService_LogOut_FullMethodName               = "/user.AuthService/LogOut"
 	AuthService_AddUserRole_FullMethodName          = "/user.AuthService/AddUserRole"
+	AuthService_RemoveUserRole_FullMethodName       = "/user.AuthService/RemoveUserRole"
 	AuthService_GoogleAuth_FullMethodName           = "/user.AuthService/GoogleAuth"
 	AuthService_GoogleAuthCallback_FullMethodName   = "/user.AuthService/GoogleAuthCallback"
 	AuthService_ChangePassword_FullMethodName       = "/user.AuthService/ChangePassword"
@@ -55,6 +56,7 @@ type AuthServiceClient interface {
 	RenweAccessToken(ctx context.Context, in *RenewAccessTokenReq, opts ...grpc.CallOption) (*RenewAccessTokenRes, error)
 	LogOut(ctx context.Context, in *LogOutReq, opts ...grpc.CallOption) (*LogOutRes, error)
 	AddUserRole(ctx context.Context, in *AddUserRoleReq, opts ...grpc.CallOption) (*AddUserRoleRes, error)
+	RemoveUserRole(ctx context.Context, in *RemoveUserRoleReq, opts ...grpc.CallOption) (*RemoveUserRoleRes, error)
 	GoogleAuth(ctx context.Context, in *GoogleAuthReq, opts ...grpc.CallOption) (*GoogleAuthRes, error)
 	GoogleAuthCallback(ctx context.Context, in *GoogleCallbackReq, opts ...grpc.CallOption) (*GoogleCallbackRes, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordReq, opts ...grpc.CallOption) (*ChangePasswordRes, error)
@@ -168,6 +170,16 @@ func (c *authServiceClient) AddUserRole(ctx context.Context, in *AddUserRoleReq,
 	return out, nil
 }
 
+func (c *authServiceClient) RemoveUserRole(ctx context.Context, in *RemoveUserRoleReq, opts ...grpc.CallOption) (*RemoveUserRoleRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveUserRoleRes)
+	err := c.cc.Invoke(ctx, AuthService_RemoveUserRole_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *authServiceClient) GoogleAuth(ctx context.Context, in *GoogleAuthReq, opts ...grpc.CallOption) (*GoogleAuthRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GoogleAuthRes)
@@ -219,6 +231,7 @@ type AuthServiceServer interface {
 	RenweAccessToken(context.Context, *RenewAccessTokenReq) (*RenewAccessTokenRes, error)
 	LogOut(context.Context, *LogOutReq) (*LogOutRes, error)
 	AddUserRole(context.Context, *AddUserRoleReq) (*AddUserRoleRes, error)
+	RemoveUserRole(context.Context, *RemoveUserRoleReq) (*RemoveUserRoleRes, error)
 	GoogleAuth(context.Context, *GoogleAuthReq) (*GoogleAuthRes, error)
 	GoogleAuthCallback(context.Context, *GoogleCallbackReq) (*GoogleCallbackRes, error)
 	ChangePassword(context.Context, *ChangePasswordReq) (*ChangePasswordRes, error)
@@ -261,6 +274,9 @@ func (UnimplementedAuthServiceServer) LogOut(context.Context, *LogOutReq) (*LogO
 }
 func (UnimplementedAuthServiceServer) AddUserRole(context.Context, *AddUserRoleReq) (*AddUserRoleRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUserRole not implemented")
+}
+func (UnimplementedAuthServiceServer) RemoveUserRole(context.Context, *RemoveUserRoleReq) (*RemoveUserRoleRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveUserRole not implemented")
 }
 func (UnimplementedAuthServiceServer) GoogleAuth(context.Context, *GoogleAuthReq) (*GoogleAuthRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleAuth not implemented")
@@ -472,6 +488,24 @@ func _AuthService_AddUserRole_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AuthService_RemoveUserRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveUserRoleReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).RemoveUserRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_RemoveUserRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).RemoveUserRole(ctx, req.(*RemoveUserRoleReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _AuthService_GoogleAuth_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GoogleAuthReq)
 	if err := dec(in); err != nil {
@@ -572,6 +606,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddUserRole",
 			Handler:    _AuthService_AddUserRole_Handler,
+		},
+		{
+			MethodName: "RemoveUserRole",
+			Handler:    _AuthService_RemoveUserRole_Handler,
 		},
 		{
 			MethodName: "GoogleAuth",
