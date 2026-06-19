@@ -173,16 +173,14 @@ message AddUserRoleRes{
 }  
 
 
-message RemoveUserRoleRes{
+message RemoveUserRoleReq{
    string user_id=1; 
    string refresh_token=2;
 }
 
 
-message RemoveUserRoleReq{
-   string session_id=1;
-   string user_id=2; 
-   string email=3;
+message RemoveUserRoleRes{
+   bool success=1; 
 }
 
 

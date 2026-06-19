@@ -1542,7 +1542,7 @@ func (x *AddUserRoleRes) GetRefreshTokenExpiry() *timestamppb.Timestamp {
 	return nil
 }
 
-type RemoveUserRoleRes struct {
+type RemoveUserRoleReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
@@ -1550,62 +1550,9 @@ type RemoveUserRoleRes struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RemoveUserRoleRes) Reset() {
-	*x = RemoveUserRoleRes{}
-	mi := &file_user_service_proto_msgTypes[26]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RemoveUserRoleRes) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RemoveUserRoleRes) ProtoMessage() {}
-
-func (x *RemoveUserRoleRes) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[26]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RemoveUserRoleRes.ProtoReflect.Descriptor instead.
-func (*RemoveUserRoleRes) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{26}
-}
-
-func (x *RemoveUserRoleRes) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *RemoveUserRoleRes) GetRefreshToken() string {
-	if x != nil {
-		return x.RefreshToken
-	}
-	return ""
-}
-
-type RemoveUserRoleReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SessionId     string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
 func (x *RemoveUserRoleReq) Reset() {
 	*x = RemoveUserRoleReq{}
-	mi := &file_user_service_proto_msgTypes[27]
+	mi := &file_user_service_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1617,7 +1564,7 @@ func (x *RemoveUserRoleReq) String() string {
 func (*RemoveUserRoleReq) ProtoMessage() {}
 
 func (x *RemoveUserRoleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_user_service_proto_msgTypes[27]
+	mi := &file_user_service_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1630,14 +1577,7 @@ func (x *RemoveUserRoleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RemoveUserRoleReq.ProtoReflect.Descriptor instead.
 func (*RemoveUserRoleReq) Descriptor() ([]byte, []int) {
-	return file_user_service_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *RemoveUserRoleReq) GetSessionId() string {
-	if x != nil {
-		return x.SessionId
-	}
-	return ""
+	return file_user_service_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *RemoveUserRoleReq) GetUserId() string {
@@ -1647,11 +1587,55 @@ func (x *RemoveUserRoleReq) GetUserId() string {
 	return ""
 }
 
-func (x *RemoveUserRoleReq) GetEmail() string {
+func (x *RemoveUserRoleReq) GetRefreshToken() string {
 	if x != nil {
-		return x.Email
+		return x.RefreshToken
 	}
 	return ""
+}
+
+type RemoveUserRoleRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RemoveUserRoleRes) Reset() {
+	*x = RemoveUserRoleRes{}
+	mi := &file_user_service_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RemoveUserRoleRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveUserRoleRes) ProtoMessage() {}
+
+func (x *RemoveUserRoleRes) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveUserRoleRes.ProtoReflect.Descriptor instead.
+func (*RemoveUserRoleRes) Descriptor() ([]byte, []int) {
+	return file_user_service_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *RemoveUserRoleRes) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
 }
 
 type AdminRegisterRequest struct {
@@ -2482,14 +2466,11 @@ const file_user_service_proto_rawDesc = "" +
 	"\x13access_token_expiry\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x11accessTokenExpiry\x12#\n" +
 	"\rrefresh_token\x18\x06 \x01(\tR\frefreshToken\x12L\n" +
 	"\x14refresh_token_expiry\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"Q\n" +
-	"\x11RemoveUserRoleRes\x12\x17\n" +
+	"\x11RemoveUserRoleReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
-	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"a\n" +
-	"\x11RemoveUserRoleReq\x12\x1d\n" +
-	"\n" +
-	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
-	"\x05email\x18\x03 \x01(\tR\x05email\"\x90\x01\n" +
+	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"-\n" +
+	"\x11RemoveUserRoleRes\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x90\x01\n" +
 	"\x14AdminRegisterRequest\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
@@ -2609,8 +2590,8 @@ var file_user_service_proto_goTypes = []any{
 	(*ChangePasswordRes)(nil),       // 23: user.ChangePasswordRes
 	(*AddUserRoleReq)(nil),          // 24: user.AddUserRoleReq
 	(*AddUserRoleRes)(nil),          // 25: user.AddUserRoleRes
-	(*RemoveUserRoleRes)(nil),       // 26: user.RemoveUserRoleRes
-	(*RemoveUserRoleReq)(nil),       // 27: user.RemoveUserRoleReq
+	(*RemoveUserRoleReq)(nil),       // 26: user.RemoveUserRoleReq
+	(*RemoveUserRoleRes)(nil),       // 27: user.RemoveUserRoleRes
 	(*AdminRegisterRequest)(nil),    // 28: user.AdminRegisterRequest
 	(*AdminRegisterResponse)(nil),   // 29: user.AdminRegisterResponse
 	(*AdminLoginRequest)(nil),       // 30: user.AdminLoginRequest
@@ -2655,7 +2636,7 @@ var file_user_service_proto_depIdxs = []int32{
 	14, // 26: user.AuthService.RenweAccessToken:input_type -> user.RenewAccessTokenReq
 	16, // 27: user.AuthService.LogOut:input_type -> user.LogOutReq
 	24, // 28: user.AuthService.AddUserRole:input_type -> user.AddUserRoleReq
-	27, // 29: user.AuthService.RemoveUserRole:input_type -> user.RemoveUserRoleReq
+	26, // 29: user.AuthService.RemoveUserRole:input_type -> user.RemoveUserRoleReq
 	18, // 30: user.AuthService.GoogleAuth:input_type -> user.GoogleAuthReq
 	20, // 31: user.AuthService.GoogleAuthCallback:input_type -> user.GoogleCallbackReq
 	22, // 32: user.AuthService.ChangePassword:input_type -> user.ChangePasswordReq
@@ -2674,7 +2655,7 @@ var file_user_service_proto_depIdxs = []int32{
 	15, // 45: user.AuthService.RenweAccessToken:output_type -> user.RenewAccessTokenRes
 	17, // 46: user.AuthService.LogOut:output_type -> user.LogOutRes
 	25, // 47: user.AuthService.AddUserRole:output_type -> user.AddUserRoleRes
-	26, // 48: user.AuthService.RemoveUserRole:output_type -> user.RemoveUserRoleRes
+	27, // 48: user.AuthService.RemoveUserRole:output_type -> user.RemoveUserRoleRes
 	19, // 49: user.AuthService.GoogleAuth:output_type -> user.GoogleAuthRes
 	21, // 50: user.AuthService.GoogleAuthCallback:output_type -> user.GoogleCallbackRes
 	23, // 51: user.AuthService.ChangePassword:output_type -> user.ChangePasswordRes
