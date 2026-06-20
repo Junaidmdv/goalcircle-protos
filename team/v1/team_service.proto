@@ -6,13 +6,22 @@ option go_package = "github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1";
 
 
 
+message TeamOwnerDetails{
+    string user_id=1;    
+    string full_name=2; 
+}
+
+
+
 
 message CreateTeamReq{
     string name=1; 
     string city=2; 
     string description = 3; 
-    string user_id=4;  
-    string refresh_token=5; 
+    string refresh_token=4;   
+    string contact_num=5;  
+    string email=6;
+    TeamOwnerDetails owner=8;
 }
 
 message CreateTeamRes{   
@@ -32,6 +41,8 @@ message UpdateTeamReq{
 message UpdateTeamRes{
   bool success=1;
 }
+
+
 
 
 
