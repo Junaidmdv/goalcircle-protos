@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	TeamService_CreateTeam_FullMethodName = "/team.TeamService/CreateTeam"
+	TeamService_UpdateTeam_FullMethodName = "/team.TeamService/UpdateTeam"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TeamServiceClient interface {
 	CreateTeam(ctx context.Context, in *CreateTeamReq, opts ...grpc.CallOption) (*CreateTeamRes, error)
+	UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error)
 }
 
 type teamServiceClient struct {
@@ -47,11 +49,22 @@ func (c *teamServiceClient) CreateTeam(ctx context.Context, in *CreateTeamReq, o
 	return out, nil
 }
 
+func (c *teamServiceClient) UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTeamRes)
+	err := c.cc.Invoke(ctx, TeamService_UpdateTeam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeamServiceServer is the server API for TeamService service.
 // All implementations must embed UnimplementedTeamServiceServer
 // for forward compatibility.
 type TeamServiceServer interface {
 	CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error)
+	UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error)
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedTeamServiceServer struct{}
 
 func (UnimplementedTeamServiceServer) CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTeam not implemented")
+}
+func (UnimplementedTeamServiceServer) UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTeam not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 func (UnimplementedTeamServiceServer) testEmbeddedByValue()                     {}
@@ -104,6 +120,24 @@ func _TeamService_CreateTeam_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_UpdateTeam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTeamReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).UpdateTeam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_UpdateTeam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).UpdateTeam(ctx, req.(*UpdateTeamReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateTeam",
 			Handler:    _TeamService_CreateTeam_Handler,
+		},
+		{
+			MethodName: "UpdateTeam",
+			Handler:    _TeamService_UpdateTeam_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -149,6 +149,118 @@ func (x *CreateTeamRes) GetTeamCode() string {
 	return ""
 }
 
+type UpdateTeamReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateTeamReq) Reset() {
+	*x = UpdateTeamReq{}
+	mi := &file_team_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateTeamReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateTeamReq) ProtoMessage() {}
+
+func (x *UpdateTeamReq) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateTeamReq.ProtoReflect.Descriptor instead.
+func (*UpdateTeamReq) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UpdateTeamReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *UpdateTeamReq) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateTeamReq) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *UpdateTeamReq) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+type UpdateTeamRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateTeamRes) Reset() {
+	*x = UpdateTeamRes{}
+	mi := &file_team_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateTeamRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateTeamRes) ProtoMessage() {}
+
+func (x *UpdateTeamRes) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateTeamRes.ProtoReflect.Descriptor instead.
+func (*UpdateTeamRes) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *UpdateTeamRes) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_team_service_proto protoreflect.FileDescriptor
 
 const file_team_service_proto_rawDesc = "" +
@@ -162,10 +274,19 @@ const file_team_service_proto_rawDesc = "" +
 	"\rrefresh_token\x18\x05 \x01(\tR\frefreshToken\"E\n" +
 	"\rCreateTeamRes\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tteam_code\x18\x02 \x01(\tR\bteamCode2E\n" +
+	"\tteam_code\x18\x02 \x01(\tR\bteamCode\"r\n" +
+	"\rUpdateTeamReq\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04city\x18\x03 \x01(\tR\x04city\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescription\")\n" +
+	"\rUpdateTeamRes\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2}\n" +
 	"\vTeamService\x126\n" +
 	"\n" +
-	"CreateTeam\x12\x13.team.CreateTeamReq\x1a\x13.team.CreateTeamResB7Z5github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1b\x06proto3"
+	"CreateTeam\x12\x13.team.CreateTeamReq\x1a\x13.team.CreateTeamRes\x126\n" +
+	"\n" +
+	"UpdateTeam\x12\x13.team.UpdateTeamReq\x1a\x13.team.UpdateTeamResB7Z5github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1b\x06proto3"
 
 var (
 	file_team_service_proto_rawDescOnce sync.Once
@@ -179,16 +300,20 @@ func file_team_service_proto_rawDescGZIP() []byte {
 	return file_team_service_proto_rawDescData
 }
 
-var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_team_service_proto_goTypes = []any{
 	(*CreateTeamReq)(nil), // 0: team.CreateTeamReq
 	(*CreateTeamRes)(nil), // 1: team.CreateTeamRes
+	(*UpdateTeamReq)(nil), // 2: team.UpdateTeamReq
+	(*UpdateTeamRes)(nil), // 3: team.UpdateTeamRes
 }
 var file_team_service_proto_depIdxs = []int32{
 	0, // 0: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
-	1, // 1: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
+	1, // 2: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
+	3, // 3: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -205,7 +330,7 @@ func file_team_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_team_service_proto_rawDesc), len(file_team_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

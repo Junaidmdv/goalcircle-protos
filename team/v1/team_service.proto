@@ -21,8 +21,23 @@ message CreateTeamRes{
 } 
 
 
+message UpdateTeamReq{   
+  string team_id=1;
+  string name=2; 
+  string city=3; 
+  string description = 4;
+}
+
+
+message UpdateTeamRes{
+  bool success=1;
+}
+
+
+
 service TeamService {
-   rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes);
+   rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
+   rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);
 }
 
 
