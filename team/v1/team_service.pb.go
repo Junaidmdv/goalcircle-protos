@@ -9,6 +9,7 @@ package teamv1
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -165,17 +166,246 @@ func (x *CreateTeamReq) GetOwner() *TeamOwnerDetails {
 	return nil
 }
 
+type UserRes struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	SessionId          string                 `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	UserId             string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Email              string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
+	AccessToken        string                 `protobuf:"bytes,4,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	AccessTokenExpiry  *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=access_token_expiry,json=accessTokenExpiry,proto3" json:"access_token_expiry,omitempty"`
+	RefreshToken       string                 `protobuf:"bytes,6,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshTokenExpiry *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=refresh_token_expiry,json=refreshTokenExpiry,proto3" json:"refresh_token_expiry,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *UserRes) Reset() {
+	*x = UserRes{}
+	mi := &file_team_service_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserRes) ProtoMessage() {}
+
+func (x *UserRes) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserRes.ProtoReflect.Descriptor instead.
+func (*UserRes) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *UserRes) GetSessionId() string {
+	if x != nil {
+		return x.SessionId
+	}
+	return ""
+}
+
+func (x *UserRes) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UserRes) GetEmail() string {
+	if x != nil {
+		return x.Email
+	}
+	return ""
+}
+
+func (x *UserRes) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *UserRes) GetAccessTokenExpiry() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AccessTokenExpiry
+	}
+	return nil
+}
+
+func (x *UserRes) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *UserRes) GetRefreshTokenExpiry() *timestamppb.Timestamp {
+	if x != nil {
+		return x.RefreshTokenExpiry
+	}
+	return nil
+}
+
+type TeamDetailsRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	ShortName     string                 `protobuf:"bytes,3,opt,name=short_name,json=shortName,proto3" json:"short_name,omitempty"`
+	City          string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
+	TeamCode      string                 `protobuf:"bytes,5,opt,name=team_code,json=teamCode,proto3" json:"team_code,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TeamDetailsRes) Reset() {
+	*x = TeamDetailsRes{}
+	mi := &file_team_service_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TeamDetailsRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TeamDetailsRes) ProtoMessage() {}
+
+func (x *TeamDetailsRes) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TeamDetailsRes.ProtoReflect.Descriptor instead.
+func (*TeamDetailsRes) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *TeamDetailsRes) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *TeamDetailsRes) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *TeamDetailsRes) GetShortName() string {
+	if x != nil {
+		return x.ShortName
+	}
+	return ""
+}
+
+func (x *TeamDetailsRes) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *TeamDetailsRes) GetTeamCode() string {
+	if x != nil {
+		return x.TeamCode
+	}
+	return ""
+}
+
+type TeamMemberDetails struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamMemberId  string                 `protobuf:"bytes,1,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	FullName      string                 `protobuf:"bytes,2,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	Role          string                 `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TeamMemberDetails) Reset() {
+	*x = TeamMemberDetails{}
+	mi := &file_team_service_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TeamMemberDetails) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TeamMemberDetails) ProtoMessage() {}
+
+func (x *TeamMemberDetails) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TeamMemberDetails.ProtoReflect.Descriptor instead.
+func (*TeamMemberDetails) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *TeamMemberDetails) GetTeamMemberId() string {
+	if x != nil {
+		return x.TeamMemberId
+	}
+	return ""
+}
+
+func (x *TeamMemberDetails) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *TeamMemberDetails) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
 type CreateTeamRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	TeamCode      string                 `protobuf:"bytes,2,opt,name=team_code,json=teamCode,proto3" json:"team_code,omitempty"`
+	User          *UserRes               `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
+	TeamDetails   *TeamDetailsRes        `protobuf:"bytes,2,opt,name=team_details,json=teamDetails,proto3" json:"team_details,omitempty"`
+	TeamMember    *TeamMemberDetails     `protobuf:"bytes,3,opt,name=team_member,json=teamMember,proto3" json:"team_member,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateTeamRes) Reset() {
 	*x = CreateTeamRes{}
-	mi := &file_team_service_proto_msgTypes[2]
+	mi := &file_team_service_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -187,7 +417,7 @@ func (x *CreateTeamRes) String() string {
 func (*CreateTeamRes) ProtoMessage() {}
 
 func (x *CreateTeamRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[2]
+	mi := &file_team_service_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,21 +430,28 @@ func (x *CreateTeamRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTeamRes.ProtoReflect.Descriptor instead.
 func (*CreateTeamRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{2}
+	return file_team_service_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CreateTeamRes) GetUserId() string {
+func (x *CreateTeamRes) GetUser() *UserRes {
 	if x != nil {
-		return x.UserId
+		return x.User
 	}
-	return ""
+	return nil
 }
 
-func (x *CreateTeamRes) GetTeamCode() string {
+func (x *CreateTeamRes) GetTeamDetails() *TeamDetailsRes {
 	if x != nil {
-		return x.TeamCode
+		return x.TeamDetails
 	}
-	return ""
+	return nil
+}
+
+func (x *CreateTeamRes) GetTeamMember() *TeamMemberDetails {
+	if x != nil {
+		return x.TeamMember
+	}
+	return nil
 }
 
 type UpdateTeamReq struct {
@@ -229,7 +466,7 @@ type UpdateTeamReq struct {
 
 func (x *UpdateTeamReq) Reset() {
 	*x = UpdateTeamReq{}
-	mi := &file_team_service_proto_msgTypes[3]
+	mi := &file_team_service_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -241,7 +478,7 @@ func (x *UpdateTeamReq) String() string {
 func (*UpdateTeamReq) ProtoMessage() {}
 
 func (x *UpdateTeamReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[3]
+	mi := &file_team_service_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -254,7 +491,7 @@ func (x *UpdateTeamReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTeamReq.ProtoReflect.Descriptor instead.
 func (*UpdateTeamReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{3}
+	return file_team_service_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateTeamReq) GetTeamId() string {
@@ -294,7 +531,7 @@ type UpdateTeamRes struct {
 
 func (x *UpdateTeamRes) Reset() {
 	*x = UpdateTeamRes{}
-	mi := &file_team_service_proto_msgTypes[4]
+	mi := &file_team_service_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -306,7 +543,7 @@ func (x *UpdateTeamRes) String() string {
 func (*UpdateTeamRes) ProtoMessage() {}
 
 func (x *UpdateTeamRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[4]
+	mi := &file_team_service_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -319,7 +556,7 @@ func (x *UpdateTeamRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTeamRes.ProtoReflect.Descriptor instead.
 func (*UpdateTeamRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{4}
+	return file_team_service_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateTeamRes) GetSuccess() bool {
@@ -333,7 +570,7 @@ var File_team_service_proto protoreflect.FileDescriptor
 
 const file_team_service_proto_rawDesc = "" +
 	"\n" +
-	"\x12team_service.proto\x12\x04team\"H\n" +
+	"\x12team_service.proto\x12\x04team\x1a\x1fgoogle/protobuf/timestamp.proto\"H\n" +
 	"\x10TeamOwnerDetails\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\"\xe3\x01\n" +
@@ -345,10 +582,32 @@ const file_team_service_proto_rawDesc = "" +
 	"\vcontact_num\x18\x05 \x01(\tR\n" +
 	"contactNum\x12\x14\n" +
 	"\x05email\x18\x06 \x01(\tR\x05email\x12,\n" +
-	"\x05owner\x18\b \x01(\v2\x16.team.TeamOwnerDetailsR\x05owner\"E\n" +
-	"\rCreateTeamRes\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tteam_code\x18\x02 \x01(\tR\bteamCode\"r\n" +
+	"\x05owner\x18\b \x01(\v2\x16.team.TeamOwnerDetailsR\x05owner\"\xb9\x02\n" +
+	"\aUserRes\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x14\n" +
+	"\x05email\x18\x03 \x01(\tR\x05email\x12!\n" +
+	"\faccess_token\x18\x04 \x01(\tR\vaccessToken\x12J\n" +
+	"\x13access_token_expiry\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x11accessTokenExpiry\x12#\n" +
+	"\rrefresh_token\x18\x06 \x01(\tR\frefreshToken\x12L\n" +
+	"\x14refresh_token_expiry\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"\x84\x01\n" +
+	"\x0eTeamDetailsRes\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
+	"\n" +
+	"short_name\x18\x03 \x01(\tR\tshortName\x12\x12\n" +
+	"\x04city\x18\x04 \x01(\tR\x04city\x12\x1b\n" +
+	"\tteam_code\x18\x05 \x01(\tR\bteamCode\"j\n" +
+	"\x11TeamMemberDetails\x12$\n" +
+	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x1b\n" +
+	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x12\n" +
+	"\x04role\x18\x03 \x01(\tR\x04role\"\xa5\x01\n" +
+	"\rCreateTeamRes\x12!\n" +
+	"\x04user\x18\x01 \x01(\v2\r.team.UserResR\x04user\x127\n" +
+	"\fteam_details\x18\x02 \x01(\v2\x14.team.TeamDetailsResR\vteamDetails\x128\n" +
+	"\vteam_member\x18\x03 \x01(\v2\x17.team.TeamMemberDetailsR\n" +
+	"teamMember\"r\n" +
 	"\rUpdateTeamReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -374,25 +633,34 @@ func file_team_service_proto_rawDescGZIP() []byte {
 	return file_team_service_proto_rawDescData
 }
 
-var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_team_service_proto_goTypes = []any{
-	(*TeamOwnerDetails)(nil), // 0: team.TeamOwnerDetails
-	(*CreateTeamReq)(nil),    // 1: team.CreateTeamReq
-	(*CreateTeamRes)(nil),    // 2: team.CreateTeamRes
-	(*UpdateTeamReq)(nil),    // 3: team.UpdateTeamReq
-	(*UpdateTeamRes)(nil),    // 4: team.UpdateTeamRes
+	(*TeamOwnerDetails)(nil),      // 0: team.TeamOwnerDetails
+	(*CreateTeamReq)(nil),         // 1: team.CreateTeamReq
+	(*UserRes)(nil),               // 2: team.UserRes
+	(*TeamDetailsRes)(nil),        // 3: team.TeamDetailsRes
+	(*TeamMemberDetails)(nil),     // 4: team.TeamMemberDetails
+	(*CreateTeamRes)(nil),         // 5: team.CreateTeamRes
+	(*UpdateTeamReq)(nil),         // 6: team.UpdateTeamReq
+	(*UpdateTeamRes)(nil),         // 7: team.UpdateTeamRes
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_team_service_proto_depIdxs = []int32{
 	0, // 0: team.CreateTeamReq.owner:type_name -> team.TeamOwnerDetails
-	1, // 1: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
-	3, // 2: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
-	2, // 3: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
-	4, // 4: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	8, // 1: team.UserRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	8, // 2: team.UserRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	2, // 3: team.CreateTeamRes.user:type_name -> team.UserRes
+	3, // 4: team.CreateTeamRes.team_details:type_name -> team.TeamDetailsRes
+	4, // 5: team.CreateTeamRes.team_member:type_name -> team.TeamMemberDetails
+	1, // 6: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
+	6, // 7: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
+	5, // 8: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
+	7, // 9: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
+	8, // [8:10] is the sub-list for method output_type
+	6, // [6:8] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_team_service_proto_init() }
@@ -406,7 +674,7 @@ func file_team_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_team_service_proto_rawDesc), len(file_team_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

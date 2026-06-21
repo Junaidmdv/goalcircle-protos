@@ -4,6 +4,7 @@ package team;
 
 option go_package = "github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1";  
 
+import "google/protobuf/timestamp.proto";
 
 
 message TeamOwnerDetails{
@@ -24,9 +25,38 @@ message CreateTeamReq{
     TeamOwnerDetails owner=8;
 }
 
+
+
+message UserRes{
+   string session_id=1; 
+   string user_id=2;  
+   string email=3;  
+   string access_token=4;  
+   google.protobuf.Timestamp access_token_expiry=5; 
+   string refresh_token=6; 
+   google.protobuf.Timestamp refresh_token_expiry=7;
+} 
+
+message TeamDetailsRes{
+  string id=1;  
+  string name=2; 
+  string short_name=3;  
+  string city=4; 
+  string team_code=5;
+} 
+
+message TeamMemberDetails{
+  string team_member_id=1; 
+  string full_name=2;
+  string role=3;
+}
+
+
 message CreateTeamRes{   
-    string user_id=1; 
-    string team_code=2; 
+  UserRes user=1;  
+  TeamDetailsRes team_details=2; 
+  TeamMemberDetails team_member=3;
+
 } 
 
 
