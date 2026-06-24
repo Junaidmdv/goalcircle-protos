@@ -73,12 +73,128 @@ message UpdateTeamRes{
 }
 
 
-
-
-
 service TeamService {
    rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
-   rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);
+   rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes); 
 }
 
+
+
+
+message AddPlayerReq{
+ string full_name=1; 
+ google.protobuf.Timestamp date_of_birth=2;  
+ int32 jersey_number=3;  
+ int32 position=4;  
+ float height=5;
+ float weight=6;  
+} 
+
+message AddPlayerRes{ 
+  string player_id=1; 
+  string team_member_id=2; 
+  string full_name=3; 
+  int32 jersey_number=4; 
+  PlayerPosition player_position = 5; 
+  PlayerStatus player_status =6;
+}
+
+message UpdatePlayerStatusReq{
+   string player_id =1; 
+   string player_status=2;
+}
+
+message UpdatePlayerStatusRes{
+  bool success=1;
+} 
+
+enum  PlayerStatus {
+  STATUS_UNSPECIFIED = 0; 
+  STATUS_ACTIVE=1; 
+  STATUS_INACTIVE=2; 
+  STATUS_SUSPENDED=3; 
+  STATUS_ARCHIVED=4;
+}
+
+enum PlayerPosition {
+  PLAYER_POSITION_UNSPECIFIED = 0;
+
+  PLAYER_POSITION_GK  = 1;
+
+  PLAYER_POSITION_CB  = 2;
+  PLAYER_POSITION_LB  = 3;
+  PLAYER_POSITION_RB  = 4;
+  PLAYER_POSITION_LWB = 5;
+  PLAYER_POSITION_RWB = 6;
+
+  PLAYER_POSITION_CDM = 7;
+  PLAYER_POSITION_CM  = 8;
+  PLAYER_POSITION_CAM = 9;
+  PLAYER_POSITION_LM  = 10;
+  PLAYER_POSITION_RM  = 11;
+
+  PLAYER_POSITION_LW  = 12;
+  PLAYER_POSITION_RW  = 13;
+  PLAYER_POSITION_CF  = 14;
+  PLAYER_POSITION_ST  = 15;
+}
+
+message ListTeamPlayerReq{
+   string team_id=1; 
+   int32  page=2; 
+   int32 limit=3; 
+   string position=4;   
+   PlayerStatus player_status=5;
+   string search=6;
+}
+
+
+message PlayerList{
+   string player_id=1;
+   string team_member_id=2;
+   string full_name=3;
+   int32 jersey_number=4; 
+   PlayerPosition position=5;
+}
+
+message PaginationDetails{
+    int32 total_page=1; 
+    int32 page=2; 
+    int32 limit=3;  
+    int64 total_item=4;
+}
+
+
+message ListTeamPlayerRes{ 
+   PaginationDetails paginate=1;
+   repeated PlayerList players=2;
+}
+
+message GetPlayerReq{
+   string player_id=1; 
+}
+
+
+message  GetPlayerRes {
+  string player_id=1; 
+  string team_member_id=2;
+  string full_name=3; 
+  google.protobuf.Timestamp dob=4; 
+  int32 jersey_number=5; 
+  PlayerPosition player_position = 6; 
+  float height=7;
+  float weight=8;  
+  PlayerStatus player_status = 9; 
+  google.protobuf.Timestamp created_at = 10;
+}
+
+
+
+service PlayerService{
+  rpc AddNewPlayer(AddPlayerReq)returns(AddPlayerRes); 
+  rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
+  rpc ListTeamPlayer(ListTeamPlayerReq)returns(UpdatePlayerStatusRes);  
+  rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);
+
+}
 
