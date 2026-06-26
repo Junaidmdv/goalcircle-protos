@@ -717,6 +717,7 @@ type AddPlayerReq struct {
 	Position      int32                  `protobuf:"varint,4,opt,name=position,proto3" json:"position,omitempty"`
 	Height        float32                `protobuf:"fixed32,5,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,6,opt,name=weight,proto3" json:"weight,omitempty"`
+	TeamId        string                 `protobuf:"bytes,7,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -791,6 +792,13 @@ func (x *AddPlayerReq) GetWeight() float32 {
 		return x.Weight
 	}
 	return 0
+}
+
+func (x *AddPlayerReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
 }
 
 type AddPlayerRes struct {
@@ -1461,14 +1469,15 @@ const file_team_service_proto_rawDesc = "" +
 	"\x04city\x18\x03 \x01(\tR\x04city\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\")\n" +
 	"\rUpdateTeamRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xdc\x01\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xf5\x01\n" +
 	"\fAddPlayerReq\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12>\n" +
 	"\rdate_of_birth\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12#\n" +
 	"\rjersey_number\x18\x03 \x01(\x05R\fjerseyNumber\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\x05R\bposition\x12\x16\n" +
 	"\x06height\x18\x05 \x01(\x02R\x06height\x12\x16\n" +
-	"\x06weight\x18\x06 \x01(\x02R\x06weight\"\x8b\x02\n" +
+	"\x06weight\x18\x06 \x01(\x02R\x06weight\x12\x17\n" +
+	"\ateam_id\x18\a \x01(\tR\x06teamId\"\x8b\x02\n" +
 	"\fAddPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +

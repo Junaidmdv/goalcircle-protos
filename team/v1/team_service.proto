@@ -87,7 +87,8 @@ message AddPlayerReq{
  int32 jersey_number=3;  
  int32 position=4;  
  float height=5;
- float weight=6;  
+ float weight=6;   
+ string team_id=7;
 } 
 
 message AddPlayerRes{ 
