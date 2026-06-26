@@ -880,7 +880,7 @@ func (x *AddPlayerRes) GetPlayerStatus() PlayerStatus {
 type UpdatePlayerStatusReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PlayerId      string                 `protobuf:"bytes,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	PlayerStatus  string                 `protobuf:"bytes,2,opt,name=player_status,json=playerStatus,proto3" json:"player_status,omitempty"`
+	PlayerStatus  PlayerStatus           `protobuf:"varint,2,opt,name=player_status,json=playerStatus,proto3,enum=team.PlayerStatus" json:"player_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -922,11 +922,11 @@ func (x *UpdatePlayerStatusReq) GetPlayerId() string {
 	return ""
 }
 
-func (x *UpdatePlayerStatusReq) GetPlayerStatus() string {
+func (x *UpdatePlayerStatusReq) GetPlayerStatus() PlayerStatus {
 	if x != nil {
 		return x.PlayerStatus
 	}
-	return ""
+	return PlayerStatus_STATUS_UNSPECIFIED
 }
 
 type UpdatePlayerStatusRes struct {
@@ -1475,10 +1475,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12#\n" +
 	"\rjersey_number\x18\x04 \x01(\x05R\fjerseyNumber\x12=\n" +
 	"\x0fplayer_position\x18\x05 \x01(\x0e2\x14.team.PlayerPositionR\x0eplayerPosition\x127\n" +
-	"\rplayer_status\x18\x06 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"Y\n" +
+	"\rplayer_status\x18\x06 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"m\n" +
 	"\x15UpdatePlayerStatusReq\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12#\n" +
-	"\rplayer_status\x18\x02 \x01(\tR\fplayerStatus\"1\n" +
+	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x127\n" +
+	"\rplayer_status\x18\x02 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"1\n" +
 	"\x15UpdatePlayerStatusRes\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xc3\x01\n" +
 	"\x11ListTeamPlayerReq\x12\x17\n" +
@@ -1602,31 +1602,32 @@ var file_team_service_proto_depIdxs = []int32{
 	20, // 6: team.AddPlayerReq.date_of_birth:type_name -> google.protobuf.Timestamp
 	1,  // 7: team.AddPlayerRes.player_position:type_name -> team.PlayerPosition
 	0,  // 8: team.AddPlayerRes.player_status:type_name -> team.PlayerStatus
-	0,  // 9: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
-	1,  // 10: team.PlayerList.position:type_name -> team.PlayerPosition
-	16, // 11: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
-	15, // 12: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
-	20, // 13: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
-	1,  // 14: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
-	0,  // 15: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
-	20, // 16: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
-	3,  // 17: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
-	8,  // 18: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
-	10, // 19: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
-	12, // 20: team.PlayerService.UpdatePlayerStatus:input_type -> team.UpdatePlayerStatusReq
-	14, // 21: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
-	18, // 22: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
-	7,  // 23: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
-	9,  // 24: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
-	11, // 25: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
-	13, // 26: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
-	13, // 27: team.PlayerService.ListTeamPlayer:output_type -> team.UpdatePlayerStatusRes
-	19, // 28: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
-	23, // [23:29] is the sub-list for method output_type
-	17, // [17:23] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	0,  // 9: team.UpdatePlayerStatusReq.player_status:type_name -> team.PlayerStatus
+	0,  // 10: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
+	1,  // 11: team.PlayerList.position:type_name -> team.PlayerPosition
+	16, // 12: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
+	15, // 13: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
+	20, // 14: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
+	1,  // 15: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
+	0,  // 16: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
+	20, // 17: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
+	3,  // 18: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
+	8,  // 19: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
+	10, // 20: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
+	12, // 21: team.PlayerService.UpdatePlayerStatus:input_type -> team.UpdatePlayerStatusReq
+	14, // 22: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
+	18, // 23: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
+	7,  // 24: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
+	9,  // 25: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
+	11, // 26: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
+	13, // 27: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
+	13, // 28: team.PlayerService.ListTeamPlayer:output_type -> team.UpdatePlayerStatusRes
+	19, // 29: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
+	24, // [24:30] is the sub-list for method output_type
+	18, // [18:24] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_team_service_proto_init() }

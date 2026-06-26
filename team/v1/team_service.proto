@@ -101,7 +101,7 @@ message AddPlayerRes{
 
 message UpdatePlayerStatusReq{
    string player_id =1; 
-   string player_status=2;
+   PlayerStatus player_status=2;
 }
 
 message UpdatePlayerStatusRes{
