@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TeamService_CreateTeam_FullMethodName = "/team.TeamService/CreateTeam"
-	TeamService_UpdateTeam_FullMethodName = "/team.TeamService/UpdateTeam"
+	TeamService_CreateTeam_FullMethodName         = "/team.TeamService/CreateTeam"
+	TeamService_UpdateTeam_FullMethodName         = "/team.TeamService/UpdateTeam"
+	TeamService_RegisterTeamMember_FullMethodName = "/team.TeamService/RegisterTeamMember"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -29,6 +30,7 @@ const (
 type TeamServiceClient interface {
 	CreateTeam(ctx context.Context, in *CreateTeamReq, opts ...grpc.CallOption) (*CreateTeamRes, error)
 	UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error)
+	RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error)
 }
 
 type teamServiceClient struct {
@@ -59,12 +61,23 @@ func (c *teamServiceClient) UpdateTeam(ctx context.Context, in *UpdateTeamReq, o
 	return out, nil
 }
 
+func (c *teamServiceClient) RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RegisterTeamMemberRes)
+	err := c.cc.Invoke(ctx, TeamService_RegisterTeamMember_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeamServiceServer is the server API for TeamService service.
 // All implementations must embed UnimplementedTeamServiceServer
 // for forward compatibility.
 type TeamServiceServer interface {
 	CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error)
 	UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error)
+	RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error)
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedTeamServiceServer) CreateTeam(context.Context, *CreateTeamReq
 }
 func (UnimplementedTeamServiceServer) UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTeam not implemented")
+}
+func (UnimplementedTeamServiceServer) RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterTeamMember not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 func (UnimplementedTeamServiceServer) testEmbeddedByValue()                     {}
@@ -138,6 +154,24 @@ func _TeamService_UpdateTeam_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_RegisterTeamMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterTeamMemberReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).RegisterTeamMember(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_RegisterTeamMember_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).RegisterTeamMember(ctx, req.(*RegisterTeamMemberReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTeam",
 			Handler:    _TeamService_UpdateTeam_Handler,
+		},
+		{
+			MethodName: "RegisterTeamMember",
+			Handler:    _TeamService_RegisterTeamMember_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -368,6 +406,210 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPlayer",
 			Handler:    _PlayerService_GetPlayer_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "team_service.proto",
+}
+
+const (
+	TeamInvite_CreateInvitation_FullMethodName = "/team.TeamInvite/CreateInvitation"
+)
+
+// TeamInviteClient is the client API for TeamInvite service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TeamInviteClient interface {
+	CreateInvitation(ctx context.Context, in *CreateInvitationReq, opts ...grpc.CallOption) (*CreateInvitationRes, error)
+}
+
+type teamInviteClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTeamInviteClient(cc grpc.ClientConnInterface) TeamInviteClient {
+	return &teamInviteClient{cc}
+}
+
+func (c *teamInviteClient) CreateInvitation(ctx context.Context, in *CreateInvitationReq, opts ...grpc.CallOption) (*CreateInvitationRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateInvitationRes)
+	err := c.cc.Invoke(ctx, TeamInvite_CreateInvitation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TeamInviteServer is the server API for TeamInvite service.
+// All implementations must embed UnimplementedTeamInviteServer
+// for forward compatibility.
+type TeamInviteServer interface {
+	CreateInvitation(context.Context, *CreateInvitationReq) (*CreateInvitationRes, error)
+	mustEmbedUnimplementedTeamInviteServer()
+}
+
+// UnimplementedTeamInviteServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTeamInviteServer struct{}
+
+func (UnimplementedTeamInviteServer) CreateInvitation(context.Context, *CreateInvitationReq) (*CreateInvitationRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateInvitation not implemented")
+}
+func (UnimplementedTeamInviteServer) mustEmbedUnimplementedTeamInviteServer() {}
+func (UnimplementedTeamInviteServer) testEmbeddedByValue()                    {}
+
+// UnsafeTeamInviteServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TeamInviteServer will
+// result in compilation errors.
+type UnsafeTeamInviteServer interface {
+	mustEmbedUnimplementedTeamInviteServer()
+}
+
+func RegisterTeamInviteServer(s grpc.ServiceRegistrar, srv TeamInviteServer) {
+	// If the following call pancis, it indicates UnimplementedTeamInviteServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&TeamInvite_ServiceDesc, srv)
+}
+
+func _TeamInvite_CreateInvitation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateInvitationReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamInviteServer).CreateInvitation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamInvite_CreateInvitation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamInviteServer).CreateInvitation(ctx, req.(*CreateInvitationReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// TeamInvite_ServiceDesc is the grpc.ServiceDesc for TeamInvite service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var TeamInvite_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "team.TeamInvite",
+	HandlerType: (*TeamInviteServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateInvitation",
+			Handler:    _TeamInvite_CreateInvitation_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "team_service.proto",
+}
+
+const (
+	StaffService_AddStaff_FullMethodName = "/team.StaffService/AddStaff"
+)
+
+// StaffServiceClient is the client API for StaffService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type StaffServiceClient interface {
+	AddStaff(ctx context.Context, in *AddStaffReq, opts ...grpc.CallOption) (*AddStaffRes, error)
+}
+
+type staffServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewStaffServiceClient(cc grpc.ClientConnInterface) StaffServiceClient {
+	return &staffServiceClient{cc}
+}
+
+func (c *staffServiceClient) AddStaff(ctx context.Context, in *AddStaffReq, opts ...grpc.CallOption) (*AddStaffRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AddStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_AddStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// StaffServiceServer is the server API for StaffService service.
+// All implementations must embed UnimplementedStaffServiceServer
+// for forward compatibility.
+type StaffServiceServer interface {
+	AddStaff(context.Context, *AddStaffReq) (*AddStaffRes, error)
+	mustEmbedUnimplementedStaffServiceServer()
+}
+
+// UnimplementedStaffServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedStaffServiceServer struct{}
+
+func (UnimplementedStaffServiceServer) AddStaff(context.Context, *AddStaffReq) (*AddStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) mustEmbedUnimplementedStaffServiceServer() {}
+func (UnimplementedStaffServiceServer) testEmbeddedByValue()                      {}
+
+// UnsafeStaffServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to StaffServiceServer will
+// result in compilation errors.
+type UnsafeStaffServiceServer interface {
+	mustEmbedUnimplementedStaffServiceServer()
+}
+
+func RegisterStaffServiceServer(s grpc.ServiceRegistrar, srv StaffServiceServer) {
+	// If the following call pancis, it indicates UnimplementedStaffServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&StaffService_ServiceDesc, srv)
+}
+
+func _StaffService_AddStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddStaffReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).AddStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_AddStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).AddStaff(ctx, req.(*AddStaffReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// StaffService_ServiceDesc is the grpc.ServiceDesc for StaffService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StaffService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "team.StaffService",
+	HandlerType: (*StaffServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "AddStaff",
+			Handler:    _StaffService_AddStaff_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

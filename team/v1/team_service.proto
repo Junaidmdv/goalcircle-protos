@@ -73,9 +73,19 @@ message UpdateTeamRes{
 }
 
 
+message RegisterTeamMemberReq{
+
+} 
+
+message RegisterTeamMemberRes{
+
+}
+
+
 service TeamService {
    rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
-   rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes); 
+   rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);  
+   rpc RegisterTeamMember(RegisterTeamMemberReq)returns(RegisterTeamMemberRes);
 }
 
 
@@ -196,6 +206,39 @@ service PlayerService{
   rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(UpdatePlayerStatusRes);  
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);
+}
 
+
+
+message CreateInvitationReq{
+   string team_member_id=1; 
+   string role=2;
+} 
+
+message CreateInvitationRes{
+  string code=1; 
+  google.protobuf.Timestamp created_at = 2; 
+  google.protobuf.Timestamp expired_at=3; 
+}
+
+
+
+service   TeamInvite {
+    rpc CreateInvitation(CreateInvitationReq)returns(CreateInvitationRes); 
+}
+
+
+
+message AddStaffReq{
+
+}
+
+message AddStaffRes{
+
+}
+
+
+service StaffService {
+     rpc AddStaff(AddStaffReq)returns(AddStaffRes); 
 }
 
