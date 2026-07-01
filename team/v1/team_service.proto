@@ -230,11 +230,20 @@ service   TeamInvite {
 
 
 message AddStaffReq{
-
+  string user_id=1; 
+  string team_id=2; 
+  string full_name=3; 
+  string designation=4; 
+  google.protobuf.Timestamp dob=5; 
+  string role=6;
 }
 
 message AddStaffRes{
-
+  string staff_id=1; 
+  string team_member_id=2; 
+  string full_name=3; 
+  int32 age=4; 
+  string designatin=5;
 }
 
 

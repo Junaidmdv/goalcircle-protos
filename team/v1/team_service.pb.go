@@ -1607,6 +1607,12 @@ func (x *CreateInvitationRes) GetExpiredAt() *timestamppb.Timestamp {
 
 type AddStaffReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	Designation   string                 `protobuf:"bytes,4,opt,name=designation,proto3" json:"designation,omitempty"`
+	Dob           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=dob,proto3" json:"dob,omitempty"`
+	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1641,8 +1647,55 @@ func (*AddStaffReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{22}
 }
 
+func (x *AddStaffReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *AddStaffReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *AddStaffReq) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *AddStaffReq) GetDesignation() string {
+	if x != nil {
+		return x.Designation
+	}
+	return ""
+}
+
+func (x *AddStaffReq) GetDob() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Dob
+	}
+	return nil
+}
+
+func (x *AddStaffReq) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
 type AddStaffRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	Age           int32                  `protobuf:"varint,4,opt,name=age,proto3" json:"age,omitempty"`
+	Designatin    string                 `protobuf:"bytes,5,opt,name=designatin,proto3" json:"designatin,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1675,6 +1728,41 @@ func (x *AddStaffRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddStaffRes.ProtoReflect.Descriptor instead.
 func (*AddStaffRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *AddStaffRes) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *AddStaffRes) GetTeamMemberId() string {
+	if x != nil {
+		return x.TeamMemberId
+	}
+	return ""
+}
+
+func (x *AddStaffRes) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *AddStaffRes) GetAge() int32 {
+	if x != nil {
+		return x.Age
+	}
+	return 0
+}
+
+func (x *AddStaffRes) GetDesignatin() string {
+	if x != nil {
+		return x.Designatin
+	}
+	return ""
 }
 
 var File_team_service_proto protoreflect.FileDescriptor
@@ -1795,9 +1883,22 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\r\n" +
-	"\vAddStaffReq\"\r\n" +
-	"\vAddStaffRes*y\n" +
+	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xc0\x01\n" +
+	"\vAddStaffReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
+	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12 \n" +
+	"\vdesignation\x18\x04 \x01(\tR\vdesignation\x12,\n" +
+	"\x03dob\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x03dob\x12\x12\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\"\x9d\x01\n" +
+	"\vAddStaffRes\x12\x19\n" +
+	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
+	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
+	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12\x10\n" +
+	"\x03age\x18\x04 \x01(\x05R\x03age\x12\x1e\n" +
+	"\n" +
+	"designatin\x18\x05 \x01(\tR\n" +
+	"designatin*y\n" +
 	"\fPlayerStatus\x12\x16\n" +
 	"\x12STATUS_UNSPECIFIED\x10\x00\x12\x11\n" +
 	"\rSTATUS_ACTIVE\x10\x01\x12\x13\n" +
@@ -1903,29 +2004,30 @@ var file_team_service_proto_depIdxs = []int32{
 	26, // 17: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
 	26, // 18: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
 	26, // 19: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
-	3,  // 20: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
-	8,  // 21: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
-	10, // 22: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
-	12, // 23: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
-	14, // 24: team.PlayerService.UpdatePlayerStatus:input_type -> team.UpdatePlayerStatusReq
-	16, // 25: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
-	20, // 26: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
-	22, // 27: team.TeamInvite.CreateInvitation:input_type -> team.CreateInvitationReq
-	24, // 28: team.StaffService.AddStaff:input_type -> team.AddStaffReq
-	7,  // 29: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
-	9,  // 30: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
-	11, // 31: team.TeamService.RegisterTeamMember:output_type -> team.RegisterTeamMemberRes
-	13, // 32: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
-	15, // 33: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
-	15, // 34: team.PlayerService.ListTeamPlayer:output_type -> team.UpdatePlayerStatusRes
-	21, // 35: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
-	23, // 36: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
-	25, // 37: team.StaffService.AddStaff:output_type -> team.AddStaffRes
-	29, // [29:38] is the sub-list for method output_type
-	20, // [20:29] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	26, // 20: team.AddStaffReq.dob:type_name -> google.protobuf.Timestamp
+	3,  // 21: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
+	8,  // 22: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
+	10, // 23: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
+	12, // 24: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
+	14, // 25: team.PlayerService.UpdatePlayerStatus:input_type -> team.UpdatePlayerStatusReq
+	16, // 26: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
+	20, // 27: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
+	22, // 28: team.TeamInvite.CreateInvitation:input_type -> team.CreateInvitationReq
+	24, // 29: team.StaffService.AddStaff:input_type -> team.AddStaffReq
+	7,  // 30: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
+	9,  // 31: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
+	11, // 32: team.TeamService.RegisterTeamMember:output_type -> team.RegisterTeamMemberRes
+	13, // 33: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
+	15, // 34: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
+	15, // 35: team.PlayerService.ListTeamPlayer:output_type -> team.UpdatePlayerStatusRes
+	21, // 36: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
+	23, // 37: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
+	25, // 38: team.StaffService.AddStaff:output_type -> team.AddStaffRes
+	30, // [30:39] is the sub-list for method output_type
+	21, // [21:30] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
 func init() { file_team_service_proto_init() }
