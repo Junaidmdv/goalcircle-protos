@@ -732,6 +732,7 @@ type UpdateTeamReq struct {
 	Name          *string                `protobuf:"bytes,3,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	City          *string                `protobuf:"bytes,4,opt,name=city,proto3,oneof" json:"city,omitempty"`
 	Description   *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
+	ShortName     *string                `protobuf:"bytes,6,opt,name=short_name,json=shortName,proto3,oneof" json:"short_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -797,6 +798,13 @@ func (x *UpdateTeamReq) GetCity() string {
 func (x *UpdateTeamReq) GetDescription() string {
 	if x != nil && x.Description != nil {
 		return *x.Description
+	}
+	return ""
+}
+
+func (x *UpdateTeamReq) GetShortName() string {
+	if x != nil && x.ShortName != nil {
+		return *x.ShortName
 	}
 	return ""
 }
@@ -1966,16 +1974,19 @@ const file_team_service_proto_rawDesc = "" +
 	"\x04user\x18\x01 \x01(\v2\r.team.UserResR\x04user\x127\n" +
 	"\fteam_details\x18\x02 \x01(\v2\x14.team.TeamDetailsResR\vteamDetails\x128\n" +
 	"\vteam_member\x18\x03 \x01(\v2\x17.team.TeamMemberDetailsR\n" +
-	"teamMember\"\xc9\x01\n" +
+	"teamMember\"\xfc\x01\n" +
 	"\rUpdateTeamReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x17\n" +
 	"\x04city\x18\x04 \x01(\tH\x01R\x04city\x88\x01\x01\x12%\n" +
-	"\vdescription\x18\x05 \x01(\tH\x02R\vdescription\x88\x01\x01B\a\n" +
+	"\vdescription\x18\x05 \x01(\tH\x02R\vdescription\x88\x01\x01\x12\"\n" +
+	"\n" +
+	"short_name\x18\x06 \x01(\tH\x03R\tshortName\x88\x01\x01B\a\n" +
 	"\x05_nameB\a\n" +
 	"\x05_cityB\x0e\n" +
-	"\f_description\"\x83\x01\n" +
+	"\f_descriptionB\r\n" +
+	"\v_short_name\"\x83\x01\n" +
 	"\rUpdateTeamRes\x12\x1c\n" +
 	"\ateam_id\x18\x01 \x01(\tH\x00R\x06teamId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
