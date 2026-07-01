@@ -165,6 +165,79 @@ func (PlayerPosition) EnumDescriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{1}
 }
 
+type StaffDesignation int32
+
+const (
+	StaffDesignation_STAFF_DESIGNATION_UNSPECIFIED       StaffDesignation = 0
+	StaffDesignation_STAFF_DESIGNATION_HEAD_COACH        StaffDesignation = 1
+	StaffDesignation_STAFF_DESIGNATION_ASSISTANT_COACH   StaffDesignation = 2
+	StaffDesignation_STAFF_DESIGNATION_GOALKEEPER_COACH  StaffDesignation = 3
+	StaffDesignation_STAFF_DESIGNATION_FITNESS_COACH     StaffDesignation = 4
+	StaffDesignation_STAFF_DESIGNATION_PHYSIO            StaffDesignation = 5
+	StaffDesignation_STAFF_DESIGNATION_DOCTOR            StaffDesignation = 6
+	StaffDesignation_STAFF_DESIGNATION_ANALYST           StaffDesignation = 7
+	StaffDesignation_STAFF_DESIGNATION_TEAM_COORDINATOR  StaffDesignation = 8
+	StaffDesignation_STAFF_DESIGNATION_EQUIPMENT_MANAGER StaffDesignation = 9
+	StaffDesignation_STAFF_DESIGNATION_OTHER             StaffDesignation = 10
+)
+
+// Enum value maps for StaffDesignation.
+var (
+	StaffDesignation_name = map[int32]string{
+		0:  "STAFF_DESIGNATION_UNSPECIFIED",
+		1:  "STAFF_DESIGNATION_HEAD_COACH",
+		2:  "STAFF_DESIGNATION_ASSISTANT_COACH",
+		3:  "STAFF_DESIGNATION_GOALKEEPER_COACH",
+		4:  "STAFF_DESIGNATION_FITNESS_COACH",
+		5:  "STAFF_DESIGNATION_PHYSIO",
+		6:  "STAFF_DESIGNATION_DOCTOR",
+		7:  "STAFF_DESIGNATION_ANALYST",
+		8:  "STAFF_DESIGNATION_TEAM_COORDINATOR",
+		9:  "STAFF_DESIGNATION_EQUIPMENT_MANAGER",
+		10: "STAFF_DESIGNATION_OTHER",
+	}
+	StaffDesignation_value = map[string]int32{
+		"STAFF_DESIGNATION_UNSPECIFIED":       0,
+		"STAFF_DESIGNATION_HEAD_COACH":        1,
+		"STAFF_DESIGNATION_ASSISTANT_COACH":   2,
+		"STAFF_DESIGNATION_GOALKEEPER_COACH":  3,
+		"STAFF_DESIGNATION_FITNESS_COACH":     4,
+		"STAFF_DESIGNATION_PHYSIO":            5,
+		"STAFF_DESIGNATION_DOCTOR":            6,
+		"STAFF_DESIGNATION_ANALYST":           7,
+		"STAFF_DESIGNATION_TEAM_COORDINATOR":  8,
+		"STAFF_DESIGNATION_EQUIPMENT_MANAGER": 9,
+		"STAFF_DESIGNATION_OTHER":             10,
+	}
+)
+
+func (x StaffDesignation) Enum() *StaffDesignation {
+	p := new(StaffDesignation)
+	*p = x
+	return p
+}
+
+func (x StaffDesignation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (StaffDesignation) Descriptor() protoreflect.EnumDescriptor {
+	return file_team_service_proto_enumTypes[2].Descriptor()
+}
+
+func (StaffDesignation) Type() protoreflect.EnumType {
+	return &file_team_service_proto_enumTypes[2]
+}
+
+func (x StaffDesignation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use StaffDesignation.Descriptor instead.
+func (StaffDesignation) EnumDescriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{2}
+}
+
 type TeamMemberRole int32
 
 const (
@@ -204,11 +277,11 @@ func (x TeamMemberRole) String() string {
 }
 
 func (TeamMemberRole) Descriptor() protoreflect.EnumDescriptor {
-	return file_team_service_proto_enumTypes[2].Descriptor()
+	return file_team_service_proto_enumTypes[3].Descriptor()
 }
 
 func (TeamMemberRole) Type() protoreflect.EnumType {
-	return &file_team_service_proto_enumTypes[2]
+	return &file_team_service_proto_enumTypes[3]
 }
 
 func (x TeamMemberRole) Number() protoreflect.EnumNumber {
@@ -217,76 +290,6 @@ func (x TeamMemberRole) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TeamMemberRole.Descriptor instead.
 func (TeamMemberRole) EnumDescriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{2}
-}
-
-type StaffDesignation int32
-
-const (
-	StaffDesignation_STAFF_DESIGNATION_UNSPECIFIED       StaffDesignation = 0
-	StaffDesignation_STAFF_DESIGNATION_HEAD_COACH        StaffDesignation = 1
-	StaffDesignation_STAFF_DESIGNATION_ASSISTANT_COACH   StaffDesignation = 2
-	StaffDesignation_STAFF_DESIGNATION_GOALKEEPER_COACH  StaffDesignation = 3
-	StaffDesignation_STAFF_DESIGNATION_FITNESS_COACH     StaffDesignation = 4
-	StaffDesignation_STAFF_DESIGNATION_PHYSIO            StaffDesignation = 5
-	StaffDesignation_STAFF_DESIGNATION_DOCTOR            StaffDesignation = 6
-	StaffDesignation_STAFF_DESIGNATION_ANALYST           StaffDesignation = 7
-	StaffDesignation_STAFF_DESIGNATION_TEAM_COORDINATOR  StaffDesignation = 8
-	StaffDesignation_STAFF_DESIGNATION_EQUIPMENT_MANAGER StaffDesignation = 9
-)
-
-// Enum value maps for StaffDesignation.
-var (
-	StaffDesignation_name = map[int32]string{
-		0: "STAFF_DESIGNATION_UNSPECIFIED",
-		1: "STAFF_DESIGNATION_HEAD_COACH",
-		2: "STAFF_DESIGNATION_ASSISTANT_COACH",
-		3: "STAFF_DESIGNATION_GOALKEEPER_COACH",
-		4: "STAFF_DESIGNATION_FITNESS_COACH",
-		5: "STAFF_DESIGNATION_PHYSIO",
-		6: "STAFF_DESIGNATION_DOCTOR",
-		7: "STAFF_DESIGNATION_ANALYST",
-		8: "STAFF_DESIGNATION_TEAM_COORDINATOR",
-		9: "STAFF_DESIGNATION_EQUIPMENT_MANAGER",
-	}
-	StaffDesignation_value = map[string]int32{
-		"STAFF_DESIGNATION_UNSPECIFIED":       0,
-		"STAFF_DESIGNATION_HEAD_COACH":        1,
-		"STAFF_DESIGNATION_ASSISTANT_COACH":   2,
-		"STAFF_DESIGNATION_GOALKEEPER_COACH":  3,
-		"STAFF_DESIGNATION_FITNESS_COACH":     4,
-		"STAFF_DESIGNATION_PHYSIO":            5,
-		"STAFF_DESIGNATION_DOCTOR":            6,
-		"STAFF_DESIGNATION_ANALYST":           7,
-		"STAFF_DESIGNATION_TEAM_COORDINATOR":  8,
-		"STAFF_DESIGNATION_EQUIPMENT_MANAGER": 9,
-	}
-)
-
-func (x StaffDesignation) Enum() *StaffDesignation {
-	p := new(StaffDesignation)
-	*p = x
-	return p
-}
-
-func (x StaffDesignation) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (StaffDesignation) Descriptor() protoreflect.EnumDescriptor {
-	return file_team_service_proto_enumTypes[3].Descriptor()
-}
-
-func (StaffDesignation) Type() protoreflect.EnumType {
-	return &file_team_service_proto_enumTypes[3]
-}
-
-func (x StaffDesignation) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use StaffDesignation.Descriptor instead.
-func (StaffDesignation) EnumDescriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{3}
 }
 
@@ -2047,13 +2050,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x12PLAYER_POSITION_LW\x10\f\x12\x16\n" +
 	"\x12PLAYER_POSITION_RW\x10\r\x12\x16\n" +
 	"\x12PLAYER_POSITION_CF\x10\x0e\x12\x16\n" +
-	"\x12PLAYER_POSITION_ST\x10\x0f*\xa5\x01\n" +
-	"\x0eTeamMemberRole\x12 \n" +
-	"\x1cTEAM_MEMBER_ROLE_UNSPECIFIED\x10\x00\x12\x1a\n" +
-	"\x16TEAM_MEMBER_ROLE_OWNER\x10\x01\x12\x1c\n" +
-	"\x18TEAM_MEMBER_ROLE_MANAGER\x10\x02\x12\x1a\n" +
-	"\x16TEAM_MEMBER_ROLE_STAFF\x10\x03\x12\x1b\n" +
-	"\x17TEAM_MEMBER_ROLE_PLAYER\x10\x04*\xf7\x02\n" +
+	"\x12PLAYER_POSITION_ST\x10\x0f*\x94\x03\n" +
 	"\x10StaffDesignation\x12!\n" +
 	"\x1dSTAFF_DESIGNATION_UNSPECIFIED\x10\x00\x12 \n" +
 	"\x1cSTAFF_DESIGNATION_HEAD_COACH\x10\x01\x12%\n" +
@@ -2064,7 +2061,15 @@ const file_team_service_proto_rawDesc = "" +
 	"\x18STAFF_DESIGNATION_DOCTOR\x10\x06\x12\x1d\n" +
 	"\x19STAFF_DESIGNATION_ANALYST\x10\a\x12&\n" +
 	"\"STAFF_DESIGNATION_TEAM_COORDINATOR\x10\b\x12'\n" +
-	"#STAFF_DESIGNATION_EQUIPMENT_MANAGER\x10\t2\xcd\x01\n" +
+	"#STAFF_DESIGNATION_EQUIPMENT_MANAGER\x10\t\x12\x1b\n" +
+	"\x17STAFF_DESIGNATION_OTHER\x10\n" +
+	"*\xa5\x01\n" +
+	"\x0eTeamMemberRole\x12 \n" +
+	"\x1cTEAM_MEMBER_ROLE_UNSPECIFIED\x10\x00\x12\x1a\n" +
+	"\x16TEAM_MEMBER_ROLE_OWNER\x10\x01\x12\x1c\n" +
+	"\x18TEAM_MEMBER_ROLE_MANAGER\x10\x02\x12\x1a\n" +
+	"\x16TEAM_MEMBER_ROLE_STAFF\x10\x03\x12\x1b\n" +
+	"\x17TEAM_MEMBER_ROLE_PLAYER\x10\x042\xcd\x01\n" +
 	"\vTeamService\x126\n" +
 	"\n" +
 	"CreateTeam\x12\x13.team.CreateTeamReq\x1a\x13.team.CreateTeamRes\x126\n" +
@@ -2099,8 +2104,8 @@ var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_team_service_proto_goTypes = []any{
 	(PlayerStatus)(0),             // 0: team.PlayerStatus
 	(PlayerPosition)(0),           // 1: team.PlayerPosition
-	(TeamMemberRole)(0),           // 2: team.TeamMemberRole
-	(StaffDesignation)(0),         // 3: team.StaffDesignation
+	(StaffDesignation)(0),         // 2: team.StaffDesignation
+	(TeamMemberRole)(0),           // 3: team.TeamMemberRole
 	(*TeamOwnerDetails)(nil),      // 4: team.TeamOwnerDetails
 	(*CreateTeamReq)(nil),         // 5: team.CreateTeamReq
 	(*UserRes)(nil),               // 6: team.UserRes
@@ -2148,9 +2153,9 @@ var file_team_service_proto_depIdxs = []int32{
 	28, // 17: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
 	28, // 18: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
 	28, // 19: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
-	3,  // 20: team.AddStaffReq.designation:type_name -> team.StaffDesignation
+	2,  // 20: team.AddStaffReq.designation:type_name -> team.StaffDesignation
 	28, // 21: team.AddStaffReq.dob:type_name -> google.protobuf.Timestamp
-	2,  // 22: team.AddStaffReq.role:type_name -> team.TeamMemberRole
+	3,  // 22: team.AddStaffReq.role:type_name -> team.TeamMemberRole
 	5,  // 23: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
 	10, // 24: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
 	12, // 25: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
