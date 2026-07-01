@@ -803,7 +803,10 @@ func (x *UpdateTeamReq) GetDescription() string {
 
 type UpdateTeamRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	TeamId        *string                `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
+	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -838,11 +841,32 @@ func (*UpdateTeamRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UpdateTeamRes) GetSuccess() bool {
-	if x != nil {
-		return x.Success
+func (x *UpdateTeamRes) GetTeamId() string {
+	if x != nil && x.TeamId != nil {
+		return *x.TeamId
 	}
-	return false
+	return ""
+}
+
+func (x *UpdateTeamRes) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateTeamRes) GetCity() string {
+	if x != nil {
+		return x.City
+	}
+	return ""
+}
+
+func (x *UpdateTeamRes) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
 }
 
 type RegisterTeamMemberReq struct {
@@ -1948,9 +1972,14 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name\x12\x12\n" +
 	"\x04city\x18\x04 \x01(\tR\x04city\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\")\n" +
-	"\rUpdateTeamRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x17\n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\"\x83\x01\n" +
+	"\rUpdateTeamRes\x12\x1c\n" +
+	"\ateam_id\x18\x01 \x01(\tH\x00R\x06teamId\x88\x01\x01\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04city\x18\x03 \x01(\tR\x04city\x12 \n" +
+	"\vdescription\x18\x04 \x01(\tR\vdescriptionB\n" +
+	"\n" +
+	"\b_team_id\"\x17\n" +
 	"\x15RegisterTeamMemberReq\"\x17\n" +
 	"\x15RegisterTeamMemberRes\"\xf5\x01\n" +
 	"\fAddPlayerReq\x12\x1b\n" +
@@ -2195,6 +2224,7 @@ func file_team_service_proto_init() {
 	if File_team_service_proto != nil {
 		return
 	}
+	file_team_service_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

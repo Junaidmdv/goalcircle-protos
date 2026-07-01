@@ -69,13 +69,16 @@ message UpdateTeamReq{
 }
 
 
-message UpdateTeamRes{
-  bool success=1;
+message UpdateTeamRes{  optional
+  string team_id=1; 
+  string name=2; 
+  string city=3; 
+  string description = 4;
 }
 
 
 message RegisterTeamMemberReq{
-
+ 
 } 
 
 message RegisterTeamMemberRes{
