@@ -729,9 +729,9 @@ type UpdateTeamReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	City          string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
-	Description   string                 `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	Name          *string                `protobuf:"bytes,3,opt,name=name,proto3,oneof" json:"name,omitempty"`
+	City          *string                `protobuf:"bytes,4,opt,name=city,proto3,oneof" json:"city,omitempty"`
+	Description   *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -781,22 +781,22 @@ func (x *UpdateTeamReq) GetTeamMemberId() string {
 }
 
 func (x *UpdateTeamReq) GetName() string {
-	if x != nil {
-		return x.Name
+	if x != nil && x.Name != nil {
+		return *x.Name
 	}
 	return ""
 }
 
 func (x *UpdateTeamReq) GetCity() string {
-	if x != nil {
-		return x.City
+	if x != nil && x.City != nil {
+		return *x.City
 	}
 	return ""
 }
 
 func (x *UpdateTeamReq) GetDescription() string {
-	if x != nil {
-		return x.Description
+	if x != nil && x.Description != nil {
+		return *x.Description
 	}
 	return ""
 }
@@ -1966,13 +1966,16 @@ const file_team_service_proto_rawDesc = "" +
 	"\x04user\x18\x01 \x01(\v2\r.team.UserResR\x04user\x127\n" +
 	"\fteam_details\x18\x02 \x01(\v2\x14.team.TeamDetailsResR\vteamDetails\x128\n" +
 	"\vteam_member\x18\x03 \x01(\v2\x17.team.TeamMemberDetailsR\n" +
-	"teamMember\"\x98\x01\n" +
+	"teamMember\"\xc9\x01\n" +
 	"\rUpdateTeamReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12$\n" +
-	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12\x12\n" +
-	"\x04city\x18\x04 \x01(\tR\x04city\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\"\x83\x01\n" +
+	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x17\n" +
+	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x17\n" +
+	"\x04city\x18\x04 \x01(\tH\x01R\x04city\x88\x01\x01\x12%\n" +
+	"\vdescription\x18\x05 \x01(\tH\x02R\vdescription\x88\x01\x01B\a\n" +
+	"\x05_nameB\a\n" +
+	"\x05_cityB\x0e\n" +
+	"\f_description\"\x83\x01\n" +
 	"\rUpdateTeamRes\x12\x1c\n" +
 	"\ateam_id\x18\x01 \x01(\tH\x00R\x06teamId\x88\x01\x01\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -2224,6 +2227,7 @@ func file_team_service_proto_init() {
 	if File_team_service_proto != nil {
 		return
 	}
+	file_team_service_proto_msgTypes[6].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
