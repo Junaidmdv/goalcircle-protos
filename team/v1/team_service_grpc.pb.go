@@ -19,9 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TeamService_CreateTeam_FullMethodName         = "/team.TeamService/CreateTeam"
-	TeamService_UpdateTeam_FullMethodName         = "/team.TeamService/UpdateTeam"
-	TeamService_RegisterTeamMember_FullMethodName = "/team.TeamService/RegisterTeamMember"
+	TeamService_CreateTeam_FullMethodName              = "/team.TeamService/CreateTeam"
+	TeamService_UpdateTeam_FullMethodName              = "/team.TeamService/UpdateTeam"
+	TeamService_RegisterTeamMember_FullMethodName      = "/team.TeamService/RegisterTeamMember"
+	TeamService_UpdateTeamContactDetail_FullMethodName = "/team.TeamService/UpdateTeamContactDetail"
+	TeamService_SetCaptain_FullMethodName              = "/team.TeamService/SetCaptain"
+	TeamService_SetViceCaptain_FullMethodName          = "/team.TeamService/SetViceCaptain"
+	TeamService_ListTeam_FullMethodName                = "/team.TeamService/ListTeam"
+	TeamService_GetTeam_FullMethodName                 = "/team.TeamService/GetTeam"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -31,6 +36,11 @@ type TeamServiceClient interface {
 	CreateTeam(ctx context.Context, in *CreateTeamReq, opts ...grpc.CallOption) (*CreateTeamRes, error)
 	UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error)
 	RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error)
+	UpdateTeamContactDetail(ctx context.Context, in *UpdateTeamContactDetailsReq, opts ...grpc.CallOption) (*UpdateTeamContactDetailsRes, error)
+	SetCaptain(ctx context.Context, in *SetCaptainReq, opts ...grpc.CallOption) (*SetCaptainRes, error)
+	SetViceCaptain(ctx context.Context, in *SetViceCaptainReq, opts ...grpc.CallOption) (*SetViceCaptainRes, error)
+	ListTeam(ctx context.Context, in *ListTeamReq, opts ...grpc.CallOption) (*ListTeamRes, error)
+	GetTeam(ctx context.Context, in *GetTeamReq, opts ...grpc.CallOption) (*GetTeamRes, error)
 }
 
 type teamServiceClient struct {
@@ -71,6 +81,56 @@ func (c *teamServiceClient) RegisterTeamMember(ctx context.Context, in *Register
 	return out, nil
 }
 
+func (c *teamServiceClient) UpdateTeamContactDetail(ctx context.Context, in *UpdateTeamContactDetailsReq, opts ...grpc.CallOption) (*UpdateTeamContactDetailsRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateTeamContactDetailsRes)
+	err := c.cc.Invoke(ctx, TeamService_UpdateTeamContactDetail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) SetCaptain(ctx context.Context, in *SetCaptainReq, opts ...grpc.CallOption) (*SetCaptainRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetCaptainRes)
+	err := c.cc.Invoke(ctx, TeamService_SetCaptain_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) SetViceCaptain(ctx context.Context, in *SetViceCaptainReq, opts ...grpc.CallOption) (*SetViceCaptainRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetViceCaptainRes)
+	err := c.cc.Invoke(ctx, TeamService_SetViceCaptain_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) ListTeam(ctx context.Context, in *ListTeamReq, opts ...grpc.CallOption) (*ListTeamRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTeamRes)
+	err := c.cc.Invoke(ctx, TeamService_ListTeam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) GetTeam(ctx context.Context, in *GetTeamReq, opts ...grpc.CallOption) (*GetTeamRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTeamRes)
+	err := c.cc.Invoke(ctx, TeamService_GetTeam_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeamServiceServer is the server API for TeamService service.
 // All implementations must embed UnimplementedTeamServiceServer
 // for forward compatibility.
@@ -78,6 +138,11 @@ type TeamServiceServer interface {
 	CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error)
 	UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error)
 	RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error)
+	UpdateTeamContactDetail(context.Context, *UpdateTeamContactDetailsReq) (*UpdateTeamContactDetailsRes, error)
+	SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error)
+	SetViceCaptain(context.Context, *SetViceCaptainReq) (*SetViceCaptainRes, error)
+	ListTeam(context.Context, *ListTeamReq) (*ListTeamRes, error)
+	GetTeam(context.Context, *GetTeamReq) (*GetTeamRes, error)
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -96,6 +161,21 @@ func (UnimplementedTeamServiceServer) UpdateTeam(context.Context, *UpdateTeamReq
 }
 func (UnimplementedTeamServiceServer) RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterTeamMember not implemented")
+}
+func (UnimplementedTeamServiceServer) UpdateTeamContactDetail(context.Context, *UpdateTeamContactDetailsReq) (*UpdateTeamContactDetailsRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateTeamContactDetail not implemented")
+}
+func (UnimplementedTeamServiceServer) SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetCaptain not implemented")
+}
+func (UnimplementedTeamServiceServer) SetViceCaptain(context.Context, *SetViceCaptainReq) (*SetViceCaptainRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetViceCaptain not implemented")
+}
+func (UnimplementedTeamServiceServer) ListTeam(context.Context, *ListTeamReq) (*ListTeamRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTeam not implemented")
+}
+func (UnimplementedTeamServiceServer) GetTeam(context.Context, *GetTeamReq) (*GetTeamRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTeam not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 func (UnimplementedTeamServiceServer) testEmbeddedByValue()                     {}
@@ -172,6 +252,96 @@ func _TeamService_RegisterTeamMember_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_UpdateTeamContactDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateTeamContactDetailsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).UpdateTeamContactDetail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_UpdateTeamContactDetail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).UpdateTeamContactDetail(ctx, req.(*UpdateTeamContactDetailsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeamService_SetCaptain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetCaptainReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).SetCaptain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_SetCaptain_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).SetCaptain(ctx, req.(*SetCaptainReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeamService_SetViceCaptain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetViceCaptainReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).SetViceCaptain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_SetViceCaptain_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).SetViceCaptain(ctx, req.(*SetViceCaptainReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeamService_ListTeam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTeamReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).ListTeam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_ListTeam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).ListTeam(ctx, req.(*ListTeamReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeamService_GetTeam_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTeamReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).GetTeam(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_GetTeam_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).GetTeam(ctx, req.(*GetTeamReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +360,26 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterTeamMember",
 			Handler:    _TeamService_RegisterTeamMember_Handler,
+		},
+		{
+			MethodName: "UpdateTeamContactDetail",
+			Handler:    _TeamService_UpdateTeamContactDetail_Handler,
+		},
+		{
+			MethodName: "SetCaptain",
+			Handler:    _TeamService_SetCaptain_Handler,
+		},
+		{
+			MethodName: "SetViceCaptain",
+			Handler:    _TeamService_SetViceCaptain_Handler,
+		},
+		{
+			MethodName: "ListTeam",
+			Handler:    _TeamService_ListTeam_Handler,
+		},
+		{
+			MethodName: "GetTeam",
+			Handler:    _TeamService_GetTeam_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

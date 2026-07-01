@@ -74,12 +74,13 @@ message UpdateTeamRes{  optional
   string team_id=1; 
   string name=2; 
   string city=3; 
-  string description = 4;
+  string description = 4; 
+  string short_name=5;
 }
 
 
 message RegisterTeamMemberReq{
- 
+   
 } 
 
 message RegisterTeamMemberRes{
@@ -87,10 +88,117 @@ message RegisterTeamMemberRes{
 }
 
 
+message UpdateTeamContactDetailsReq{  
+    string contact_email=1; 
+    string contact_phone_num=2;
+    string team_id=3; 
+    string team_member_id=4;
+}
+
+message UpdateTeamContactDetailsRes{
+  string team_id=1; 
+  string contact_email=2; 
+  string contact_phone_num=3; 
+}
+
+message SetCaptainRes{
+  string player_id=1;
+} 
+
+message SetCaptainReq{
+   string team_member_id=1; 
+   string team_id=2; 
+   string player_id=3; 
+}
+
+message SetViceCaptainRes{
+   string player_id=1;
+}
+
+message SetViceCaptainReq{
+   string team_member_id=1; 
+   string team_id=2; 
+   string player_id=3;
+}  
+
+
+enum TeamStatus {
+  TEAM_STATUS_UNSPECIFIED = 0;
+  TEAM_STATUS_ACTIVE = 1;
+  TEAM_STATUS_INACTIVE = 2;
+  TEAM_STATUS_SUSPENDED = 3;
+  TEAM_STATUS_ARCHIVED = 4;
+}
+
+
+message ListTeamReq{
+   int32  page=1; 
+   int32 limit=2; 
+   string position=3;   
+   TeamStatus team_status=4;
+   string search=5;
+}
+
+
+message TeamDetails{
+   string team_id=1; 
+   string name=2;  
+   string city=3;  
+   string logo_url=4;  
+   string team_code=5;  
+   TeamStatus team_status=6;
+} 
+
+
+message  PaginateTeam {
+   int32 total_page=1; 
+   int32 page=2; 
+   int32 limit=3;  
+   int64 total_item=4;
+}
+
+
+
+message ListTeamRes{
+  TeamDetails team_details = 1; 
+  PaginateTeam pagination=2;
+}
+
+
+message GetTeamReq{
+   string team_id=1; 
+}  
+
+
+
+message GetTeamRes{
+   string team_id=1; 
+   string name=2;  
+   string short_name=3;  
+   string city=4;  
+   string logo_url=5;  
+   string team_code=6;  
+   string contact_email=7; 
+   string contact_phone_num=8; 
+   TeamStatus team_status=9;  
+   int32 player_count=10;  
+   string manager_id=11; 
+   string caption_id=12;  
+   string vice_caption_id=13;
+}
+
+
+
+
 service TeamService {
    rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
    rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);  
-   rpc RegisterTeamMember(RegisterTeamMemberReq)returns(RegisterTeamMemberRes);
+   rpc RegisterTeamMember(RegisterTeamMemberReq)returns(RegisterTeamMemberRes);  
+   rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes); 
+   rpc SetCaptain(SetCaptainReq)returns(SetCaptainRes); 
+   rpc SetViceCaptain(SetViceCaptainReq)returns(SetViceCaptainRes); 
+   rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
+   rpc GetTeam(GetTeamReq)returns(GetTeamRes);
 }
 
 
