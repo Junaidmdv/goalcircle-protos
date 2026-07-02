@@ -3076,11 +3076,11 @@ const file_team_service_proto_rawDesc = "" +
 	"SetCaptain\x12\x13.team.SetCaptainReq\x1a\x13.team.SetCaptainRes\x12B\n" +
 	"\x0eSetViceCaptain\x12\x17.team.SetViceCaptainReq\x1a\x17.team.SetViceCaptainRes\x120\n" +
 	"\bListTeam\x12\x11.team.ListTeamReq\x1a\x11.team.ListTeamRes\x12-\n" +
-	"\aGetTeam\x12\x10.team.GetTeamReq\x1a\x10.team.GetTeamRes2\x94\x02\n" +
+	"\aGetTeam\x12\x10.team.GetTeamReq\x1a\x10.team.GetTeamRes2\x90\x02\n" +
 	"\rPlayerService\x126\n" +
 	"\fAddNewPlayer\x12\x12.team.AddPlayerReq\x1a\x12.team.AddPlayerRes\x12N\n" +
-	"\x12UpdatePlayerStatus\x12\x1b.team.UpdatePlayerStatusReq\x1a\x1b.team.UpdatePlayerStatusRes\x12F\n" +
-	"\x0eListTeamPlayer\x12\x17.team.ListTeamPlayerReq\x1a\x1b.team.UpdatePlayerStatusRes\x123\n" +
+	"\x12UpdatePlayerStatus\x12\x1b.team.UpdatePlayerStatusReq\x1a\x1b.team.UpdatePlayerStatusRes\x12B\n" +
+	"\x0eListTeamPlayer\x12\x17.team.ListTeamPlayerReq\x1a\x17.team.ListTeamPlayerRes\x123\n" +
 	"\tGetPlayer\x12\x12.team.GetPlayerReq\x1a\x12.team.GetPlayerRes2V\n" +
 	"\n" +
 	"TeamInvite\x12H\n" +
@@ -3199,7 +3199,7 @@ var file_team_service_proto_depIdxs = []int32{
 	26, // 49: team.TeamService.GetTeam:output_type -> team.GetTeamRes
 	28, // 50: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
 	30, // 51: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
-	30, // 52: team.PlayerService.ListTeamPlayer:output_type -> team.UpdatePlayerStatusRes
+	34, // 52: team.PlayerService.ListTeamPlayer:output_type -> team.ListTeamPlayerRes
 	36, // 53: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
 	38, // 54: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
 	40, // 55: team.StaffService.AddStaff:output_type -> team.AddStaffRes

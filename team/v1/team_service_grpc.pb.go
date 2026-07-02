@@ -399,7 +399,7 @@ const (
 type PlayerServiceClient interface {
 	AddNewPlayer(ctx context.Context, in *AddPlayerReq, opts ...grpc.CallOption) (*AddPlayerRes, error)
 	UpdatePlayerStatus(ctx context.Context, in *UpdatePlayerStatusReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error)
-	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error)
+	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
 }
 
@@ -431,9 +431,9 @@ func (c *playerServiceClient) UpdatePlayerStatus(ctx context.Context, in *Update
 	return out, nil
 }
 
-func (c *playerServiceClient) ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error) {
+func (c *playerServiceClient) ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdatePlayerStatusRes)
+	out := new(ListTeamPlayerRes)
 	err := c.cc.Invoke(ctx, PlayerService_ListTeamPlayer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -457,7 +457,7 @@ func (c *playerServiceClient) GetPlayer(ctx context.Context, in *GetPlayerReq, o
 type PlayerServiceServer interface {
 	AddNewPlayer(context.Context, *AddPlayerReq) (*AddPlayerRes, error)
 	UpdatePlayerStatus(context.Context, *UpdatePlayerStatusReq) (*UpdatePlayerStatusRes, error)
-	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*UpdatePlayerStatusRes, error)
+	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
@@ -475,7 +475,7 @@ func (UnimplementedPlayerServiceServer) AddNewPlayer(context.Context, *AddPlayer
 func (UnimplementedPlayerServiceServer) UpdatePlayerStatus(context.Context, *UpdatePlayerStatusReq) (*UpdatePlayerStatusRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlayerStatus not implemented")
 }
-func (UnimplementedPlayerServiceServer) ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*UpdatePlayerStatusRes, error) {
+func (UnimplementedPlayerServiceServer) ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTeamPlayer not implemented")
 }
 func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error) {

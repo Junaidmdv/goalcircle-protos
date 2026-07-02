@@ -318,7 +318,7 @@ message  GetPlayerRes {
 service PlayerService{
   rpc AddNewPlayer(AddPlayerReq)returns(AddPlayerRes); 
   rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
-  rpc ListTeamPlayer(ListTeamPlayerReq)returns(UpdatePlayerStatusRes);  
+  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);  
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);
 }
 
