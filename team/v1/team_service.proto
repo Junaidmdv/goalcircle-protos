@@ -134,7 +134,7 @@ enum TeamStatus {
 message ListTeamReq{
    int32  page=1; 
    int32 limit=2; 
-   string position=3;   
+   string city=3;
    TeamStatus team_status=4;
    string search=5;
 }
@@ -160,7 +160,7 @@ message  PaginateTeam {
 
 
 message ListTeamRes{
-  TeamDetails team_details = 1; 
+  repeated TeamDetails team_details = 1; 
   PaginateTeam pagination=2;
 }
 

@@ -1352,7 +1352,7 @@ type ListTeamReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Position      string                 `protobuf:"bytes,3,opt,name=position,proto3" json:"position,omitempty"`
+	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
 	TeamStatus    TeamStatus             `protobuf:"varint,4,opt,name=team_status,json=teamStatus,proto3,enum=team.TeamStatus" json:"team_status,omitempty"`
 	Search        string                 `protobuf:"bytes,5,opt,name=search,proto3" json:"search,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1403,9 +1403,9 @@ func (x *ListTeamReq) GetLimit() int32 {
 	return 0
 }
 
-func (x *ListTeamReq) GetPosition() string {
+func (x *ListTeamReq) GetCity() string {
 	if x != nil {
-		return x.Position
+		return x.City
 	}
 	return ""
 }
@@ -1578,7 +1578,7 @@ func (x *PaginateTeam) GetTotalItem() int64 {
 
 type ListTeamRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamDetails   *TeamDetails           `protobuf:"bytes,1,opt,name=team_details,json=teamDetails,proto3" json:"team_details,omitempty"`
+	TeamDetails   []*TeamDetails         `protobuf:"bytes,1,rep,name=team_details,json=teamDetails,proto3" json:"team_details,omitempty"`
 	Pagination    *PaginateTeam          `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -1614,7 +1614,7 @@ func (*ListTeamRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *ListTeamRes) GetTeamDetails() *TeamDetails {
+func (x *ListTeamRes) GetTeamDetails() []*TeamDetails {
 	if x != nil {
 		return x.TeamDetails
 	}
@@ -2881,11 +2881,11 @@ const file_team_service_proto_rawDesc = "" +
 	"\x11SetViceCaptainReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
-	"\tplayer_id\x18\x03 \x01(\tR\bplayerId\"\x9e\x01\n" +
+	"\tplayer_id\x18\x03 \x01(\tR\bplayerId\"\x96\x01\n" +
 	"\vListTeamReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1a\n" +
-	"\bposition\x18\x03 \x01(\tR\bposition\x121\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x12\n" +
+	"\x04city\x18\x03 \x01(\tR\x04city\x121\n" +
 	"\vteam_status\x18\x04 \x01(\x0e2\x10.team.TeamStatusR\n" +
 	"teamStatus\x12\x16\n" +
 	"\x06search\x18\x05 \x01(\tR\x06search\"\xb9\x01\n" +
@@ -2905,7 +2905,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"total_item\x18\x04 \x01(\x03R\ttotalItem\"w\n" +
 	"\vListTeamRes\x124\n" +
-	"\fteam_details\x18\x01 \x01(\v2\x11.team.TeamDetailsR\vteamDetails\x122\n" +
+	"\fteam_details\x18\x01 \x03(\v2\x11.team.TeamDetailsR\vteamDetails\x122\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x12.team.PaginateTeamR\n" +
 	"pagination\"%\n" +
