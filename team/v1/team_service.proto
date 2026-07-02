@@ -101,12 +101,12 @@ message UpdateTeamContactDetailsRes{
   string contact_phone_num=3; 
 }
 
-message SetCaptainRes{
-  string player_id=1;
+message SetCaptainRes{ 
+  string player_id=2;
 } 
 
 message SetCaptainReq{
-   string team_member_id=1; 
+   string user_id=1; 
    string team_id=2; 
    string player_id=3; 
 }
@@ -116,7 +116,7 @@ message SetViceCaptainRes{
 }
 
 message SetViceCaptainReq{
-   string team_member_id=1; 
+   string user_id=1; 
    string team_id=2; 
    string player_id=3;
 }  
@@ -199,6 +199,7 @@ service TeamService {
    rpc SetViceCaptain(SetViceCaptainReq)returns(SetViceCaptainRes); 
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
    rpc GetTeam(GetTeamReq)returns(GetTeamRes);
+    
 }
 
 

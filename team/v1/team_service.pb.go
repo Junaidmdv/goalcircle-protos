@@ -1142,7 +1142,7 @@ func (x *UpdateTeamContactDetailsRes) GetContactPhoneNum() string {
 
 type SetCaptainRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlayerId      string                 `protobuf:"bytes,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1186,7 +1186,7 @@ func (x *SetCaptainRes) GetPlayerId() string {
 
 type SetCaptainReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamMemberId  string                 `protobuf:"bytes,1,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,3,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1223,9 +1223,9 @@ func (*SetCaptainReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *SetCaptainReq) GetTeamMemberId() string {
+func (x *SetCaptainReq) GetUserId() string {
 	if x != nil {
-		return x.TeamMemberId
+		return x.UserId
 	}
 	return ""
 }
@@ -1290,7 +1290,7 @@ func (x *SetViceCaptainRes) GetPlayerId() string {
 
 type SetViceCaptainReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamMemberId  string                 `protobuf:"bytes,1,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,3,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1327,9 +1327,9 @@ func (*SetViceCaptainReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *SetViceCaptainReq) GetTeamMemberId() string {
+func (x *SetViceCaptainReq) GetUserId() string {
 	if x != nil {
-		return x.TeamMemberId
+		return x.UserId
 	}
 	return ""
 }
@@ -2871,15 +2871,15 @@ const file_team_service_proto_rawDesc = "" +
 	"\rcontact_email\x18\x02 \x01(\tR\fcontactEmail\x12*\n" +
 	"\x11contact_phone_num\x18\x03 \x01(\tR\x0fcontactPhoneNum\",\n" +
 	"\rSetCaptainRes\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\"k\n" +
-	"\rSetCaptainReq\x12$\n" +
-	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x17\n" +
+	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"^\n" +
+	"\rSetCaptainReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x03 \x01(\tR\bplayerId\"0\n" +
 	"\x11SetViceCaptainRes\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\"o\n" +
-	"\x11SetViceCaptainReq\x12$\n" +
-	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x17\n" +
+	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\"b\n" +
+	"\x11SetViceCaptainReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x03 \x01(\tR\bplayerId\"\x9e\x01\n" +
 	"\vListTeamReq\x12\x12\n" +
