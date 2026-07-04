@@ -866,7 +866,7 @@ func (x *UpdateTeamReq) GetShortName() string {
 
 type UpdateTeamRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamId        *string                `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3,oneof" json:"team_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
 	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
@@ -906,8 +906,8 @@ func (*UpdateTeamRes) Descriptor() ([]byte, []int) {
 }
 
 func (x *UpdateTeamRes) GetTeamId() string {
-	if x != nil && x.TeamId != nil {
-		return *x.TeamId
+	if x != nil {
+		return x.TeamId
 	}
 	return ""
 }
@@ -2849,16 +2849,14 @@ const file_team_service_proto_rawDesc = "" +
 	"\x05_nameB\a\n" +
 	"\x05_cityB\x0e\n" +
 	"\f_descriptionB\r\n" +
-	"\v_short_name\"\xa2\x01\n" +
-	"\rUpdateTeamRes\x12\x1c\n" +
-	"\ateam_id\x18\x01 \x01(\tH\x00R\x06teamId\x88\x01\x01\x12\x12\n" +
+	"\v_short_name\"\x91\x01\n" +
+	"\rUpdateTeamRes\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04city\x18\x03 \x01(\tR\x04city\x12 \n" +
 	"\vdescription\x18\x04 \x01(\tR\vdescription\x12\x1d\n" +
 	"\n" +
-	"short_name\x18\x05 \x01(\tR\tshortNameB\n" +
-	"\n" +
-	"\b_team_id\"\x17\n" +
+	"short_name\x18\x05 \x01(\tR\tshortName\"\x17\n" +
 	"\x15RegisterTeamMemberReq\"\x17\n" +
 	"\x15RegisterTeamMemberRes\"\xad\x01\n" +
 	"\x1bUpdateTeamContactDetailsReq\x12#\n" +
@@ -3216,7 +3214,6 @@ func file_team_service_proto_init() {
 		return
 	}
 	file_team_service_proto_msgTypes[6].OneofWrappers = []any{}
-	file_team_service_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

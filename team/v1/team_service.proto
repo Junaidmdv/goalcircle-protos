@@ -70,7 +70,7 @@ message UpdateTeamReq{
 }
 
 
-message UpdateTeamRes{  optional
+message UpdateTeamRes{  
   string team_id=1; 
   string name=2; 
   string city=3; 
