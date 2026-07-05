@@ -2528,6 +2528,7 @@ type CreateInvitationReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamMemberId  string                 `protobuf:"bytes,1,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
 	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2572,6 +2573,13 @@ func (x *CreateInvitationReq) GetTeamMemberId() string {
 func (x *CreateInvitationReq) GetRole() string {
 	if x != nil {
 		return x.Role
+	}
+	return ""
+}
+
+func (x *CreateInvitationReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -2988,10 +2996,11 @@ const file_team_service_proto_rawDesc = "" +
 	"\rplayer_status\x18\t \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\x129\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"O\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"h\n" +
 	"\x13CreateInvitationReq\x12$\n" +
 	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x12\n" +
-	"\x04role\x18\x02 \x01(\tR\x04role\"\x9f\x01\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\"\x9f\x01\n" +
 	"\x13CreateInvitationRes\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x129\n" +
 	"\n" +

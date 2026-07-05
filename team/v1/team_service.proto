@@ -326,8 +326,9 @@ service PlayerService{
 
 message CreateInvitationReq{
    string team_member_id=1; 
-   string role=2;
-} 
+   string role=2; 
+   string user_id=3;
+  } 
 
 message CreateInvitationRes{
   string code=1; 
