@@ -238,7 +238,7 @@ enum  PlayerStatus {
   STATUS_ACTIVE=1; 
   STATUS_INACTIVE=2; 
   STATUS_SUSPENDED=3; 
-  STATUS_ARCHIVED=4;
+  STATUS_RELEASED=4;
 }
 
 enum PlayerPosition {

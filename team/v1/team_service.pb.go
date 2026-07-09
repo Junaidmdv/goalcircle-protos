@@ -84,7 +84,7 @@ const (
 	PlayerStatus_STATUS_ACTIVE      PlayerStatus = 1
 	PlayerStatus_STATUS_INACTIVE    PlayerStatus = 2
 	PlayerStatus_STATUS_SUSPENDED   PlayerStatus = 3
-	PlayerStatus_STATUS_ARCHIVED    PlayerStatus = 4
+	PlayerStatus_STATUS_RELEASED    PlayerStatus = 4
 )
 
 // Enum value maps for PlayerStatus.
@@ -94,14 +94,14 @@ var (
 		1: "STATUS_ACTIVE",
 		2: "STATUS_INACTIVE",
 		3: "STATUS_SUSPENDED",
-		4: "STATUS_ARCHIVED",
+		4: "STATUS_RELEASED",
 	}
 	PlayerStatus_value = map[string]int32{
 		"STATUS_UNSPECIFIED": 0,
 		"STATUS_ACTIVE":      1,
 		"STATUS_INACTIVE":    2,
 		"STATUS_SUSPENDED":   3,
-		"STATUS_ARCHIVED":    4,
+		"STATUS_RELEASED":    4,
 	}
 )
 
@@ -3034,7 +3034,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\rSTATUS_ACTIVE\x10\x01\x12\x13\n" +
 	"\x0fSTATUS_INACTIVE\x10\x02\x12\x14\n" +
 	"\x10STATUS_SUSPENDED\x10\x03\x12\x13\n" +
-	"\x0fSTATUS_ARCHIVED\x10\x04*\x9d\x03\n" +
+	"\x0fSTATUS_RELEASED\x10\x04*\x9d\x03\n" +
 	"\x0ePlayerPosition\x12\x1f\n" +
 	"\x1bPLAYER_POSITION_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12PLAYER_POSITION_GK\x10\x01\x12\x16\n" +
