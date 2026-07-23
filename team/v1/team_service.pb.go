@@ -2726,8 +2726,8 @@ func (x *CreateInvitationRes) GetExpiredAt() *timestamppb.Timestamp {
 
 type AddStaffReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	Designation   StaffDesignation       `protobuf:"varint,4,opt,name=designation,proto3,enum=team.StaffDesignation" json:"designation,omitempty"`
 	Dob           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=dob,proto3" json:"dob,omitempty"`
@@ -2766,16 +2766,16 @@ func (*AddStaffReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{36}
 }
 
-func (x *AddStaffReq) GetUserId() string {
+func (x *AddStaffReq) GetTeamId() string {
 	if x != nil {
-		return x.UserId
+		return x.TeamId
 	}
 	return ""
 }
 
-func (x *AddStaffReq) GetTeamId() string {
+func (x *AddStaffReq) GetTeamMemberId() string {
 	if x != nil {
-		return x.TeamId
+		return x.TeamMemberId
 	}
 	return ""
 }
@@ -3091,10 +3091,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xee\x01\n" +
+	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xfb\x01\n" +
 	"\vAddStaffReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
-	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12$\n" +
+	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x128\n" +
 	"\vdesignation\x18\x04 \x01(\x0e2\x16.team.StaffDesignationR\vdesignation\x12,\n" +
 	"\x03dob\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x03dob\x12(\n" +

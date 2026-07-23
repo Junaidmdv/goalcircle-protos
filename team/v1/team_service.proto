@@ -377,8 +377,9 @@ enum TeamMemberRole {
 
 
 message AddStaffReq{  
-  string team_member_id=1;
-  string team_id=2; 
+
+  string team_id=1;  
+  string team_member_id=2;
   string full_name=3; 
   StaffDesignation designation=4; 
   google.protobuf.Timestamp dob=5; 
