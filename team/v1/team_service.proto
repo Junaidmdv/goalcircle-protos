@@ -213,7 +213,7 @@ message AddPlayerReq{
  float height=5;
  float weight=6;   
  string team_id=7; 
- string user_id=8;
+ string team_memeber_id=8;
 } 
 
 message AddPlayerRes{ 

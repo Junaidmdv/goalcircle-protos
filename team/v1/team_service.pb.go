@@ -1821,7 +1821,7 @@ type AddPlayerReq struct {
 	Height        float32                `protobuf:"fixed32,5,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,6,opt,name=weight,proto3" json:"weight,omitempty"`
 	TeamId        string                 `protobuf:"bytes,7,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,8,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TeamMemeberId string                 `protobuf:"bytes,8,opt,name=team_memeber_id,json=teamMemeberId,proto3" json:"team_memeber_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1905,9 +1905,9 @@ func (x *AddPlayerReq) GetTeamId() string {
 	return ""
 }
 
-func (x *AddPlayerReq) GetUserId() string {
+func (x *AddPlayerReq) GetTeamMemeberId() string {
 	if x != nil {
-		return x.UserId
+		return x.TeamMemeberId
 	}
 	return ""
 }
@@ -3017,7 +3017,7 @@ const file_team_service_proto_rawDesc = "" +
 	"manager_id\x18\v \x01(\tR\tmanagerId\x12\x1d\n" +
 	"\n" +
 	"caption_id\x18\f \x01(\tR\tcaptionId\x12&\n" +
-	"\x0fvice_caption_id\x18\r \x01(\tR\rviceCaptionId\"\x8e\x02\n" +
+	"\x0fvice_caption_id\x18\r \x01(\tR\rviceCaptionId\"\x9d\x02\n" +
 	"\fAddPlayerReq\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12>\n" +
 	"\rdate_of_birth\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12#\n" +
@@ -3025,8 +3025,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\bposition\x18\x04 \x01(\x05R\bposition\x12\x16\n" +
 	"\x06height\x18\x05 \x01(\x02R\x06height\x12\x16\n" +
 	"\x06weight\x18\x06 \x01(\x02R\x06weight\x12\x17\n" +
-	"\ateam_id\x18\a \x01(\tR\x06teamId\x12\x17\n" +
-	"\auser_id\x18\b \x01(\tR\x06userId\"\x8b\x02\n" +
+	"\ateam_id\x18\a \x01(\tR\x06teamId\x12&\n" +
+	"\x0fteam_memeber_id\x18\b \x01(\tR\rteamMemeberId\"\x8b\x02\n" +
 	"\fAddPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
