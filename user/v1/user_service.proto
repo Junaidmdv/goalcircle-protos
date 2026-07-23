@@ -298,7 +298,7 @@ message GetUserReq{
     int32  limit=2; 
     bool   is_blocked=3;
     string role=4;
-    string search=5;
+   optional string search=5;
 }
 
 

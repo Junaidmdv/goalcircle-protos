@@ -376,8 +376,8 @@ enum TeamMemberRole {
 }
 
 
-message AddStaffReq{
-  string user_id=1; 
+message AddStaffReq{  
+  string team_member_id=1;
   string team_id=2; 
   string full_name=3; 
   StaffDesignation designation=4; 

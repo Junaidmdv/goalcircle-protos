@@ -2280,7 +2280,7 @@ type GetUserReq struct {
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
 	IsBlocked     bool                   `protobuf:"varint,3,opt,name=is_blocked,json=isBlocked,proto3" json:"is_blocked,omitempty"`
 	Role          string                 `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
-	Search        string                 `protobuf:"bytes,5,opt,name=search,proto3" json:"search,omitempty"`
+	Search        *string                `protobuf:"bytes,5,opt,name=search,proto3,oneof" json:"search,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2344,8 +2344,8 @@ func (x *GetUserReq) GetRole() string {
 }
 
 func (x *GetUserReq) GetSearch() string {
-	if x != nil {
-		return x.Search
+	if x != nil && x.Search != nil {
+		return *x.Search
 	}
 	return ""
 }
@@ -2516,15 +2516,16 @@ const file_user_service_proto_rawDesc = "" +
 	"\x0fGetUserResponse\x12 \n" +
 	"\x05users\x18\x01 \x03(\v2\n" +
 	".user.UserR\x05users\x12*\n" +
-	"\bpaginate\x18\x02 \x01(\v2\x0e.user.PaginateR\bpaginate\"\x81\x01\n" +
+	"\bpaginate\x18\x02 \x01(\v2\x0e.user.PaginateR\bpaginate\"\x91\x01\n" +
 	"\n" +
 	"GetUserReq\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
 	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x1d\n" +
 	"\n" +
 	"is_blocked\x18\x03 \x01(\bR\tisBlocked\x12\x12\n" +
-	"\x04role\x18\x04 \x01(\tR\x04role\x12\x16\n" +
-	"\x06search\x18\x05 \x01(\tR\x06search2\xf8\x06\n" +
+	"\x04role\x18\x04 \x01(\tR\x04role\x12\x1b\n" +
+	"\x06search\x18\x05 \x01(\tH\x00R\x06search\x88\x01\x01B\t\n" +
+	"\a_search2\xf8\x06\n" +
 	"\vAuthService\x129\n" +
 	"\bRegister\x12\x15.user.RegisterRequest\x1a\x16.user.RegisterResponse\x123\n" +
 	"\tVerfiyOtp\x12\x12.user.VerifyOtpReq\x1a\x12.user.VerifyOtpRes\x120\n" +
@@ -2677,6 +2678,7 @@ func file_user_service_proto_init() {
 		return
 	}
 	file_user_service_proto_msgTypes[1].OneofWrappers = []any{}
+	file_user_service_proto_msgTypes[39].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
