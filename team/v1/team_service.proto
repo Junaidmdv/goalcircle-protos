@@ -206,14 +206,14 @@ service TeamService {
 
 
 message AddPlayerReq{  
- string user_id=8;
  string full_name=1; 
  google.protobuf.Timestamp date_of_birth=2;  
  int32 jersey_number=3;  
  int32 position=4;  
  float height=5;
  float weight=6;   
- string team_id=7;
+ string team_id=7; 
+ string user_id=8;
 } 
 
 message AddPlayerRes{ 
@@ -397,4 +397,3 @@ message AddStaffRes{
 service StaffService {
      rpc AddStaff(AddStaffReq)returns(AddStaffRes); 
 }
-
