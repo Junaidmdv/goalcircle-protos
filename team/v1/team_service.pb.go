@@ -1814,7 +1814,6 @@ func (x *GetTeamRes) GetViceCaptionId() string {
 
 type AddPlayerReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,8,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	FullName      string                 `protobuf:"bytes,1,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	DateOfBirth   *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
 	JerseyNumber  int32                  `protobuf:"varint,3,opt,name=jersey_number,json=jerseyNumber,proto3" json:"jersey_number,omitempty"`
@@ -1822,6 +1821,7 @@ type AddPlayerReq struct {
 	Height        float32                `protobuf:"fixed32,5,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,6,opt,name=weight,proto3" json:"weight,omitempty"`
 	TeamId        string                 `protobuf:"bytes,7,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,8,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1854,13 +1854,6 @@ func (x *AddPlayerReq) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddPlayerReq.ProtoReflect.Descriptor instead.
 func (*AddPlayerReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *AddPlayerReq) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
 }
 
 func (x *AddPlayerReq) GetFullName() string {
@@ -1908,6 +1901,13 @@ func (x *AddPlayerReq) GetWeight() float32 {
 func (x *AddPlayerReq) GetTeamId() string {
 	if x != nil {
 		return x.TeamId
+	}
+	return ""
+}
+
+func (x *AddPlayerReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -3018,15 +3018,15 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"caption_id\x18\f \x01(\tR\tcaptionId\x12&\n" +
 	"\x0fvice_caption_id\x18\r \x01(\tR\rviceCaptionId\"\x8e\x02\n" +
-	"\fAddPlayerReq\x12\x17\n" +
-	"\auser_id\x18\b \x01(\tR\x06userId\x12\x1b\n" +
+	"\fAddPlayerReq\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12>\n" +
 	"\rdate_of_birth\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12#\n" +
 	"\rjersey_number\x18\x03 \x01(\x05R\fjerseyNumber\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\x05R\bposition\x12\x16\n" +
 	"\x06height\x18\x05 \x01(\x02R\x06height\x12\x16\n" +
 	"\x06weight\x18\x06 \x01(\x02R\x06weight\x12\x17\n" +
-	"\ateam_id\x18\a \x01(\tR\x06teamId\"\x8b\x02\n" +
+	"\ateam_id\x18\a \x01(\tR\x06teamId\x12\x17\n" +
+	"\auser_id\x18\b \x01(\tR\x06userId\"\x8b\x02\n" +
 	"\fAddPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
