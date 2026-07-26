@@ -66,7 +66,9 @@ message UpdateTeamReq{
   optional string name=3; 
   optional string city=4; 
   optional string description = 5; 
-  optional string short_name=6;
+  optional string short_name=6; 
+  optional string email=7;  
+  optional string phone_number=8;
 }
 
 
@@ -88,18 +90,18 @@ message RegisterTeamMemberRes{
 }
 
 
-message UpdateTeamContactDetailsReq{  
-    string contact_email=1; 
-    string contact_phone_num=2;
-    string team_id=3; 
-    string team_member_id=4;
-}
+// message UpdateTeamContactDetailsReq{  
+//     string contact_email=1; 
+//     string contact_phone_num=2;
+//     string team_id=3; 
+//     string team_member_id=4;
+// }
 
-message UpdateTeamContactDetailsRes{
-  string team_id=1; 
-  string contact_email=2; 
-  string contact_phone_num=3; 
-}
+// message UpdateTeamContactDetailsRes{
+//   string team_id=1; 
+//   string contact_email=2; 
+//   string contact_phone_num=3; 
+// }
 
 message SetCaptainRes{ 
   string player_id=2;
@@ -194,7 +196,7 @@ service TeamService {
    rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
    rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);  
    rpc RegisterTeamMember(RegisterTeamMemberReq)returns(RegisterTeamMemberRes);  
-   rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes); 
+  //  rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes); 
    rpc SetCaptain(SetCaptainReq)returns(SetCaptainRes); 
    rpc SetViceCaptain(SetViceCaptainReq)returns(SetViceCaptainRes); 
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 

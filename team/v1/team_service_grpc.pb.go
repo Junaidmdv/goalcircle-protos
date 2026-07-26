@@ -19,14 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TeamService_CreateTeam_FullMethodName              = "/team.TeamService/CreateTeam"
-	TeamService_UpdateTeam_FullMethodName              = "/team.TeamService/UpdateTeam"
-	TeamService_RegisterTeamMember_FullMethodName      = "/team.TeamService/RegisterTeamMember"
-	TeamService_UpdateTeamContactDetail_FullMethodName = "/team.TeamService/UpdateTeamContactDetail"
-	TeamService_SetCaptain_FullMethodName              = "/team.TeamService/SetCaptain"
-	TeamService_SetViceCaptain_FullMethodName          = "/team.TeamService/SetViceCaptain"
-	TeamService_ListTeam_FullMethodName                = "/team.TeamService/ListTeam"
-	TeamService_GetTeam_FullMethodName                 = "/team.TeamService/GetTeam"
+	TeamService_CreateTeam_FullMethodName         = "/team.TeamService/CreateTeam"
+	TeamService_UpdateTeam_FullMethodName         = "/team.TeamService/UpdateTeam"
+	TeamService_RegisterTeamMember_FullMethodName = "/team.TeamService/RegisterTeamMember"
+	TeamService_SetCaptain_FullMethodName         = "/team.TeamService/SetCaptain"
+	TeamService_SetViceCaptain_FullMethodName     = "/team.TeamService/SetViceCaptain"
+	TeamService_ListTeam_FullMethodName           = "/team.TeamService/ListTeam"
+	TeamService_GetTeam_FullMethodName            = "/team.TeamService/GetTeam"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -36,7 +35,7 @@ type TeamServiceClient interface {
 	CreateTeam(ctx context.Context, in *CreateTeamReq, opts ...grpc.CallOption) (*CreateTeamRes, error)
 	UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error)
 	RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error)
-	UpdateTeamContactDetail(ctx context.Context, in *UpdateTeamContactDetailsReq, opts ...grpc.CallOption) (*UpdateTeamContactDetailsRes, error)
+	// rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes);
 	SetCaptain(ctx context.Context, in *SetCaptainReq, opts ...grpc.CallOption) (*SetCaptainRes, error)
 	SetViceCaptain(ctx context.Context, in *SetViceCaptainReq, opts ...grpc.CallOption) (*SetViceCaptainRes, error)
 	ListTeam(ctx context.Context, in *ListTeamReq, opts ...grpc.CallOption) (*ListTeamRes, error)
@@ -75,16 +74,6 @@ func (c *teamServiceClient) RegisterTeamMember(ctx context.Context, in *Register
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(RegisterTeamMemberRes)
 	err := c.cc.Invoke(ctx, TeamService_RegisterTeamMember_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *teamServiceClient) UpdateTeamContactDetail(ctx context.Context, in *UpdateTeamContactDetailsReq, opts ...grpc.CallOption) (*UpdateTeamContactDetailsRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateTeamContactDetailsRes)
-	err := c.cc.Invoke(ctx, TeamService_UpdateTeamContactDetail_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,7 +127,7 @@ type TeamServiceServer interface {
 	CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error)
 	UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error)
 	RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error)
-	UpdateTeamContactDetail(context.Context, *UpdateTeamContactDetailsReq) (*UpdateTeamContactDetailsRes, error)
+	// rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes);
 	SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error)
 	SetViceCaptain(context.Context, *SetViceCaptainReq) (*SetViceCaptainRes, error)
 	ListTeam(context.Context, *ListTeamReq) (*ListTeamRes, error)
@@ -161,9 +150,6 @@ func (UnimplementedTeamServiceServer) UpdateTeam(context.Context, *UpdateTeamReq
 }
 func (UnimplementedTeamServiceServer) RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisterTeamMember not implemented")
-}
-func (UnimplementedTeamServiceServer) UpdateTeamContactDetail(context.Context, *UpdateTeamContactDetailsReq) (*UpdateTeamContactDetailsRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTeamContactDetail not implemented")
 }
 func (UnimplementedTeamServiceServer) SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCaptain not implemented")
@@ -248,24 +234,6 @@ func _TeamService_RegisterTeamMember_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TeamServiceServer).RegisterTeamMember(ctx, req.(*RegisterTeamMemberReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TeamService_UpdateTeamContactDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTeamContactDetailsReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TeamServiceServer).UpdateTeamContactDetail(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TeamService_UpdateTeamContactDetail_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).UpdateTeamContactDetail(ctx, req.(*UpdateTeamContactDetailsReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -360,10 +328,6 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisterTeamMember",
 			Handler:    _TeamService_RegisterTeamMember_Handler,
-		},
-		{
-			MethodName: "UpdateTeamContactDetail",
-			Handler:    _TeamService_UpdateTeamContactDetail_Handler,
 		},
 		{
 			MethodName: "SetCaptain",
