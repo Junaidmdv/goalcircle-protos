@@ -62,7 +62,7 @@ message CreateTeamRes{
 
 message UpdateTeamReq{   
   string team_id=1; 
-  string team_member_id=2;
+  string user_id=2;
   optional string name=3; 
   optional string city=4; 
   optional string description = 5; 

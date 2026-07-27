@@ -783,7 +783,7 @@ func (x *CreateTeamRes) GetTeamMember() *TeamMemberDetails {
 type UpdateTeamReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Name          *string                `protobuf:"bytes,3,opt,name=name,proto3,oneof" json:"name,omitempty"`
 	City          *string                `protobuf:"bytes,4,opt,name=city,proto3,oneof" json:"city,omitempty"`
 	Description   *string                `protobuf:"bytes,5,opt,name=description,proto3,oneof" json:"description,omitempty"`
@@ -831,9 +831,9 @@ func (x *UpdateTeamReq) GetTeamId() string {
 	return ""
 }
 
-func (x *UpdateTeamReq) GetTeamMemberId() string {
+func (x *UpdateTeamReq) GetUserId() string {
 	if x != nil {
-		return x.TeamMemberId
+		return x.UserId
 	}
 	return ""
 }
@@ -2813,10 +2813,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\x04user\x18\x01 \x01(\v2\r.team.UserResR\x04user\x127\n" +
 	"\fteam_details\x18\x02 \x01(\v2\x14.team.TeamDetailsResR\vteamDetails\x128\n" +
 	"\vteam_member\x18\x03 \x01(\v2\x17.team.TeamMemberDetailsR\n" +
-	"teamMember\"\xda\x02\n" +
+	"teamMember\"\xcd\x02\n" +
 	"\rUpdateTeamReq\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12$\n" +
-	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x17\n" +
 	"\x04name\x18\x03 \x01(\tH\x00R\x04name\x88\x01\x01\x12\x17\n" +
 	"\x04city\x18\x04 \x01(\tH\x01R\x04city\x88\x01\x01\x12%\n" +
 	"\vdescription\x18\x05 \x01(\tH\x02R\vdescription\x88\x01\x01\x12\"\n" +
