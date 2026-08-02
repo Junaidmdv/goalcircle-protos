@@ -1700,6 +1700,138 @@ func (x *GetTeamRes) GetViceCaptionId() string {
 	return ""
 }
 
+type TeamLogoMetaData struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *TeamLogoMetaData) Reset() {
+	*x = TeamLogoMetaData{}
+	mi := &file_team_service_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *TeamLogoMetaData) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TeamLogoMetaData) ProtoMessage() {}
+
+func (x *TeamLogoMetaData) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TeamLogoMetaData.ProtoReflect.Descriptor instead.
+func (*TeamLogoMetaData) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *TeamLogoMetaData) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *TeamLogoMetaData) GetContentType() string {
+	if x != nil {
+		return x.ContentType
+	}
+	return ""
+}
+
+type AddLogoReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddLogoReq) Reset() {
+	*x = AddLogoReq{}
+	mi := &file_team_service_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddLogoReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddLogoReq) ProtoMessage() {}
+
+func (x *AddLogoReq) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddLogoReq.ProtoReflect.Descriptor instead.
+func (*AddLogoReq) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{21}
+}
+
+type AddLogoRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ResignedUrl   string                 `protobuf:"bytes,1,opt,name=resigned_url,json=resignedUrl,proto3" json:"resigned_url,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddLogoRes) Reset() {
+	*x = AddLogoRes{}
+	mi := &file_team_service_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddLogoRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddLogoRes) ProtoMessage() {}
+
+func (x *AddLogoRes) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddLogoRes.ProtoReflect.Descriptor instead.
+func (*AddLogoRes) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *AddLogoRes) GetResignedUrl() string {
+	if x != nil {
+		return x.ResignedUrl
+	}
+	return ""
+}
+
 type AddPlayerReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	FullName      string                 `protobuf:"bytes,1,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
@@ -1716,7 +1848,7 @@ type AddPlayerReq struct {
 
 func (x *AddPlayerReq) Reset() {
 	*x = AddPlayerReq{}
-	mi := &file_team_service_proto_msgTypes[20]
+	mi := &file_team_service_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1728,7 +1860,7 @@ func (x *AddPlayerReq) String() string {
 func (*AddPlayerReq) ProtoMessage() {}
 
 func (x *AddPlayerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[20]
+	mi := &file_team_service_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1741,7 +1873,7 @@ func (x *AddPlayerReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPlayerReq.ProtoReflect.Descriptor instead.
 func (*AddPlayerReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{20}
+	return file_team_service_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *AddPlayerReq) GetFullName() string {
@@ -1814,7 +1946,7 @@ type AddPlayerRes struct {
 
 func (x *AddPlayerRes) Reset() {
 	*x = AddPlayerRes{}
-	mi := &file_team_service_proto_msgTypes[21]
+	mi := &file_team_service_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1826,7 +1958,7 @@ func (x *AddPlayerRes) String() string {
 func (*AddPlayerRes) ProtoMessage() {}
 
 func (x *AddPlayerRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[21]
+	mi := &file_team_service_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1839,7 +1971,7 @@ func (x *AddPlayerRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddPlayerRes.ProtoReflect.Descriptor instead.
 func (*AddPlayerRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{21}
+	return file_team_service_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *AddPlayerRes) GetPlayerId() string {
@@ -1894,7 +2026,7 @@ type UpdatePlayerStatusReq struct {
 
 func (x *UpdatePlayerStatusReq) Reset() {
 	*x = UpdatePlayerStatusReq{}
-	mi := &file_team_service_proto_msgTypes[22]
+	mi := &file_team_service_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1906,7 +2038,7 @@ func (x *UpdatePlayerStatusReq) String() string {
 func (*UpdatePlayerStatusReq) ProtoMessage() {}
 
 func (x *UpdatePlayerStatusReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[22]
+	mi := &file_team_service_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1919,7 +2051,7 @@ func (x *UpdatePlayerStatusReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdatePlayerStatusReq.ProtoReflect.Descriptor instead.
 func (*UpdatePlayerStatusReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{22}
+	return file_team_service_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *UpdatePlayerStatusReq) GetPlayerId() string {
@@ -1945,7 +2077,7 @@ type UpdatePlayerStatusRes struct {
 
 func (x *UpdatePlayerStatusRes) Reset() {
 	*x = UpdatePlayerStatusRes{}
-	mi := &file_team_service_proto_msgTypes[23]
+	mi := &file_team_service_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1957,7 +2089,7 @@ func (x *UpdatePlayerStatusRes) String() string {
 func (*UpdatePlayerStatusRes) ProtoMessage() {}
 
 func (x *UpdatePlayerStatusRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[23]
+	mi := &file_team_service_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1970,7 +2102,7 @@ func (x *UpdatePlayerStatusRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdatePlayerStatusRes.ProtoReflect.Descriptor instead.
 func (*UpdatePlayerStatusRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{23}
+	return file_team_service_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *UpdatePlayerStatusRes) GetSuccess() bool {
@@ -1994,7 +2126,7 @@ type ListTeamPlayerReq struct {
 
 func (x *ListTeamPlayerReq) Reset() {
 	*x = ListTeamPlayerReq{}
-	mi := &file_team_service_proto_msgTypes[24]
+	mi := &file_team_service_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2006,7 +2138,7 @@ func (x *ListTeamPlayerReq) String() string {
 func (*ListTeamPlayerReq) ProtoMessage() {}
 
 func (x *ListTeamPlayerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[24]
+	mi := &file_team_service_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2019,7 +2151,7 @@ func (x *ListTeamPlayerReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTeamPlayerReq.ProtoReflect.Descriptor instead.
 func (*ListTeamPlayerReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{24}
+	return file_team_service_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *ListTeamPlayerReq) GetTeamId() string {
@@ -2077,7 +2209,7 @@ type PlayerList struct {
 
 func (x *PlayerList) Reset() {
 	*x = PlayerList{}
-	mi := &file_team_service_proto_msgTypes[25]
+	mi := &file_team_service_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2089,7 +2221,7 @@ func (x *PlayerList) String() string {
 func (*PlayerList) ProtoMessage() {}
 
 func (x *PlayerList) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[25]
+	mi := &file_team_service_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2102,7 +2234,7 @@ func (x *PlayerList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PlayerList.ProtoReflect.Descriptor instead.
 func (*PlayerList) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{25}
+	return file_team_service_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *PlayerList) GetPlayerId() string {
@@ -2152,7 +2284,7 @@ type PaginationDetails struct {
 
 func (x *PaginationDetails) Reset() {
 	*x = PaginationDetails{}
-	mi := &file_team_service_proto_msgTypes[26]
+	mi := &file_team_service_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2164,7 +2296,7 @@ func (x *PaginationDetails) String() string {
 func (*PaginationDetails) ProtoMessage() {}
 
 func (x *PaginationDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[26]
+	mi := &file_team_service_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2177,7 +2309,7 @@ func (x *PaginationDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PaginationDetails.ProtoReflect.Descriptor instead.
 func (*PaginationDetails) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{26}
+	return file_team_service_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *PaginationDetails) GetTotalPage() int32 {
@@ -2218,7 +2350,7 @@ type ListTeamPlayerRes struct {
 
 func (x *ListTeamPlayerRes) Reset() {
 	*x = ListTeamPlayerRes{}
-	mi := &file_team_service_proto_msgTypes[27]
+	mi := &file_team_service_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2230,7 +2362,7 @@ func (x *ListTeamPlayerRes) String() string {
 func (*ListTeamPlayerRes) ProtoMessage() {}
 
 func (x *ListTeamPlayerRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[27]
+	mi := &file_team_service_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2243,7 +2375,7 @@ func (x *ListTeamPlayerRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListTeamPlayerRes.ProtoReflect.Descriptor instead.
 func (*ListTeamPlayerRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{27}
+	return file_team_service_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ListTeamPlayerRes) GetPaginate() *PaginationDetails {
@@ -2269,7 +2401,7 @@ type GetPlayerReq struct {
 
 func (x *GetPlayerReq) Reset() {
 	*x = GetPlayerReq{}
-	mi := &file_team_service_proto_msgTypes[28]
+	mi := &file_team_service_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2281,7 +2413,7 @@ func (x *GetPlayerReq) String() string {
 func (*GetPlayerReq) ProtoMessage() {}
 
 func (x *GetPlayerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[28]
+	mi := &file_team_service_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2294,7 +2426,7 @@ func (x *GetPlayerReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPlayerReq.ProtoReflect.Descriptor instead.
 func (*GetPlayerReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{28}
+	return file_team_service_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *GetPlayerReq) GetPlayerId() string {
@@ -2322,7 +2454,7 @@ type GetPlayerRes struct {
 
 func (x *GetPlayerRes) Reset() {
 	*x = GetPlayerRes{}
-	mi := &file_team_service_proto_msgTypes[29]
+	mi := &file_team_service_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2334,7 +2466,7 @@ func (x *GetPlayerRes) String() string {
 func (*GetPlayerRes) ProtoMessage() {}
 
 func (x *GetPlayerRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[29]
+	mi := &file_team_service_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2347,7 +2479,7 @@ func (x *GetPlayerRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPlayerRes.ProtoReflect.Descriptor instead.
 func (*GetPlayerRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{29}
+	return file_team_service_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *GetPlayerRes) GetPlayerId() string {
@@ -2420,78 +2552,6 @@ func (x *GetPlayerRes) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type AddLogoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddLogoReq) Reset() {
-	*x = AddLogoReq{}
-	mi := &file_team_service_proto_msgTypes[30]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddLogoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddLogoReq) ProtoMessage() {}
-
-func (x *AddLogoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[30]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddLogoReq.ProtoReflect.Descriptor instead.
-func (*AddLogoReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{30}
-}
-
-type AddLogoRes struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddLogoRes) Reset() {
-	*x = AddLogoRes{}
-	mi := &file_team_service_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddLogoRes) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddLogoRes) ProtoMessage() {}
-
-func (x *AddLogoRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddLogoRes.ProtoReflect.Descriptor instead.
-func (*AddLogoRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{31}
-}
-
 type CreateInvitationReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamMemberId  string                 `protobuf:"bytes,1,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
@@ -2503,7 +2563,7 @@ type CreateInvitationReq struct {
 
 func (x *CreateInvitationReq) Reset() {
 	*x = CreateInvitationReq{}
-	mi := &file_team_service_proto_msgTypes[32]
+	mi := &file_team_service_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2515,7 +2575,7 @@ func (x *CreateInvitationReq) String() string {
 func (*CreateInvitationReq) ProtoMessage() {}
 
 func (x *CreateInvitationReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[32]
+	mi := &file_team_service_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2528,7 +2588,7 @@ func (x *CreateInvitationReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateInvitationReq.ProtoReflect.Descriptor instead.
 func (*CreateInvitationReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{32}
+	return file_team_service_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CreateInvitationReq) GetTeamMemberId() string {
@@ -2563,7 +2623,7 @@ type CreateInvitationRes struct {
 
 func (x *CreateInvitationRes) Reset() {
 	*x = CreateInvitationRes{}
-	mi := &file_team_service_proto_msgTypes[33]
+	mi := &file_team_service_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2575,7 +2635,7 @@ func (x *CreateInvitationRes) String() string {
 func (*CreateInvitationRes) ProtoMessage() {}
 
 func (x *CreateInvitationRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[33]
+	mi := &file_team_service_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2588,7 +2648,7 @@ func (x *CreateInvitationRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateInvitationRes.ProtoReflect.Descriptor instead.
 func (*CreateInvitationRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{33}
+	return file_team_service_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CreateInvitationRes) GetCode() string {
@@ -2626,7 +2686,7 @@ type AddStaffReq struct {
 
 func (x *AddStaffReq) Reset() {
 	*x = AddStaffReq{}
-	mi := &file_team_service_proto_msgTypes[34]
+	mi := &file_team_service_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2638,7 +2698,7 @@ func (x *AddStaffReq) String() string {
 func (*AddStaffReq) ProtoMessage() {}
 
 func (x *AddStaffReq) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[34]
+	mi := &file_team_service_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2651,7 +2711,7 @@ func (x *AddStaffReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddStaffReq.ProtoReflect.Descriptor instead.
 func (*AddStaffReq) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{34}
+	return file_team_service_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *AddStaffReq) GetTeamId() string {
@@ -2709,7 +2769,7 @@ type AddStaffRes struct {
 
 func (x *AddStaffRes) Reset() {
 	*x = AddStaffRes{}
-	mi := &file_team_service_proto_msgTypes[35]
+	mi := &file_team_service_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2721,7 +2781,7 @@ func (x *AddStaffRes) String() string {
 func (*AddStaffRes) ProtoMessage() {}
 
 func (x *AddStaffRes) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[35]
+	mi := &file_team_service_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2734,7 +2794,7 @@ func (x *AddStaffRes) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddStaffRes.ProtoReflect.Descriptor instead.
 func (*AddStaffRes) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{35}
+	return file_team_service_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *AddStaffRes) GetStaffId() string {
@@ -2770,6 +2830,58 @@ func (x *AddStaffRes) GetDesignatin() string {
 		return x.Designatin
 	}
 	return ""
+}
+
+type AddLogoReqOneof struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MetaData      *TeamLogoMetaData      `protobuf:"bytes,1,opt,name=meta_data,json=metaData,proto3" json:"meta_data,omitempty"`
+	Chunk         []byte                 `protobuf:"bytes,2,opt,name=chunk,proto3" json:"chunk,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddLogoReqOneof) Reset() {
+	*x = AddLogoReqOneof{}
+	mi := &file_team_service_proto_msgTypes[37]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddLogoReqOneof) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddLogoReqOneof) ProtoMessage() {}
+
+func (x *AddLogoReqOneof) ProtoReflect() protoreflect.Message {
+	mi := &file_team_service_proto_msgTypes[37]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddLogoReqOneof.ProtoReflect.Descriptor instead.
+func (*AddLogoReqOneof) Descriptor() ([]byte, []int) {
+	return file_team_service_proto_rawDescGZIP(), []int{21, 0}
+}
+
+func (x *AddLogoReqOneof) GetMetaData() *TeamLogoMetaData {
+	if x != nil {
+		return x.MetaData
+	}
+	return nil
+}
+
+func (x *AddLogoReqOneof) GetChunk() []byte {
+	if x != nil {
+		return x.Chunk
+	}
+	return nil
 }
 
 var File_team_service_proto protoreflect.FileDescriptor
@@ -2900,7 +3012,18 @@ const file_team_service_proto_rawDesc = "" +
 	"manager_id\x18\v \x01(\tR\tmanagerId\x12\x1d\n" +
 	"\n" +
 	"caption_id\x18\f \x01(\tR\tcaptionId\x12&\n" +
-	"\x0fvice_caption_id\x18\r \x01(\tR\rviceCaptionId\"\x9d\x02\n" +
+	"\x0fvice_caption_id\x18\r \x01(\tR\rviceCaptionId\"N\n" +
+	"\x10TeamLogoMetaData\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12!\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\"`\n" +
+	"\n" +
+	"AddLogoReq\x1aR\n" +
+	"\x05oneof\x123\n" +
+	"\tmeta_data\x18\x01 \x01(\v2\x16.team.TeamLogoMetaDataR\bmetaData\x12\x14\n" +
+	"\x05chunk\x18\x02 \x01(\fR\x05chunk\"/\n" +
+	"\n" +
+	"AddLogoRes\x12!\n" +
+	"\fresigned_url\x18\x01 \x01(\tR\vresignedUrl\"\x9d\x02\n" +
 	"\fAddPlayerReq\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12>\n" +
 	"\rdate_of_birth\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12#\n" +
@@ -2960,11 +3083,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\rplayer_status\x18\t \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\x129\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\f\n" +
-	"\n" +
-	"AddLogoReq\"\f\n" +
-	"\n" +
-	"AddLogoRes\"h\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"h\n" +
 	"\x13CreateInvitationReq\x12$\n" +
 	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x12\n" +
 	"\x04role\x18\x02 \x01(\tR\x04role\x12\x17\n" +
@@ -3039,7 +3158,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x16TEAM_MEMBER_ROLE_OWNER\x10\x01\x12\x1c\n" +
 	"\x18TEAM_MEMBER_ROLE_MANAGER\x10\x02\x12\x1a\n" +
 	"\x16TEAM_MEMBER_ROLE_STAFF\x10\x03\x12\x1b\n" +
-	"\x17TEAM_MEMBER_ROLE_PLAYER\x10\x042\xaa\x03\n" +
+	"\x17TEAM_MEMBER_ROLE_PLAYER\x10\x042\xdb\x03\n" +
 	"\vTeamService\x126\n" +
 	"\n" +
 	"CreateTeam\x12\x13.team.CreateTeamReq\x1a\x13.team.CreateTeamRes\x126\n" +
@@ -3050,13 +3169,13 @@ const file_team_service_proto_rawDesc = "" +
 	"SetCaptain\x12\x13.team.SetCaptainReq\x1a\x13.team.SetCaptainRes\x12B\n" +
 	"\x0eSetViceCaptain\x12\x17.team.SetViceCaptainReq\x1a\x17.team.SetViceCaptainRes\x120\n" +
 	"\bListTeam\x12\x11.team.ListTeamReq\x1a\x11.team.ListTeamRes\x12-\n" +
-	"\aGetTeam\x12\x10.team.GetTeamReq\x1a\x10.team.GetTeamRes2\xbf\x02\n" +
+	"\aGetTeam\x12\x10.team.GetTeamReq\x1a\x10.team.GetTeamRes\x12/\n" +
+	"\aAddLogo\x12\x10.team.AddLogoReq\x1a\x10.team.AddLogoRes(\x012\x90\x02\n" +
 	"\rPlayerService\x126\n" +
 	"\fAddNewPlayer\x12\x12.team.AddPlayerReq\x1a\x12.team.AddPlayerRes\x12N\n" +
 	"\x12UpdatePlayerStatus\x12\x1b.team.UpdatePlayerStatusReq\x1a\x1b.team.UpdatePlayerStatusRes\x12B\n" +
 	"\x0eListTeamPlayer\x12\x17.team.ListTeamPlayerReq\x1a\x17.team.ListTeamPlayerRes\x123\n" +
-	"\tGetPlayer\x12\x12.team.GetPlayerReq\x1a\x12.team.GetPlayerRes\x12-\n" +
-	"\aAddLogo\x12\x10.team.AddLogoReq\x1a\x10.team.AddLogoRes2V\n" +
+	"\tGetPlayer\x12\x12.team.GetPlayerReq\x1a\x12.team.GetPlayerRes2V\n" +
 	"\n" +
 	"TeamInvite\x12H\n" +
 	"\x10CreateInvitation\x12\x19.team.CreateInvitationReq\x1a\x19.team.CreateInvitationRes2@\n" +
@@ -3076,7 +3195,7 @@ func file_team_service_proto_rawDescGZIP() []byte {
 }
 
 var file_team_service_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
+var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
 var file_team_service_proto_goTypes = []any{
 	(TeamStatus)(0),               // 0: team.TeamStatus
 	(PlayerStatus)(0),             // 1: team.PlayerStatus
@@ -3103,28 +3222,30 @@ var file_team_service_proto_goTypes = []any{
 	(*ListTeamRes)(nil),           // 22: team.ListTeamRes
 	(*GetTeamReq)(nil),            // 23: team.GetTeamReq
 	(*GetTeamRes)(nil),            // 24: team.GetTeamRes
-	(*AddPlayerReq)(nil),          // 25: team.AddPlayerReq
-	(*AddPlayerRes)(nil),          // 26: team.AddPlayerRes
-	(*UpdatePlayerStatusReq)(nil), // 27: team.UpdatePlayerStatusReq
-	(*UpdatePlayerStatusRes)(nil), // 28: team.UpdatePlayerStatusRes
-	(*ListTeamPlayerReq)(nil),     // 29: team.ListTeamPlayerReq
-	(*PlayerList)(nil),            // 30: team.PlayerList
-	(*PaginationDetails)(nil),     // 31: team.PaginationDetails
-	(*ListTeamPlayerRes)(nil),     // 32: team.ListTeamPlayerRes
-	(*GetPlayerReq)(nil),          // 33: team.GetPlayerReq
-	(*GetPlayerRes)(nil),          // 34: team.GetPlayerRes
-	(*AddLogoReq)(nil),            // 35: team.AddLogoReq
-	(*AddLogoRes)(nil),            // 36: team.AddLogoRes
-	(*CreateInvitationReq)(nil),   // 37: team.CreateInvitationReq
-	(*CreateInvitationRes)(nil),   // 38: team.CreateInvitationRes
-	(*AddStaffReq)(nil),           // 39: team.AddStaffReq
-	(*AddStaffRes)(nil),           // 40: team.AddStaffRes
-	(*timestamppb.Timestamp)(nil), // 41: google.protobuf.Timestamp
+	(*TeamLogoMetaData)(nil),      // 25: team.TeamLogoMetaData
+	(*AddLogoReq)(nil),            // 26: team.AddLogoReq
+	(*AddLogoRes)(nil),            // 27: team.AddLogoRes
+	(*AddPlayerReq)(nil),          // 28: team.AddPlayerReq
+	(*AddPlayerRes)(nil),          // 29: team.AddPlayerRes
+	(*UpdatePlayerStatusReq)(nil), // 30: team.UpdatePlayerStatusReq
+	(*UpdatePlayerStatusRes)(nil), // 31: team.UpdatePlayerStatusRes
+	(*ListTeamPlayerReq)(nil),     // 32: team.ListTeamPlayerReq
+	(*PlayerList)(nil),            // 33: team.PlayerList
+	(*PaginationDetails)(nil),     // 34: team.PaginationDetails
+	(*ListTeamPlayerRes)(nil),     // 35: team.ListTeamPlayerRes
+	(*GetPlayerReq)(nil),          // 36: team.GetPlayerReq
+	(*GetPlayerRes)(nil),          // 37: team.GetPlayerRes
+	(*CreateInvitationReq)(nil),   // 38: team.CreateInvitationReq
+	(*CreateInvitationRes)(nil),   // 39: team.CreateInvitationRes
+	(*AddStaffReq)(nil),           // 40: team.AddStaffReq
+	(*AddStaffRes)(nil),           // 41: team.AddStaffRes
+	(*AddLogoReqOneof)(nil),       // 42: team.AddLogoReq.oneof
+	(*timestamppb.Timestamp)(nil), // 43: google.protobuf.Timestamp
 }
 var file_team_service_proto_depIdxs = []int32{
 	5,  // 0: team.CreateTeamReq.owner:type_name -> team.TeamOwnerDetails
-	41, // 1: team.UserRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	41, // 2: team.UserRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	43, // 1: team.UserRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	43, // 2: team.UserRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
 	7,  // 3: team.CreateTeamRes.user:type_name -> team.UserRes
 	8,  // 4: team.CreateTeamRes.team_details:type_name -> team.TeamDetailsRes
 	9,  // 5: team.CreateTeamRes.team_member:type_name -> team.TeamMemberDetails
@@ -3133,56 +3254,57 @@ var file_team_service_proto_depIdxs = []int32{
 	20, // 8: team.ListTeamRes.team_details:type_name -> team.TeamDetails
 	21, // 9: team.ListTeamRes.pagination:type_name -> team.PaginateTeam
 	0,  // 10: team.GetTeamRes.team_status:type_name -> team.TeamStatus
-	41, // 11: team.AddPlayerReq.date_of_birth:type_name -> google.protobuf.Timestamp
+	43, // 11: team.AddPlayerReq.date_of_birth:type_name -> google.protobuf.Timestamp
 	2,  // 12: team.AddPlayerRes.player_position:type_name -> team.PlayerPosition
 	1,  // 13: team.AddPlayerRes.player_status:type_name -> team.PlayerStatus
 	1,  // 14: team.UpdatePlayerStatusReq.player_status:type_name -> team.PlayerStatus
 	1,  // 15: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
 	2,  // 16: team.PlayerList.position:type_name -> team.PlayerPosition
-	31, // 17: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
-	30, // 18: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
-	41, // 19: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
+	34, // 17: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
+	33, // 18: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
+	43, // 19: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
 	2,  // 20: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
 	1,  // 21: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
-	41, // 22: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
-	41, // 23: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
-	41, // 24: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
+	43, // 22: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
+	43, // 23: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
+	43, // 24: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
 	3,  // 25: team.AddStaffReq.designation:type_name -> team.StaffDesignation
-	41, // 26: team.AddStaffReq.dob:type_name -> google.protobuf.Timestamp
+	43, // 26: team.AddStaffReq.dob:type_name -> google.protobuf.Timestamp
 	4,  // 27: team.AddStaffReq.role:type_name -> team.TeamMemberRole
-	6,  // 28: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
-	11, // 29: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
-	13, // 30: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
-	16, // 31: team.TeamService.SetCaptain:input_type -> team.SetCaptainReq
-	18, // 32: team.TeamService.SetViceCaptain:input_type -> team.SetViceCaptainReq
-	19, // 33: team.TeamService.ListTeam:input_type -> team.ListTeamReq
-	23, // 34: team.TeamService.GetTeam:input_type -> team.GetTeamReq
-	25, // 35: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
-	27, // 36: team.PlayerService.UpdatePlayerStatus:input_type -> team.UpdatePlayerStatusReq
-	29, // 37: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
-	33, // 38: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
-	35, // 39: team.PlayerService.AddLogo:input_type -> team.AddLogoReq
-	37, // 40: team.TeamInvite.CreateInvitation:input_type -> team.CreateInvitationReq
-	39, // 41: team.StaffService.AddStaff:input_type -> team.AddStaffReq
-	10, // 42: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
-	12, // 43: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
-	14, // 44: team.TeamService.RegisterTeamMember:output_type -> team.RegisterTeamMemberRes
-	15, // 45: team.TeamService.SetCaptain:output_type -> team.SetCaptainRes
-	17, // 46: team.TeamService.SetViceCaptain:output_type -> team.SetViceCaptainRes
-	22, // 47: team.TeamService.ListTeam:output_type -> team.ListTeamRes
-	24, // 48: team.TeamService.GetTeam:output_type -> team.GetTeamRes
-	26, // 49: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
-	28, // 50: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
-	32, // 51: team.PlayerService.ListTeamPlayer:output_type -> team.ListTeamPlayerRes
-	34, // 52: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
-	36, // 53: team.PlayerService.AddLogo:output_type -> team.AddLogoRes
-	38, // 54: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
-	40, // 55: team.StaffService.AddStaff:output_type -> team.AddStaffRes
-	42, // [42:56] is the sub-list for method output_type
-	28, // [28:42] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	25, // 28: team.AddLogoReq.oneof.meta_data:type_name -> team.TeamLogoMetaData
+	6,  // 29: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
+	11, // 30: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
+	13, // 31: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
+	16, // 32: team.TeamService.SetCaptain:input_type -> team.SetCaptainReq
+	18, // 33: team.TeamService.SetViceCaptain:input_type -> team.SetViceCaptainReq
+	19, // 34: team.TeamService.ListTeam:input_type -> team.ListTeamReq
+	23, // 35: team.TeamService.GetTeam:input_type -> team.GetTeamReq
+	26, // 36: team.TeamService.AddLogo:input_type -> team.AddLogoReq
+	28, // 37: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
+	30, // 38: team.PlayerService.UpdatePlayerStatus:input_type -> team.UpdatePlayerStatusReq
+	32, // 39: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
+	36, // 40: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
+	38, // 41: team.TeamInvite.CreateInvitation:input_type -> team.CreateInvitationReq
+	40, // 42: team.StaffService.AddStaff:input_type -> team.AddStaffReq
+	10, // 43: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
+	12, // 44: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
+	14, // 45: team.TeamService.RegisterTeamMember:output_type -> team.RegisterTeamMemberRes
+	15, // 46: team.TeamService.SetCaptain:output_type -> team.SetCaptainRes
+	17, // 47: team.TeamService.SetViceCaptain:output_type -> team.SetViceCaptainRes
+	22, // 48: team.TeamService.ListTeam:output_type -> team.ListTeamRes
+	24, // 49: team.TeamService.GetTeam:output_type -> team.GetTeamRes
+	27, // 50: team.TeamService.AddLogo:output_type -> team.AddLogoRes
+	29, // 51: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
+	31, // 52: team.PlayerService.UpdatePlayerStatus:output_type -> team.UpdatePlayerStatusRes
+	35, // 53: team.PlayerService.ListTeamPlayer:output_type -> team.ListTeamPlayerRes
+	37, // 54: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
+	39, // 55: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
+	41, // 56: team.StaffService.AddStaff:output_type -> team.AddStaffRes
+	43, // [43:57] is the sub-list for method output_type
+	29, // [29:43] is the sub-list for method input_type
+	29, // [29:29] is the sub-list for extension type_name
+	29, // [29:29] is the sub-list for extension extendee
+	0,  // [0:29] is the sub-list for field type_name
 }
 
 func init() { file_team_service_proto_init() }
@@ -3197,7 +3319,7 @@ func file_team_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_team_service_proto_rawDesc), len(file_team_service_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   36,
+			NumMessages:   38,
 			NumExtensions: 0,
 			NumServices:   4,
 		},

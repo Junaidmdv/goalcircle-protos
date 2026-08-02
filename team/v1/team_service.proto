@@ -189,6 +189,23 @@ message GetTeamRes{
    string vice_caption_id=13;
 }
 
+message TeamLogoMetaData{
+   string team_id=1; 
+   string content_type=2; 
+}
+
+
+message AddLogoReq{
+   message oneof{
+      TeamLogoMetaData  meta_data=1; 
+      bytes chunk=2;
+   }
+}
+
+message AddLogoRes{ 
+   string resigned_url=1; 
+}
+
 
 
 
@@ -196,12 +213,11 @@ service TeamService {
    rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
    rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);  
    rpc RegisterTeamMember(RegisterTeamMemberReq)returns(RegisterTeamMemberRes);  
-  //  rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes); 
    rpc SetCaptain(SetCaptainReq)returns(SetCaptainRes); 
    rpc SetViceCaptain(SetViceCaptainReq)returns(SetViceCaptainRes); 
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
-   rpc GetTeam(GetTeamReq)returns(GetTeamRes);
-    
+   rpc GetTeam(GetTeamReq)returns(GetTeamRes); 
+   rpc AddLogo(stream AddLogoReq)returns(AddLogoRes);
 }
 
 
@@ -317,13 +333,6 @@ message  GetPlayerRes {
 }
 
 
-message AddLogoReq{
-
-}
-
-message AddLogoRes{
-
-}
 
 
 service PlayerService{
@@ -331,7 +340,6 @@ service PlayerService{
   rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);  
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);
-  rpc AddLogo(AddLogoReq)returns(AddLogoRes);
 }
 
 

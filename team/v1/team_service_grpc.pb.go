@@ -26,6 +26,7 @@ const (
 	TeamService_SetViceCaptain_FullMethodName     = "/team.TeamService/SetViceCaptain"
 	TeamService_ListTeam_FullMethodName           = "/team.TeamService/ListTeam"
 	TeamService_GetTeam_FullMethodName            = "/team.TeamService/GetTeam"
+	TeamService_AddLogo_FullMethodName            = "/team.TeamService/AddLogo"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -35,11 +36,11 @@ type TeamServiceClient interface {
 	CreateTeam(ctx context.Context, in *CreateTeamReq, opts ...grpc.CallOption) (*CreateTeamRes, error)
 	UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error)
 	RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error)
-	// rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes);
 	SetCaptain(ctx context.Context, in *SetCaptainReq, opts ...grpc.CallOption) (*SetCaptainRes, error)
 	SetViceCaptain(ctx context.Context, in *SetViceCaptainReq, opts ...grpc.CallOption) (*SetViceCaptainRes, error)
 	ListTeam(ctx context.Context, in *ListTeamReq, opts ...grpc.CallOption) (*ListTeamRes, error)
 	GetTeam(ctx context.Context, in *GetTeamReq, opts ...grpc.CallOption) (*GetTeamRes, error)
+	AddLogo(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddLogoReq, AddLogoRes], error)
 }
 
 type teamServiceClient struct {
@@ -120,6 +121,19 @@ func (c *teamServiceClient) GetTeam(ctx context.Context, in *GetTeamReq, opts ..
 	return out, nil
 }
 
+func (c *teamServiceClient) AddLogo(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddLogoReq, AddLogoRes], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &TeamService_ServiceDesc.Streams[0], TeamService_AddLogo_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[AddLogoReq, AddLogoRes]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type TeamService_AddLogoClient = grpc.ClientStreamingClient[AddLogoReq, AddLogoRes]
+
 // TeamServiceServer is the server API for TeamService service.
 // All implementations must embed UnimplementedTeamServiceServer
 // for forward compatibility.
@@ -127,11 +141,11 @@ type TeamServiceServer interface {
 	CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error)
 	UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error)
 	RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error)
-	// rpc UpdateTeamContactDetail(UpdateTeamContactDetailsReq)returns(UpdateTeamContactDetailsRes);
 	SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error)
 	SetViceCaptain(context.Context, *SetViceCaptainReq) (*SetViceCaptainRes, error)
 	ListTeam(context.Context, *ListTeamReq) (*ListTeamRes, error)
 	GetTeam(context.Context, *GetTeamReq) (*GetTeamRes, error)
+	AddLogo(grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]) error
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -162,6 +176,9 @@ func (UnimplementedTeamServiceServer) ListTeam(context.Context, *ListTeamReq) (*
 }
 func (UnimplementedTeamServiceServer) GetTeam(context.Context, *GetTeamReq) (*GetTeamRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTeam not implemented")
+}
+func (UnimplementedTeamServiceServer) AddLogo(grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]) error {
+	return status.Errorf(codes.Unimplemented, "method AddLogo not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 func (UnimplementedTeamServiceServer) testEmbeddedByValue()                     {}
@@ -310,6 +327,13 @@ func _TeamService_GetTeam_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamService_AddLogo_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TeamServiceServer).AddLogo(&grpc.GenericServerStream[AddLogoReq, AddLogoRes]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type TeamService_AddLogoServer = grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]
+
 // TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -346,7 +370,13 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TeamService_GetTeam_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "AddLogo",
+			Handler:       _TeamService_AddLogo_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "team_service.proto",
 }
 
@@ -355,7 +385,6 @@ const (
 	PlayerService_UpdatePlayerStatus_FullMethodName = "/team.PlayerService/UpdatePlayerStatus"
 	PlayerService_ListTeamPlayer_FullMethodName     = "/team.PlayerService/ListTeamPlayer"
 	PlayerService_GetPlayer_FullMethodName          = "/team.PlayerService/GetPlayer"
-	PlayerService_AddLogo_FullMethodName            = "/team.PlayerService/AddLogo"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
@@ -366,7 +395,6 @@ type PlayerServiceClient interface {
 	UpdatePlayerStatus(ctx context.Context, in *UpdatePlayerStatusReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error)
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
-	AddLogo(ctx context.Context, in *AddLogoReq, opts ...grpc.CallOption) (*AddLogoRes, error)
 }
 
 type playerServiceClient struct {
@@ -417,16 +445,6 @@ func (c *playerServiceClient) GetPlayer(ctx context.Context, in *GetPlayerReq, o
 	return out, nil
 }
 
-func (c *playerServiceClient) AddLogo(ctx context.Context, in *AddLogoReq, opts ...grpc.CallOption) (*AddLogoRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddLogoRes)
-	err := c.cc.Invoke(ctx, PlayerService_AddLogo_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PlayerServiceServer is the server API for PlayerService service.
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
@@ -435,7 +453,6 @@ type PlayerServiceServer interface {
 	UpdatePlayerStatus(context.Context, *UpdatePlayerStatusReq) (*UpdatePlayerStatusRes, error)
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
-	AddLogo(context.Context, *AddLogoReq) (*AddLogoRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -457,9 +474,6 @@ func (UnimplementedPlayerServiceServer) ListTeamPlayer(context.Context, *ListTea
 }
 func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlayer not implemented")
-}
-func (UnimplementedPlayerServiceServer) AddLogo(context.Context, *AddLogoReq) (*AddLogoRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddLogo not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -554,24 +568,6 @@ func _PlayerService_GetPlayer_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlayerService_AddLogo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddLogoReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlayerServiceServer).AddLogo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PlayerService_AddLogo_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerServiceServer).AddLogo(ctx, req.(*AddLogoReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PlayerService_ServiceDesc is the grpc.ServiceDesc for PlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -594,10 +590,6 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPlayer",
 			Handler:    _PlayerService_GetPlayer_Handler,
-		},
-		{
-			MethodName: "AddLogo",
-			Handler:    _PlayerService_AddLogo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
