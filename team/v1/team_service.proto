@@ -202,8 +202,9 @@ message AddLogoReq{
    }
 }
 
-message AddLogoRes{  
-   string resigned_url=1; 
+message AddLogoRes{   
+   string team_id=1;
+   string resigned_url=2; 
 }
 
 

@@ -1836,7 +1836,8 @@ func (*AddLogoReq_Chunk) isAddLogoReq_Data() {}
 
 type AddLogoRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ResignedUrl   string                 `protobuf:"bytes,1,opt,name=resigned_url,json=resignedUrl,proto3" json:"resigned_url,omitempty"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	ResignedUrl   string                 `protobuf:"bytes,2,opt,name=resigned_url,json=resignedUrl,proto3" json:"resigned_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1869,6 +1870,13 @@ func (x *AddLogoRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddLogoRes.ProtoReflect.Descriptor instead.
 func (*AddLogoRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *AddLogoRes) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
 }
 
 func (x *AddLogoRes) GetResignedUrl() string {
@@ -3014,10 +3022,11 @@ const file_team_service_proto_rawDesc = "" +
 	"AddLogoReq\x125\n" +
 	"\tmeta_data\x18\x01 \x01(\v2\x16.team.TeamLogoMetaDataH\x00R\bmetaData\x12\x16\n" +
 	"\x05chunk\x18\x02 \x01(\fH\x00R\x05chunkB\x06\n" +
-	"\x04data\"/\n" +
+	"\x04data\"H\n" +
 	"\n" +
-	"AddLogoRes\x12!\n" +
-	"\fresigned_url\x18\x01 \x01(\tR\vresignedUrl\"\x9d\x02\n" +
+	"AddLogoRes\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12!\n" +
+	"\fresigned_url\x18\x02 \x01(\tR\vresignedUrl\"\x9d\x02\n" +
 	"\fAddPlayerReq\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12>\n" +
 	"\rdate_of_birth\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\vdateOfBirth\x12#\n" +
