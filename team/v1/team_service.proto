@@ -196,13 +196,13 @@ message TeamLogoMetaData{
 
 
 message AddLogoReq{
-   message oneof{
-      TeamLogoMetaData  meta_data=1; 
+   oneof data {
+     TeamLogoMetaData  meta_data=1; 
       bytes chunk=2;
    }
 }
 
-message AddLogoRes{ 
+message AddLogoRes{  
    string resigned_url=1; 
 }
 

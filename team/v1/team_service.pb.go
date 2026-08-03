@@ -1753,7 +1753,12 @@ func (x *TeamLogoMetaData) GetContentType() string {
 }
 
 type AddLogoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to Data:
+	//
+	//	*AddLogoReq_MetaData
+	//	*AddLogoReq_Chunk
+	Data          isAddLogoReq_Data `protobuf_oneof:"data"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1787,6 +1792,47 @@ func (x *AddLogoReq) ProtoReflect() protoreflect.Message {
 func (*AddLogoReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{21}
 }
+
+func (x *AddLogoReq) GetData() isAddLogoReq_Data {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *AddLogoReq) GetMetaData() *TeamLogoMetaData {
+	if x != nil {
+		if x, ok := x.Data.(*AddLogoReq_MetaData); ok {
+			return x.MetaData
+		}
+	}
+	return nil
+}
+
+func (x *AddLogoReq) GetChunk() []byte {
+	if x != nil {
+		if x, ok := x.Data.(*AddLogoReq_Chunk); ok {
+			return x.Chunk
+		}
+	}
+	return nil
+}
+
+type isAddLogoReq_Data interface {
+	isAddLogoReq_Data()
+}
+
+type AddLogoReq_MetaData struct {
+	MetaData *TeamLogoMetaData `protobuf:"bytes,1,opt,name=meta_data,json=metaData,proto3,oneof"`
+}
+
+type AddLogoReq_Chunk struct {
+	Chunk []byte `protobuf:"bytes,2,opt,name=chunk,proto3,oneof"`
+}
+
+func (*AddLogoReq_MetaData) isAddLogoReq_Data() {}
+
+func (*AddLogoReq_Chunk) isAddLogoReq_Data() {}
 
 type AddLogoRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -2832,58 +2878,6 @@ func (x *AddStaffRes) GetDesignatin() string {
 	return ""
 }
 
-type AddLogoReqOneof struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	MetaData      *TeamLogoMetaData      `protobuf:"bytes,1,opt,name=meta_data,json=metaData,proto3" json:"meta_data,omitempty"`
-	Chunk         []byte                 `protobuf:"bytes,2,opt,name=chunk,proto3" json:"chunk,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddLogoReqOneof) Reset() {
-	*x = AddLogoReqOneof{}
-	mi := &file_team_service_proto_msgTypes[37]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddLogoReqOneof) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddLogoReqOneof) ProtoMessage() {}
-
-func (x *AddLogoReqOneof) ProtoReflect() protoreflect.Message {
-	mi := &file_team_service_proto_msgTypes[37]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddLogoReqOneof.ProtoReflect.Descriptor instead.
-func (*AddLogoReqOneof) Descriptor() ([]byte, []int) {
-	return file_team_service_proto_rawDescGZIP(), []int{21, 0}
-}
-
-func (x *AddLogoReqOneof) GetMetaData() *TeamLogoMetaData {
-	if x != nil {
-		return x.MetaData
-	}
-	return nil
-}
-
-func (x *AddLogoReqOneof) GetChunk() []byte {
-	if x != nil {
-		return x.Chunk
-	}
-	return nil
-}
-
 var File_team_service_proto protoreflect.FileDescriptor
 
 const file_team_service_proto_rawDesc = "" +
@@ -3015,12 +3009,12 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0fvice_caption_id\x18\r \x01(\tR\rviceCaptionId\"N\n" +
 	"\x10TeamLogoMetaData\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12!\n" +
-	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\"`\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\"c\n" +
 	"\n" +
-	"AddLogoReq\x1aR\n" +
-	"\x05oneof\x123\n" +
-	"\tmeta_data\x18\x01 \x01(\v2\x16.team.TeamLogoMetaDataR\bmetaData\x12\x14\n" +
-	"\x05chunk\x18\x02 \x01(\fR\x05chunk\"/\n" +
+	"AddLogoReq\x125\n" +
+	"\tmeta_data\x18\x01 \x01(\v2\x16.team.TeamLogoMetaDataH\x00R\bmetaData\x12\x16\n" +
+	"\x05chunk\x18\x02 \x01(\fH\x00R\x05chunkB\x06\n" +
+	"\x04data\"/\n" +
 	"\n" +
 	"AddLogoRes\x12!\n" +
 	"\fresigned_url\x18\x01 \x01(\tR\vresignedUrl\"\x9d\x02\n" +
@@ -3195,7 +3189,7 @@ func file_team_service_proto_rawDescGZIP() []byte {
 }
 
 var file_team_service_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
-var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
+var file_team_service_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
 var file_team_service_proto_goTypes = []any{
 	(TeamStatus)(0),               // 0: team.TeamStatus
 	(PlayerStatus)(0),             // 1: team.PlayerStatus
@@ -3239,13 +3233,12 @@ var file_team_service_proto_goTypes = []any{
 	(*CreateInvitationRes)(nil),   // 39: team.CreateInvitationRes
 	(*AddStaffReq)(nil),           // 40: team.AddStaffReq
 	(*AddStaffRes)(nil),           // 41: team.AddStaffRes
-	(*AddLogoReqOneof)(nil),       // 42: team.AddLogoReq.oneof
-	(*timestamppb.Timestamp)(nil), // 43: google.protobuf.Timestamp
+	(*timestamppb.Timestamp)(nil), // 42: google.protobuf.Timestamp
 }
 var file_team_service_proto_depIdxs = []int32{
 	5,  // 0: team.CreateTeamReq.owner:type_name -> team.TeamOwnerDetails
-	43, // 1: team.UserRes.access_token_expiry:type_name -> google.protobuf.Timestamp
-	43, // 2: team.UserRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
+	42, // 1: team.UserRes.access_token_expiry:type_name -> google.protobuf.Timestamp
+	42, // 2: team.UserRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
 	7,  // 3: team.CreateTeamRes.user:type_name -> team.UserRes
 	8,  // 4: team.CreateTeamRes.team_details:type_name -> team.TeamDetailsRes
 	9,  // 5: team.CreateTeamRes.team_member:type_name -> team.TeamMemberDetails
@@ -3254,24 +3247,24 @@ var file_team_service_proto_depIdxs = []int32{
 	20, // 8: team.ListTeamRes.team_details:type_name -> team.TeamDetails
 	21, // 9: team.ListTeamRes.pagination:type_name -> team.PaginateTeam
 	0,  // 10: team.GetTeamRes.team_status:type_name -> team.TeamStatus
-	43, // 11: team.AddPlayerReq.date_of_birth:type_name -> google.protobuf.Timestamp
-	2,  // 12: team.AddPlayerRes.player_position:type_name -> team.PlayerPosition
-	1,  // 13: team.AddPlayerRes.player_status:type_name -> team.PlayerStatus
-	1,  // 14: team.UpdatePlayerStatusReq.player_status:type_name -> team.PlayerStatus
-	1,  // 15: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
-	2,  // 16: team.PlayerList.position:type_name -> team.PlayerPosition
-	34, // 17: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
-	33, // 18: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
-	43, // 19: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
-	2,  // 20: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
-	1,  // 21: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
-	43, // 22: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
-	43, // 23: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
-	43, // 24: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
-	3,  // 25: team.AddStaffReq.designation:type_name -> team.StaffDesignation
-	43, // 26: team.AddStaffReq.dob:type_name -> google.protobuf.Timestamp
-	4,  // 27: team.AddStaffReq.role:type_name -> team.TeamMemberRole
-	25, // 28: team.AddLogoReq.oneof.meta_data:type_name -> team.TeamLogoMetaData
+	25, // 11: team.AddLogoReq.meta_data:type_name -> team.TeamLogoMetaData
+	42, // 12: team.AddPlayerReq.date_of_birth:type_name -> google.protobuf.Timestamp
+	2,  // 13: team.AddPlayerRes.player_position:type_name -> team.PlayerPosition
+	1,  // 14: team.AddPlayerRes.player_status:type_name -> team.PlayerStatus
+	1,  // 15: team.UpdatePlayerStatusReq.player_status:type_name -> team.PlayerStatus
+	1,  // 16: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
+	2,  // 17: team.PlayerList.position:type_name -> team.PlayerPosition
+	34, // 18: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
+	33, // 19: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
+	42, // 20: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
+	2,  // 21: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
+	1,  // 22: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
+	42, // 23: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
+	42, // 24: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
+	42, // 25: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
+	3,  // 26: team.AddStaffReq.designation:type_name -> team.StaffDesignation
+	42, // 27: team.AddStaffReq.dob:type_name -> google.protobuf.Timestamp
+	4,  // 28: team.AddStaffReq.role:type_name -> team.TeamMemberRole
 	6,  // 29: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
 	11, // 30: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
 	13, // 31: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
@@ -3313,13 +3306,17 @@ func file_team_service_proto_init() {
 		return
 	}
 	file_team_service_proto_msgTypes[6].OneofWrappers = []any{}
+	file_team_service_proto_msgTypes[21].OneofWrappers = []any{
+		(*AddLogoReq_MetaData)(nil),
+		(*AddLogoReq_Chunk)(nil),
+	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_team_service_proto_rawDesc), len(file_team_service_proto_rawDesc)),
 			NumEnums:      5,
-			NumMessages:   38,
+			NumMessages:   37,
 			NumExtensions: 0,
 			NumServices:   4,
 		},
