@@ -391,7 +391,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlayerServiceClient interface {
-	AddNewPlayer(ctx context.Context, in *AddPlayerReq, opts ...grpc.CallOption) (*AddPlayerRes, error)
+	AddNewPlayer(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddPlayerReq, AddPlayerRes], error)
 	UpdatePlayerStatus(ctx context.Context, in *UpdatePlayerStatusReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error)
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
@@ -405,15 +405,18 @@ func NewPlayerServiceClient(cc grpc.ClientConnInterface) PlayerServiceClient {
 	return &playerServiceClient{cc}
 }
 
-func (c *playerServiceClient) AddNewPlayer(ctx context.Context, in *AddPlayerReq, opts ...grpc.CallOption) (*AddPlayerRes, error) {
+func (c *playerServiceClient) AddNewPlayer(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddPlayerReq, AddPlayerRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddPlayerRes)
-	err := c.cc.Invoke(ctx, PlayerService_AddNewPlayer_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &PlayerService_ServiceDesc.Streams[0], PlayerService_AddNewPlayer_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[AddPlayerReq, AddPlayerRes]{ClientStream: stream}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type PlayerService_AddNewPlayerClient = grpc.ClientStreamingClient[AddPlayerReq, AddPlayerRes]
 
 func (c *playerServiceClient) UpdatePlayerStatus(ctx context.Context, in *UpdatePlayerStatusReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -449,7 +452,7 @@ func (c *playerServiceClient) GetPlayer(ctx context.Context, in *GetPlayerReq, o
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
 type PlayerServiceServer interface {
-	AddNewPlayer(context.Context, *AddPlayerReq) (*AddPlayerRes, error)
+	AddNewPlayer(grpc.ClientStreamingServer[AddPlayerReq, AddPlayerRes]) error
 	UpdatePlayerStatus(context.Context, *UpdatePlayerStatusReq) (*UpdatePlayerStatusRes, error)
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
@@ -463,8 +466,8 @@ type PlayerServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPlayerServiceServer struct{}
 
-func (UnimplementedPlayerServiceServer) AddNewPlayer(context.Context, *AddPlayerReq) (*AddPlayerRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddNewPlayer not implemented")
+func (UnimplementedPlayerServiceServer) AddNewPlayer(grpc.ClientStreamingServer[AddPlayerReq, AddPlayerRes]) error {
+	return status.Errorf(codes.Unimplemented, "method AddNewPlayer not implemented")
 }
 func (UnimplementedPlayerServiceServer) UpdatePlayerStatus(context.Context, *UpdatePlayerStatusReq) (*UpdatePlayerStatusRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlayerStatus not implemented")
@@ -496,23 +499,12 @@ func RegisterPlayerServiceServer(s grpc.ServiceRegistrar, srv PlayerServiceServe
 	s.RegisterService(&PlayerService_ServiceDesc, srv)
 }
 
-func _PlayerService_AddNewPlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddPlayerReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlayerServiceServer).AddNewPlayer(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PlayerService_AddNewPlayer_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerServiceServer).AddNewPlayer(ctx, req.(*AddPlayerReq))
-	}
-	return interceptor(ctx, in, info, handler)
+func _PlayerService_AddNewPlayer_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(PlayerServiceServer).AddNewPlayer(&grpc.GenericServerStream[AddPlayerReq, AddPlayerRes]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type PlayerService_AddNewPlayerServer = grpc.ClientStreamingServer[AddPlayerReq, AddPlayerRes]
 
 func _PlayerService_UpdatePlayerStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdatePlayerStatusReq)
@@ -576,10 +568,6 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PlayerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddNewPlayer",
-			Handler:    _PlayerService_AddNewPlayer_Handler,
-		},
-		{
 			MethodName: "UpdatePlayerStatus",
 			Handler:    _PlayerService_UpdatePlayerStatus_Handler,
 		},
@@ -592,7 +580,13 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PlayerService_GetPlayer_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "AddNewPlayer",
+			Handler:       _PlayerService_AddNewPlayer_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "team_service.proto",
 }
 
