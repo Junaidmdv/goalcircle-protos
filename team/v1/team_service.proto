@@ -240,7 +240,7 @@ string full_name=1;
 message AddPlayerReq{  
    oneof player{
       PlayerDetails player_details=1; 
-      bytes player_image=2;
+      bytes player_image_chunks=2;
    }
 } 
 

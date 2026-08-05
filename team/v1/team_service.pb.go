@@ -1999,7 +1999,7 @@ type AddPlayerReq struct {
 	// Types that are valid to be assigned to Player:
 	//
 	//	*AddPlayerReq_PlayerDetails
-	//	*AddPlayerReq_PlayerImage
+	//	*AddPlayerReq_PlayerImageChunks
 	Player        isAddPlayerReq_Player `protobuf_oneof:"player"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -2051,10 +2051,10 @@ func (x *AddPlayerReq) GetPlayerDetails() *PlayerDetails {
 	return nil
 }
 
-func (x *AddPlayerReq) GetPlayerImage() []byte {
+func (x *AddPlayerReq) GetPlayerImageChunks() []byte {
 	if x != nil {
-		if x, ok := x.Player.(*AddPlayerReq_PlayerImage); ok {
-			return x.PlayerImage
+		if x, ok := x.Player.(*AddPlayerReq_PlayerImageChunks); ok {
+			return x.PlayerImageChunks
 		}
 	}
 	return nil
@@ -2068,13 +2068,13 @@ type AddPlayerReq_PlayerDetails struct {
 	PlayerDetails *PlayerDetails `protobuf:"bytes,1,opt,name=player_details,json=playerDetails,proto3,oneof"`
 }
 
-type AddPlayerReq_PlayerImage struct {
-	PlayerImage []byte `protobuf:"bytes,2,opt,name=player_image,json=playerImage,proto3,oneof"`
+type AddPlayerReq_PlayerImageChunks struct {
+	PlayerImageChunks []byte `protobuf:"bytes,2,opt,name=player_image_chunks,json=playerImageChunks,proto3,oneof"`
 }
 
 func (*AddPlayerReq_PlayerDetails) isAddPlayerReq_Player() {}
 
-func (*AddPlayerReq_PlayerImage) isAddPlayerReq_Player() {}
+func (*AddPlayerReq_PlayerImageChunks) isAddPlayerReq_Player() {}
 
 type AddPlayerRes struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
@@ -3126,10 +3126,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06height\x18\x05 \x01(\x02R\x06height\x12\x16\n" +
 	"\x06weight\x18\x06 \x01(\x02R\x06weight\x12\x17\n" +
 	"\ateam_id\x18\a \x01(\tR\x06teamId\x12\x17\n" +
-	"\auser_id\x18\b \x01(\tR\x06userId\"{\n" +
+	"\auser_id\x18\b \x01(\tR\x06userId\"\x88\x01\n" +
 	"\fAddPlayerReq\x12<\n" +
-	"\x0eplayer_details\x18\x01 \x01(\v2\x13.team.PlayerDetailsH\x00R\rplayerDetails\x12#\n" +
-	"\fplayer_image\x18\x02 \x01(\fH\x00R\vplayerImageB\b\n" +
+	"\x0eplayer_details\x18\x01 \x01(\v2\x13.team.PlayerDetailsH\x00R\rplayerDetails\x120\n" +
+	"\x13player_image_chunks\x18\x02 \x01(\fH\x00R\x11playerImageChunksB\b\n" +
 	"\x06player\"\x8b\x02\n" +
 	"\fAddPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
@@ -3418,7 +3418,7 @@ func file_team_service_proto_init() {
 	}
 	file_team_service_proto_msgTypes[24].OneofWrappers = []any{
 		(*AddPlayerReq_PlayerDetails)(nil),
-		(*AddPlayerReq_PlayerImage)(nil),
+		(*AddPlayerReq_PlayerImageChunks)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
