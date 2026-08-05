@@ -385,6 +385,7 @@ const (
 	PlayerService_UpdatePlayerStatus_FullMethodName = "/team.PlayerService/UpdatePlayerStatus"
 	PlayerService_ListTeamPlayer_FullMethodName     = "/team.PlayerService/ListTeamPlayer"
 	PlayerService_GetPlayer_FullMethodName          = "/team.PlayerService/GetPlayer"
+	PlayerService_ReleasePlayer_FullMethodName      = "/team.PlayerService/ReleasePlayer"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
@@ -395,6 +396,7 @@ type PlayerServiceClient interface {
 	UpdatePlayerStatus(ctx context.Context, in *UpdatePlayerStatusReq, opts ...grpc.CallOption) (*UpdatePlayerStatusRes, error)
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
+	ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error)
 }
 
 type playerServiceClient struct {
@@ -448,6 +450,16 @@ func (c *playerServiceClient) GetPlayer(ctx context.Context, in *GetPlayerReq, o
 	return out, nil
 }
 
+func (c *playerServiceClient) ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReleasePlayerRes)
+	err := c.cc.Invoke(ctx, PlayerService_ReleasePlayer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlayerServiceServer is the server API for PlayerService service.
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
@@ -456,6 +468,7 @@ type PlayerServiceServer interface {
 	UpdatePlayerStatus(context.Context, *UpdatePlayerStatusReq) (*UpdatePlayerStatusRes, error)
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
+	ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -477,6 +490,9 @@ func (UnimplementedPlayerServiceServer) ListTeamPlayer(context.Context, *ListTea
 }
 func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlayer not implemented")
+}
+func (UnimplementedPlayerServiceServer) ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReleasePlayer not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -560,6 +576,24 @@ func _PlayerService_GetPlayer_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlayerService_ReleasePlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleasePlayerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).ReleasePlayer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_ReleasePlayer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).ReleasePlayer(ctx, req.(*ReleasePlayerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlayerService_ServiceDesc is the grpc.ServiceDesc for PlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -578,6 +612,10 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPlayer",
 			Handler:    _PlayerService_GetPlayer_Handler,
+		},
+		{
+			MethodName: "ReleasePlayer",
+			Handler:    _PlayerService_ReleasePlayer_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

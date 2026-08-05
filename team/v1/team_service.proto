@@ -343,13 +343,22 @@ message  GetPlayerRes {
 }
 
 
+message ReleasePlayerReq{
+
+}
+
+
+message ReleasePlayerRes{
+
+}
 
 
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
   rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);  
-  rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);
+  rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
+  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);
 }
 
 
