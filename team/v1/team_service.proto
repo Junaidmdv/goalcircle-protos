@@ -274,8 +274,8 @@ message AddPlayerRes{
   string team_member_id=2; 
   string full_name=3; 
   int32 jersey_number=4; 
-  PlayerPosition player_position = 5; 
-  PlayerStatus player_status =6; 
+  string player_position = 5; 
+  string player_status =6; 
  string presigned_url=7;
 }
 
