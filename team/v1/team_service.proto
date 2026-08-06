@@ -259,7 +259,8 @@ message UpdatePlayerStatusReq{
 }
 
 message UpdatePlayerStatusRes{
-  bool success=1;
+   string player_id=1; 
+   string player_status=2; 
 } 
 
 enum  PlayerStatus {

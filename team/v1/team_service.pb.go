@@ -2214,7 +2214,8 @@ func (x *UpdatePlayerStatusReq) GetPlayerStatus() PlayerStatus {
 
 type UpdatePlayerStatusRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	PlayerId      string                 `protobuf:"bytes,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	PlayerStatus  string                 `protobuf:"bytes,2,opt,name=player_status,json=playerStatus,proto3" json:"player_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2249,11 +2250,18 @@ func (*UpdatePlayerStatusRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{27}
 }
 
-func (x *UpdatePlayerStatusRes) GetSuccess() bool {
+func (x *UpdatePlayerStatusRes) GetPlayerId() string {
 	if x != nil {
-		return x.Success
+		return x.PlayerId
 	}
-	return false
+	return ""
+}
+
+func (x *UpdatePlayerStatusRes) GetPlayerStatus() string {
+	if x != nil {
+		return x.PlayerStatus
+	}
+	return ""
 }
 
 type ListTeamPlayerReq struct {
@@ -3212,9 +3220,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\rplayer_status\x18\x06 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"m\n" +
 	"\x15UpdatePlayerStatusReq\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x127\n" +
-	"\rplayer_status\x18\x02 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"1\n" +
-	"\x15UpdatePlayerStatusRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xc3\x01\n" +
+	"\rplayer_status\x18\x02 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"Y\n" +
+	"\x15UpdatePlayerStatusRes\x12\x1b\n" +
+	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12#\n" +
+	"\rplayer_status\x18\x02 \x01(\tR\fplayerStatus\"\xc3\x01\n" +
 	"\x11ListTeamPlayerReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
