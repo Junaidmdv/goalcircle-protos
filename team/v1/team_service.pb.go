@@ -2276,6 +2276,7 @@ type AddPlayerRes struct {
 	JerseyNumber   int32                  `protobuf:"varint,4,opt,name=jersey_number,json=jerseyNumber,proto3" json:"jersey_number,omitempty"`
 	PlayerPosition PlayerPosition         `protobuf:"varint,5,opt,name=player_position,json=playerPosition,proto3,enum=team.PlayerPosition" json:"player_position,omitempty"`
 	PlayerStatus   PlayerStatus           `protobuf:"varint,6,opt,name=player_status,json=playerStatus,proto3,enum=team.PlayerStatus" json:"player_status,omitempty"`
+	PresignedUrl   string                 `protobuf:"bytes,7,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -2350,6 +2351,13 @@ func (x *AddPlayerRes) GetPlayerStatus() PlayerStatus {
 		return x.PlayerStatus
 	}
 	return PlayerStatus_STATUS_UNSPECIFIED
+}
+
+func (x *AddPlayerRes) GetPresignedUrl() string {
+	if x != nil {
+		return x.PresignedUrl
+	}
+	return ""
 }
 
 type UpdatePlayerStatusReq struct {
@@ -3412,14 +3420,15 @@ const file_team_service_proto_rawDesc = "" +
 	"\fAddPlayerReq\x12<\n" +
 	"\x0eplayer_details\x18\x01 \x01(\v2\x13.team.PlayerDetailsH\x00R\rplayerDetails\x120\n" +
 	"\x13player_image_chunks\x18\x02 \x01(\fH\x00R\x11playerImageChunksB\b\n" +
-	"\x06player\"\x8b\x02\n" +
+	"\x06player\"\xb0\x02\n" +
 	"\fAddPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12#\n" +
 	"\rjersey_number\x18\x04 \x01(\x05R\fjerseyNumber\x12=\n" +
 	"\x0fplayer_position\x18\x05 \x01(\x0e2\x14.team.PlayerPositionR\x0eplayerPosition\x127\n" +
-	"\rplayer_status\x18\x06 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"m\n" +
+	"\rplayer_status\x18\x06 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\x12#\n" +
+	"\rpresigned_url\x18\a \x01(\tR\fpresignedUrl\"m\n" +
 	"\x15UpdatePlayerStatusReq\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x127\n" +
 	"\rplayer_status\x18\x02 \x01(\x0e2\x12.team.PlayerStatusR\fplayerStatus\"Y\n" +
