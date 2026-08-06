@@ -27,6 +27,8 @@ const (
 	TeamService_ListTeam_FullMethodName           = "/team.TeamService/ListTeam"
 	TeamService_GetTeam_FullMethodName            = "/team.TeamService/GetTeam"
 	TeamService_AddLogo_FullMethodName            = "/team.TeamService/AddLogo"
+	TeamService_RemoveLogo_FullMethodName         = "/team.TeamService/RemoveLogo"
+	TeamService_GetPresignedUrl_FullMethodName    = "/team.TeamService/GetPresignedUrl"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -41,6 +43,8 @@ type TeamServiceClient interface {
 	ListTeam(ctx context.Context, in *ListTeamReq, opts ...grpc.CallOption) (*ListTeamRes, error)
 	GetTeam(ctx context.Context, in *GetTeamReq, opts ...grpc.CallOption) (*GetTeamRes, error)
 	AddLogo(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddLogoReq, AddLogoRes], error)
+	RemoveLogo(ctx context.Context, in *RemoveLgoReq, opts ...grpc.CallOption) (*RemoveLogoRes, error)
+	GetPresignedUrl(ctx context.Context, in *GetPresignedUrlReq, opts ...grpc.CallOption) (*GetPresignedUrlRes, error)
 }
 
 type teamServiceClient struct {
@@ -134,6 +138,26 @@ func (c *teamServiceClient) AddLogo(ctx context.Context, opts ...grpc.CallOption
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type TeamService_AddLogoClient = grpc.ClientStreamingClient[AddLogoReq, AddLogoRes]
 
+func (c *teamServiceClient) RemoveLogo(ctx context.Context, in *RemoveLgoReq, opts ...grpc.CallOption) (*RemoveLogoRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveLogoRes)
+	err := c.cc.Invoke(ctx, TeamService_RemoveLogo_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *teamServiceClient) GetPresignedUrl(ctx context.Context, in *GetPresignedUrlReq, opts ...grpc.CallOption) (*GetPresignedUrlRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPresignedUrlRes)
+	err := c.cc.Invoke(ctx, TeamService_GetPresignedUrl_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeamServiceServer is the server API for TeamService service.
 // All implementations must embed UnimplementedTeamServiceServer
 // for forward compatibility.
@@ -146,6 +170,8 @@ type TeamServiceServer interface {
 	ListTeam(context.Context, *ListTeamReq) (*ListTeamRes, error)
 	GetTeam(context.Context, *GetTeamReq) (*GetTeamRes, error)
 	AddLogo(grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]) error
+	RemoveLogo(context.Context, *RemoveLgoReq) (*RemoveLogoRes, error)
+	GetPresignedUrl(context.Context, *GetPresignedUrlReq) (*GetPresignedUrlRes, error)
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -179,6 +205,12 @@ func (UnimplementedTeamServiceServer) GetTeam(context.Context, *GetTeamReq) (*Ge
 }
 func (UnimplementedTeamServiceServer) AddLogo(grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]) error {
 	return status.Errorf(codes.Unimplemented, "method AddLogo not implemented")
+}
+func (UnimplementedTeamServiceServer) RemoveLogo(context.Context, *RemoveLgoReq) (*RemoveLogoRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveLogo not implemented")
+}
+func (UnimplementedTeamServiceServer) GetPresignedUrl(context.Context, *GetPresignedUrlReq) (*GetPresignedUrlRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPresignedUrl not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 func (UnimplementedTeamServiceServer) testEmbeddedByValue()                     {}
@@ -334,6 +366,42 @@ func _TeamService_AddLogo_Handler(srv interface{}, stream grpc.ServerStream) err
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type TeamService_AddLogoServer = grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]
 
+func _TeamService_RemoveLogo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveLgoReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).RemoveLogo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_RemoveLogo_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).RemoveLogo(ctx, req.(*RemoveLgoReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TeamService_GetPresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPresignedUrlReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamServiceServer).GetPresignedUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamService_GetPresignedUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamServiceServer).GetPresignedUrl(ctx, req.(*GetPresignedUrlReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeamService_ServiceDesc is the grpc.ServiceDesc for TeamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -368,6 +436,14 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTeam",
 			Handler:    _TeamService_GetTeam_Handler,
+		},
+		{
+			MethodName: "RemoveLogo",
+			Handler:    _TeamService_RemoveLogo_Handler,
+		},
+		{
+			MethodName: "GetPresignedUrl",
+			Handler:    _TeamService_GetPresignedUrl_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

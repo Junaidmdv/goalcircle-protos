@@ -209,6 +209,29 @@ message AddLogoRes{
 }
 
 
+message RemoveLgoReq{
+   string team_id=1; 
+   string user_id=2;
+}
+
+message RemoveLogoRes{
+   string team_id=1; 
+}
+
+
+
+
+message GetPresignedUrlReq{
+    string team_id=1;
+}
+
+message GetPresignedUrlRes{
+   string team_id=1; 
+   string presigned_url=2;
+}
+
+
+
 
 
 service TeamService {
@@ -219,7 +242,9 @@ service TeamService {
    rpc SetViceCaptain(SetViceCaptainReq)returns(SetViceCaptainRes); 
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
    rpc GetTeam(GetTeamReq)returns(GetTeamRes); 
-   rpc AddLogo(stream AddLogoReq)returns(AddLogoRes);
+   rpc AddLogo(stream AddLogoReq)returns(AddLogoRes); 
+   rpc RemoveLogo(RemoveLgoReq)returns(RemoveLogoRes); 
+   rpc GetPresignedUrl(GetPresignedUrlReq)returns(GetPresignedUrlRes);
 }
 
 
