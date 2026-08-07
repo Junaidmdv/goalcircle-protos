@@ -3118,6 +3118,7 @@ type GetPlayerPresignedUrlReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3162,6 +3163,13 @@ func (x *GetPlayerPresignedUrlReq) GetTeamId() string {
 func (x *GetPlayerPresignedUrlReq) GetPlayerId() string {
 	if x != nil {
 		return x.PlayerId
+	}
+	return ""
+}
+
+func (x *GetPlayerPresignedUrlReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -3827,10 +3835,11 @@ const file_team_service_proto_rawDesc = "" +
 	"\x14UpdatePlayerImageRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12#\n" +
-	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"P\n" +
+	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"i\n" +
 	"\x18GetPlayerPresignedUrlReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
-	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"u\n" +
+	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\"u\n" +
 	"\x18GetPlayerPresignedUrlRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12#\n" +

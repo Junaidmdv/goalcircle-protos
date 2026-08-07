@@ -406,6 +406,7 @@ message UpdatePlayerImageRes{
 message GetPlayerPresignedUrlReq{
      string team_id=1; 
      string player_id=2;
+     string user_id=3;
 }
 
 message GetPlayerPresignedUrlRes{
