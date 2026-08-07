@@ -2980,6 +2980,7 @@ type UpdatePlayerImageMeta struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3024,6 +3025,13 @@ func (x *UpdatePlayerImageMeta) GetTeamId() string {
 func (x *UpdatePlayerImageMeta) GetPlayerId() string {
 	if x != nil {
 		return x.PlayerId
+	}
+	return ""
+}
+
+func (x *UpdatePlayerImageMeta) GetUserId() string {
+	if x != nil {
+		return x.UserId
 	}
 	return ""
 }
@@ -3115,7 +3123,6 @@ type UpdatePlayerImageRes struct {
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	PresignedUrl  string                 `protobuf:"bytes,3,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
-	UserId        string                 `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3167,13 +3174,6 @@ func (x *UpdatePlayerImageRes) GetPlayerId() string {
 func (x *UpdatePlayerImageRes) GetPresignedUrl() string {
 	if x != nil {
 		return x.PresignedUrl
-	}
-	return ""
-}
-
-func (x *UpdatePlayerImageRes) GetUserId() string {
-	if x != nil {
-		return x.UserId
 	}
 	return ""
 }
@@ -3880,19 +3880,19 @@ const file_team_service_proto_rawDesc = "" +
 	"created_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x12\n" +
 	"\x10ReleasePlayerReq\"\x12\n" +
-	"\x10ReleasePlayerRes\"M\n" +
+	"\x10ReleasePlayerRes\"f\n" +
 	"\x15UpdatePlayerImageMeta\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
-	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"k\n" +
+	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\"k\n" +
 	"\x14UpdatePlayerImageReq\x121\n" +
 	"\x04meta\x18\x01 \x01(\v2\x1b.team.UpdatePlayerImageMetaH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
-	"\x04data\"\x8a\x01\n" +
+	"\x04data\"q\n" +
 	"\x14UpdatePlayerImageRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12#\n" +
-	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\x12\x17\n" +
-	"\auser_id\x18\x04 \x01(\tR\x06userId\"P\n" +
+	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"P\n" +
 	"\x18GetPlayerPresignedUrlReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"u\n" +

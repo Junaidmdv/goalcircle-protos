@@ -383,6 +383,8 @@ message ReleasePlayerRes{
 message UpdatePlayerImageMeta{
     string team_id=1; 
     string player_id=2;
+    string user_id=3;
+
 }
 
 message UpdatePlayerImageReq{
@@ -396,7 +398,6 @@ message UpdatePlayerImageRes{
    string team_id=1; 
    string player_id=2; 
    string presigned_url=3; 
-   string user_id=4;
 }
 
 
