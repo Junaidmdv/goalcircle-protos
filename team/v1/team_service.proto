@@ -209,14 +209,14 @@ message AddLogoRes{
 }
 
 
-message RemoveLgoReq{
-   string team_id=1; 
-   string user_id=2;
-}
+// message RemoveLgoReq{
+//    string team_id=1; 
+//    string user_id=2;
+// }
 
-message RemoveLogoRes{
-   string team_id=1; 
-}
+// message RemoveLogoRes{
+//    string team_id=1; 
+// }
 
 
 
@@ -243,7 +243,7 @@ service TeamService {
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
    rpc GetTeam(GetTeamReq)returns(GetTeamRes); 
    rpc AddLogo(stream AddLogoReq)returns(AddLogoRes); 
-   rpc RemoveLogo(RemoveLgoReq)returns(RemoveLogoRes); 
+   // rpc RemoveLogo(RemoveLgoReq)returns(RemoveLogoRes); 
    rpc GetLogoPresignedUrl(GetPresignedUrlReq)returns(GetPresignedUrlRes);
 }
 
@@ -371,12 +371,14 @@ message  GetPlayerRes {
 
 
 message ReleasePlayerReq{
-
+    string player_id=1; 
+    string team_id=2; 
+    string user_id=3; 
 }
 
 
 message ReleasePlayerRes{
-
+   bool success=1;  
 }
 
 
