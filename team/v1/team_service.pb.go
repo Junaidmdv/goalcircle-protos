@@ -2978,6 +2978,8 @@ func (*ReleasePlayerRes) Descriptor() ([]byte, []int) {
 
 type UpdatePlayerImageMeta struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3010,6 +3012,20 @@ func (x *UpdatePlayerImageMeta) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdatePlayerImageMeta.ProtoReflect.Descriptor instead.
 func (*UpdatePlayerImageMeta) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{40}
+}
+
+func (x *UpdatePlayerImageMeta) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *UpdatePlayerImageMeta) GetPlayerId() string {
+	if x != nil {
+		return x.PlayerId
+	}
+	return ""
 }
 
 type UpdatePlayerImageReq struct {
@@ -3856,8 +3872,10 @@ const file_team_service_proto_rawDesc = "" +
 	"created_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x12\n" +
 	"\x10ReleasePlayerReq\"\x12\n" +
-	"\x10ReleasePlayerRes\"\x17\n" +
-	"\x15UpdatePlayerImageMeta\"k\n" +
+	"\x10ReleasePlayerRes\"M\n" +
+	"\x15UpdatePlayerImageMeta\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
+	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"k\n" +
 	"\x14UpdatePlayerImageReq\x121\n" +
 	"\x04meta\x18\x01 \x01(\v2\x1b.team.UpdatePlayerImageMetaH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +

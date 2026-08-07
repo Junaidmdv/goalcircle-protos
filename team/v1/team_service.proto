@@ -381,7 +381,8 @@ message ReleasePlayerRes{
 
 
 message UpdatePlayerImageMeta{
-
+    string team_id=1; 
+    string player_id=2;
 }
 
 message UpdatePlayerImageReq{
