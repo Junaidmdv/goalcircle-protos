@@ -415,13 +415,13 @@ message GetPlayerPresignedUrlRes{
      string presigned_url=3; 
 }
 
-message RemovePlayerImageReq{
-     string player_id=1;
-}
+// message RemovePlayerImageReq{
+//      string player_id=1;
+// }
 
-message RemovePlayerImageRes{
-    bool success=1;
-}
+// message RemovePlayerImageRes{
+//     bool success=1;
+// }
 
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
@@ -431,7 +431,6 @@ service PlayerService{
   rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
   rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
   rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
-  rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
 }
 
 

@@ -428,7 +428,6 @@ const (
 	PlayerService_ReleasePlayer_FullMethodName         = "/team.PlayerService/ReleasePlayer"
 	PlayerService_UpdatePlayerImage_FullMethodName     = "/team.PlayerService/UpdatePlayerImage"
 	PlayerService_GetPlayerPresignedUrl_FullMethodName = "/team.PlayerService/GetPlayerPresignedUrl"
-	PlayerService_RemovePlayerImage_FullMethodName     = "/team.PlayerService/RemovePlayerImage"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
@@ -442,7 +441,6 @@ type PlayerServiceClient interface {
 	ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error)
 	UpdatePlayerImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdatePlayerImageReq, UpdatePlayerImageRes], error)
 	GetPlayerPresignedUrl(ctx context.Context, in *GetPlayerPresignedUrlReq, opts ...grpc.CallOption) (*GetPlayerPresignedUrlRes, error)
-	RemovePlayerImage(ctx context.Context, in *RemovePlayerImageReq, opts ...grpc.CallOption) (*RemovePlayerImageRes, error)
 }
 
 type playerServiceClient struct {
@@ -529,16 +527,6 @@ func (c *playerServiceClient) GetPlayerPresignedUrl(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (c *playerServiceClient) RemovePlayerImage(ctx context.Context, in *RemovePlayerImageReq, opts ...grpc.CallOption) (*RemovePlayerImageRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RemovePlayerImageRes)
-	err := c.cc.Invoke(ctx, PlayerService_RemovePlayerImage_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PlayerServiceServer is the server API for PlayerService service.
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
@@ -550,7 +538,6 @@ type PlayerServiceServer interface {
 	ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error)
 	UpdatePlayerImage(grpc.ClientStreamingServer[UpdatePlayerImageReq, UpdatePlayerImageRes]) error
 	GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error)
-	RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -581,9 +568,6 @@ func (UnimplementedPlayerServiceServer) UpdatePlayerImage(grpc.ClientStreamingSe
 }
 func (UnimplementedPlayerServiceServer) GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlayerPresignedUrl not implemented")
-}
-func (UnimplementedPlayerServiceServer) RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemovePlayerImage not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -710,24 +694,6 @@ func _PlayerService_GetPlayerPresignedUrl_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlayerService_RemovePlayerImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemovePlayerImageReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlayerServiceServer).RemovePlayerImage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PlayerService_RemovePlayerImage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerServiceServer).RemovePlayerImage(ctx, req.(*RemovePlayerImageReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PlayerService_ServiceDesc is the grpc.ServiceDesc for PlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -754,10 +720,6 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPlayerPresignedUrl",
 			Handler:    _PlayerService_GetPlayerPresignedUrl_Handler,
-		},
-		{
-			MethodName: "RemovePlayerImage",
-			Handler:    _PlayerService_RemovePlayerImage_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
