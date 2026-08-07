@@ -324,9 +324,9 @@ message ListTeamPlayerReq{
    string team_id=1; 
    int32  page=2; 
    int32 limit=3; 
-   string position=4;   
-   PlayerStatus player_status=5;
-   string search=6;
+   optional PlayerPosition position=4;   
+   optional PlayerStatus player_status=5;
+   optional  string search=6;
 }
 
 
