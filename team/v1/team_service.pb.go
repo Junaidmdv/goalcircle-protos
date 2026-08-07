@@ -3237,8 +3237,7 @@ func (x *GetPlayerPresignedUrlRes) GetPresignedUrl() string {
 type CreateInvitationReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamMemberId  string                 `protobuf:"bytes,1,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
-	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
-	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3276,13 +3275,6 @@ func (*CreateInvitationReq) Descriptor() ([]byte, []int) {
 func (x *CreateInvitationReq) GetTeamMemberId() string {
 	if x != nil {
 		return x.TeamMemberId
-	}
-	return ""
-}
-
-func (x *CreateInvitationReq) GetRole() string {
-	if x != nil {
-		return x.Role
 	}
 	return ""
 }
@@ -3755,11 +3747,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\x18GetPlayerPresignedUrlRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12#\n" +
-	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"h\n" +
+	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"T\n" +
 	"\x13CreateInvitationReq\x12$\n" +
-	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x12\n" +
-	"\x04role\x18\x02 \x01(\tR\x04role\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\"\x9f\x01\n" +
+	"\x0eteam_member_id\x18\x01 \x01(\tR\fteamMemberId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x9f\x01\n" +
 	"\x13CreateInvitationRes\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x129\n" +
 	"\n" +
