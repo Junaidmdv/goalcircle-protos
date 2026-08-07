@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TeamService_CreateTeam_FullMethodName         = "/team.TeamService/CreateTeam"
-	TeamService_UpdateTeam_FullMethodName         = "/team.TeamService/UpdateTeam"
-	TeamService_RegisterTeamMember_FullMethodName = "/team.TeamService/RegisterTeamMember"
-	TeamService_SetCaptain_FullMethodName         = "/team.TeamService/SetCaptain"
-	TeamService_SetViceCaptain_FullMethodName     = "/team.TeamService/SetViceCaptain"
-	TeamService_ListTeam_FullMethodName           = "/team.TeamService/ListTeam"
-	TeamService_GetTeam_FullMethodName            = "/team.TeamService/GetTeam"
-	TeamService_AddLogo_FullMethodName            = "/team.TeamService/AddLogo"
-	TeamService_RemoveLogo_FullMethodName         = "/team.TeamService/RemoveLogo"
-	TeamService_GetPresignedUrl_FullMethodName    = "/team.TeamService/GetPresignedUrl"
+	TeamService_CreateTeam_FullMethodName          = "/team.TeamService/CreateTeam"
+	TeamService_UpdateTeam_FullMethodName          = "/team.TeamService/UpdateTeam"
+	TeamService_RegisterTeamMember_FullMethodName  = "/team.TeamService/RegisterTeamMember"
+	TeamService_SetCaptain_FullMethodName          = "/team.TeamService/SetCaptain"
+	TeamService_SetViceCaptain_FullMethodName      = "/team.TeamService/SetViceCaptain"
+	TeamService_ListTeam_FullMethodName            = "/team.TeamService/ListTeam"
+	TeamService_GetTeam_FullMethodName             = "/team.TeamService/GetTeam"
+	TeamService_AddLogo_FullMethodName             = "/team.TeamService/AddLogo"
+	TeamService_RemoveLogo_FullMethodName          = "/team.TeamService/RemoveLogo"
+	TeamService_GetLogoPresignedUrl_FullMethodName = "/team.TeamService/GetLogoPresignedUrl"
 )
 
 // TeamServiceClient is the client API for TeamService service.
@@ -44,7 +44,7 @@ type TeamServiceClient interface {
 	GetTeam(ctx context.Context, in *GetTeamReq, opts ...grpc.CallOption) (*GetTeamRes, error)
 	AddLogo(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddLogoReq, AddLogoRes], error)
 	RemoveLogo(ctx context.Context, in *RemoveLgoReq, opts ...grpc.CallOption) (*RemoveLogoRes, error)
-	GetPresignedUrl(ctx context.Context, in *GetPresignedUrlReq, opts ...grpc.CallOption) (*GetPresignedUrlRes, error)
+	GetLogoPresignedUrl(ctx context.Context, in *GetPresignedUrlReq, opts ...grpc.CallOption) (*GetPresignedUrlRes, error)
 }
 
 type teamServiceClient struct {
@@ -148,10 +148,10 @@ func (c *teamServiceClient) RemoveLogo(ctx context.Context, in *RemoveLgoReq, op
 	return out, nil
 }
 
-func (c *teamServiceClient) GetPresignedUrl(ctx context.Context, in *GetPresignedUrlReq, opts ...grpc.CallOption) (*GetPresignedUrlRes, error) {
+func (c *teamServiceClient) GetLogoPresignedUrl(ctx context.Context, in *GetPresignedUrlReq, opts ...grpc.CallOption) (*GetPresignedUrlRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetPresignedUrlRes)
-	err := c.cc.Invoke(ctx, TeamService_GetPresignedUrl_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, TeamService_GetLogoPresignedUrl_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -171,7 +171,7 @@ type TeamServiceServer interface {
 	GetTeam(context.Context, *GetTeamReq) (*GetTeamRes, error)
 	AddLogo(grpc.ClientStreamingServer[AddLogoReq, AddLogoRes]) error
 	RemoveLogo(context.Context, *RemoveLgoReq) (*RemoveLogoRes, error)
-	GetPresignedUrl(context.Context, *GetPresignedUrlReq) (*GetPresignedUrlRes, error)
+	GetLogoPresignedUrl(context.Context, *GetPresignedUrlReq) (*GetPresignedUrlRes, error)
 	mustEmbedUnimplementedTeamServiceServer()
 }
 
@@ -209,8 +209,8 @@ func (UnimplementedTeamServiceServer) AddLogo(grpc.ClientStreamingServer[AddLogo
 func (UnimplementedTeamServiceServer) RemoveLogo(context.Context, *RemoveLgoReq) (*RemoveLogoRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveLogo not implemented")
 }
-func (UnimplementedTeamServiceServer) GetPresignedUrl(context.Context, *GetPresignedUrlReq) (*GetPresignedUrlRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPresignedUrl not implemented")
+func (UnimplementedTeamServiceServer) GetLogoPresignedUrl(context.Context, *GetPresignedUrlReq) (*GetPresignedUrlRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetLogoPresignedUrl not implemented")
 }
 func (UnimplementedTeamServiceServer) mustEmbedUnimplementedTeamServiceServer() {}
 func (UnimplementedTeamServiceServer) testEmbeddedByValue()                     {}
@@ -384,20 +384,20 @@ func _TeamService_RemoveLogo_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TeamService_GetPresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _TeamService_GetLogoPresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetPresignedUrlReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TeamServiceServer).GetPresignedUrl(ctx, in)
+		return srv.(TeamServiceServer).GetLogoPresignedUrl(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: TeamService_GetPresignedUrl_FullMethodName,
+		FullMethod: TeamService_GetLogoPresignedUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).GetPresignedUrl(ctx, req.(*GetPresignedUrlReq))
+		return srv.(TeamServiceServer).GetLogoPresignedUrl(ctx, req.(*GetPresignedUrlReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -442,8 +442,8 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TeamService_RemoveLogo_Handler,
 		},
 		{
-			MethodName: "GetPresignedUrl",
-			Handler:    _TeamService_GetPresignedUrl_Handler,
+			MethodName: "GetLogoPresignedUrl",
+			Handler:    _TeamService_GetLogoPresignedUrl_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
@@ -457,11 +457,14 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	PlayerService_AddNewPlayer_FullMethodName       = "/team.PlayerService/AddNewPlayer"
-	PlayerService_UpdatePlayerStatus_FullMethodName = "/team.PlayerService/UpdatePlayerStatus"
-	PlayerService_ListTeamPlayer_FullMethodName     = "/team.PlayerService/ListTeamPlayer"
-	PlayerService_GetPlayer_FullMethodName          = "/team.PlayerService/GetPlayer"
-	PlayerService_ReleasePlayer_FullMethodName      = "/team.PlayerService/ReleasePlayer"
+	PlayerService_AddNewPlayer_FullMethodName          = "/team.PlayerService/AddNewPlayer"
+	PlayerService_UpdatePlayerStatus_FullMethodName    = "/team.PlayerService/UpdatePlayerStatus"
+	PlayerService_ListTeamPlayer_FullMethodName        = "/team.PlayerService/ListTeamPlayer"
+	PlayerService_GetPlayer_FullMethodName             = "/team.PlayerService/GetPlayer"
+	PlayerService_ReleasePlayer_FullMethodName         = "/team.PlayerService/ReleasePlayer"
+	PlayerService_UpdatePlayerImage_FullMethodName     = "/team.PlayerService/UpdatePlayerImage"
+	PlayerService_GetPlayerPresignedUrl_FullMethodName = "/team.PlayerService/GetPlayerPresignedUrl"
+	PlayerService_RemovePlayerImage_FullMethodName     = "/team.PlayerService/RemovePlayerImage"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
@@ -473,6 +476,9 @@ type PlayerServiceClient interface {
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
 	ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error)
+	UpdatePlayerImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdatePlayerImageReq, UpdatePlayerImageRes], error)
+	GetPlayerPresignedUrl(ctx context.Context, in *GetPlayerPresignedUrlReq, opts ...grpc.CallOption) (*GetPlayerPresignedUrlRes, error)
+	RemovePlayerImage(ctx context.Context, in *RemovePlayerImageReq, opts ...grpc.CallOption) (*RemovePlayerImageRes, error)
 }
 
 type playerServiceClient struct {
@@ -536,6 +542,39 @@ func (c *playerServiceClient) ReleasePlayer(ctx context.Context, in *ReleasePlay
 	return out, nil
 }
 
+func (c *playerServiceClient) UpdatePlayerImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdatePlayerImageReq, UpdatePlayerImageRes], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &PlayerService_ServiceDesc.Streams[1], PlayerService_UpdatePlayerImage_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[UpdatePlayerImageReq, UpdatePlayerImageRes]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type PlayerService_UpdatePlayerImageClient = grpc.ClientStreamingClient[UpdatePlayerImageReq, UpdatePlayerImageRes]
+
+func (c *playerServiceClient) GetPlayerPresignedUrl(ctx context.Context, in *GetPlayerPresignedUrlReq, opts ...grpc.CallOption) (*GetPlayerPresignedUrlRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPlayerPresignedUrlRes)
+	err := c.cc.Invoke(ctx, PlayerService_GetPlayerPresignedUrl_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *playerServiceClient) RemovePlayerImage(ctx context.Context, in *RemovePlayerImageReq, opts ...grpc.CallOption) (*RemovePlayerImageRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemovePlayerImageRes)
+	err := c.cc.Invoke(ctx, PlayerService_RemovePlayerImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlayerServiceServer is the server API for PlayerService service.
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
@@ -545,6 +584,9 @@ type PlayerServiceServer interface {
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
 	ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error)
+	UpdatePlayerImage(grpc.ClientStreamingServer[UpdatePlayerImageReq, UpdatePlayerImageRes]) error
+	GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error)
+	RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -569,6 +611,15 @@ func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *GetPlayerReq
 }
 func (UnimplementedPlayerServiceServer) ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReleasePlayer not implemented")
+}
+func (UnimplementedPlayerServiceServer) UpdatePlayerImage(grpc.ClientStreamingServer[UpdatePlayerImageReq, UpdatePlayerImageRes]) error {
+	return status.Errorf(codes.Unimplemented, "method UpdatePlayerImage not implemented")
+}
+func (UnimplementedPlayerServiceServer) GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPlayerPresignedUrl not implemented")
+}
+func (UnimplementedPlayerServiceServer) RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemovePlayerImage not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -670,6 +721,49 @@ func _PlayerService_ReleasePlayer_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlayerService_UpdatePlayerImage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(PlayerServiceServer).UpdatePlayerImage(&grpc.GenericServerStream[UpdatePlayerImageReq, UpdatePlayerImageRes]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type PlayerService_UpdatePlayerImageServer = grpc.ClientStreamingServer[UpdatePlayerImageReq, UpdatePlayerImageRes]
+
+func _PlayerService_GetPlayerPresignedUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlayerPresignedUrlReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).GetPlayerPresignedUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_GetPlayerPresignedUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).GetPlayerPresignedUrl(ctx, req.(*GetPlayerPresignedUrlReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PlayerService_RemovePlayerImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemovePlayerImageReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).RemovePlayerImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_RemovePlayerImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).RemovePlayerImage(ctx, req.(*RemovePlayerImageReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlayerService_ServiceDesc is the grpc.ServiceDesc for PlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -693,11 +787,24 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ReleasePlayer",
 			Handler:    _PlayerService_ReleasePlayer_Handler,
 		},
+		{
+			MethodName: "GetPlayerPresignedUrl",
+			Handler:    _PlayerService_GetPlayerPresignedUrl_Handler,
+		},
+		{
+			MethodName: "RemovePlayerImage",
+			Handler:    _PlayerService_RemovePlayerImage_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "AddNewPlayer",
 			Handler:       _PlayerService_AddNewPlayer_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "UpdatePlayerImage",
+			Handler:       _PlayerService_UpdatePlayerImage_Handler,
 			ClientStreams: true,
 		},
 	},

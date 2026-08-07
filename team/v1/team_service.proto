@@ -244,7 +244,7 @@ service TeamService {
    rpc GetTeam(GetTeamReq)returns(GetTeamRes); 
    rpc AddLogo(stream AddLogoReq)returns(AddLogoRes); 
    rpc RemoveLogo(RemoveLgoReq)returns(RemoveLogoRes); 
-   rpc GetPresignedUrl(GetPresignedUrlReq)returns(GetPresignedUrlRes);
+   rpc GetLogoPresignedUrl(GetPresignedUrlReq)returns(GetPresignedUrlRes);
 }
 
 
@@ -380,12 +380,52 @@ message ReleasePlayerRes{
 }
 
 
+message UpdatePlayerImageMeta{
+
+}
+
+message UpdatePlayerImageReq{
+     oneof data {
+         UpdatePlayerImageMeta meta=1; 
+         bytes chunks=2;
+     }
+}
+
+message UpdatePlayerImageRes{
+   string team_id=1; 
+   string player_id=2; 
+   string presigned_url=3; 
+}
+
+
+message GetPlayerPresignedUrlReq{
+     string team_id=1; 
+     string player_id=2;
+}
+
+message GetPlayerPresignedUrlRes{
+     string team_id=1; 
+     string player_id=2; 
+     string presigned_url=3; 
+}
+
+message RemovePlayerImageReq{
+     string player_id=1;
+}
+
+message RemovePlayerImageRes{
+    bool success=1;
+}
+
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
   rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);  
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
-  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);
+  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
+  rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
+  rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
+  rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
 }
 
 
@@ -451,6 +491,8 @@ message AddStaffRes{
 }
 
 
+
 service StaffService {
      rpc AddStaff(AddStaffReq)returns(AddStaffRes); 
+  
 }
