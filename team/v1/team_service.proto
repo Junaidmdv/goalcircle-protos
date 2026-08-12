@@ -177,15 +177,14 @@ message GetTeamRes{
    string name=2;  
    string short_name=3;  
    string city=4;  
-   string logo_url=5;  
+   string logo_key=5;  
    string team_code=6;  
-   string contact_email=7; 
-   string contact_phone_num=8; 
-   TeamStatus team_status=9;  
-   int32 player_count=10;  
-   string manager_id=11; 
-   string caption_id=12;  
-   string vice_caption_id=13;
+   string email=7; 
+   string phone_num=8; 
+   string team_status=9;  
+   int32  player_count=10; 
+   string caption_id=11;  
+   string vice_caption_id=12;
 }
 
 message TeamLogoMetaData{
