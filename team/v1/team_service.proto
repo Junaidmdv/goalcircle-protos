@@ -187,10 +187,9 @@ message GetTeamRes{
    string vice_caption_id=12;
 }
 
-message TeamLogoMetaData{
-   string team_id=1;  
-   string user_id=2;
-   string content_type=3; 
+message TeamLogoMetaData{ 
+   string user_id=1;
+   string content_type=2; 
 }
 
 

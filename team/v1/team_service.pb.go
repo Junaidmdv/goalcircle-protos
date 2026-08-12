@@ -1686,9 +1686,8 @@ func (x *GetTeamRes) GetViceCaptionId() string {
 
 type TeamLogoMetaData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	ContentType   string                 `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1721,13 +1720,6 @@ func (x *TeamLogoMetaData) ProtoReflect() protoreflect.Message {
 // Deprecated: Use TeamLogoMetaData.ProtoReflect.Descriptor instead.
 func (*TeamLogoMetaData) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *TeamLogoMetaData) GetTeamId() string {
-	if x != nil {
-		return x.TeamId
-	}
-	return ""
 }
 
 func (x *TeamLogoMetaData) GetUserId() string {
@@ -3615,11 +3607,10 @@ const file_team_service_proto_rawDesc = "" +
 	" \x01(\x05R\vplayerCount\x12\x1d\n" +
 	"\n" +
 	"caption_id\x18\v \x01(\tR\tcaptionId\x12&\n" +
-	"\x0fvice_caption_id\x18\f \x01(\tR\rviceCaptionId\"g\n" +
+	"\x0fvice_caption_id\x18\f \x01(\tR\rviceCaptionId\"N\n" +
 	"\x10TeamLogoMetaData\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12!\n" +
-	"\fcontent_type\x18\x03 \x01(\tR\vcontentType\"c\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12!\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\"c\n" +
 	"\n" +
 	"AddLogoReq\x125\n" +
 	"\tmeta_data\x18\x01 \x01(\v2\x16.team.TeamLogoMetaDataH\x00R\bmetaData\x12\x16\n" +
