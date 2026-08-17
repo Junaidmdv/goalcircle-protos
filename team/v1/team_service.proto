@@ -453,35 +453,21 @@ service   TeamInvite {
 
 enum StaffDesignation {
   STAFF_DESIGNATION_UNSPECIFIED = 0;
-  STAFF_DESIGNATION_HEAD_COACH = 1;
-  STAFF_DESIGNATION_ASSISTANT_COACH = 2;
-  STAFF_DESIGNATION_GOALKEEPER_COACH = 3;
-  STAFF_DESIGNATION_FITNESS_COACH = 4;
-  STAFF_DESIGNATION_PHYSIO = 5;
-  STAFF_DESIGNATION_DOCTOR = 6;
-  STAFF_DESIGNATION_ANALYST = 7;
-  STAFF_DESIGNATION_TEAM_COORDINATOR = 8;
-  STAFF_DESIGNATION_EQUIPMENT_MANAGER = 9;
-  STAFF_DESIGNATION_OTHER = 10;
-}
-
-enum TeamMemberRole {
-  TEAM_MEMBER_ROLE_UNSPECIFIED = 0;
-  TEAM_MEMBER_ROLE_OWNER = 1;
-  TEAM_MEMBER_ROLE_MANAGER = 2;
-  TEAM_MEMBER_ROLE_STAFF = 3;
-  TEAM_MEMBER_ROLE_PLAYER = 4;
+  STAFF_DESIGNATION_OWNER = 1;
+  STAFF_DESIGNATION_MANAGER = 2;
+  STAFF_DESIGNATION_HEAD_COACH = 3;
+  STAFF_DESIGNATION_ASSISTANT_COACH = 4;
+  STAFF_DESIGNATION_OTHER_STAFF = 5;
 }
 
 
 message AddStaffReq{  
-
   string team_id=1;  
   string team_member_id=2;
   string full_name=3; 
   StaffDesignation designation=4; 
-  google.protobuf.Timestamp dob=5; 
-  TeamMemberRole role=6;
+  optional string specialised=5;
+  google.protobuf.Timestamp dob=6; 
 }
 
 message AddStaffRes{
