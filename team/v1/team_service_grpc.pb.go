@@ -840,14 +840,30 @@ var TeamInvite_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	StaffService_AddStaff_FullMethodName = "/team.StaffService/AddStaff"
+	StaffService_AddStaff_FullMethodName          = "/team.StaffService/AddStaff"
+	StaffService_GetStaff_FullMethodName          = "/team.StaffService/GetStaff"
+	StaffService_UpdateStaffImage_FullMethodName  = "/team.StaffService/UpdateStaffImage"
+	StaffService_GetStaffImageUrl_FullMethodName  = "/team.StaffService/GetStaffImageUrl"
+	StaffService_RemoveStaffImage_FullMethodName  = "/team.StaffService/RemoveStaffImage"
+	StaffService_UpdateStaff_FullMethodName       = "/team.StaffService/UpdateStaff"
+	StaffService_ListTeamStaff_FullMethodName     = "/team.StaffService/ListTeamStaff"
+	StaffService_ReleaseStaff_FullMethodName      = "/team.StaffService/ReleaseStaff"
+	StaffService_TransferOwnership_FullMethodName = "/team.StaffService/TransferOwnership"
 )
 
 // StaffServiceClient is the client API for StaffService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StaffServiceClient interface {
-	AddStaff(ctx context.Context, in *AddStaffReq, opts ...grpc.CallOption) (*AddStaffRes, error)
+	AddStaff(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddStaffReq, AddStaffRes], error)
+	GetStaff(ctx context.Context, in *GetStaffReq, opts ...grpc.CallOption) (*GetStaffRes, error)
+	UpdateStaffImage(ctx context.Context, in *UpdateStaffImageReq, opts ...grpc.CallOption) (*UpdateStaffImageRes, error)
+	GetStaffImageUrl(ctx context.Context, in *GetStaffImageUrlReq, opts ...grpc.CallOption) (*GetStaffImageUrlRes, error)
+	RemoveStaffImage(ctx context.Context, in *RemoveStaffImageReq, opts ...grpc.CallOption) (*RemoveStaffImageRes, error)
+	UpdateStaff(ctx context.Context, in *UpdateStaffReq, opts ...grpc.CallOption) (*UpdateStaffRes, error)
+	ListTeamStaff(ctx context.Context, in *ListTeamStaffReq, opts ...grpc.CallOption) (*ListTeamStaffRes, error)
+	ReleaseStaff(ctx context.Context, in *ReleaseStaffRes, opts ...grpc.CallOption) (*ReleaseStaffRes, error)
+	TransferOwnership(ctx context.Context, in *TransferOwnershipReq, opts ...grpc.CallOption) (*TransferOwnershipRes, error)
 }
 
 type staffServiceClient struct {
@@ -858,10 +874,93 @@ func NewStaffServiceClient(cc grpc.ClientConnInterface) StaffServiceClient {
 	return &staffServiceClient{cc}
 }
 
-func (c *staffServiceClient) AddStaff(ctx context.Context, in *AddStaffReq, opts ...grpc.CallOption) (*AddStaffRes, error) {
+func (c *staffServiceClient) AddStaff(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddStaffReq, AddStaffRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddStaffRes)
-	err := c.cc.Invoke(ctx, StaffService_AddStaff_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &StaffService_ServiceDesc.Streams[0], StaffService_AddStaff_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[AddStaffReq, AddStaffRes]{ClientStream: stream}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type StaffService_AddStaffClient = grpc.ClientStreamingClient[AddStaffReq, AddStaffRes]
+
+func (c *staffServiceClient) GetStaff(ctx context.Context, in *GetStaffReq, opts ...grpc.CallOption) (*GetStaffRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_GetStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) UpdateStaffImage(ctx context.Context, in *UpdateStaffImageReq, opts ...grpc.CallOption) (*UpdateStaffImageRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateStaffImageRes)
+	err := c.cc.Invoke(ctx, StaffService_UpdateStaffImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) GetStaffImageUrl(ctx context.Context, in *GetStaffImageUrlReq, opts ...grpc.CallOption) (*GetStaffImageUrlRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStaffImageUrlRes)
+	err := c.cc.Invoke(ctx, StaffService_GetStaffImageUrl_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) RemoveStaffImage(ctx context.Context, in *RemoveStaffImageReq, opts ...grpc.CallOption) (*RemoveStaffImageRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RemoveStaffImageRes)
+	err := c.cc.Invoke(ctx, StaffService_RemoveStaffImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) UpdateStaff(ctx context.Context, in *UpdateStaffReq, opts ...grpc.CallOption) (*UpdateStaffRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UpdateStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_UpdateStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) ListTeamStaff(ctx context.Context, in *ListTeamStaffReq, opts ...grpc.CallOption) (*ListTeamStaffRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListTeamStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_ListTeamStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) ReleaseStaff(ctx context.Context, in *ReleaseStaffRes, opts ...grpc.CallOption) (*ReleaseStaffRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReleaseStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_ReleaseStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *staffServiceClient) TransferOwnership(ctx context.Context, in *TransferOwnershipReq, opts ...grpc.CallOption) (*TransferOwnershipRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransferOwnershipRes)
+	err := c.cc.Invoke(ctx, StaffService_TransferOwnership_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -872,7 +971,15 @@ func (c *staffServiceClient) AddStaff(ctx context.Context, in *AddStaffReq, opts
 // All implementations must embed UnimplementedStaffServiceServer
 // for forward compatibility.
 type StaffServiceServer interface {
-	AddStaff(context.Context, *AddStaffReq) (*AddStaffRes, error)
+	AddStaff(grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]) error
+	GetStaff(context.Context, *GetStaffReq) (*GetStaffRes, error)
+	UpdateStaffImage(context.Context, *UpdateStaffImageReq) (*UpdateStaffImageRes, error)
+	GetStaffImageUrl(context.Context, *GetStaffImageUrlReq) (*GetStaffImageUrlRes, error)
+	RemoveStaffImage(context.Context, *RemoveStaffImageReq) (*RemoveStaffImageRes, error)
+	UpdateStaff(context.Context, *UpdateStaffReq) (*UpdateStaffRes, error)
+	ListTeamStaff(context.Context, *ListTeamStaffReq) (*ListTeamStaffRes, error)
+	ReleaseStaff(context.Context, *ReleaseStaffRes) (*ReleaseStaffRes, error)
+	TransferOwnership(context.Context, *TransferOwnershipReq) (*TransferOwnershipRes, error)
 	mustEmbedUnimplementedStaffServiceServer()
 }
 
@@ -883,8 +990,32 @@ type StaffServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedStaffServiceServer struct{}
 
-func (UnimplementedStaffServiceServer) AddStaff(context.Context, *AddStaffReq) (*AddStaffRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddStaff not implemented")
+func (UnimplementedStaffServiceServer) AddStaff(grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]) error {
+	return status.Errorf(codes.Unimplemented, "method AddStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) GetStaff(context.Context, *GetStaffReq) (*GetStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) UpdateStaffImage(context.Context, *UpdateStaffImageReq) (*UpdateStaffImageRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateStaffImage not implemented")
+}
+func (UnimplementedStaffServiceServer) GetStaffImageUrl(context.Context, *GetStaffImageUrlReq) (*GetStaffImageUrlRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStaffImageUrl not implemented")
+}
+func (UnimplementedStaffServiceServer) RemoveStaffImage(context.Context, *RemoveStaffImageReq) (*RemoveStaffImageRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveStaffImage not implemented")
+}
+func (UnimplementedStaffServiceServer) UpdateStaff(context.Context, *UpdateStaffReq) (*UpdateStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) ListTeamStaff(context.Context, *ListTeamStaffReq) (*ListTeamStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTeamStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) ReleaseStaff(context.Context, *ReleaseStaffRes) (*ReleaseStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReleaseStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) TransferOwnership(context.Context, *TransferOwnershipReq) (*TransferOwnershipRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TransferOwnership not implemented")
 }
 func (UnimplementedStaffServiceServer) mustEmbedUnimplementedStaffServiceServer() {}
 func (UnimplementedStaffServiceServer) testEmbeddedByValue()                      {}
@@ -907,20 +1038,153 @@ func RegisterStaffServiceServer(s grpc.ServiceRegistrar, srv StaffServiceServer)
 	s.RegisterService(&StaffService_ServiceDesc, srv)
 }
 
-func _StaffService_AddStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddStaffReq)
+func _StaffService_AddStaff_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(StaffServiceServer).AddStaff(&grpc.GenericServerStream[AddStaffReq, AddStaffRes]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type StaffService_AddStaffServer = grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]
+
+func _StaffService_GetStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStaffReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StaffServiceServer).AddStaff(ctx, in)
+		return srv.(StaffServiceServer).GetStaff(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StaffService_AddStaff_FullMethodName,
+		FullMethod: StaffService_GetStaff_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffServiceServer).AddStaff(ctx, req.(*AddStaffReq))
+		return srv.(StaffServiceServer).GetStaff(ctx, req.(*GetStaffReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_UpdateStaffImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateStaffImageReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).UpdateStaffImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_UpdateStaffImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).UpdateStaffImage(ctx, req.(*UpdateStaffImageReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_GetStaffImageUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStaffImageUrlReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).GetStaffImageUrl(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_GetStaffImageUrl_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).GetStaffImageUrl(ctx, req.(*GetStaffImageUrlReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_RemoveStaffImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveStaffImageReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).RemoveStaffImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_RemoveStaffImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).RemoveStaffImage(ctx, req.(*RemoveStaffImageReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_UpdateStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateStaffReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).UpdateStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_UpdateStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).UpdateStaff(ctx, req.(*UpdateStaffReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_ListTeamStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTeamStaffReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).ListTeamStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_ListTeamStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).ListTeamStaff(ctx, req.(*ListTeamStaffReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_ReleaseStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleaseStaffRes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).ReleaseStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_ReleaseStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).ReleaseStaff(ctx, req.(*ReleaseStaffRes))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StaffService_TransferOwnership_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransferOwnershipReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).TransferOwnership(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_TransferOwnership_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).TransferOwnership(ctx, req.(*TransferOwnershipReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -933,10 +1197,44 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StaffServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddStaff",
-			Handler:    _StaffService_AddStaff_Handler,
+			MethodName: "GetStaff",
+			Handler:    _StaffService_GetStaff_Handler,
+		},
+		{
+			MethodName: "UpdateStaffImage",
+			Handler:    _StaffService_UpdateStaffImage_Handler,
+		},
+		{
+			MethodName: "GetStaffImageUrl",
+			Handler:    _StaffService_GetStaffImageUrl_Handler,
+		},
+		{
+			MethodName: "RemoveStaffImage",
+			Handler:    _StaffService_RemoveStaffImage_Handler,
+		},
+		{
+			MethodName: "UpdateStaff",
+			Handler:    _StaffService_UpdateStaff_Handler,
+		},
+		{
+			MethodName: "ListTeamStaff",
+			Handler:    _StaffService_ListTeamStaff_Handler,
+		},
+		{
+			MethodName: "ReleaseStaff",
+			Handler:    _StaffService_ReleaseStaff_Handler,
+		},
+		{
+			MethodName: "TransferOwnership",
+			Handler:    _StaffService_TransferOwnership_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "AddStaff",
+			Handler:       _StaffService_AddStaff_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "team_service.proto",
 }

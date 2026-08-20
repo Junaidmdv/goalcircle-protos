@@ -458,10 +458,9 @@ enum StaffDesignation {
   STAFF_DESIGNATION_HEAD_COACH = 3;
   STAFF_DESIGNATION_ASSISTANT_COACH = 4;
   STAFF_DESIGNATION_OTHER_STAFF = 5;
-}
+} 
 
-
-message AddStaffReq{  
+message StaffDetails{
   string team_id=1;  
   string team_member_id=2;
   string full_name=3; 
@@ -470,17 +469,97 @@ message AddStaffReq{
   google.protobuf.Timestamp dob=6; 
 }
 
+
+message AddStaffReq{  
+    oneof data {
+         StaffDetails meta=1; 
+         bytes chunks=2;
+     }
+}
+
 message AddStaffRes{
   string staff_id=1; 
   string team_member_id=2; 
   string full_name=3; 
   int32 age=4; 
   string designatin=5; 
+} 
+
+message UpdateStaffImageReq{
+
+} 
+
+message UpdateStaffImageRes{
+
+}  
+
+message GetStaffImageUrlReq{
+
+}
+
+message GetStaffImageUrlRes{
+
 }
 
 
+message RemoveStaffImageReq{
+
+} 
+
+message RemoveStaffImageRes{
+
+}
+
+message UpdateStaffReq{
+
+}
+
+message UpdateStaffRes{
+
+} 
+
+message GetStaffReq{
+
+} 
+
+message GetStaffRes{
+
+}
+ 
+message ListTeamStaffReq{
+
+}
+
+message ListTeamStaffRes{
+
+} 
+
+message ReleaseStaffReq{
+
+} 
+
+message ReleaseStaffRes{
+
+}
+
+message TransferOwnershipReq{
+
+} 
+
+message TransferOwnershipRes{
+
+}
+
 
 service StaffService {
-     rpc AddStaff(AddStaffReq)returns(AddStaffRes); 
-  
+     rpc AddStaff(stream AddStaffReq)returns(AddStaffRes); 
+     rpc GetStaff(GetStaffReq)returns(GetStaffRes);
+     rpc UpdateStaffImage(UpdateStaffImageReq)returns(UpdateStaffImageRes); 
+     rpc GetStaffImageUrl(GetStaffImageUrlReq)returns(GetStaffImageUrlRes); 
+     rpc RemoveStaffImage(RemoveStaffImageReq)returns(RemoveStaffImageRes);  
+     rpc UpdateStaff(UpdateStaffReq)returns(UpdateStaffRes);  
+     rpc ListTeamStaff(ListTeamStaffReq)returns(ListTeamStaffRes); 
+     rpc ReleaseStaff(ReleaseStaffRes)returns(ReleaseStaffRes); 
+     rpc TransferOwnership(TransferOwnershipReq)returns(TransferOwnershipRes);
+
 }
