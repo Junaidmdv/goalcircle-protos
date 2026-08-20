@@ -3325,7 +3325,7 @@ func (x *CreateInvitationRes) GetExpiredAt() *timestamppb.Timestamp {
 type StaffDetails struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	Role          StaffRole              `protobuf:"varint,4,opt,name=role,proto3,enum=team.StaffRole" json:"role,omitempty"`
 	Designation   StaffDesignation       `protobuf:"varint,5,opt,name=designation,proto3,enum=team.StaffDesignation" json:"designation,omitempty"`
@@ -3372,9 +3372,9 @@ func (x *StaffDetails) GetTeamId() string {
 	return ""
 }
 
-func (x *StaffDetails) GetTeamMemberId() string {
+func (x *StaffDetails) GetUserId() string {
 	if x != nil {
-		return x.TeamMemberId
+		return x.UserId
 	}
 	return ""
 }
@@ -4394,10 +4394,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xae\x02\n" +
+	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xa1\x02\n" +
 	"\fStaffDetails\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12$\n" +
-	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12#\n" +
 	"\x04role\x18\x04 \x01(\x0e2\x0f.team.StaffRoleR\x04role\x128\n" +
 	"\vdesignation\x18\x05 \x01(\x0e2\x16.team.StaffDesignationR\vdesignation\x12%\n" +

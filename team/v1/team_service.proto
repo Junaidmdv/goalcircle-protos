@@ -471,7 +471,6 @@ enum StaffDesignation {
 
 enum StaffRole {
   STAFF_ROLE_UNSPECIFIED = 0;
-
   STAFF_ROLE_MANAGEMENT = 1;
   STAFF_ROLE_COACH = 2;
   STAFF_ROLE_MEDICAL = 3;
@@ -482,7 +481,7 @@ enum StaffRole {
 
 message StaffDetails{
   string team_id=1;  
-  string team_member_id=2;
+  string user_id=2;
   string full_name=3;  
   StaffRole role=4;
   StaffDesignation designation=5; 
