@@ -4688,6 +4688,9 @@ func (x *ListTeamStaffRes) GetPagination() *StaffPaginationDetails {
 
 type ReleaseStaffReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	StaffId       string                 `protobuf:"bytes,2,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,3,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4722,8 +4725,37 @@ func (*ReleaseStaffReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{63}
 }
 
+func (x *ReleaseStaffReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *ReleaseStaffReq) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *ReleaseStaffReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
 type ReleaseStaffRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	Role          string                 `protobuf:"bytes,4,opt,name=role,proto3" json:"role,omitempty"`
+	Designation   string                 `protobuf:"bytes,5,opt,name=designation,proto3" json:"designation,omitempty"`
+	Status        string                 `protobuf:"bytes,6,opt,name=status,proto3" json:"status,omitempty"`
+	JoinedAt      string                 `protobuf:"bytes,7,opt,name=joined_at,json=joinedAt,proto3" json:"joined_at,omitempty"`
+	ReleasedAt    string                 `protobuf:"bytes,8,opt,name=released_at,json=releasedAt,proto3" json:"released_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4756,6 +4788,62 @@ func (x *ReleaseStaffRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ReleaseStaffRes.ProtoReflect.Descriptor instead.
 func (*ReleaseStaffRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{64}
+}
+
+func (x *ReleaseStaffRes) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetTeamMemberId() string {
+	if x != nil {
+		return x.TeamMemberId
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetDesignation() string {
+	if x != nil {
+		return x.Designation
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetJoinedAt() string {
+	if x != nil {
+		return x.JoinedAt
+	}
+	return ""
+}
+
+func (x *ReleaseStaffRes) GetReleasedAt() string {
+	if x != nil {
+		return x.ReleasedAt
+	}
+	return ""
 }
 
 type TransferOwnershipReq struct {
@@ -5201,9 +5289,21 @@ const file_team_service_proto_rawDesc = "" +
 	"\fstaff_detail\x18\x01 \x03(\v2\x19.team.StaffDetailResponseR\vstaffDetail\x12<\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x1c.team.StaffPaginationDetailsR\n" +
-	"pagination\"\x11\n" +
-	"\x0fReleaseStaffReq\"\x11\n" +
-	"\x0fReleaseStaffRes\"\x16\n" +
+	"pagination\"^\n" +
+	"\x0fReleaseStaffReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x19\n" +
+	"\bstaff_id\x18\x02 \x01(\tR\astaffId\x12\x17\n" +
+	"\ateam_id\x18\x03 \x01(\tR\x06teamId\"\xfb\x01\n" +
+	"\x0fReleaseStaffRes\x12\x19\n" +
+	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
+	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
+	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12\x12\n" +
+	"\x04role\x18\x04 \x01(\tR\x04role\x12 \n" +
+	"\vdesignation\x18\x05 \x01(\tR\vdesignation\x12\x16\n" +
+	"\x06status\x18\x06 \x01(\tR\x06status\x12\x1b\n" +
+	"\tjoined_at\x18\a \x01(\tR\bjoinedAt\x12\x1f\n" +
+	"\vreleased_at\x18\b \x01(\tR\n" +
+	"releasedAt\"\x16\n" +
 	"\x14TransferOwnershipReq\"\x16\n" +
 	"\x14TransferOwnershipRes*\x90\x01\n" +
 	"\n" +

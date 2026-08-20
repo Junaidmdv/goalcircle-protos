@@ -624,11 +624,20 @@ message ListTeamStaffRes{
 } 
 
 message ReleaseStaffReq{
-
+  string user_id=1; 
+  string staff_id=2; 
+  string  team_id=3;
 } 
 
 message ReleaseStaffRes{
-
+  string staff_id = 1;
+  string team_member_id = 2;
+  string full_name = 3;
+  string role = 4;
+  string designation = 5;
+  string status = 6;
+  string joined_at = 7;
+  string released_at = 8;
 }
 
 message TransferOwnershipReq{
