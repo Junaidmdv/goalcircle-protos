@@ -579,8 +579,8 @@ message ListTeamStaffReq{
  string team_id=1; 
  int32   page=2; 
  int32   limit=3; 
- string   role=4; 
- string   designation=5; 
+ StaffRole   role=4; 
+ StaffDesignation   designation=5; 
  string   search=6;
 }
 
