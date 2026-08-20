@@ -3724,6 +3724,8 @@ func (*UpdateStaffImageReq_Chunks) isUpdateStaffImageReq_Data() {}
 
 type UpdateStaffImageRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	PresignedUrl  string                 `protobuf:"bytes,2,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3758,8 +3760,23 @@ func (*UpdateStaffImageRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{50}
 }
 
+func (x *UpdateStaffImageRes) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *UpdateStaffImageRes) GetPresignedUrl() string {
+	if x != nil {
+		return x.PresignedUrl
+	}
+	return ""
+}
+
 type GetStaffImageUrlReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3794,8 +3811,17 @@ func (*GetStaffImageUrlReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{51}
 }
 
+func (x *GetStaffImageUrlReq) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
 type GetStaffImageUrlRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	PresignedUrl  string                 `protobuf:"bytes,2,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3828,6 +3854,20 @@ func (x *GetStaffImageUrlRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetStaffImageUrlRes.ProtoReflect.Descriptor instead.
 func (*GetStaffImageUrlRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *GetStaffImageUrlRes) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *GetStaffImageUrlRes) GetPresignedUrl() string {
+	if x != nil {
+		return x.PresignedUrl
+	}
+	return ""
 }
 
 type RemoveStaffImageReq struct {
@@ -5034,10 +5074,15 @@ const file_team_service_proto_rawDesc = "" +
 	"\x13UpdateStaffImageReq\x12*\n" +
 	"\x04meta\x18\x01 \x01(\v2\x14.team.StaffImageMetaH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
-	"\x04data\"\x15\n" +
-	"\x13UpdateStaffImageRes\"\x15\n" +
-	"\x13GetStaffImageUrlReq\"\x15\n" +
-	"\x13GetStaffImageUrlRes\"\x15\n" +
+	"\x04data\"U\n" +
+	"\x13UpdateStaffImageRes\x12\x19\n" +
+	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12#\n" +
+	"\rpresigned_url\x18\x02 \x01(\tR\fpresignedUrl\"0\n" +
+	"\x13GetStaffImageUrlReq\x12\x19\n" +
+	"\bstaff_id\x18\x01 \x01(\tR\astaffId\"U\n" +
+	"\x13GetStaffImageUrlRes\x12\x19\n" +
+	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12#\n" +
+	"\rpresigned_url\x18\x02 \x01(\tR\fpresignedUrl\"\x15\n" +
 	"\x13RemoveStaffImageReq\"\x15\n" +
 	"\x13RemoveStaffImageRes\"\xfa\x02\n" +
 	"\x0eUpdateStaffReq\x12\x17\n" +
