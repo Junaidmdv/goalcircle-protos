@@ -507,27 +507,11 @@ message AddStaffRes{
 } 
 
 message UpdateStaffImageReq{
-  string user_id=1; 
-  string team_id=2;  
-  string staff_id=3; 
-  optional string full_name=4; 
-  optional google.protobuf.Timestamp dob=5;
-  optional StaffRole role=6; 
-  optional StaffDesignation designation=7; 
-  optional string phone_num=8;
+  
 } 
 
 message UpdateStaffImageRes{
-  string staff_id = 1;
-  string team_member_id = 2;
-  string full_name = 3;
-  google.protobuf.Timestamp date_of_birth = 4;
-  int32 age = 5;
-  string role = 6;
-  string designation = 7;
-  string phone_num = 8;
-  google.protobuf.Timestamp created_at = 9;
-  google.protobuf.Timestamp updated_at = 10;
+
 }  
 
 message GetStaffImageUrlReq{
@@ -548,11 +532,27 @@ message RemoveStaffImageRes{
 }
 
 message UpdateStaffReq{
-
+ string user_id=1; 
+  string team_id=2;  
+  string staff_id=3; 
+  optional string full_name=4; 
+  optional google.protobuf.Timestamp dob=5;
+  optional StaffRole role=6; 
+  optional StaffDesignation designation=7; 
+  optional string phone_num=8;
 }
 
 message UpdateStaffRes{
-
+  string staff_id = 1;
+  string team_member_id = 2;
+  string full_name = 3;
+  google.protobuf.Timestamp date_of_birth = 4;
+  int32 age = 5;
+  string role = 6;
+  string designation = 7;
+  string phone_num = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
 } 
 
 message GetStaffReq{
