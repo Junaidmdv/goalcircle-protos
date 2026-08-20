@@ -536,11 +536,13 @@ message GetStaffImageUrlRes{
 
 
 message RemoveStaffImageReq{
-
+    string user_id=1; 
+    string team_id=2; 
+    string staff_id=3;
 } 
 
 message RemoveStaffImageRes{
-
+   bool success=1;
 }
 
 message UpdateStaffReq{

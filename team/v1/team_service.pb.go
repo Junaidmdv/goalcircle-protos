@@ -3872,6 +3872,9 @@ func (x *GetStaffImageUrlRes) GetPresignedUrl() string {
 
 type RemoveStaffImageReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	StaffId       string                 `protobuf:"bytes,3,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3906,8 +3909,30 @@ func (*RemoveStaffImageReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{53}
 }
 
+func (x *RemoveStaffImageReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *RemoveStaffImageReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *RemoveStaffImageReq) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
 type RemoveStaffImageRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3940,6 +3965,13 @@ func (x *RemoveStaffImageRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use RemoveStaffImageRes.ProtoReflect.Descriptor instead.
 func (*RemoveStaffImageRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *RemoveStaffImageRes) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
 }
 
 type UpdateStaffReq struct {
@@ -5082,9 +5114,13 @@ const file_team_service_proto_rawDesc = "" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\"U\n" +
 	"\x13GetStaffImageUrlRes\x12\x19\n" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12#\n" +
-	"\rpresigned_url\x18\x02 \x01(\tR\fpresignedUrl\"\x15\n" +
-	"\x13RemoveStaffImageReq\"\x15\n" +
-	"\x13RemoveStaffImageRes\"\xfa\x02\n" +
+	"\rpresigned_url\x18\x02 \x01(\tR\fpresignedUrl\"b\n" +
+	"\x13RemoveStaffImageReq\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bstaff_id\x18\x03 \x01(\tR\astaffId\"/\n" +
+	"\x13RemoveStaffImageRes\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xfa\x02\n" +
 	"\x0eUpdateStaffReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x19\n" +
