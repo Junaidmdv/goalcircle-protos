@@ -3582,14 +3582,6 @@ func (x *AddStaffRes) GetRole() string {
 
 type UpdateStaffImageReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	StaffId       string                 `protobuf:"bytes,3,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
-	FullName      *string                `protobuf:"bytes,4,opt,name=full_name,json=fullName,proto3,oneof" json:"full_name,omitempty"`
-	Dob           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=dob,proto3,oneof" json:"dob,omitempty"`
-	Role          *StaffRole             `protobuf:"varint,6,opt,name=role,proto3,enum=team.StaffRole,oneof" json:"role,omitempty"`
-	Designation   *StaffDesignation      `protobuf:"varint,7,opt,name=designation,proto3,enum=team.StaffDesignation,oneof" json:"designation,omitempty"`
-	PhoneNum      *string                `protobuf:"bytes,8,opt,name=phone_num,json=phoneNum,proto3,oneof" json:"phone_num,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3624,74 +3616,8 @@ func (*UpdateStaffImageReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{48}
 }
 
-func (x *UpdateStaffImageReq) GetUserId() string {
-	if x != nil {
-		return x.UserId
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageReq) GetTeamId() string {
-	if x != nil {
-		return x.TeamId
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageReq) GetStaffId() string {
-	if x != nil {
-		return x.StaffId
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageReq) GetFullName() string {
-	if x != nil && x.FullName != nil {
-		return *x.FullName
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageReq) GetDob() *timestamppb.Timestamp {
-	if x != nil {
-		return x.Dob
-	}
-	return nil
-}
-
-func (x *UpdateStaffImageReq) GetRole() StaffRole {
-	if x != nil && x.Role != nil {
-		return *x.Role
-	}
-	return StaffRole_STAFF_ROLE_UNSPECIFIED
-}
-
-func (x *UpdateStaffImageReq) GetDesignation() StaffDesignation {
-	if x != nil && x.Designation != nil {
-		return *x.Designation
-	}
-	return StaffDesignation_STAFF_DESIGNATION_UNSPECIFIED
-}
-
-func (x *UpdateStaffImageReq) GetPhoneNum() string {
-	if x != nil && x.PhoneNum != nil {
-		return *x.PhoneNum
-	}
-	return ""
-}
-
 type UpdateStaffImageRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
-	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
-	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
-	DateOfBirth   *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
-	Age           int32                  `protobuf:"varint,5,opt,name=age,proto3" json:"age,omitempty"`
-	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
-	Designation   string                 `protobuf:"bytes,7,opt,name=designation,proto3" json:"designation,omitempty"`
-	PhoneNum      string                 `protobuf:"bytes,8,opt,name=phone_num,json=phoneNum,proto3" json:"phone_num,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3724,76 +3650,6 @@ func (x *UpdateStaffImageRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateStaffImageRes.ProtoReflect.Descriptor instead.
 func (*UpdateStaffImageRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{49}
-}
-
-func (x *UpdateStaffImageRes) GetStaffId() string {
-	if x != nil {
-		return x.StaffId
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageRes) GetTeamMemberId() string {
-	if x != nil {
-		return x.TeamMemberId
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageRes) GetFullName() string {
-	if x != nil {
-		return x.FullName
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageRes) GetDateOfBirth() *timestamppb.Timestamp {
-	if x != nil {
-		return x.DateOfBirth
-	}
-	return nil
-}
-
-func (x *UpdateStaffImageRes) GetAge() int32 {
-	if x != nil {
-		return x.Age
-	}
-	return 0
-}
-
-func (x *UpdateStaffImageRes) GetRole() string {
-	if x != nil {
-		return x.Role
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageRes) GetDesignation() string {
-	if x != nil {
-		return x.Designation
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageRes) GetPhoneNum() string {
-	if x != nil {
-		return x.PhoneNum
-	}
-	return ""
-}
-
-func (x *UpdateStaffImageRes) GetCreatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return nil
-}
-
-func (x *UpdateStaffImageRes) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
 }
 
 type GetStaffImageUrlReq struct {
@@ -3942,6 +3798,14 @@ func (*RemoveStaffImageRes) Descriptor() ([]byte, []int) {
 
 type UpdateStaffReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	StaffId       string                 `protobuf:"bytes,3,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	FullName      *string                `protobuf:"bytes,4,opt,name=full_name,json=fullName,proto3,oneof" json:"full_name,omitempty"`
+	Dob           *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=dob,proto3,oneof" json:"dob,omitempty"`
+	Role          *StaffRole             `protobuf:"varint,6,opt,name=role,proto3,enum=team.StaffRole,oneof" json:"role,omitempty"`
+	Designation   *StaffDesignation      `protobuf:"varint,7,opt,name=designation,proto3,enum=team.StaffDesignation,oneof" json:"designation,omitempty"`
+	PhoneNum      *string                `protobuf:"bytes,8,opt,name=phone_num,json=phoneNum,proto3,oneof" json:"phone_num,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3976,8 +3840,74 @@ func (*UpdateStaffReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{54}
 }
 
+func (x *UpdateStaffReq) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateStaffReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *UpdateStaffReq) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *UpdateStaffReq) GetFullName() string {
+	if x != nil && x.FullName != nil {
+		return *x.FullName
+	}
+	return ""
+}
+
+func (x *UpdateStaffReq) GetDob() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Dob
+	}
+	return nil
+}
+
+func (x *UpdateStaffReq) GetRole() StaffRole {
+	if x != nil && x.Role != nil {
+		return *x.Role
+	}
+	return StaffRole_STAFF_ROLE_UNSPECIFIED
+}
+
+func (x *UpdateStaffReq) GetDesignation() StaffDesignation {
+	if x != nil && x.Designation != nil {
+		return *x.Designation
+	}
+	return StaffDesignation_STAFF_DESIGNATION_UNSPECIFIED
+}
+
+func (x *UpdateStaffReq) GetPhoneNum() string {
+	if x != nil && x.PhoneNum != nil {
+		return *x.PhoneNum
+	}
+	return ""
+}
+
 type UpdateStaffRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
+	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
+	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	DateOfBirth   *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=date_of_birth,json=dateOfBirth,proto3" json:"date_of_birth,omitempty"`
+	Age           int32                  `protobuf:"varint,5,opt,name=age,proto3" json:"age,omitempty"`
+	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
+	Designation   string                 `protobuf:"bytes,7,opt,name=designation,proto3" json:"designation,omitempty"`
+	PhoneNum      string                 `protobuf:"bytes,8,opt,name=phone_num,json=phoneNum,proto3" json:"phone_num,omitempty"`
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4010,6 +3940,76 @@ func (x *UpdateStaffRes) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdateStaffRes.ProtoReflect.Descriptor instead.
 func (*UpdateStaffRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *UpdateStaffRes) GetStaffId() string {
+	if x != nil {
+		return x.StaffId
+	}
+	return ""
+}
+
+func (x *UpdateStaffRes) GetTeamMemberId() string {
+	if x != nil {
+		return x.TeamMemberId
+	}
+	return ""
+}
+
+func (x *UpdateStaffRes) GetFullName() string {
+	if x != nil {
+		return x.FullName
+	}
+	return ""
+}
+
+func (x *UpdateStaffRes) GetDateOfBirth() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DateOfBirth
+	}
+	return nil
+}
+
+func (x *UpdateStaffRes) GetAge() int32 {
+	if x != nil {
+		return x.Age
+	}
+	return 0
+}
+
+func (x *UpdateStaffRes) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
+func (x *UpdateStaffRes) GetDesignation() string {
+	if x != nil {
+		return x.Designation
+	}
+	return ""
+}
+
+func (x *UpdateStaffRes) GetPhoneNum() string {
+	if x != nil {
+		return x.PhoneNum
+	}
+	return ""
+}
+
+func (x *UpdateStaffRes) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *UpdateStaffRes) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
 }
 
 type GetStaffReq struct {
@@ -4920,8 +4920,14 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"designatin\x18\x05 \x01(\tR\n" +
 	"designatin\x12\x12\n" +
-	"\x04role\x18\x06 \x01(\tR\x04role\"\xff\x02\n" +
-	"\x13UpdateStaffImageReq\x12\x17\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\"\x15\n" +
+	"\x13UpdateStaffImageReq\"\x15\n" +
+	"\x13UpdateStaffImageRes\"\x15\n" +
+	"\x13GetStaffImageUrlReq\"\x15\n" +
+	"\x13GetStaffImageUrlRes\"\x15\n" +
+	"\x13RemoveStaffImageReq\"\x15\n" +
+	"\x13RemoveStaffImageRes\"\xfa\x02\n" +
+	"\x0eUpdateStaffReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bstaff_id\x18\x03 \x01(\tR\astaffId\x12 \n" +
@@ -4936,8 +4942,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\x05_roleB\x0e\n" +
 	"\f_designationB\f\n" +
 	"\n" +
-	"_phone_num\"\x8e\x03\n" +
-	"\x13UpdateStaffImageRes\x12\x19\n" +
+	"_phone_num\"\x89\x03\n" +
+	"\x0eUpdateStaffRes\x12\x19\n" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12>\n" +
@@ -4950,13 +4956,7 @@ const file_team_service_proto_rawDesc = "" +
 	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x15\n" +
-	"\x13GetStaffImageUrlReq\"\x15\n" +
-	"\x13GetStaffImageUrlRes\"\x15\n" +
-	"\x13RemoveStaffImageReq\"\x15\n" +
-	"\x13RemoveStaffImageRes\"\x10\n" +
-	"\x0eUpdateStaffReq\"\x10\n" +
-	"\x0eUpdateStaffRes\"A\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"A\n" +
 	"\vGetStaffReq\x12\x19\n" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\"\xb3\x03\n" +
@@ -5216,12 +5216,12 @@ var file_team_service_proto_depIdxs = []int32{
 	3,  // 27: team.StaffDetails.designation:type_name -> team.StaffDesignation
 	71, // 28: team.StaffDetails.dob:type_name -> google.protobuf.Timestamp
 	50, // 29: team.AddStaffReq.meta:type_name -> team.StaffDetails
-	71, // 30: team.UpdateStaffImageReq.dob:type_name -> google.protobuf.Timestamp
-	4,  // 31: team.UpdateStaffImageReq.role:type_name -> team.StaffRole
-	3,  // 32: team.UpdateStaffImageReq.designation:type_name -> team.StaffDesignation
-	71, // 33: team.UpdateStaffImageRes.date_of_birth:type_name -> google.protobuf.Timestamp
-	71, // 34: team.UpdateStaffImageRes.created_at:type_name -> google.protobuf.Timestamp
-	71, // 35: team.UpdateStaffImageRes.updated_at:type_name -> google.protobuf.Timestamp
+	71, // 30: team.UpdateStaffReq.dob:type_name -> google.protobuf.Timestamp
+	4,  // 31: team.UpdateStaffReq.role:type_name -> team.StaffRole
+	3,  // 32: team.UpdateStaffReq.designation:type_name -> team.StaffDesignation
+	71, // 33: team.UpdateStaffRes.date_of_birth:type_name -> google.protobuf.Timestamp
+	71, // 34: team.UpdateStaffRes.created_at:type_name -> google.protobuf.Timestamp
+	71, // 35: team.UpdateStaffRes.updated_at:type_name -> google.protobuf.Timestamp
 	71, // 36: team.GetStaffRes.created_at:type_name -> google.protobuf.Timestamp
 	4,  // 37: team.ListTeamStaffReq.role:type_name -> team.StaffRole
 	3,  // 38: team.ListTeamStaffReq.designation:type_name -> team.StaffDesignation
@@ -5312,7 +5312,7 @@ func file_team_service_proto_init() {
 		(*AddStaffReq_Meta)(nil),
 		(*AddStaffReq_Chunks)(nil),
 	}
-	file_team_service_proto_msgTypes[48].OneofWrappers = []any{}
+	file_team_service_proto_msgTypes[54].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[57].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
