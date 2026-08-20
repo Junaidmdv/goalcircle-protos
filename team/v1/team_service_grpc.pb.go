@@ -857,7 +857,7 @@ const (
 type StaffServiceClient interface {
 	AddStaff(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddStaffReq, AddStaffRes], error)
 	GetStaff(ctx context.Context, in *GetStaffReq, opts ...grpc.CallOption) (*GetStaffRes, error)
-	UpdateStaffImage(ctx context.Context, in *UpdateStaffImageReq, opts ...grpc.CallOption) (*UpdateStaffImageRes, error)
+	UpdateStaffImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdateStaffImageReq, UpdateStaffImageRes], error)
 	GetStaffImageUrl(ctx context.Context, in *GetStaffImageUrlReq, opts ...grpc.CallOption) (*GetStaffImageUrlRes, error)
 	RemoveStaffImage(ctx context.Context, in *RemoveStaffImageReq, opts ...grpc.CallOption) (*RemoveStaffImageRes, error)
 	UpdateStaff(ctx context.Context, in *UpdateStaffReq, opts ...grpc.CallOption) (*UpdateStaffRes, error)
@@ -897,15 +897,18 @@ func (c *staffServiceClient) GetStaff(ctx context.Context, in *GetStaffReq, opts
 	return out, nil
 }
 
-func (c *staffServiceClient) UpdateStaffImage(ctx context.Context, in *UpdateStaffImageReq, opts ...grpc.CallOption) (*UpdateStaffImageRes, error) {
+func (c *staffServiceClient) UpdateStaffImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdateStaffImageReq, UpdateStaffImageRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateStaffImageRes)
-	err := c.cc.Invoke(ctx, StaffService_UpdateStaffImage_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &StaffService_ServiceDesc.Streams[1], StaffService_UpdateStaffImage_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[UpdateStaffImageReq, UpdateStaffImageRes]{ClientStream: stream}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type StaffService_UpdateStaffImageClient = grpc.ClientStreamingClient[UpdateStaffImageReq, UpdateStaffImageRes]
 
 func (c *staffServiceClient) GetStaffImageUrl(ctx context.Context, in *GetStaffImageUrlReq, opts ...grpc.CallOption) (*GetStaffImageUrlRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -973,7 +976,7 @@ func (c *staffServiceClient) TransferOwnership(ctx context.Context, in *Transfer
 type StaffServiceServer interface {
 	AddStaff(grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]) error
 	GetStaff(context.Context, *GetStaffReq) (*GetStaffRes, error)
-	UpdateStaffImage(context.Context, *UpdateStaffImageReq) (*UpdateStaffImageRes, error)
+	UpdateStaffImage(grpc.ClientStreamingServer[UpdateStaffImageReq, UpdateStaffImageRes]) error
 	GetStaffImageUrl(context.Context, *GetStaffImageUrlReq) (*GetStaffImageUrlRes, error)
 	RemoveStaffImage(context.Context, *RemoveStaffImageReq) (*RemoveStaffImageRes, error)
 	UpdateStaff(context.Context, *UpdateStaffReq) (*UpdateStaffRes, error)
@@ -996,8 +999,8 @@ func (UnimplementedStaffServiceServer) AddStaff(grpc.ClientStreamingServer[AddSt
 func (UnimplementedStaffServiceServer) GetStaff(context.Context, *GetStaffReq) (*GetStaffRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStaff not implemented")
 }
-func (UnimplementedStaffServiceServer) UpdateStaffImage(context.Context, *UpdateStaffImageReq) (*UpdateStaffImageRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateStaffImage not implemented")
+func (UnimplementedStaffServiceServer) UpdateStaffImage(grpc.ClientStreamingServer[UpdateStaffImageReq, UpdateStaffImageRes]) error {
+	return status.Errorf(codes.Unimplemented, "method UpdateStaffImage not implemented")
 }
 func (UnimplementedStaffServiceServer) GetStaffImageUrl(context.Context, *GetStaffImageUrlReq) (*GetStaffImageUrlRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStaffImageUrl not implemented")
@@ -1063,23 +1066,12 @@ func _StaffService_GetStaff_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StaffService_UpdateStaffImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateStaffImageReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StaffServiceServer).UpdateStaffImage(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StaffService_UpdateStaffImage_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffServiceServer).UpdateStaffImage(ctx, req.(*UpdateStaffImageReq))
-	}
-	return interceptor(ctx, in, info, handler)
+func _StaffService_UpdateStaffImage_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(StaffServiceServer).UpdateStaffImage(&grpc.GenericServerStream[UpdateStaffImageReq, UpdateStaffImageRes]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type StaffService_UpdateStaffImageServer = grpc.ClientStreamingServer[UpdateStaffImageReq, UpdateStaffImageRes]
 
 func _StaffService_GetStaffImageUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStaffImageUrlReq)
@@ -1201,10 +1193,6 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _StaffService_GetStaff_Handler,
 		},
 		{
-			MethodName: "UpdateStaffImage",
-			Handler:    _StaffService_UpdateStaffImage_Handler,
-		},
-		{
 			MethodName: "GetStaffImageUrl",
 			Handler:    _StaffService_GetStaffImageUrl_Handler,
 		},
@@ -1233,6 +1221,11 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "AddStaff",
 			Handler:       _StaffService_AddStaff_Handler,
+			ClientStreams: true,
+		},
+		{
+			StreamName:    "UpdateStaffImage",
+			Handler:       _StaffService_UpdateStaffImage_Handler,
 			ClientStreams: true,
 		},
 	},

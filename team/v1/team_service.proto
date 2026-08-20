@@ -506,8 +506,18 @@ message AddStaffRes{
   string role=6;
 } 
 
-message UpdateStaffImageReq{
-  
+message StaffImageMeta{
+   string team_id=1; 
+   string staff_id=2; 
+   string  user_id=3;
+}
+
+message UpdateStaffImageReq{  
+ oneof data {
+         StaffImageMeta meta=1; 
+         bytes chunks=2;
+     }
+
 } 
 
 message UpdateStaffImageRes{
@@ -629,7 +639,7 @@ message TransferOwnershipRes{
 service StaffService {
      rpc AddStaff(stream AddStaffReq)returns(AddStaffRes); 
      rpc GetStaff(GetStaffReq)returns(GetStaffRes);
-     rpc UpdateStaffImage(UpdateStaffImageReq)returns(UpdateStaffImageRes); 
+     rpc UpdateStaffImage(stream UpdateStaffImageReq)returns(UpdateStaffImageRes); 
      rpc GetStaffImageUrl(GetStaffImageUrlReq)returns(GetStaffImageUrlRes); 
      rpc RemoveStaffImage(RemoveStaffImageReq)returns(RemoveStaffImageRes);  
      rpc UpdateStaff(UpdateStaffReq)returns(UpdateStaffRes);  
