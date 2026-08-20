@@ -502,7 +502,8 @@ message AddStaffRes{
   string team_member_id=2; 
   string full_name=3; 
   int32 age=4; 
-  string designatin=5; 
+  string designatin=5;  
+  string role=6;
 } 
 
 message UpdateStaffImageReq{

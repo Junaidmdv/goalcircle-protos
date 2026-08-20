@@ -3503,6 +3503,7 @@ type AddStaffRes struct {
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	Age           int32                  `protobuf:"varint,4,opt,name=age,proto3" json:"age,omitempty"`
 	Designatin    string                 `protobuf:"bytes,5,opt,name=designatin,proto3" json:"designatin,omitempty"`
+	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3568,6 +3569,13 @@ func (x *AddStaffRes) GetAge() int32 {
 func (x *AddStaffRes) GetDesignatin() string {
 	if x != nil {
 		return x.Designatin
+	}
+	return ""
+}
+
+func (x *AddStaffRes) GetRole() string {
+	if x != nil {
+		return x.Role
 	}
 	return ""
 }
@@ -4407,7 +4415,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\vAddStaffReq\x12(\n" +
 	"\x04meta\x18\x01 \x01(\v2\x12.team.StaffDetailsH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
-	"\x04data\"\x9d\x01\n" +
+	"\x04data\"\xb1\x01\n" +
 	"\vAddStaffRes\x12\x19\n" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
@@ -4415,7 +4423,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\x03age\x18\x04 \x01(\x05R\x03age\x12\x1e\n" +
 	"\n" +
 	"designatin\x18\x05 \x01(\tR\n" +
-	"designatin\"\x15\n" +
+	"designatin\x12\x12\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\"\x15\n" +
 	"\x13UpdateStaffImageReq\"\x15\n" +
 	"\x13UpdateStaffImageRes\"\x15\n" +
 	"\x13GetStaffImageUrlReq\"\x15\n" +
