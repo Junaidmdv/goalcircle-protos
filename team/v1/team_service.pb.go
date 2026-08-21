@@ -1059,6 +1059,7 @@ func (x *RegisterTeamMemberReq) GetRefreshToken() string {
 type RegisterTeamMemberRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserDetails   *UserRes               `protobuf:"bytes,1,opt,name=user_details,json=userDetails,proto3" json:"user_details,omitempty"`
+	StaffDetails  *StaffDetails          `protobuf:"bytes,2,opt,name=staff_details,json=staffDetails,proto3" json:"staff_details,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1096,6 +1097,13 @@ func (*RegisterTeamMemberRes) Descriptor() ([]byte, []int) {
 func (x *RegisterTeamMemberRes) GetUserDetails() *UserRes {
 	if x != nil {
 		return x.UserDetails
+	}
+	return nil
+}
+
+func (x *RegisterTeamMemberRes) GetStaffDetails() *StaffDetails {
+	if x != nil {
+		return x.StaffDetails
 	}
 	return nil
 }
@@ -3757,8 +3765,7 @@ type StaffDetails struct {
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	Role          StaffRole              `protobuf:"varint,4,opt,name=role,proto3,enum=team.StaffRole" json:"role,omitempty"`
 	Designation   StaffDesignation       `protobuf:"varint,5,opt,name=designation,proto3,enum=team.StaffDesignation" json:"designation,omitempty"`
-	Specialised   *string                `protobuf:"bytes,6,opt,name=specialised,proto3,oneof" json:"specialised,omitempty"`
-	Dob           *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=dob,proto3" json:"dob,omitempty"`
+	Dob           *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=dob,proto3" json:"dob,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3826,13 +3833,6 @@ func (x *StaffDetails) GetDesignation() StaffDesignation {
 		return x.Designation
 	}
 	return StaffDesignation_STAFF_DESIGNATION_UNSPECIFIED
-}
-
-func (x *StaffDetails) GetSpecialised() string {
-	if x != nil && x.Specialised != nil {
-		return *x.Specialised
-	}
-	return ""
 }
 
 func (x *StaffDetails) GetDob() *timestamppb.Timestamp {
@@ -5422,9 +5422,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\x15RegisterTeamMemberReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12#\n" +
-	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"I\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"\x82\x01\n" +
 	"\x15RegisterTeamMemberRes\x120\n" +
-	"\fuser_details\x18\x01 \x01(\v2\r.team.UserResR\vuserDetails\",\n" +
+	"\fuser_details\x18\x01 \x01(\v2\r.team.UserResR\vuserDetails\x127\n" +
+	"\rstaff_details\x18\x02 \x01(\v2\x12.team.StaffDetailsR\fstaffDetails\",\n" +
 	"\rSetCaptainRes\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"^\n" +
 	"\rSetCaptainReq\x12\x17\n" +
@@ -5648,16 +5649,14 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xa1\x02\n" +
+	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xea\x01\n" +
 	"\fStaffDetails\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12#\n" +
 	"\x04role\x18\x04 \x01(\x0e2\x0f.team.StaffRoleR\x04role\x128\n" +
-	"\vdesignation\x18\x05 \x01(\x0e2\x16.team.StaffDesignationR\vdesignation\x12%\n" +
-	"\vspecialised\x18\x06 \x01(\tH\x00R\vspecialised\x88\x01\x01\x12,\n" +
-	"\x03dob\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x03dobB\x0e\n" +
-	"\f_specialised\"Y\n" +
+	"\vdesignation\x18\x05 \x01(\x0e2\x16.team.StaffDesignationR\vdesignation\x12,\n" +
+	"\x03dob\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x03dob\"Y\n" +
 	"\vAddStaffReq\x12(\n" +
 	"\x04meta\x18\x01 \x01(\v2\x12.team.StaffDetailsH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
@@ -5873,7 +5872,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x10RemoveStaffImage\x12\x19.team.RemoveStaffImageReq\x1a\x19.team.RemoveStaffImageRes\x129\n" +
 	"\vUpdateStaff\x12\x14.team.UpdateStaffReq\x1a\x14.team.UpdateStaffRes\x12?\n" +
 	"\rListTeamStaff\x12\x16.team.ListTeamStaffReq\x1a\x16.team.ListTeamStaffRes\x12<\n" +
-	"\fReleaseStaff\x12\x15.team.ReleaseStaffRes\x1a\x15.team.ReleaseStaffRes\x12K\n" +
+	"\fReleaseStaff\x12\x15.team.ReleaseStaffReq\x1a\x15.team.ReleaseStaffRes\x12K\n" +
 	"\x11TransferOwnership\x12\x1a.team.TransferOwnershipReq\x1a\x1a.team.TransferOwnershipResB7Z5github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1b\x06proto3"
 
 var (
@@ -5977,109 +5976,110 @@ var file_team_service_proto_depIdxs = []int32{
 	8,  // 5: team.CreateTeamRes.team_details:type_name -> team.TeamDetailsRes
 	9,  // 6: team.CreateTeamRes.team_owner:type_name -> team.TeamMemberDetails
 	7,  // 7: team.RegisterTeamMemberRes.user_details:type_name -> team.UserRes
-	0,  // 8: team.ListTeamReq.team_status:type_name -> team.TeamStatus
-	0,  // 9: team.TeamDetails.team_status:type_name -> team.TeamStatus
-	20, // 10: team.ListTeamRes.team_details:type_name -> team.TeamDetails
-	21, // 11: team.ListTeamRes.pagination:type_name -> team.PaginateTeam
-	25, // 12: team.AddLogoReq.meta_data:type_name -> team.TeamLogoMetaData
-	75, // 13: team.PlayerDetails.date_of_birth:type_name -> google.protobuf.Timestamp
-	30, // 14: team.AddPlayerReq.player_details:type_name -> team.PlayerDetails
-	75, // 15: team.UpdatePlayerRequest.date_of_birth:type_name -> google.protobuf.Timestamp
-	2,  // 16: team.UpdatePlayerRequest.position:type_name -> team.PlayerPosition
-	1,  // 17: team.UpdatePlayerRequest.status:type_name -> team.PlayerStatus
-	75, // 18: team.UpdatePlayersResponse.date_of_birth:type_name -> google.protobuf.Timestamp
-	2,  // 19: team.ListTeamPlayerReq.position:type_name -> team.PlayerPosition
-	1,  // 20: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
-	38, // 21: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
-	37, // 22: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
-	75, // 23: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
-	2,  // 24: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
-	1,  // 25: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
-	75, // 26: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
-	2,  // 27: team.ReleasePlayerRes.position:type_name -> team.PlayerPosition
-	1,  // 28: team.ReleasePlayerRes.status:type_name -> team.PlayerStatus
-	75, // 29: team.ReleasePlayerRes.released_at:type_name -> google.protobuf.Timestamp
-	75, // 30: team.ReleasePlayerRes.joined_at:type_name -> google.protobuf.Timestamp
-	44, // 31: team.UpdatePlayerImageReq.meta:type_name -> team.UpdatePlayerImageMeta
-	75, // 32: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
-	75, // 33: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
-	4,  // 34: team.StaffDetails.role:type_name -> team.StaffRole
-	3,  // 35: team.StaffDetails.designation:type_name -> team.StaffDesignation
-	75, // 36: team.StaffDetails.dob:type_name -> google.protobuf.Timestamp
-	53, // 37: team.AddStaffReq.meta:type_name -> team.StaffDetails
-	56, // 38: team.UpdateStaffImageReq.meta:type_name -> team.StaffImageMeta
-	75, // 39: team.UpdateStaffReq.dob:type_name -> google.protobuf.Timestamp
-	4,  // 40: team.UpdateStaffReq.role:type_name -> team.StaffRole
-	3,  // 41: team.UpdateStaffReq.designation:type_name -> team.StaffDesignation
-	75, // 42: team.UpdateStaffRes.date_of_birth:type_name -> google.protobuf.Timestamp
-	75, // 43: team.UpdateStaffRes.created_at:type_name -> google.protobuf.Timestamp
-	75, // 44: team.UpdateStaffRes.updated_at:type_name -> google.protobuf.Timestamp
-	75, // 45: team.GetStaffRes.created_at:type_name -> google.protobuf.Timestamp
-	4,  // 46: team.ListTeamStaffReq.role:type_name -> team.StaffRole
-	3,  // 47: team.ListTeamStaffReq.designation:type_name -> team.StaffDesignation
-	75, // 48: team.StaffDetailResponse.released_at:type_name -> google.protobuf.Timestamp
-	75, // 49: team.StaffDetailResponse.joined_at:type_name -> google.protobuf.Timestamp
-	68, // 50: team.ListTeamStaffRes.staff_detail:type_name -> team.StaffDetailResponse
-	69, // 51: team.ListTeamStaffRes.pagination:type_name -> team.StaffPaginationDetails
-	6,  // 52: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
-	11, // 53: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
-	13, // 54: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
-	16, // 55: team.TeamService.SetCaptain:input_type -> team.SetCaptainReq
-	18, // 56: team.TeamService.SetViceCaptain:input_type -> team.SetViceCaptainReq
-	19, // 57: team.TeamService.ListTeam:input_type -> team.ListTeamReq
-	23, // 58: team.TeamService.GetTeam:input_type -> team.GetTeamReq
-	26, // 59: team.TeamService.AddLogo:input_type -> team.AddLogoReq
-	28, // 60: team.TeamService.GetLogoPresignedUrl:input_type -> team.GetPresignedUrlReq
-	31, // 61: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
-	33, // 62: team.PlayerService.UpdatePlayerDetails:input_type -> team.UpdatePlayerRequest
-	36, // 63: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
-	40, // 64: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
-	42, // 65: team.PlayerService.ReleasePlayer:input_type -> team.ReleasePlayerReq
-	45, // 66: team.PlayerService.UpdatePlayerImage:input_type -> team.UpdatePlayerImageReq
-	47, // 67: team.PlayerService.GetPlayerPresignedUrl:input_type -> team.GetPlayerPresignedUrlReq
-	49, // 68: team.PlayerService.RemovePlayerImage:input_type -> team.RemovePlayerImageReq
-	51, // 69: team.TeamInvite.CreateInvitation:input_type -> team.CreateInvitationReq
-	54, // 70: team.StaffService.AddStaff:input_type -> team.AddStaffReq
-	65, // 71: team.StaffService.GetStaff:input_type -> team.GetStaffReq
-	57, // 72: team.StaffService.UpdateStaffImage:input_type -> team.UpdateStaffImageReq
-	59, // 73: team.StaffService.GetStaffImageUrl:input_type -> team.GetStaffImageUrlReq
-	61, // 74: team.StaffService.RemoveStaffImage:input_type -> team.RemoveStaffImageReq
-	63, // 75: team.StaffService.UpdateStaff:input_type -> team.UpdateStaffReq
-	67, // 76: team.StaffService.ListTeamStaff:input_type -> team.ListTeamStaffReq
-	72, // 77: team.StaffService.ReleaseStaff:input_type -> team.ReleaseStaffRes
-	73, // 78: team.StaffService.TransferOwnership:input_type -> team.TransferOwnershipReq
-	10, // 79: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
-	12, // 80: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
-	14, // 81: team.TeamService.RegisterTeamMember:output_type -> team.RegisterTeamMemberRes
-	15, // 82: team.TeamService.SetCaptain:output_type -> team.SetCaptainRes
-	17, // 83: team.TeamService.SetViceCaptain:output_type -> team.SetViceCaptainRes
-	22, // 84: team.TeamService.ListTeam:output_type -> team.ListTeamRes
-	24, // 85: team.TeamService.GetTeam:output_type -> team.GetTeamRes
-	27, // 86: team.TeamService.AddLogo:output_type -> team.AddLogoRes
-	29, // 87: team.TeamService.GetLogoPresignedUrl:output_type -> team.GetPresignedUrlRes
-	32, // 88: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
-	34, // 89: team.PlayerService.UpdatePlayerDetails:output_type -> team.UpdatePlayersResponse
-	39, // 90: team.PlayerService.ListTeamPlayer:output_type -> team.ListTeamPlayerRes
-	41, // 91: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
-	43, // 92: team.PlayerService.ReleasePlayer:output_type -> team.ReleasePlayerRes
-	46, // 93: team.PlayerService.UpdatePlayerImage:output_type -> team.UpdatePlayerImageRes
-	48, // 94: team.PlayerService.GetPlayerPresignedUrl:output_type -> team.GetPlayerPresignedUrlRes
-	50, // 95: team.PlayerService.RemovePlayerImage:output_type -> team.RemovePlayerImageRes
-	52, // 96: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
-	55, // 97: team.StaffService.AddStaff:output_type -> team.AddStaffRes
-	66, // 98: team.StaffService.GetStaff:output_type -> team.GetStaffRes
-	58, // 99: team.StaffService.UpdateStaffImage:output_type -> team.UpdateStaffImageRes
-	60, // 100: team.StaffService.GetStaffImageUrl:output_type -> team.GetStaffImageUrlRes
-	62, // 101: team.StaffService.RemoveStaffImage:output_type -> team.RemoveStaffImageRes
-	64, // 102: team.StaffService.UpdateStaff:output_type -> team.UpdateStaffRes
-	70, // 103: team.StaffService.ListTeamStaff:output_type -> team.ListTeamStaffRes
-	72, // 104: team.StaffService.ReleaseStaff:output_type -> team.ReleaseStaffRes
-	74, // 105: team.StaffService.TransferOwnership:output_type -> team.TransferOwnershipRes
-	79, // [79:106] is the sub-list for method output_type
-	52, // [52:79] is the sub-list for method input_type
-	52, // [52:52] is the sub-list for extension type_name
-	52, // [52:52] is the sub-list for extension extendee
-	0,  // [0:52] is the sub-list for field type_name
+	53, // 8: team.RegisterTeamMemberRes.staff_details:type_name -> team.StaffDetails
+	0,  // 9: team.ListTeamReq.team_status:type_name -> team.TeamStatus
+	0,  // 10: team.TeamDetails.team_status:type_name -> team.TeamStatus
+	20, // 11: team.ListTeamRes.team_details:type_name -> team.TeamDetails
+	21, // 12: team.ListTeamRes.pagination:type_name -> team.PaginateTeam
+	25, // 13: team.AddLogoReq.meta_data:type_name -> team.TeamLogoMetaData
+	75, // 14: team.PlayerDetails.date_of_birth:type_name -> google.protobuf.Timestamp
+	30, // 15: team.AddPlayerReq.player_details:type_name -> team.PlayerDetails
+	75, // 16: team.UpdatePlayerRequest.date_of_birth:type_name -> google.protobuf.Timestamp
+	2,  // 17: team.UpdatePlayerRequest.position:type_name -> team.PlayerPosition
+	1,  // 18: team.UpdatePlayerRequest.status:type_name -> team.PlayerStatus
+	75, // 19: team.UpdatePlayersResponse.date_of_birth:type_name -> google.protobuf.Timestamp
+	2,  // 20: team.ListTeamPlayerReq.position:type_name -> team.PlayerPosition
+	1,  // 21: team.ListTeamPlayerReq.player_status:type_name -> team.PlayerStatus
+	38, // 22: team.ListTeamPlayerRes.paginate:type_name -> team.PaginationDetails
+	37, // 23: team.ListTeamPlayerRes.players:type_name -> team.PlayerList
+	75, // 24: team.GetPlayerRes.dob:type_name -> google.protobuf.Timestamp
+	2,  // 25: team.GetPlayerRes.player_position:type_name -> team.PlayerPosition
+	1,  // 26: team.GetPlayerRes.player_status:type_name -> team.PlayerStatus
+	75, // 27: team.GetPlayerRes.created_at:type_name -> google.protobuf.Timestamp
+	2,  // 28: team.ReleasePlayerRes.position:type_name -> team.PlayerPosition
+	1,  // 29: team.ReleasePlayerRes.status:type_name -> team.PlayerStatus
+	75, // 30: team.ReleasePlayerRes.released_at:type_name -> google.protobuf.Timestamp
+	75, // 31: team.ReleasePlayerRes.joined_at:type_name -> google.protobuf.Timestamp
+	44, // 32: team.UpdatePlayerImageReq.meta:type_name -> team.UpdatePlayerImageMeta
+	75, // 33: team.CreateInvitationRes.created_at:type_name -> google.protobuf.Timestamp
+	75, // 34: team.CreateInvitationRes.expired_at:type_name -> google.protobuf.Timestamp
+	4,  // 35: team.StaffDetails.role:type_name -> team.StaffRole
+	3,  // 36: team.StaffDetails.designation:type_name -> team.StaffDesignation
+	75, // 37: team.StaffDetails.dob:type_name -> google.protobuf.Timestamp
+	53, // 38: team.AddStaffReq.meta:type_name -> team.StaffDetails
+	56, // 39: team.UpdateStaffImageReq.meta:type_name -> team.StaffImageMeta
+	75, // 40: team.UpdateStaffReq.dob:type_name -> google.protobuf.Timestamp
+	4,  // 41: team.UpdateStaffReq.role:type_name -> team.StaffRole
+	3,  // 42: team.UpdateStaffReq.designation:type_name -> team.StaffDesignation
+	75, // 43: team.UpdateStaffRes.date_of_birth:type_name -> google.protobuf.Timestamp
+	75, // 44: team.UpdateStaffRes.created_at:type_name -> google.protobuf.Timestamp
+	75, // 45: team.UpdateStaffRes.updated_at:type_name -> google.protobuf.Timestamp
+	75, // 46: team.GetStaffRes.created_at:type_name -> google.protobuf.Timestamp
+	4,  // 47: team.ListTeamStaffReq.role:type_name -> team.StaffRole
+	3,  // 48: team.ListTeamStaffReq.designation:type_name -> team.StaffDesignation
+	75, // 49: team.StaffDetailResponse.released_at:type_name -> google.protobuf.Timestamp
+	75, // 50: team.StaffDetailResponse.joined_at:type_name -> google.protobuf.Timestamp
+	68, // 51: team.ListTeamStaffRes.staff_detail:type_name -> team.StaffDetailResponse
+	69, // 52: team.ListTeamStaffRes.pagination:type_name -> team.StaffPaginationDetails
+	6,  // 53: team.TeamService.CreateTeam:input_type -> team.CreateTeamReq
+	11, // 54: team.TeamService.UpdateTeam:input_type -> team.UpdateTeamReq
+	13, // 55: team.TeamService.RegisterTeamMember:input_type -> team.RegisterTeamMemberReq
+	16, // 56: team.TeamService.SetCaptain:input_type -> team.SetCaptainReq
+	18, // 57: team.TeamService.SetViceCaptain:input_type -> team.SetViceCaptainReq
+	19, // 58: team.TeamService.ListTeam:input_type -> team.ListTeamReq
+	23, // 59: team.TeamService.GetTeam:input_type -> team.GetTeamReq
+	26, // 60: team.TeamService.AddLogo:input_type -> team.AddLogoReq
+	28, // 61: team.TeamService.GetLogoPresignedUrl:input_type -> team.GetPresignedUrlReq
+	31, // 62: team.PlayerService.AddNewPlayer:input_type -> team.AddPlayerReq
+	33, // 63: team.PlayerService.UpdatePlayerDetails:input_type -> team.UpdatePlayerRequest
+	36, // 64: team.PlayerService.ListTeamPlayer:input_type -> team.ListTeamPlayerReq
+	40, // 65: team.PlayerService.GetPlayer:input_type -> team.GetPlayerReq
+	42, // 66: team.PlayerService.ReleasePlayer:input_type -> team.ReleasePlayerReq
+	45, // 67: team.PlayerService.UpdatePlayerImage:input_type -> team.UpdatePlayerImageReq
+	47, // 68: team.PlayerService.GetPlayerPresignedUrl:input_type -> team.GetPlayerPresignedUrlReq
+	49, // 69: team.PlayerService.RemovePlayerImage:input_type -> team.RemovePlayerImageReq
+	51, // 70: team.TeamInvite.CreateInvitation:input_type -> team.CreateInvitationReq
+	54, // 71: team.StaffService.AddStaff:input_type -> team.AddStaffReq
+	65, // 72: team.StaffService.GetStaff:input_type -> team.GetStaffReq
+	57, // 73: team.StaffService.UpdateStaffImage:input_type -> team.UpdateStaffImageReq
+	59, // 74: team.StaffService.GetStaffImageUrl:input_type -> team.GetStaffImageUrlReq
+	61, // 75: team.StaffService.RemoveStaffImage:input_type -> team.RemoveStaffImageReq
+	63, // 76: team.StaffService.UpdateStaff:input_type -> team.UpdateStaffReq
+	67, // 77: team.StaffService.ListTeamStaff:input_type -> team.ListTeamStaffReq
+	71, // 78: team.StaffService.ReleaseStaff:input_type -> team.ReleaseStaffReq
+	73, // 79: team.StaffService.TransferOwnership:input_type -> team.TransferOwnershipReq
+	10, // 80: team.TeamService.CreateTeam:output_type -> team.CreateTeamRes
+	12, // 81: team.TeamService.UpdateTeam:output_type -> team.UpdateTeamRes
+	14, // 82: team.TeamService.RegisterTeamMember:output_type -> team.RegisterTeamMemberRes
+	15, // 83: team.TeamService.SetCaptain:output_type -> team.SetCaptainRes
+	17, // 84: team.TeamService.SetViceCaptain:output_type -> team.SetViceCaptainRes
+	22, // 85: team.TeamService.ListTeam:output_type -> team.ListTeamRes
+	24, // 86: team.TeamService.GetTeam:output_type -> team.GetTeamRes
+	27, // 87: team.TeamService.AddLogo:output_type -> team.AddLogoRes
+	29, // 88: team.TeamService.GetLogoPresignedUrl:output_type -> team.GetPresignedUrlRes
+	32, // 89: team.PlayerService.AddNewPlayer:output_type -> team.AddPlayerRes
+	34, // 90: team.PlayerService.UpdatePlayerDetails:output_type -> team.UpdatePlayersResponse
+	39, // 91: team.PlayerService.ListTeamPlayer:output_type -> team.ListTeamPlayerRes
+	41, // 92: team.PlayerService.GetPlayer:output_type -> team.GetPlayerRes
+	43, // 93: team.PlayerService.ReleasePlayer:output_type -> team.ReleasePlayerRes
+	46, // 94: team.PlayerService.UpdatePlayerImage:output_type -> team.UpdatePlayerImageRes
+	48, // 95: team.PlayerService.GetPlayerPresignedUrl:output_type -> team.GetPlayerPresignedUrlRes
+	50, // 96: team.PlayerService.RemovePlayerImage:output_type -> team.RemovePlayerImageRes
+	52, // 97: team.TeamInvite.CreateInvitation:output_type -> team.CreateInvitationRes
+	55, // 98: team.StaffService.AddStaff:output_type -> team.AddStaffRes
+	66, // 99: team.StaffService.GetStaff:output_type -> team.GetStaffRes
+	58, // 100: team.StaffService.UpdateStaffImage:output_type -> team.UpdateStaffImageRes
+	60, // 101: team.StaffService.GetStaffImageUrl:output_type -> team.GetStaffImageUrlRes
+	62, // 102: team.StaffService.RemoveStaffImage:output_type -> team.RemoveStaffImageRes
+	64, // 103: team.StaffService.UpdateStaff:output_type -> team.UpdateStaffRes
+	70, // 104: team.StaffService.ListTeamStaff:output_type -> team.ListTeamStaffRes
+	72, // 105: team.StaffService.ReleaseStaff:output_type -> team.ReleaseStaffRes
+	74, // 106: team.StaffService.TransferOwnership:output_type -> team.TransferOwnershipRes
+	80, // [80:107] is the sub-list for method output_type
+	53, // [53:80] is the sub-list for method input_type
+	53, // [53:53] is the sub-list for extension type_name
+	53, // [53:53] is the sub-list for extension extendee
+	0,  // [0:53] is the sub-list for field type_name
 }
 
 func init() { file_team_service_proto_init() }
@@ -6102,7 +6102,6 @@ func file_team_service_proto_init() {
 		(*UpdatePlayerImageReq_Meta)(nil),
 		(*UpdatePlayerImageReq_Chunks)(nil),
 	}
-	file_team_service_proto_msgTypes[48].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[49].OneofWrappers = []any{
 		(*AddStaffReq_Meta)(nil),
 		(*AddStaffReq_Chunks)(nil),

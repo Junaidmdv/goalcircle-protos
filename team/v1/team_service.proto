@@ -92,7 +92,8 @@ message RegisterTeamMemberReq{
 } 
 
 message RegisterTeamMemberRes{
-   UserRes user_details =1;
+   UserRes user_details =1; 
+   StaffDetails staff_details = 2;
 }
 
 
@@ -515,8 +516,7 @@ message StaffDetails{
   string full_name=3;  
   StaffRole role=4;
   StaffDesignation designation=5; 
-  optional string specialised=6;
-  google.protobuf.Timestamp dob=7; 
+  google.protobuf.Timestamp dob=6; 
 }
 
 
@@ -687,7 +687,7 @@ service StaffService {
      rpc RemoveStaffImage(RemoveStaffImageReq)returns(RemoveStaffImageRes);  
      rpc UpdateStaff(UpdateStaffReq)returns(UpdateStaffRes);  
      rpc ListTeamStaff(ListTeamStaffReq)returns(ListTeamStaffRes); 
-     rpc ReleaseStaff(ReleaseStaffRes)returns(ReleaseStaffRes); 
+     rpc ReleaseStaff(ReleaseStaffReq)returns(ReleaseStaffRes); 
      rpc TransferOwnership(TransferOwnershipReq)returns(TransferOwnershipRes);
 
 }

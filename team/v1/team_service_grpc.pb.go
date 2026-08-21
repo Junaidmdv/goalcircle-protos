@@ -900,7 +900,7 @@ type StaffServiceClient interface {
 	RemoveStaffImage(ctx context.Context, in *RemoveStaffImageReq, opts ...grpc.CallOption) (*RemoveStaffImageRes, error)
 	UpdateStaff(ctx context.Context, in *UpdateStaffReq, opts ...grpc.CallOption) (*UpdateStaffRes, error)
 	ListTeamStaff(ctx context.Context, in *ListTeamStaffReq, opts ...grpc.CallOption) (*ListTeamStaffRes, error)
-	ReleaseStaff(ctx context.Context, in *ReleaseStaffRes, opts ...grpc.CallOption) (*ReleaseStaffRes, error)
+	ReleaseStaff(ctx context.Context, in *ReleaseStaffReq, opts ...grpc.CallOption) (*ReleaseStaffRes, error)
 	TransferOwnership(ctx context.Context, in *TransferOwnershipReq, opts ...grpc.CallOption) (*TransferOwnershipRes, error)
 }
 
@@ -988,7 +988,7 @@ func (c *staffServiceClient) ListTeamStaff(ctx context.Context, in *ListTeamStaf
 	return out, nil
 }
 
-func (c *staffServiceClient) ReleaseStaff(ctx context.Context, in *ReleaseStaffRes, opts ...grpc.CallOption) (*ReleaseStaffRes, error) {
+func (c *staffServiceClient) ReleaseStaff(ctx context.Context, in *ReleaseStaffReq, opts ...grpc.CallOption) (*ReleaseStaffRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReleaseStaffRes)
 	err := c.cc.Invoke(ctx, StaffService_ReleaseStaff_FullMethodName, in, out, cOpts...)
@@ -1019,7 +1019,7 @@ type StaffServiceServer interface {
 	RemoveStaffImage(context.Context, *RemoveStaffImageReq) (*RemoveStaffImageRes, error)
 	UpdateStaff(context.Context, *UpdateStaffReq) (*UpdateStaffRes, error)
 	ListTeamStaff(context.Context, *ListTeamStaffReq) (*ListTeamStaffRes, error)
-	ReleaseStaff(context.Context, *ReleaseStaffRes) (*ReleaseStaffRes, error)
+	ReleaseStaff(context.Context, *ReleaseStaffReq) (*ReleaseStaffRes, error)
 	TransferOwnership(context.Context, *TransferOwnershipReq) (*TransferOwnershipRes, error)
 	mustEmbedUnimplementedStaffServiceServer()
 }
@@ -1052,7 +1052,7 @@ func (UnimplementedStaffServiceServer) UpdateStaff(context.Context, *UpdateStaff
 func (UnimplementedStaffServiceServer) ListTeamStaff(context.Context, *ListTeamStaffReq) (*ListTeamStaffRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTeamStaff not implemented")
 }
-func (UnimplementedStaffServiceServer) ReleaseStaff(context.Context, *ReleaseStaffRes) (*ReleaseStaffRes, error) {
+func (UnimplementedStaffServiceServer) ReleaseStaff(context.Context, *ReleaseStaffReq) (*ReleaseStaffRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReleaseStaff not implemented")
 }
 func (UnimplementedStaffServiceServer) TransferOwnership(context.Context, *TransferOwnershipReq) (*TransferOwnershipRes, error) {
@@ -1184,7 +1184,7 @@ func _StaffService_ListTeamStaff_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _StaffService_ReleaseStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReleaseStaffRes)
+	in := new(ReleaseStaffReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1196,7 +1196,7 @@ func _StaffService_ReleaseStaff_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: StaffService_ReleaseStaff_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StaffServiceServer).ReleaseStaff(ctx, req.(*ReleaseStaffRes))
+		return srv.(StaffServiceServer).ReleaseStaff(ctx, req.(*ReleaseStaffReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
