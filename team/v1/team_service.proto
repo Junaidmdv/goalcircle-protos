@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 message TeamOwnerDetails{
     string user_id=1;    
     string full_name=2; 
+    google.protobuf.Timestamp dob=3;
 }
 
 
@@ -22,7 +23,7 @@ message CreateTeamReq{
     string refresh_token=4;   
     string contact_num=5;  
     string email=6;
-    TeamOwnerDetails owner=8;
+    
 }
 
 
@@ -46,16 +47,19 @@ message TeamDetailsRes{
 } 
 
 message TeamMemberDetails{
-  string team_member_id=1; 
-  string full_name=2;
-  string role=3;
+  string staff_id=1; 
+  string team_member_id=2; 
+  string full_name=3; 
+  int32 age=4; 
+  string designatin=5;  
+  string role=6;
 }
 
 
 message CreateTeamRes{   
   UserRes user=1;  
   TeamDetailsRes team_details=2; 
-  TeamMemberDetails team_member=3;
+  TeamOwnerDetails team_member=3;
 
 } 
 
@@ -80,27 +84,18 @@ message UpdateTeamRes{
 }
 
 
-message RegisterTeamMemberReq{
-   
+message RegisterTeamMemberReq{ 
+    string user_id=1; 
+    string code=2; 
+    string refresh_token=3;
 } 
 
 message RegisterTeamMemberRes{
-
+   UserRes user_details =1;
 }
 
 
-// message UpdateTeamContactDetailsReq{  
-//     string contact_email=1; 
-//     string contact_phone_num=2;
-//     string team_id=3; 
-//     string team_member_id=4;
-// }
 
-// message UpdateTeamContactDetailsRes{
-//   string team_id=1; 
-//   string contact_email=2; 
-//   string contact_phone_num=3; 
-// }
 
 message SetCaptainRes{ 
   string player_id=2;
@@ -240,7 +235,7 @@ service TeamService {
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
    rpc GetTeam(GetTeamReq)returns(GetTeamRes); 
    rpc AddLogo(stream AddLogoReq)returns(AddLogoRes); 
-   // rpc RemoveLogo(RemoveLgoReq)returns(RemoveLogoRes); 
+   //rpc RemoveLogo(RemoveLgoReq)returns(RemoveLogoRes); 
    rpc GetLogoPresignedUrl(GetPresignedUrlReq)returns(GetPresignedUrlRes);
 }
 
