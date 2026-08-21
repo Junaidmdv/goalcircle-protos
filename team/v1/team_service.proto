@@ -276,10 +276,32 @@ message AddPlayerRes{
  string presigned_url=7;
 }
 
-message UpdatePlayerStatusReq{
-   string player_id =1; 
-   PlayerStatus player_status=2;
+message UpdatePlayerRequest {
+  string user_id = 1;
+  string team_id = 2;
+  string player_id = 3;
+
+  optional string full_name = 4;
+  optional google.protobuf.Timestamp date_of_birth = 5;
+  optional int32 jersey_number = 6;
+  optional PlayerPosition position = 7;
+  optional float height = 8;
+  optional float weight = 9;
+  optional PlayerStatus status = 10;
 }
+
+message UpdatePlayersResponse {
+  string player_id = 1;
+  string team_member_id = 2;
+  string full_name = 3;
+  google.protobuf.Timestamp date_of_birth = 4;
+  int32 jersey_number = 5;
+  PlayerPosition position = 6;
+  float height = 7;
+  float weight = 8;
+  PlayerStatus status = 9;
+}
+
 
 message UpdatePlayerStatusRes{
    string player_id=1; 
@@ -412,22 +434,25 @@ message GetPlayerPresignedUrlRes{
      string presigned_url=3; 
 }
 
-// message RemovePlayerImageReq{
-//      string player_id=1;
-// }
+message RemovePlayerImageReq{ 
+     string  team_id=1; 
+     string  user_id=2; 
+     string player_id=3;
+}
 
-// message RemovePlayerImageRes{
-//     bool success=1;
-// }
+message RemovePlayerImageRes{
+    bool success=1;
+}
 
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
-  rpc UpdatePlayerStatus(UpdatePlayerStatusReq)returns(UpdatePlayerStatusRes); 
+  rpc UpdatePlayerDetails(UpdatePlayerRequest)returns(UpdatePlayersResponse); 
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);  
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
   rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
   rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
   rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
+  rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
 
 }
 
