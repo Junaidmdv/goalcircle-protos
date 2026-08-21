@@ -23,7 +23,9 @@ message CreateTeamReq{
     string refresh_token=4;   
     string contact_num=5;  
     string email=6;
-    
+    string user_id=7; 
+    string owner_name=8; 
+    google.protobuf.Timestamp dob=9;
 }
 
 
