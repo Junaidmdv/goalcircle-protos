@@ -311,6 +311,7 @@ enum  PlayerStatus {
   STATUS_INACTIVE=2; 
   STATUS_SUSPENDED=3; 
   STATUS_RELEASED=4;
+  STATUS_INJURED=5;
 }
 
 enum PlayerPosition {
