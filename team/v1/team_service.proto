@@ -296,10 +296,10 @@ message UpdatePlayersResponse {
   string full_name = 3;
   google.protobuf.Timestamp date_of_birth = 4;
   int32 jersey_number = 5;
-  PlayerPosition position = 6;
+  string position = 6;
   float height = 7;
   float weight = 8;
-  PlayerStatus status = 9;
+  string status = 9;
 }
 
 
@@ -354,7 +354,8 @@ message PlayerList{
    string team_member_id=2;
    string full_name=3;
    int32 jersey_number=4; 
-   PlayerPosition position=5;
+   string position=5;  
+   string image_url=6;
 }
 
 message PaginationDetails{
@@ -398,7 +399,14 @@ message ReleasePlayerReq{
 
 
 message ReleasePlayerRes{
-   bool success=1;  
+   string id = 1;
+  string team_member_id = 2;
+  string full_name = 3;
+  int32 jersey_number = 4;
+  PlayerPosition position = 5;
+  PlayerStatus status = 6;
+  google.protobuf.Timestamp released_at = 7;
+  google.protobuf.Timestamp joined_at = 8;
 }
 
 
