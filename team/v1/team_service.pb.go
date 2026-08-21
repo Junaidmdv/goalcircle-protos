@@ -748,7 +748,7 @@ type CreateTeamRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	User          *UserRes               `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	TeamDetails   *TeamDetailsRes        `protobuf:"bytes,2,opt,name=team_details,json=teamDetails,proto3" json:"team_details,omitempty"`
-	TeamMember    *TeamOwnerDetails      `protobuf:"bytes,3,opt,name=team_member,json=teamMember,proto3" json:"team_member,omitempty"`
+	TeamMember    *TeamMemberDetails     `protobuf:"bytes,3,opt,name=team_member,json=teamMember,proto3" json:"team_member,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -797,7 +797,7 @@ func (x *CreateTeamRes) GetTeamDetails() *TeamDetailsRes {
 	return nil
 }
 
-func (x *CreateTeamRes) GetTeamMember() *TeamOwnerDetails {
+func (x *CreateTeamRes) GetTeamMember() *TeamMemberDetails {
 	if x != nil {
 		return x.TeamMember
 	}
@@ -5363,11 +5363,11 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"designatin\x18\x05 \x01(\tR\n" +
 	"designatin\x12\x12\n" +
-	"\x04role\x18\x06 \x01(\tR\x04role\"\xa4\x01\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\"\xa5\x01\n" +
 	"\rCreateTeamRes\x12!\n" +
 	"\x04user\x18\x01 \x01(\v2\r.team.UserResR\x04user\x127\n" +
-	"\fteam_details\x18\x02 \x01(\v2\x14.team.TeamDetailsResR\vteamDetails\x127\n" +
-	"\vteam_member\x18\x03 \x01(\v2\x16.team.TeamOwnerDetailsR\n" +
+	"\fteam_details\x18\x02 \x01(\v2\x14.team.TeamDetailsResR\vteamDetails\x128\n" +
+	"\vteam_member\x18\x03 \x01(\v2\x17.team.TeamMemberDetailsR\n" +
 	"teamMember\"\xb4\x02\n" +
 	"\rUpdateTeamReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x17\n" +
@@ -5946,7 +5946,7 @@ var file_team_service_proto_depIdxs = []int32{
 	75, // 2: team.UserRes.refresh_token_expiry:type_name -> google.protobuf.Timestamp
 	7,  // 3: team.CreateTeamRes.user:type_name -> team.UserRes
 	8,  // 4: team.CreateTeamRes.team_details:type_name -> team.TeamDetailsRes
-	5,  // 5: team.CreateTeamRes.team_member:type_name -> team.TeamOwnerDetails
+	9,  // 5: team.CreateTeamRes.team_member:type_name -> team.TeamMemberDetails
 	7,  // 6: team.RegisterTeamMemberRes.user_details:type_name -> team.UserRes
 	0,  // 7: team.ListTeamReq.team_status:type_name -> team.TeamStatus
 	0,  // 8: team.TeamDetails.team_status:type_name -> team.TeamStatus

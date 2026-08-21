@@ -59,8 +59,7 @@ message TeamMemberDetails{
 message CreateTeamRes{   
   UserRes user=1;  
   TeamDetailsRes team_details=2; 
-  TeamOwnerDetails team_member=3;
-
+  TeamMemberDetails team_member=3;
 } 
 
 
