@@ -2799,6 +2799,7 @@ func (x *ListTeamPlayerRes) GetPlayers() []*PlayerList {
 type GetPlayerReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PlayerId      string                 `protobuf:"bytes,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2836,6 +2837,13 @@ func (*GetPlayerReq) Descriptor() ([]byte, []int) {
 func (x *GetPlayerReq) GetPlayerId() string {
 	if x != nil {
 		return x.PlayerId
+	}
+	return ""
+}
+
+func (x *GetPlayerReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
 	}
 	return ""
 }
@@ -5417,9 +5425,10 @@ const file_team_service_proto_rawDesc = "" +
 	"total_item\x18\x04 \x01(\x03R\ttotalItem\"t\n" +
 	"\x11ListTeamPlayerRes\x123\n" +
 	"\bpaginate\x18\x01 \x01(\v2\x17.team.PaginationDetailsR\bpaginate\x12*\n" +
-	"\aplayers\x18\x02 \x03(\v2\x10.team.PlayerListR\aplayers\"+\n" +
+	"\aplayers\x18\x02 \x03(\v2\x10.team.PlayerListR\aplayers\"D\n" +
 	"\fGetPlayerReq\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\"\xa4\x03\n" +
+	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\"\xa4\x03\n" +
 	"\fGetPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +

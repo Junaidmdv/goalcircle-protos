@@ -371,7 +371,8 @@ message ListTeamPlayerRes{
 }
 
 message GetPlayerReq{
-   string player_id=1; 
+   string player_id=1;  
+   string team_id=2;
 }
 
 
