@@ -179,7 +179,9 @@ message GetTeamRes{
    string team_status=9;  
    int32  player_count=10; 
    string caption_id=11;  
-   string vice_caption_id=12;
+   string vice_caption_id=12; 
+   string description = 13; 
+   google.protobuf.Timestamp created_at = 14;
 }
 
 message TeamLogoMetaData{ 
