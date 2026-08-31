@@ -53,7 +53,7 @@ message TeamMemberDetails{
   string team_member_id=2; 
   string full_name=3; 
   int32 age=4; 
-  string designatin=5;  
+  string designation=5;  
   string role=6;
 }
 
@@ -142,9 +142,8 @@ message TeamDetails{
    string team_id=1; 
    string name=2;  
    string city=3;  
-   string logo_url=4;  
-   string team_code=5;  
-   TeamStatus team_status=6;
+   string team_code=4;  
+   TeamStatus team_status=5;
 } 
 
 
@@ -174,7 +173,6 @@ message GetTeamRes{
    string name=2;  
    string short_name=3;  
    string city=4;  
-   string logo_key=5;  
    string team_code=6;  
    string email=7; 
    string phone_num=8; 
@@ -432,7 +430,6 @@ message UpdatePlayerImageRes{
 message GetPlayerPresignedUrlReq{
      string team_id=1; 
      string player_id=2;
-     string user_id=3;
 }
 
 message GetPlayerPresignedUrlRes{
@@ -577,7 +574,7 @@ message RemoveStaffImageRes{
 }
 
 message UpdateStaffReq{
- string user_id=1; 
+  string user_id=1; 
   string team_id=2;  
   string staff_id=3; 
   optional string full_name=4; 
@@ -690,5 +687,4 @@ service StaffService {
      rpc ListTeamStaff(ListTeamStaffReq)returns(ListTeamStaffRes); 
      rpc ReleaseStaff(ReleaseStaffReq)returns(ReleaseStaffRes); 
      rpc TransferOwnership(TransferOwnershipReq)returns(TransferOwnershipRes);
-
 }

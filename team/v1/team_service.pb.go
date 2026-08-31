@@ -693,7 +693,7 @@ type TeamMemberDetails struct {
 	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	Age           int32                  `protobuf:"varint,4,opt,name=age,proto3" json:"age,omitempty"`
-	Designatin    string                 `protobuf:"bytes,5,opt,name=designatin,proto3" json:"designatin,omitempty"`
+	Designation   string                 `protobuf:"bytes,5,opt,name=designation,proto3" json:"designation,omitempty"`
 	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -757,9 +757,9 @@ func (x *TeamMemberDetails) GetAge() int32 {
 	return 0
 }
 
-func (x *TeamMemberDetails) GetDesignatin() string {
+func (x *TeamMemberDetails) GetDesignation() string {
 	if x != nil {
-		return x.Designatin
+		return x.Designation
 	}
 	return ""
 }
@@ -1400,9 +1400,8 @@ type TeamDetails struct {
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	City          string                 `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
-	LogoUrl       string                 `protobuf:"bytes,4,opt,name=logo_url,json=logoUrl,proto3" json:"logo_url,omitempty"`
-	TeamCode      string                 `protobuf:"bytes,5,opt,name=team_code,json=teamCode,proto3" json:"team_code,omitempty"`
-	TeamStatus    TeamStatus             `protobuf:"varint,6,opt,name=team_status,json=teamStatus,proto3,enum=team.TeamStatus" json:"team_status,omitempty"`
+	TeamCode      string                 `protobuf:"bytes,4,opt,name=team_code,json=teamCode,proto3" json:"team_code,omitempty"`
+	TeamStatus    TeamStatus             `protobuf:"varint,5,opt,name=team_status,json=teamStatus,proto3,enum=team.TeamStatus" json:"team_status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1454,13 +1453,6 @@ func (x *TeamDetails) GetName() string {
 func (x *TeamDetails) GetCity() string {
 	if x != nil {
 		return x.City
-	}
-	return ""
-}
-
-func (x *TeamDetails) GetLogoUrl() string {
-	if x != nil {
-		return x.LogoUrl
 	}
 	return ""
 }
@@ -1649,7 +1641,6 @@ type GetTeamRes struct {
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	ShortName     string                 `protobuf:"bytes,3,opt,name=short_name,json=shortName,proto3" json:"short_name,omitempty"`
 	City          string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
-	LogoKey       string                 `protobuf:"bytes,5,opt,name=logo_key,json=logoKey,proto3" json:"logo_key,omitempty"`
 	TeamCode      string                 `protobuf:"bytes,6,opt,name=team_code,json=teamCode,proto3" json:"team_code,omitempty"`
 	Email         string                 `protobuf:"bytes,7,opt,name=email,proto3" json:"email,omitempty"`
 	PhoneNum      string                 `protobuf:"bytes,8,opt,name=phone_num,json=phoneNum,proto3" json:"phone_num,omitempty"`
@@ -1715,13 +1706,6 @@ func (x *GetTeamRes) GetShortName() string {
 func (x *GetTeamRes) GetCity() string {
 	if x != nil {
 		return x.City
-	}
-	return ""
-}
-
-func (x *GetTeamRes) GetLogoKey() string {
-	if x != nil {
-		return x.LogoKey
 	}
 	return ""
 }
@@ -3429,7 +3413,6 @@ type GetPlayerPresignedUrlReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3474,13 +3457,6 @@ func (x *GetPlayerPresignedUrlReq) GetTeamId() string {
 func (x *GetPlayerPresignedUrlReq) GetPlayerId() string {
 	if x != nil {
 		return x.PlayerId
-	}
-	return ""
-}
-
-func (x *GetPlayerPresignedUrlReq) GetUserId() string {
-	if x != nil {
-		return x.UserId
 	}
 	return ""
 }
@@ -5385,15 +5361,13 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"short_name\x18\x03 \x01(\tR\tshortName\x12\x12\n" +
 	"\x04city\x18\x04 \x01(\tR\x04city\x12\x1b\n" +
-	"\tteam_code\x18\x05 \x01(\tR\bteamCode\"\xb7\x01\n" +
+	"\tteam_code\x18\x05 \x01(\tR\bteamCode\"\xb9\x01\n" +
 	"\x11TeamMemberDetails\x12\x19\n" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
 	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12\x10\n" +
-	"\x03age\x18\x04 \x01(\x05R\x03age\x12\x1e\n" +
-	"\n" +
-	"designatin\x18\x05 \x01(\tR\n" +
-	"designatin\x12\x12\n" +
+	"\x03age\x18\x04 \x01(\x05R\x03age\x12 \n" +
+	"\vdesignation\x18\x05 \x01(\tR\vdesignation\x12\x12\n" +
 	"\x04role\x18\x06 \x01(\tR\x04role\"\xa3\x01\n" +
 	"\rCreateTeamRes\x12!\n" +
 	"\x04user\x18\x01 \x01(\v2\r.team.UserResR\x04user\x127\n" +
@@ -5447,14 +5421,13 @@ const file_team_service_proto_rawDesc = "" +
 	"\x04city\x18\x03 \x01(\tR\x04city\x121\n" +
 	"\vteam_status\x18\x04 \x01(\x0e2\x10.team.TeamStatusR\n" +
 	"teamStatus\x12\x16\n" +
-	"\x06search\x18\x05 \x01(\tR\x06search\"\xb9\x01\n" +
+	"\x06search\x18\x05 \x01(\tR\x06search\"\x9e\x01\n" +
 	"\vTeamDetails\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04city\x18\x03 \x01(\tR\x04city\x12\x19\n" +
-	"\blogo_url\x18\x04 \x01(\tR\alogoUrl\x12\x1b\n" +
-	"\tteam_code\x18\x05 \x01(\tR\bteamCode\x121\n" +
-	"\vteam_status\x18\x06 \x01(\x0e2\x10.team.TeamStatusR\n" +
+	"\x04city\x18\x03 \x01(\tR\x04city\x12\x1b\n" +
+	"\tteam_code\x18\x04 \x01(\tR\bteamCode\x121\n" +
+	"\vteam_status\x18\x05 \x01(\x0e2\x10.team.TeamStatusR\n" +
 	"teamStatus\"v\n" +
 	"\fPaginateTeam\x12\x1d\n" +
 	"\n" +
@@ -5470,15 +5443,14 @@ const file_team_service_proto_rawDesc = "" +
 	"pagination\"%\n" +
 	"\n" +
 	"GetTeamReq\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\"\xe2\x02\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\"\xc7\x02\n" +
 	"\n" +
 	"GetTeamRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
 	"\n" +
 	"short_name\x18\x03 \x01(\tR\tshortName\x12\x12\n" +
-	"\x04city\x18\x04 \x01(\tR\x04city\x12\x19\n" +
-	"\blogo_key\x18\x05 \x01(\tR\alogoKey\x12\x1b\n" +
+	"\x04city\x18\x04 \x01(\tR\x04city\x12\x1b\n" +
 	"\tteam_code\x18\x06 \x01(\tR\bteamCode\x12\x14\n" +
 	"\x05email\x18\a \x01(\tR\x05email\x12\x1b\n" +
 	"\tphone_num\x18\b \x01(\tR\bphoneNum\x12\x1f\n" +
@@ -5629,11 +5601,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\x14UpdatePlayerImageRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12#\n" +
-	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"i\n" +
+	"\rpresigned_url\x18\x03 \x01(\tR\fpresignedUrl\"P\n" +
 	"\x18GetPlayerPresignedUrlReq\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
-	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\"u\n" +
+	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"u\n" +
 	"\x18GetPlayerPresignedUrlRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
 	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12#\n" +
