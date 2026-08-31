@@ -187,7 +187,8 @@ message GetTeamRes{
 
 message TeamLogoMetaData{ 
    string user_id=1;
-   string content_type=2; 
+   string content_type=2;  
+   string team_id=3;
 }
 
 
