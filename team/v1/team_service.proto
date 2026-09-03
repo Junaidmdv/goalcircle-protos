@@ -698,6 +698,9 @@ message GetStaffProfileRes{
       google.protobuf.Timestamp created_at = 8; 
    }
   
+
+   TeamDetails team=1; 
+    StaffDetails staff=2;
 } 
 
 
