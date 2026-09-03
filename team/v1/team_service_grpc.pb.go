@@ -923,6 +923,7 @@ const (
 	StaffService_ListTeamStaff_FullMethodName     = "/team.StaffService/ListTeamStaff"
 	StaffService_ReleaseStaff_FullMethodName      = "/team.StaffService/ReleaseStaff"
 	StaffService_TransferOwnership_FullMethodName = "/team.StaffService/TransferOwnership"
+	StaffService_GetStaffProfile_FullMethodName   = "/team.StaffService/GetStaffProfile"
 )
 
 // StaffServiceClient is the client API for StaffService service.
@@ -938,6 +939,7 @@ type StaffServiceClient interface {
 	ListTeamStaff(ctx context.Context, in *ListTeamStaffReq, opts ...grpc.CallOption) (*ListTeamStaffRes, error)
 	ReleaseStaff(ctx context.Context, in *ReleaseStaffReq, opts ...grpc.CallOption) (*ReleaseStaffRes, error)
 	TransferOwnership(ctx context.Context, in *TransferOwnershipReq, opts ...grpc.CallOption) (*TransferOwnershipRes, error)
+	GetStaffProfile(ctx context.Context, in *GetStaffProfileReq, opts ...grpc.CallOption) (*GetStaffProfileRes, error)
 }
 
 type staffServiceClient struct {
@@ -1044,6 +1046,16 @@ func (c *staffServiceClient) TransferOwnership(ctx context.Context, in *Transfer
 	return out, nil
 }
 
+func (c *staffServiceClient) GetStaffProfile(ctx context.Context, in *GetStaffProfileReq, opts ...grpc.CallOption) (*GetStaffProfileRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetStaffProfileRes)
+	err := c.cc.Invoke(ctx, StaffService_GetStaffProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StaffServiceServer is the server API for StaffService service.
 // All implementations must embed UnimplementedStaffServiceServer
 // for forward compatibility.
@@ -1057,6 +1069,7 @@ type StaffServiceServer interface {
 	ListTeamStaff(context.Context, *ListTeamStaffReq) (*ListTeamStaffRes, error)
 	ReleaseStaff(context.Context, *ReleaseStaffReq) (*ReleaseStaffRes, error)
 	TransferOwnership(context.Context, *TransferOwnershipReq) (*TransferOwnershipRes, error)
+	GetStaffProfile(context.Context, *GetStaffProfileReq) (*GetStaffProfileRes, error)
 	mustEmbedUnimplementedStaffServiceServer()
 }
 
@@ -1093,6 +1106,9 @@ func (UnimplementedStaffServiceServer) ReleaseStaff(context.Context, *ReleaseSta
 }
 func (UnimplementedStaffServiceServer) TransferOwnership(context.Context, *TransferOwnershipReq) (*TransferOwnershipRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransferOwnership not implemented")
+}
+func (UnimplementedStaffServiceServer) GetStaffProfile(context.Context, *GetStaffProfileReq) (*GetStaffProfileRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStaffProfile not implemented")
 }
 func (UnimplementedStaffServiceServer) mustEmbedUnimplementedStaffServiceServer() {}
 func (UnimplementedStaffServiceServer) testEmbeddedByValue()                      {}
@@ -1255,6 +1271,24 @@ func _StaffService_TransferOwnership_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StaffService_GetStaffProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStaffProfileReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).GetStaffProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_GetStaffProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).GetStaffProfile(ctx, req.(*GetStaffProfileReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StaffService_ServiceDesc is the grpc.ServiceDesc for StaffService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1289,6 +1323,10 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TransferOwnership",
 			Handler:    _StaffService_TransferOwnership_Handler,
+		},
+		{
+			MethodName: "GetStaffProfile",
+			Handler:    _StaffService_GetStaffProfile_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

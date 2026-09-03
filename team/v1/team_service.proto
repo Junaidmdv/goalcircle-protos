@@ -670,7 +670,38 @@ message TransferOwnershipReq{
 
 message TransferOwnershipRes{
 
-}
+} 
+
+message GetStaffProfileReq{ 
+   string user_id=1;
+} 
+
+
+
+
+message GetStaffProfileRes{ 
+    message TeamDetails{
+     string team_id=1;  
+     string name=2;  
+     string short_name=3; 
+     string city=4;  
+     string team_code=5; 
+   }
+   message StaffDetails{
+      string staff_id=1; 
+      string team_member_id=2;  
+      string user_id=3;  
+      string full_name=4;  
+      string role=5;  
+      string designation=6; 
+      string phone_num=7;  
+      google.protobuf.Timestamp created_at = 8; 
+   }
+  
+} 
+
+
+
 
 
 service StaffService {
@@ -682,5 +713,6 @@ service StaffService {
      rpc UpdateStaff(UpdateStaffReq)returns(UpdateStaffRes);  
      rpc ListTeamStaff(ListTeamStaffReq)returns(ListTeamStaffRes); 
      rpc ReleaseStaff(ReleaseStaffReq)returns(ReleaseStaffRes); 
-     rpc TransferOwnership(TransferOwnershipReq)returns(TransferOwnershipRes);
+     rpc TransferOwnership(TransferOwnershipReq)returns(TransferOwnershipRes); 
+     rpc GetStaffProfile(GetStaffProfileReq)returns(GetStaffProfileRes);
 }
