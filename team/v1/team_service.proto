@@ -512,7 +512,7 @@ message StaffDetails{
   string team_id=1;  
   string user_id=2;
   string full_name=3;   
-  string phone_num=4;
+  optional string phone_num=4;
   StaffRole role=5;
   StaffDesignation designation=6; 
 }
