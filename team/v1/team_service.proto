@@ -530,7 +530,8 @@ message AddStaffRes{
   string team_member_id=2; 
   string full_name=3; 
   string designatin=5;  
-  string role=6;
+  string role=6;  
+  string image_url=7;
 } 
 
 message StaffImageMeta{

@@ -4014,6 +4014,7 @@ type AddStaffRes struct {
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
 	Designatin    string                 `protobuf:"bytes,5,opt,name=designatin,proto3" json:"designatin,omitempty"`
 	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
+	ImageUrl      string                 `protobuf:"bytes,7,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4079,6 +4080,13 @@ func (x *AddStaffRes) GetDesignatin() string {
 func (x *AddStaffRes) GetRole() string {
 	if x != nil {
 		return x.Role
+	}
+	return ""
+}
+
+func (x *AddStaffRes) GetImageUrl() string {
+	if x != nil {
+		return x.ImageUrl
 	}
 	return ""
 }
@@ -5995,7 +6003,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\vAddStaffReq\x12(\n" +
 	"\x04meta\x18\x01 \x01(\v2\x12.team.StaffDetailsH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
-	"\x04data\"\x9f\x01\n" +
+	"\x04data\"\xbc\x01\n" +
 	"\vAddStaffRes\x12\x19\n" +
 	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
 	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
@@ -6003,7 +6011,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"designatin\x18\x05 \x01(\tR\n" +
 	"designatin\x12\x12\n" +
-	"\x04role\x18\x06 \x01(\tR\x04role\"]\n" +
+	"\x04role\x18\x06 \x01(\tR\x04role\x12\x1b\n" +
+	"\timage_url\x18\a \x01(\tR\bimageUrl\"]\n" +
 	"\x0eStaffImageMeta\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bstaff_id\x18\x02 \x01(\tR\astaffId\x12\x17\n" +
