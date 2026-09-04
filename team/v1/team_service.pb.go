@@ -3846,8 +3846,9 @@ type StaffDetails struct {
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
-	Role          StaffRole              `protobuf:"varint,4,opt,name=role,proto3,enum=team.StaffRole" json:"role,omitempty"`
-	Designation   StaffDesignation       `protobuf:"varint,5,opt,name=designation,proto3,enum=team.StaffDesignation" json:"designation,omitempty"`
+	PhoneNum      string                 `protobuf:"bytes,4,opt,name=phone_num,json=phoneNum,proto3" json:"phone_num,omitempty"`
+	Role          StaffRole              `protobuf:"varint,5,opt,name=role,proto3,enum=team.StaffRole" json:"role,omitempty"`
+	Designation   StaffDesignation       `protobuf:"varint,6,opt,name=designation,proto3,enum=team.StaffDesignation" json:"designation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3899,6 +3900,13 @@ func (x *StaffDetails) GetUserId() string {
 func (x *StaffDetails) GetFullName() string {
 	if x != nil {
 		return x.FullName
+	}
+	return ""
+}
+
+func (x *StaffDetails) GetPhoneNum() string {
+	if x != nil {
+		return x.PhoneNum
 	}
 	return ""
 }
@@ -5974,13 +5982,14 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xbc\x01\n" +
+	"expired_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\texpiredAt\"\xd9\x01\n" +
 	"\fStaffDetails\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
-	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12#\n" +
-	"\x04role\x18\x04 \x01(\x0e2\x0f.team.StaffRoleR\x04role\x128\n" +
-	"\vdesignation\x18\x05 \x01(\x0e2\x16.team.StaffDesignationR\vdesignation\"Y\n" +
+	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12\x1b\n" +
+	"\tphone_num\x18\x04 \x01(\tR\bphoneNum\x12#\n" +
+	"\x04role\x18\x05 \x01(\x0e2\x0f.team.StaffRoleR\x04role\x128\n" +
+	"\vdesignation\x18\x06 \x01(\x0e2\x16.team.StaffDesignationR\vdesignation\"Y\n" +
 	"\vAddStaffReq\x12(\n" +
 	"\x04meta\x18\x01 \x01(\v2\x12.team.StaffDetailsH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
