@@ -631,9 +631,7 @@ message StaffDetailResponse{
    string role=4; 
    string designation=5; 
    string presigned_url=6; 
-   google.protobuf.Timestamp released_at=7; 
-   google.protobuf.Timestamp joined_at=8; 
-   string status=9;
+   string status=7;
 } 
 
 message StaffPaginationDetails{
