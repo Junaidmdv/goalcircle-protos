@@ -554,7 +554,8 @@ message UpdateStaffImageRes{
 }  
 
 message GetStaffImageUrlReq{
-  string staff_id=1;
+  string staff_id=1; 
+  string team_id=2;
 }
 
 message GetStaffImageUrlRes{
