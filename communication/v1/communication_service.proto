@@ -1,0 +1,56 @@
+syntax ='proto3'; 
+
+package communication; 
+
+option go_package = "github.com/Junaidmdv/goalcircle-protos/communication/v1;communicationv1";  
+
+
+
+
+message GetNotificationReq{
+
+} 
+
+message GetNotificationRes{
+
+}  
+
+message MarkNotificationAsReadRequest{
+
+} 
+
+message MarkNotificationAsReadResponse{
+
+}  
+
+message MarkAllNotificationsAsReadRequest{
+
+}
+
+
+message MarkAllNotificationsAsReadResponse{
+
+}
+
+message AcceptPlayerRequestRequest {
+  string id = 1;
+}
+
+message AcceptPlayerRequestResponse {
+}
+
+message RejectPlayerRequestRequest {
+  string id = 1;
+}
+
+message RejectPlayerRequestResponse {
+}
+
+
+service NotificationService { 
+    rpc GetNotification(GetNotificationReq)returns(GetNotificationRes); 
+    rpc MarkNotificationAsRead(MarkNotificationAsReadRequest) returns (MarkNotificationAsReadResponse);
+    rpc MarkAllNotificationsAsRead(MarkAllNotificationsAsReadRequest) returns (MarkAllNotificationsAsReadResponse);
+    rpc AcceptPlayerRequest(AcceptPlayerRequestRequest) returns (AcceptPlayerRequestResponse);
+    rpc RejectPlayerRequest(RejectPlayerRequestRequest) returns (RejectPlayerRequestResponse);
+}

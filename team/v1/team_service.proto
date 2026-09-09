@@ -2,7 +2,7 @@ syntax ='proto3';
 
 package team; 
 
-option go_package = "github.com/Junaidmdv/goalcircle-protos/user/v1;teamv1";  
+option go_package = "github.com/Junaidmdv/goalcircle-protos/team/v1;teamv1";  
 
 import "google/protobuf/timestamp.proto";
 
