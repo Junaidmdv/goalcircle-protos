@@ -3703,12 +3703,10 @@ func (x *AddStaffReq) GetDesignation() StaffDesignation {
 
 type AddStaffRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StaffId       string                 `protobuf:"bytes,1,opt,name=staff_id,json=staffId,proto3" json:"staff_id,omitempty"`
-	TeamMemberId  string                 `protobuf:"bytes,2,opt,name=team_member_id,json=teamMemberId,proto3" json:"team_member_id,omitempty"`
-	FullName      string                 `protobuf:"bytes,3,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
-	Designatin    string                 `protobuf:"bytes,5,opt,name=designatin,proto3" json:"designatin,omitempty"`
-	Role          string                 `protobuf:"bytes,6,opt,name=role,proto3" json:"role,omitempty"`
-	ImageUrl      string                 `protobuf:"bytes,7,opt,name=image_url,json=imageUrl,proto3" json:"image_url,omitempty"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	FullName      string                 `protobuf:"bytes,2,opt,name=full_name,json=fullName,proto3" json:"full_name,omitempty"`
+	Role          string                 `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	Designation   string                 `protobuf:"bytes,4,opt,name=designation,proto3" json:"designation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3743,16 +3741,9 @@ func (*AddStaffRes) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{47}
 }
 
-func (x *AddStaffRes) GetStaffId() string {
+func (x *AddStaffRes) GetCode() string {
 	if x != nil {
-		return x.StaffId
-	}
-	return ""
-}
-
-func (x *AddStaffRes) GetTeamMemberId() string {
-	if x != nil {
-		return x.TeamMemberId
+		return x.Code
 	}
 	return ""
 }
@@ -3764,13 +3755,6 @@ func (x *AddStaffRes) GetFullName() string {
 	return ""
 }
 
-func (x *AddStaffRes) GetDesignatin() string {
-	if x != nil {
-		return x.Designatin
-	}
-	return ""
-}
-
 func (x *AddStaffRes) GetRole() string {
 	if x != nil {
 		return x.Role
@@ -3778,9 +3762,9 @@ func (x *AddStaffRes) GetRole() string {
 	return ""
 }
 
-func (x *AddStaffRes) GetImageUrl() string {
+func (x *AddStaffRes) GetDesignation() string {
 	if x != nil {
-		return x.ImageUrl
+		return x.Designation
 	}
 	return ""
 }
@@ -5741,16 +5725,12 @@ const file_team_service_proto_rawDesc = "" +
 	"\x04role\x18\x05 \x01(\x0e2\x0f.team.StaffRoleR\x04role\x128\n" +
 	"\vdesignation\x18\x06 \x01(\x0e2\x16.team.StaffDesignationR\vdesignationB\f\n" +
 	"\n" +
-	"_phone_num\"\xbc\x01\n" +
-	"\vAddStaffRes\x12\x19\n" +
-	"\bstaff_id\x18\x01 \x01(\tR\astaffId\x12$\n" +
-	"\x0eteam_member_id\x18\x02 \x01(\tR\fteamMemberId\x12\x1b\n" +
-	"\tfull_name\x18\x03 \x01(\tR\bfullName\x12\x1e\n" +
-	"\n" +
-	"designatin\x18\x05 \x01(\tR\n" +
-	"designatin\x12\x12\n" +
-	"\x04role\x18\x06 \x01(\tR\x04role\x12\x1b\n" +
-	"\timage_url\x18\a \x01(\tR\bimageUrl\"]\n" +
+	"_phone_num\"t\n" +
+	"\vAddStaffRes\x12\x12\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x1b\n" +
+	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x12\n" +
+	"\x04role\x18\x03 \x01(\tR\x04role\x12 \n" +
+	"\vdesignation\x18\x04 \x01(\tR\vdesignation\"]\n" +
 	"\x0eStaffImageMeta\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bstaff_id\x18\x02 \x01(\tR\astaffId\x12\x17\n" +

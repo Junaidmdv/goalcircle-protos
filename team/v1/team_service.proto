@@ -490,12 +490,10 @@ message AddStaffReq{
 }
 
 message AddStaffRes{
-  string staff_id=1; 
-  string team_member_id=2; 
-  string full_name=3; 
-  string designatin=5;  
-  string role=6;  
-  string image_url=7;
+   string code=1; 
+   string full_name=2; 
+   string role=3; 
+   string designation=4;
 } 
 
 message StaffImageMeta{
