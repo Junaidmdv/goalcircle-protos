@@ -669,7 +669,8 @@ message GetStaffProfileRes{
 
 message JoinStaffReq{
    string user_id=1; 
-   string code=2; 
+   string code=2;  
+   string refresh_token=3;
 } 
 
 message JoinStaffRes{

@@ -5183,6 +5183,7 @@ type JoinStaffReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Code          string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,3,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5227,6 +5228,13 @@ func (x *JoinStaffReq) GetUserId() string {
 func (x *JoinStaffReq) GetCode() string {
 	if x != nil {
 		return x.Code
+	}
+	return ""
+}
+
+func (x *JoinStaffReq) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -6090,10 +6098,11 @@ const file_team_service_proto_rawDesc = "" +
 	"\vdesignation\x18\x06 \x01(\tR\vdesignation\x12\x1b\n" +
 	"\tphone_num\x18\a \x01(\tR\bphoneNum\x129\n" +
 	"\n" +
-	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\";\n" +
+	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"`\n" +
 	"\fJoinStaffReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\tR\x04code\"\xd1\x05\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12#\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"\xd1\x05\n" +
 	"\fJoinStaffRes\x125\n" +
 	"\x05staff\x18\x01 \x01(\v2\x1f.team.JoinStaffRes.StaffDetailsR\x05staff\x123\n" +
 	"\x04user\x18\x02 \x01(\v2\x1f.team.JoinStaffRes.UserResponseR\x04user\x1a\x93\x02\n" +
