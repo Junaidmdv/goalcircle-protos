@@ -21,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	TeamService_CreateTeam_FullMethodName          = "/team.TeamService/CreateTeam"
 	TeamService_UpdateTeam_FullMethodName          = "/team.TeamService/UpdateTeam"
-	TeamService_RegisterTeamMember_FullMethodName  = "/team.TeamService/RegisterTeamMember"
 	TeamService_SetCaptain_FullMethodName          = "/team.TeamService/SetCaptain"
 	TeamService_SetViceCaptain_FullMethodName      = "/team.TeamService/SetViceCaptain"
 	TeamService_ListTeam_FullMethodName            = "/team.TeamService/ListTeam"
@@ -37,7 +36,6 @@ const (
 type TeamServiceClient interface {
 	CreateTeam(ctx context.Context, in *CreateTeamReq, opts ...grpc.CallOption) (*CreateTeamRes, error)
 	UpdateTeam(ctx context.Context, in *UpdateTeamReq, opts ...grpc.CallOption) (*UpdateTeamRes, error)
-	RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error)
 	SetCaptain(ctx context.Context, in *SetCaptainReq, opts ...grpc.CallOption) (*SetCaptainRes, error)
 	SetViceCaptain(ctx context.Context, in *SetViceCaptainReq, opts ...grpc.CallOption) (*SetViceCaptainRes, error)
 	ListTeam(ctx context.Context, in *ListTeamReq, opts ...grpc.CallOption) (*ListTeamRes, error)
@@ -69,16 +67,6 @@ func (c *teamServiceClient) UpdateTeam(ctx context.Context, in *UpdateTeamReq, o
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpdateTeamRes)
 	err := c.cc.Invoke(ctx, TeamService_UpdateTeam_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *teamServiceClient) RegisterTeamMember(ctx context.Context, in *RegisterTeamMemberReq, opts ...grpc.CallOption) (*RegisterTeamMemberRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RegisterTeamMemberRes)
-	err := c.cc.Invoke(ctx, TeamService_RegisterTeamMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -164,7 +152,6 @@ func (c *teamServiceClient) GetLogoPresignedUrl(ctx context.Context, in *GetPres
 type TeamServiceServer interface {
 	CreateTeam(context.Context, *CreateTeamReq) (*CreateTeamRes, error)
 	UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error)
-	RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error)
 	SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error)
 	SetViceCaptain(context.Context, *SetViceCaptainReq) (*SetViceCaptainRes, error)
 	ListTeam(context.Context, *ListTeamReq) (*ListTeamRes, error)
@@ -187,9 +174,6 @@ func (UnimplementedTeamServiceServer) CreateTeam(context.Context, *CreateTeamReq
 }
 func (UnimplementedTeamServiceServer) UpdateTeam(context.Context, *UpdateTeamReq) (*UpdateTeamRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateTeam not implemented")
-}
-func (UnimplementedTeamServiceServer) RegisterTeamMember(context.Context, *RegisterTeamMemberReq) (*RegisterTeamMemberRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RegisterTeamMember not implemented")
 }
 func (UnimplementedTeamServiceServer) SetCaptain(context.Context, *SetCaptainReq) (*SetCaptainRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetCaptain not implemented")
@@ -265,24 +249,6 @@ func _TeamService_UpdateTeam_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TeamServiceServer).UpdateTeam(ctx, req.(*UpdateTeamReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _TeamService_RegisterTeamMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterTeamMemberReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TeamServiceServer).RegisterTeamMember(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TeamService_RegisterTeamMember_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamServiceServer).RegisterTeamMember(ctx, req.(*RegisterTeamMemberReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -416,10 +382,6 @@ var TeamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateTeam",
 			Handler:    _TeamService_UpdateTeam_Handler,
-		},
-		{
-			MethodName: "RegisterTeamMember",
-			Handler:    _TeamService_RegisterTeamMember_Handler,
 		},
 		{
 			MethodName: "SetCaptain",
@@ -812,109 +774,8 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	TeamInvite_CreateInvitation_FullMethodName = "/team.TeamInvite/CreateInvitation"
-)
-
-// TeamInviteClient is the client API for TeamInvite service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type TeamInviteClient interface {
-	CreateInvitation(ctx context.Context, in *CreateInvitationReq, opts ...grpc.CallOption) (*CreateInvitationRes, error)
-}
-
-type teamInviteClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewTeamInviteClient(cc grpc.ClientConnInterface) TeamInviteClient {
-	return &teamInviteClient{cc}
-}
-
-func (c *teamInviteClient) CreateInvitation(ctx context.Context, in *CreateInvitationReq, opts ...grpc.CallOption) (*CreateInvitationRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateInvitationRes)
-	err := c.cc.Invoke(ctx, TeamInvite_CreateInvitation_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// TeamInviteServer is the server API for TeamInvite service.
-// All implementations must embed UnimplementedTeamInviteServer
-// for forward compatibility.
-type TeamInviteServer interface {
-	CreateInvitation(context.Context, *CreateInvitationReq) (*CreateInvitationRes, error)
-	mustEmbedUnimplementedTeamInviteServer()
-}
-
-// UnimplementedTeamInviteServer must be embedded to have
-// forward compatible implementations.
-//
-// NOTE: this should be embedded by value instead of pointer to avoid a nil
-// pointer dereference when methods are called.
-type UnimplementedTeamInviteServer struct{}
-
-func (UnimplementedTeamInviteServer) CreateInvitation(context.Context, *CreateInvitationReq) (*CreateInvitationRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateInvitation not implemented")
-}
-func (UnimplementedTeamInviteServer) mustEmbedUnimplementedTeamInviteServer() {}
-func (UnimplementedTeamInviteServer) testEmbeddedByValue()                    {}
-
-// UnsafeTeamInviteServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TeamInviteServer will
-// result in compilation errors.
-type UnsafeTeamInviteServer interface {
-	mustEmbedUnimplementedTeamInviteServer()
-}
-
-func RegisterTeamInviteServer(s grpc.ServiceRegistrar, srv TeamInviteServer) {
-	// If the following call pancis, it indicates UnimplementedTeamInviteServer was
-	// embedded by pointer and is nil.  This will cause panics if an
-	// unimplemented method is ever invoked, so we test this at initialization
-	// time to prevent it from happening at runtime later due to I/O.
-	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
-		t.testEmbeddedByValue()
-	}
-	s.RegisterService(&TeamInvite_ServiceDesc, srv)
-}
-
-func _TeamInvite_CreateInvitation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateInvitationReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TeamInviteServer).CreateInvitation(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TeamInvite_CreateInvitation_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TeamInviteServer).CreateInvitation(ctx, req.(*CreateInvitationReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// TeamInvite_ServiceDesc is the grpc.ServiceDesc for TeamInvite service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var TeamInvite_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "team.TeamInvite",
-	HandlerType: (*TeamInviteServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "CreateInvitation",
-			Handler:    _TeamInvite_CreateInvitation_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "team_service.proto",
-}
-
-const (
 	StaffService_AddStaff_FullMethodName          = "/team.StaffService/AddStaff"
+	StaffService_JoinStaff_FullMethodName         = "/team.StaffService/JoinStaff"
 	StaffService_GetStaff_FullMethodName          = "/team.StaffService/GetStaff"
 	StaffService_UpdateStaffImage_FullMethodName  = "/team.StaffService/UpdateStaffImage"
 	StaffService_GetStaffImageUrl_FullMethodName  = "/team.StaffService/GetStaffImageUrl"
@@ -930,7 +791,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StaffServiceClient interface {
-	AddStaff(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddStaffReq, AddStaffRes], error)
+	AddStaff(ctx context.Context, in *AddStaffReq, opts ...grpc.CallOption) (*AddStaffRes, error)
+	JoinStaff(ctx context.Context, in *JoinStaffReq, opts ...grpc.CallOption) (*JoinStaffRes, error)
 	GetStaff(ctx context.Context, in *GetStaffReq, opts ...grpc.CallOption) (*GetStaffRes, error)
 	UpdateStaffImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdateStaffImageReq, UpdateStaffImageRes], error)
 	GetStaffImageUrl(ctx context.Context, in *GetStaffImageUrlReq, opts ...grpc.CallOption) (*GetStaffImageUrlRes, error)
@@ -950,18 +812,25 @@ func NewStaffServiceClient(cc grpc.ClientConnInterface) StaffServiceClient {
 	return &staffServiceClient{cc}
 }
 
-func (c *staffServiceClient) AddStaff(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddStaffReq, AddStaffRes], error) {
+func (c *staffServiceClient) AddStaff(ctx context.Context, in *AddStaffReq, opts ...grpc.CallOption) (*AddStaffRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &StaffService_ServiceDesc.Streams[0], StaffService_AddStaff_FullMethodName, cOpts...)
+	out := new(AddStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_AddStaff_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[AddStaffReq, AddStaffRes]{ClientStream: stream}
-	return x, nil
+	return out, nil
 }
 
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type StaffService_AddStaffClient = grpc.ClientStreamingClient[AddStaffReq, AddStaffRes]
+func (c *staffServiceClient) JoinStaff(ctx context.Context, in *JoinStaffReq, opts ...grpc.CallOption) (*JoinStaffRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(JoinStaffRes)
+	err := c.cc.Invoke(ctx, StaffService_JoinStaff_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
 
 func (c *staffServiceClient) GetStaff(ctx context.Context, in *GetStaffReq, opts ...grpc.CallOption) (*GetStaffRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -975,7 +844,7 @@ func (c *staffServiceClient) GetStaff(ctx context.Context, in *GetStaffReq, opts
 
 func (c *staffServiceClient) UpdateStaffImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdateStaffImageReq, UpdateStaffImageRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &StaffService_ServiceDesc.Streams[1], StaffService_UpdateStaffImage_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &StaffService_ServiceDesc.Streams[0], StaffService_UpdateStaffImage_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1060,7 +929,8 @@ func (c *staffServiceClient) GetStaffProfile(ctx context.Context, in *GetStaffPr
 // All implementations must embed UnimplementedStaffServiceServer
 // for forward compatibility.
 type StaffServiceServer interface {
-	AddStaff(grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]) error
+	AddStaff(context.Context, *AddStaffReq) (*AddStaffRes, error)
+	JoinStaff(context.Context, *JoinStaffReq) (*JoinStaffRes, error)
 	GetStaff(context.Context, *GetStaffReq) (*GetStaffRes, error)
 	UpdateStaffImage(grpc.ClientStreamingServer[UpdateStaffImageReq, UpdateStaffImageRes]) error
 	GetStaffImageUrl(context.Context, *GetStaffImageUrlReq) (*GetStaffImageUrlRes, error)
@@ -1080,8 +950,11 @@ type StaffServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedStaffServiceServer struct{}
 
-func (UnimplementedStaffServiceServer) AddStaff(grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]) error {
-	return status.Errorf(codes.Unimplemented, "method AddStaff not implemented")
+func (UnimplementedStaffServiceServer) AddStaff(context.Context, *AddStaffReq) (*AddStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddStaff not implemented")
+}
+func (UnimplementedStaffServiceServer) JoinStaff(context.Context, *JoinStaffReq) (*JoinStaffRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method JoinStaff not implemented")
 }
 func (UnimplementedStaffServiceServer) GetStaff(context.Context, *GetStaffReq) (*GetStaffRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStaff not implemented")
@@ -1131,12 +1004,41 @@ func RegisterStaffServiceServer(s grpc.ServiceRegistrar, srv StaffServiceServer)
 	s.RegisterService(&StaffService_ServiceDesc, srv)
 }
 
-func _StaffService_AddStaff_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(StaffServiceServer).AddStaff(&grpc.GenericServerStream[AddStaffReq, AddStaffRes]{ServerStream: stream})
+func _StaffService_AddStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddStaffReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).AddStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_AddStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).AddStaff(ctx, req.(*AddStaffReq))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type StaffService_AddStaffServer = grpc.ClientStreamingServer[AddStaffReq, AddStaffRes]
+func _StaffService_JoinStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JoinStaffReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StaffServiceServer).JoinStaff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StaffService_JoinStaff_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StaffServiceServer).JoinStaff(ctx, req.(*JoinStaffReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
 
 func _StaffService_GetStaff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetStaffReq)
@@ -1297,6 +1199,14 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StaffServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "AddStaff",
+			Handler:    _StaffService_AddStaff_Handler,
+		},
+		{
+			MethodName: "JoinStaff",
+			Handler:    _StaffService_JoinStaff_Handler,
+		},
+		{
 			MethodName: "GetStaff",
 			Handler:    _StaffService_GetStaff_Handler,
 		},
@@ -1330,11 +1240,6 @@ var StaffService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "AddStaff",
-			Handler:       _StaffService_AddStaff_Handler,
-			ClientStreams: true,
-		},
 		{
 			StreamName:    "UpdateStaffImage",
 			Handler:       _StaffService_UpdateStaffImage_Handler,

@@ -83,16 +83,7 @@ message UpdateTeamRes{
 }
 
 
-message RegisterTeamMemberReq{ 
-    string user_id=1; 
-    string code=2; 
-    string refresh_token=3;
-} 
 
-message RegisterTeamMemberRes{
-   UserRes user_details =1; 
-   StaffDetails staff_details = 2;
-}
 
 
 
@@ -230,7 +221,6 @@ message GetPresignedUrlRes{
 service TeamService {
    rpc CreateTeam(CreateTeamReq)returns (CreateTeamRes); 
    rpc UpdateTeam(UpdateTeamReq)returns(UpdateTeamRes);  
-   rpc RegisterTeamMember(RegisterTeamMemberReq)returns(RegisterTeamMemberRes);  
    rpc SetCaptain(SetCaptainReq)returns(SetCaptainRes); 
    rpc SetViceCaptain(SetViceCaptainReq)returns(SetViceCaptainRes); 
    rpc ListTeam(ListTeamReq)returns(ListTeamRes); 
@@ -462,23 +452,6 @@ service PlayerService{
 
 
 
-message CreateInvitationReq{
-   string team_member_id=1; 
-   string user_id=2;
-  } 
-
-message CreateInvitationRes{
-  string code=1; 
-  google.protobuf.Timestamp created_at = 2; 
-  google.protobuf.Timestamp expired_at=3; 
-}
-
-
-
-service   TeamInvite {
-    rpc CreateInvitation(CreateInvitationReq)returns(CreateInvitationRes); 
-}
-
 
 enum StaffDesignation {
   STAFF_DESIGNATION_UNSPECIFIED = 0;
@@ -507,22 +480,13 @@ enum StaffRole {
 }
 
 
-
-message StaffDetails{
+message AddStaffReq{  
   string team_id=1;  
   string user_id=2;
   string full_name=3;   
   optional string phone_num=4;
   StaffRole role=5;
   StaffDesignation designation=6; 
-}
-
-
-message AddStaffReq{  
-    oneof data {
-         StaffDetails meta=1; 
-         bytes chunks=2;
-     }
 }
 
 message AddStaffRes{
@@ -705,11 +669,18 @@ message GetStaffProfileRes{
 } 
 
 
+message JoinStaffReq{
 
+} 
+
+message JoinStaffRes{
+
+}
 
 
 service StaffService {
-     rpc AddStaff(stream AddStaffReq)returns(AddStaffRes); 
+     rpc AddStaff(AddStaffReq)returns(AddStaffRes);  
+     rpc JoinStaff(JoinStaffReq)returns(JoinStaffRes);
      rpc GetStaff(GetStaffReq)returns(GetStaffRes);
      rpc UpdateStaffImage(stream UpdateStaffImageReq)returns(UpdateStaffImageRes); 
      rpc GetStaffImageUrl(GetStaffImageUrlReq)returns(GetStaffImageUrlRes); 
@@ -718,5 +689,6 @@ service StaffService {
      rpc ListTeamStaff(ListTeamStaffReq)returns(ListTeamStaffRes); 
      rpc ReleaseStaff(ReleaseStaffReq)returns(ReleaseStaffRes); 
      rpc TransferOwnership(TransferOwnershipReq)returns(TransferOwnershipRes); 
-     rpc GetStaffProfile(GetStaffProfileReq)returns(GetStaffProfileRes);
+     rpc GetStaffProfile(GetStaffProfileReq)returns(GetStaffProfileRes);  
+     
 }
