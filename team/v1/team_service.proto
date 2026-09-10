@@ -673,6 +673,7 @@ message JoinStaffReq{
 } 
 
 message JoinStaffRes{
+   message StaffDetails{
       string staff_id=1; 
       string team_member_id=2;  
       string user_id=3;  
@@ -681,6 +682,20 @@ message JoinStaffRes{
       string designation=6; 
       string phone_num=7;  
       google.protobuf.Timestamp created_at = 8; 
+   } 
+
+   message UserResponse{
+   string session_id=1; 
+   string user_id=2;  
+   string email=3;  
+   string access_token=4;  
+   google.protobuf.Timestamp access_token_expiry=5; 
+   string refresh_token=6; 
+   google.protobuf.Timestamp refresh_token_expiry=7;
+   }
+   
+   JoinStaffRes.StaffDetails staff=1; 
+   UserResponse user=2;
 }
 
 
