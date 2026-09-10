@@ -668,11 +668,19 @@ message GetStaffProfileRes{
 
 
 message JoinStaffReq{
-
+   string user_id=1; 
+   string code=2; 
 } 
 
 message JoinStaffRes{
-
+      string staff_id=1; 
+      string team_member_id=2;  
+      string user_id=3;  
+      string full_name=4;  
+      string role=5;  
+      string designation=6; 
+      string phone_num=7;  
+      google.protobuf.Timestamp created_at = 8; 
 }
 
 
