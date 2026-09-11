@@ -378,8 +378,8 @@ message ReleasePlayerRes{
   string team_member_id = 2;
   string full_name = 3;
   int32 jersey_number = 4;
-  PlayerPosition position = 5;
-  PlayerStatus status = 6;
+  string position = 5;
+  string status = 6;
   google.protobuf.Timestamp released_at = 7;
   google.protobuf.Timestamp joined_at = 8;
 }
