@@ -422,6 +422,7 @@ const (
 	PlayerService_AddNewPlayer_FullMethodName          = "/team.PlayerService/AddNewPlayer"
 	PlayerService_UpdatePlayerDetails_FullMethodName   = "/team.PlayerService/UpdatePlayerDetails"
 	PlayerService_ListTeamPlayer_FullMethodName        = "/team.PlayerService/ListTeamPlayer"
+	PlayerService_GetTeamPlayer_FullMethodName         = "/team.PlayerService/GetTeamPlayer"
 	PlayerService_ListPlayer_FullMethodName            = "/team.PlayerService/ListPlayer"
 	PlayerService_GetPlayer_FullMethodName             = "/team.PlayerService/GetPlayer"
 	PlayerService_ReleasePlayer_FullMethodName         = "/team.PlayerService/ReleasePlayer"
@@ -438,6 +439,7 @@ type PlayerServiceClient interface {
 	AddNewPlayer(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddPlayerReq, AddPlayerRes], error)
 	UpdatePlayerDetails(ctx context.Context, in *UpdatePlayerRequest, opts ...grpc.CallOption) (*UpdatePlayersResponse, error)
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
+	GetTeamPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetTeamPlayerRes, error)
 	ListPlayer(ctx context.Context, in *ListPlayerRes, opts ...grpc.CallOption) (*ListPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
 	ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error)
@@ -482,6 +484,16 @@ func (c *playerServiceClient) ListTeamPlayer(ctx context.Context, in *ListTeamPl
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListTeamPlayerRes)
 	err := c.cc.Invoke(ctx, PlayerService_ListTeamPlayer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *playerServiceClient) GetTeamPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetTeamPlayerRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetTeamPlayerRes)
+	err := c.cc.Invoke(ctx, PlayerService_GetTeamPlayer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -568,6 +580,7 @@ type PlayerServiceServer interface {
 	AddNewPlayer(grpc.ClientStreamingServer[AddPlayerReq, AddPlayerRes]) error
 	UpdatePlayerDetails(context.Context, *UpdatePlayerRequest) (*UpdatePlayersResponse, error)
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
+	GetTeamPlayer(context.Context, *GetPlayerReq) (*GetTeamPlayerRes, error)
 	ListPlayer(context.Context, *ListPlayerRes) (*ListPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
 	ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error)
@@ -593,6 +606,9 @@ func (UnimplementedPlayerServiceServer) UpdatePlayerDetails(context.Context, *Up
 }
 func (UnimplementedPlayerServiceServer) ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTeamPlayer not implemented")
+}
+func (UnimplementedPlayerServiceServer) GetTeamPlayer(context.Context, *GetPlayerReq) (*GetTeamPlayerRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTeamPlayer not implemented")
 }
 func (UnimplementedPlayerServiceServer) ListPlayer(context.Context, *ListPlayerRes) (*ListPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPlayer not implemented")
@@ -675,6 +691,24 @@ func _PlayerService_ListTeamPlayer_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlayerServiceServer).ListTeamPlayer(ctx, req.(*ListTeamPlayerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PlayerService_GetTeamPlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPlayerReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).GetTeamPlayer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_GetTeamPlayer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).GetTeamPlayer(ctx, req.(*GetPlayerReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -808,6 +842,10 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTeamPlayer",
 			Handler:    _PlayerService_ListTeamPlayer_Handler,
+		},
+		{
+			MethodName: "GetTeamPlayer",
+			Handler:    _PlayerService_GetTeamPlayer_Handler,
 		},
 		{
 			MethodName: "ListPlayer",
