@@ -422,11 +422,13 @@ const (
 	PlayerService_AddNewPlayer_FullMethodName          = "/team.PlayerService/AddNewPlayer"
 	PlayerService_UpdatePlayerDetails_FullMethodName   = "/team.PlayerService/UpdatePlayerDetails"
 	PlayerService_ListTeamPlayer_FullMethodName        = "/team.PlayerService/ListTeamPlayer"
+	PlayerService_ListPlayer_FullMethodName            = "/team.PlayerService/ListPlayer"
 	PlayerService_GetPlayer_FullMethodName             = "/team.PlayerService/GetPlayer"
 	PlayerService_ReleasePlayer_FullMethodName         = "/team.PlayerService/ReleasePlayer"
 	PlayerService_UpdatePlayerImage_FullMethodName     = "/team.PlayerService/UpdatePlayerImage"
 	PlayerService_GetPlayerPresignedUrl_FullMethodName = "/team.PlayerService/GetPlayerPresignedUrl"
 	PlayerService_RemovePlayerImage_FullMethodName     = "/team.PlayerService/RemovePlayerImage"
+	PlayerService_PlayerProfile_FullMethodName         = "/team.PlayerService/PlayerProfile"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
@@ -436,11 +438,13 @@ type PlayerServiceClient interface {
 	AddNewPlayer(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddPlayerReq, AddPlayerRes], error)
 	UpdatePlayerDetails(ctx context.Context, in *UpdatePlayerRequest, opts ...grpc.CallOption) (*UpdatePlayersResponse, error)
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
+	ListPlayer(ctx context.Context, in *ListPlayerRes, opts ...grpc.CallOption) (*ListPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
 	ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error)
 	UpdatePlayerImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdatePlayerImageReq, UpdatePlayerImageRes], error)
 	GetPlayerPresignedUrl(ctx context.Context, in *GetPlayerPresignedUrlReq, opts ...grpc.CallOption) (*GetPlayerPresignedUrlRes, error)
 	RemovePlayerImage(ctx context.Context, in *RemovePlayerImageReq, opts ...grpc.CallOption) (*RemovePlayerImageRes, error)
+	PlayerProfile(ctx context.Context, in *PlayerProfileReq, opts ...grpc.CallOption) (*PlayerProfileRes, error)
 }
 
 type playerServiceClient struct {
@@ -478,6 +482,16 @@ func (c *playerServiceClient) ListTeamPlayer(ctx context.Context, in *ListTeamPl
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListTeamPlayerRes)
 	err := c.cc.Invoke(ctx, PlayerService_ListTeamPlayer_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *playerServiceClient) ListPlayer(ctx context.Context, in *ListPlayerRes, opts ...grpc.CallOption) (*ListPlayerRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListPlayerRes)
+	err := c.cc.Invoke(ctx, PlayerService_ListPlayer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -537,6 +551,16 @@ func (c *playerServiceClient) RemovePlayerImage(ctx context.Context, in *RemoveP
 	return out, nil
 }
 
+func (c *playerServiceClient) PlayerProfile(ctx context.Context, in *PlayerProfileReq, opts ...grpc.CallOption) (*PlayerProfileRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PlayerProfileRes)
+	err := c.cc.Invoke(ctx, PlayerService_PlayerProfile_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlayerServiceServer is the server API for PlayerService service.
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
@@ -544,11 +568,13 @@ type PlayerServiceServer interface {
 	AddNewPlayer(grpc.ClientStreamingServer[AddPlayerReq, AddPlayerRes]) error
 	UpdatePlayerDetails(context.Context, *UpdatePlayerRequest) (*UpdatePlayersResponse, error)
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
+	ListPlayer(context.Context, *ListPlayerRes) (*ListPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
 	ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error)
 	UpdatePlayerImage(grpc.ClientStreamingServer[UpdatePlayerImageReq, UpdatePlayerImageRes]) error
 	GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error)
 	RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error)
+	PlayerProfile(context.Context, *PlayerProfileReq) (*PlayerProfileRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -568,6 +594,9 @@ func (UnimplementedPlayerServiceServer) UpdatePlayerDetails(context.Context, *Up
 func (UnimplementedPlayerServiceServer) ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTeamPlayer not implemented")
 }
+func (UnimplementedPlayerServiceServer) ListPlayer(context.Context, *ListPlayerRes) (*ListPlayerRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPlayer not implemented")
+}
 func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPlayer not implemented")
 }
@@ -582,6 +611,9 @@ func (UnimplementedPlayerServiceServer) GetPlayerPresignedUrl(context.Context, *
 }
 func (UnimplementedPlayerServiceServer) RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemovePlayerImage not implemented")
+}
+func (UnimplementedPlayerServiceServer) PlayerProfile(context.Context, *PlayerProfileReq) (*PlayerProfileRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayerProfile not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -643,6 +675,24 @@ func _PlayerService_ListTeamPlayer_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PlayerServiceServer).ListTeamPlayer(ctx, req.(*ListTeamPlayerReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PlayerService_ListPlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListPlayerRes)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).ListPlayer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_ListPlayer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).ListPlayer(ctx, req.(*ListPlayerRes))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -726,6 +776,24 @@ func _PlayerService_RemovePlayerImage_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlayerService_PlayerProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlayerProfileReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).PlayerProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_PlayerProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).PlayerProfile(ctx, req.(*PlayerProfileReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlayerService_ServiceDesc is the grpc.ServiceDesc for PlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -742,6 +810,10 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PlayerService_ListTeamPlayer_Handler,
 		},
 		{
+			MethodName: "ListPlayer",
+			Handler:    _PlayerService_ListPlayer_Handler,
+		},
+		{
 			MethodName: "GetPlayer",
 			Handler:    _PlayerService_GetPlayer_Handler,
 		},
@@ -756,6 +828,10 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemovePlayerImage",
 			Handler:    _PlayerService_RemovePlayerImage_Handler,
+		},
+		{
+			MethodName: "PlayerProfile",
+			Handler:    _PlayerService_PlayerProfile_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

@@ -233,14 +233,11 @@ service TeamService {
 
 
 message PlayerDetails{
-string full_name=1; 
- google.protobuf.Timestamp date_of_birth=2;  
- int32 jersey_number=3;  
- int32 position=4;  
- float height=5;
- float weight=6;   
- string team_id=7; 
- string user_id=8;
+  string full_name=1; 
+  string dob=2; 
+  string natinality=3;  
+  PlayerPosition position=4; 
+  PreferredFoot prefered_foot=5;
 }
 
 
@@ -254,38 +251,31 @@ message AddPlayerReq{
 
 message AddPlayerRes{ 
   string player_id=1; 
-  string team_member_id=2; 
-  string full_name=3; 
-  int32 jersey_number=4; 
-  string player_position = 5; 
-  string player_status =6; 
+  string full_name=2; 
+  string dob=3; 
+  string natinality=4;  
+  PlayerPosition position=5; 
+  PreferredFoot prefered_foot=6;
  string presigned_url=7;
 }
 
 message UpdatePlayerRequest {
-  string user_id = 1;
-  string team_id = 2;
-  string player_id = 3;
-
-  optional string full_name = 4;
-  optional google.protobuf.Timestamp date_of_birth = 5;
-  optional int32 jersey_number = 6;
-  optional PlayerPosition position = 7;
-  optional float height = 8;
-  optional float weight = 9;
-  optional PlayerStatus status = 10;
+  string player_id = 1;
+  optional string full_name = 2;
+  optional google.protobuf.Timestamp date_of_birth = 3;
+  optional PlayerPosition position = 4;
+  optional string nationality=5;
+  optional PreferredFoot preferred_foot = 6; 
+  optional PlayerStatus status = 7;
 }
 
 message UpdatePlayersResponse {
   string player_id = 1;
-  string team_member_id = 2;
-  string full_name = 3;
-  google.protobuf.Timestamp date_of_birth = 4;
-  int32 jersey_number = 5;
-  string position = 6;
-  float height = 7;
-  float weight = 8;
-  string status = 9;
+  string full_name = 2;
+  google.protobuf.Timestamp date_of_birth = 3;
+  string position = 4;
+  PreferredFoot preferred_foot = 5;
+  string status = 6;
 }
 
 
@@ -294,37 +284,33 @@ message UpdatePlayerStatusRes{
    string player_status=2; 
 } 
 
-enum  PlayerStatus {
-  STATUS_UNSPECIFIED = 0; 
-  STATUS_ACTIVE=1; 
-  STATUS_INACTIVE=2; 
-  STATUS_SUSPENDED=3; 
-  STATUS_RELEASED=4;
-  STATUS_INJURED=5;
+
+enum PlayerStatus {
+  PLAYER_STATUS_UNSPECIFIED = 0;
+
+  PLAYER_STATUS_ACTIVE = 1;
+  PLAYER_STATUS_INACTIVE = 2;
+  PLAYER_STATUS_SUSPENDED = 3;
+  PLAYER_STATUS_LEFT = 4;
 }
 
 enum PlayerPosition {
   PLAYER_POSITION_UNSPECIFIED = 0;
 
-  PLAYER_POSITION_GK  = 1;
-
-  PLAYER_POSITION_CB  = 2;
-  PLAYER_POSITION_LB  = 3;
-  PLAYER_POSITION_RB  = 4;
-  PLAYER_POSITION_LWB = 5;
-  PLAYER_POSITION_RWB = 6;
-
-  PLAYER_POSITION_CDM = 7;
-  PLAYER_POSITION_CM  = 8;
-  PLAYER_POSITION_CAM = 9;
-  PLAYER_POSITION_LM  = 10;
-  PLAYER_POSITION_RM  = 11;
-
-  PLAYER_POSITION_LW  = 12;
-  PLAYER_POSITION_RW  = 13;
-  PLAYER_POSITION_CF  = 14;
-  PLAYER_POSITION_ST  = 15;
+  PLAYER_POSITION_GOALKEEPER = 1;
+  PLAYER_POSITION_DEFENDER = 2;
+  PLAYER_POSITION_MIDFIELDER = 3;
+  PLAYER_POSITION_FORWARD = 4;
 }
+
+enum PreferredFoot {
+  PREFERRED_FOOT_UNSPECIFIED = 0;
+
+  PREFERRED_FOOT_LEFT = 1;
+  PREFERRED_FOOT_RIGHT = 2;
+  PREFERRED_FOOT_BOTH = 3;
+}
+
 
 message ListTeamPlayerReq{
    string team_id=1; 
@@ -437,17 +423,38 @@ message RemovePlayerImageReq{
 
 message RemovePlayerImageRes{
     bool success=1;
+} 
+
+
+message ListPlayersReq{
+
 }
+
+message ListPlayerRes{
+
+}
+
+message PlayerProfileReq{
+
+}
+
+message PlayerProfileRes{
+
+}
+
+
 
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
   rpc UpdatePlayerDetails(UpdatePlayerRequest)returns(UpdatePlayersResponse); 
-  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);  
+  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);   
+  rpc ListPlayer(ListPlayerRes)returns(ListPlayerRes);
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
   rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
   rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
   rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
   rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
+  rpc PlayerProfile(PlayerProfileReq)returns(PlayerProfileRes);
 }
 
 
