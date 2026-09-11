@@ -2056,6 +2056,7 @@ type PlayerDetails struct {
 	Natinality    string                 `protobuf:"bytes,3,opt,name=natinality,proto3" json:"natinality,omitempty"`
 	Position      PlayerPosition         `protobuf:"varint,4,opt,name=position,proto3,enum=team.PlayerPosition" json:"position,omitempty"`
 	PreferedFoot  PreferredFoot          `protobuf:"varint,5,opt,name=prefered_foot,json=preferedFoot,proto3,enum=team.PreferredFoot" json:"prefered_foot,omitempty"`
+	UserId        string                 `protobuf:"bytes,6,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2123,6 +2124,13 @@ func (x *PlayerDetails) GetPreferedFoot() PreferredFoot {
 		return x.PreferedFoot
 	}
 	return PreferredFoot_PREFERRED_FOOT_UNSPECIFIED
+}
+
+func (x *PlayerDetails) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
 }
 
 type AddPlayerReq struct {
@@ -5899,7 +5907,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\"R\n" +
 	"\x12GetPresignedUrlRes\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12#\n" +
-	"\rpresigned_url\x18\x02 \x01(\tR\fpresignedUrl\"\xca\x01\n" +
+	"\rpresigned_url\x18\x02 \x01(\tR\fpresignedUrl\"\xe3\x01\n" +
 	"\rPlayerDetails\x12\x1b\n" +
 	"\tfull_name\x18\x01 \x01(\tR\bfullName\x12\x10\n" +
 	"\x03dob\x18\x02 \x01(\tR\x03dob\x12\x1e\n" +
@@ -5907,7 +5915,8 @@ const file_team_service_proto_rawDesc = "" +
 	"natinality\x18\x03 \x01(\tR\n" +
 	"natinality\x120\n" +
 	"\bposition\x18\x04 \x01(\x0e2\x14.team.PlayerPositionR\bposition\x128\n" +
-	"\rprefered_foot\x18\x05 \x01(\x0e2\x13.team.PreferredFootR\fpreferedFoot\"\x88\x01\n" +
+	"\rprefered_foot\x18\x05 \x01(\x0e2\x13.team.PreferredFootR\fpreferedFoot\x12\x17\n" +
+	"\auser_id\x18\x06 \x01(\tR\x06userId\"\x88\x01\n" +
 	"\fAddPlayerReq\x12<\n" +
 	"\x0eplayer_details\x18\x01 \x01(\v2\x13.team.PlayerDetailsH\x00R\rplayerDetails\x120\n" +
 	"\x13player_image_chunks\x18\x02 \x01(\fH\x00R\x11playerImageChunksB\b\n" +

@@ -238,6 +238,7 @@ message PlayerDetails{
   string natinality=3;  
   PlayerPosition position=4; 
   PreferredFoot prefered_foot=5;
+  string user_id=6;
 }
 
 
