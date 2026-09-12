@@ -315,14 +315,6 @@ enum PreferredFoot {
 }
 
 
-message ListTeamPlayerReq{
-   string team_id=1; 
-   int32  page=2; 
-   int32 limit=3; 
-   optional PlayerPosition position=4;   
-   optional PlayerStatus player_status=5;
-   optional  string search=6;
-}
 
 
 message PlayerList{
@@ -342,10 +334,6 @@ message PaginationDetails{
 }
 
 
-message ListTeamPlayerRes{ 
-   PaginationDetails paginate=1;
-   repeated PlayerList players=2;
-}
 
 message GetPlayerReq{
    string player_id=1;  
@@ -366,23 +354,7 @@ message  GetPlayerRes {
 }
 
 
-message ReleasePlayerReq{
-    string player_id=1; 
-    string team_id=2; 
-    string user_id=3; 
-}
 
-
-message ReleasePlayerRes{
-   string id = 1;
-  string team_member_id = 2;
-  string full_name = 3;
-  int32 jersey_number = 4;
-  string position = 5;
-  string status = 6;
-  google.protobuf.Timestamp released_at = 7;
-  google.protobuf.Timestamp joined_at = 8;
-}
 
 
 message UpdatePlayerImageMeta{
@@ -444,6 +416,20 @@ message PlayerProfileRes{
 
 }
 
+
+
+
+service PlayerService{
+  rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
+  rpc UpdatePlayerDetails(UpdatePlayerRequest)returns(UpdatePlayersResponse); 
+  rpc ListPlayer(ListPlayerRes)returns(ListPlayerRes);
+  rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
+  rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
+  rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
+  rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
+  rpc PlayerProfile(PlayerProfileReq)returns(PlayerProfileRes);
+}
+
 message GetTeamPlayerReq{
 
 }
@@ -452,23 +438,48 @@ message GetTeamPlayerRes{
 
 }
 
-
-
-service PlayerService{
-  rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
-  rpc UpdatePlayerDetails(UpdatePlayerRequest)returns(UpdatePlayersResponse); 
-  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes);   
-  rpc GetTeamPlayer(GetPlayerReq)returns(GetTeamPlayerRes);
-  rpc ListPlayer(ListPlayerRes)returns(ListPlayerRes);
-  rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
-  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
-  rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
-  rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
-  rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
-  rpc PlayerProfile(PlayerProfileReq)returns(PlayerProfileRes);
+message ReleasePlayerReq{
+    string player_id=1; 
+    string team_id=2; 
+    string user_id=3; 
 }
 
 
+message ReleasePlayerRes{
+   string id = 1;
+  string team_member_id = 2;
+  string full_name = 3;
+  int32 jersey_number = 4;
+  string position = 5;
+  string status = 6;
+  google.protobuf.Timestamp released_at = 7;
+  google.protobuf.Timestamp joined_at = 8;
+}
+
+
+message ListTeamPlayerRes{ 
+   PaginationDetails paginate=1;
+   repeated PlayerList players=2;
+}
+message ListTeamPlayerReq{
+   string team_id=1; 
+   int32  page=2; 
+   int32 limit=3; 
+   optional PlayerPosition position=4;   
+   optional PlayerStatus player_status=5;
+   optional  string search=6;
+}
+
+
+
+
+
+service  TeamPlayerService {
+  rpc GetTeamPlayer(GetTeamPlayerReq)returns(GetTeamPlayerRes);
+  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
+  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes); 
+
+}
 
 
 enum StaffDesignation {
