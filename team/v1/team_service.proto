@@ -238,7 +238,8 @@ message PlayerDetails{
   string natinality=3;  
   PlayerPosition position=4; 
   PreferredFoot prefered_foot=5;
-  string user_id=6;
+  string user_id=6; 
+  string refresh_token=7;
 }
 
 
@@ -251,14 +252,28 @@ message AddPlayerReq{
 } 
 
 message AddPlayerRes{ 
-  string player_id=1; 
-  string full_name=2; 
-  string dob=3; 
-  string natinality=4;  
-  PlayerPosition position=5; 
-  PreferredFoot prefered_foot=6;
- string presigned_url=7; 
- string user_id=8;
+   message PlayerDetails{
+    string player_id=1; 
+    string full_name=2; 
+    string dob=3; 
+    string natinality=4;  
+    PlayerPosition position=5; 
+    PreferredFoot prefered_foot=6;
+    string presigned_url=7; 
+    string user_id=8;
+   } 
+   message UserDetails{
+      string session_id=1; 
+      string user_id=2;  
+      string email=3;  
+      string access_token=4;  
+      google.protobuf.Timestamp access_token_expiry=5; 
+      string refresh_token=6; 
+      google.protobuf.Timestamp refresh_token_expiry=7;
+   }
+
+   PlayerDetails player_details = 1; 
+   UserDetails user_details = 2;
 }
 
 message UpdatePlayerRequest {
@@ -470,6 +485,14 @@ message ListTeamPlayerReq{
    optional  string search=6;
 }
 
+message SendPlayerRequestReq{
+
+}
+
+message SendPlayerRequestRes{
+
+}
+
 
 
 
@@ -478,7 +501,7 @@ service  TeamPlayerService {
   rpc GetTeamPlayer(GetTeamPlayerReq)returns(GetTeamPlayerRes);
   rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes); 
-
+  rpc SendPlayerReq(SendPlayerRequestReq)returns(SendPlayerRequestRes);
 }
 
 
