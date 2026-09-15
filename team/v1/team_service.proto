@@ -323,8 +323,8 @@ message UpdatePlayersResponse {
    google.protobuf.Timestamp date_of_birth = 3;
    PlayerPosition position = 4;
    string nationality=5;
-   PreferredFoot preferred_foot = 6; 
-   PlayerStatus status = 7;  
+   string preferred_foot = 6; 
+   string status = 7;  
    float height=8;
    float weight=9; 
 }
