@@ -321,7 +321,7 @@ message UpdatePlayersResponse {
    string user_id = 1;
    string full_name = 2;
    google.protobuf.Timestamp date_of_birth = 3;
-   PlayerPosition position = 4;
+   string position = 4;
    string nationality=5;
    string preferred_foot = 6; 
    string status = 7;  
@@ -415,6 +415,13 @@ message ListPlayersReq{
    optional  string search=6;
 }
 
+message ListPlayerReq{
+   int32 limit=1; 
+   int32 page=2; 
+   string search=3; 
+   
+}
+
 message ListPlayerRes{
    message PlayerDetails{
       string player_id=1; 
@@ -460,7 +467,7 @@ message GetMyTeamsRes{
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
   rpc UpdatePlayerDetails(UpdatePlayerRequest)returns(UpdatePlayersResponse); 
-  rpc ListPlayer(ListPlayerRes)returns(ListPlayerRes);
+  rpc ListPlayer(ListPlayerReq)returns(ListPlayerRes);
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
   rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
   rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  

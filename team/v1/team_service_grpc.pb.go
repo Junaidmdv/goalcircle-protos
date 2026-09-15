@@ -436,7 +436,7 @@ const (
 type PlayerServiceClient interface {
 	AddNewPlayer(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[AddPlayerReq, AddPlayerRes], error)
 	UpdatePlayerDetails(ctx context.Context, in *UpdatePlayerRequest, opts ...grpc.CallOption) (*UpdatePlayersResponse, error)
-	ListPlayer(ctx context.Context, in *ListPlayerRes, opts ...grpc.CallOption) (*ListPlayerRes, error)
+	ListPlayer(ctx context.Context, in *ListPlayerReq, opts ...grpc.CallOption) (*ListPlayerRes, error)
 	GetPlayer(ctx context.Context, in *GetPlayerReq, opts ...grpc.CallOption) (*GetPlayerRes, error)
 	UpdatePlayerImage(ctx context.Context, opts ...grpc.CallOption) (grpc.ClientStreamingClient[UpdatePlayerImageReq, UpdatePlayerImageRes], error)
 	GetPlayerPresignedUrl(ctx context.Context, in *GetPlayerPresignedUrlReq, opts ...grpc.CallOption) (*GetPlayerPresignedUrlRes, error)
@@ -476,7 +476,7 @@ func (c *playerServiceClient) UpdatePlayerDetails(ctx context.Context, in *Updat
 	return out, nil
 }
 
-func (c *playerServiceClient) ListPlayer(ctx context.Context, in *ListPlayerRes, opts ...grpc.CallOption) (*ListPlayerRes, error) {
+func (c *playerServiceClient) ListPlayer(ctx context.Context, in *ListPlayerReq, opts ...grpc.CallOption) (*ListPlayerRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ListPlayerRes)
 	err := c.cc.Invoke(ctx, PlayerService_ListPlayer_FullMethodName, in, out, cOpts...)
@@ -555,7 +555,7 @@ func (c *playerServiceClient) GetMyTeams(ctx context.Context, in *GetMyTeamsReq,
 type PlayerServiceServer interface {
 	AddNewPlayer(grpc.ClientStreamingServer[AddPlayerReq, AddPlayerRes]) error
 	UpdatePlayerDetails(context.Context, *UpdatePlayerRequest) (*UpdatePlayersResponse, error)
-	ListPlayer(context.Context, *ListPlayerRes) (*ListPlayerRes, error)
+	ListPlayer(context.Context, *ListPlayerReq) (*ListPlayerRes, error)
 	GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error)
 	UpdatePlayerImage(grpc.ClientStreamingServer[UpdatePlayerImageReq, UpdatePlayerImageRes]) error
 	GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error)
@@ -578,7 +578,7 @@ func (UnimplementedPlayerServiceServer) AddNewPlayer(grpc.ClientStreamingServer[
 func (UnimplementedPlayerServiceServer) UpdatePlayerDetails(context.Context, *UpdatePlayerRequest) (*UpdatePlayersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePlayerDetails not implemented")
 }
-func (UnimplementedPlayerServiceServer) ListPlayer(context.Context, *ListPlayerRes) (*ListPlayerRes, error) {
+func (UnimplementedPlayerServiceServer) ListPlayer(context.Context, *ListPlayerReq) (*ListPlayerRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPlayer not implemented")
 }
 func (UnimplementedPlayerServiceServer) GetPlayer(context.Context, *GetPlayerReq) (*GetPlayerRes, error) {
@@ -646,7 +646,7 @@ func _PlayerService_UpdatePlayerDetails_Handler(srv interface{}, ctx context.Con
 }
 
 func _PlayerService_ListPlayer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPlayerRes)
+	in := new(ListPlayerReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -658,7 +658,7 @@ func _PlayerService_ListPlayer_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: PlayerService_ListPlayer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerServiceServer).ListPlayer(ctx, req.(*ListPlayerRes))
+		return srv.(PlayerServiceServer).ListPlayer(ctx, req.(*ListPlayerReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
