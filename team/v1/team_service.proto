@@ -290,7 +290,6 @@ message AddPlayerRes{
     string presigned_url=7;  
     float height=8; 
     float weight=9;
-    string city=10;
    } 
    message UserDetails{
       string session_id=1; 
@@ -316,7 +315,6 @@ message UpdatePlayerRequest {
   optional PlayerStatus status = 7;  
   optional float height=8;
   optional float weight=9; 
-  optional string city=10;
 }
 
 message UpdatePlayersResponse {
@@ -329,7 +327,6 @@ message UpdatePlayersResponse {
    PlayerStatus status = 7;  
    float height=8;
    float weight=9; 
-   string city=10;
 }
 
 message PlayerList{

@@ -2310,7 +2310,6 @@ type UpdatePlayerRequest struct {
 	Status        *PlayerStatus          `protobuf:"varint,7,opt,name=status,proto3,enum=team.PlayerStatus,oneof" json:"status,omitempty"`
 	Height        *float32               `protobuf:"fixed32,8,opt,name=height,proto3,oneof" json:"height,omitempty"`
 	Weight        *float32               `protobuf:"fixed32,9,opt,name=weight,proto3,oneof" json:"weight,omitempty"`
-	City          *string                `protobuf:"bytes,10,opt,name=city,proto3,oneof" json:"city,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2408,13 +2407,6 @@ func (x *UpdatePlayerRequest) GetWeight() float32 {
 	return 0
 }
 
-func (x *UpdatePlayerRequest) GetCity() string {
-	if x != nil && x.City != nil {
-		return *x.City
-	}
-	return ""
-}
-
 type UpdatePlayersResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -2426,7 +2418,6 @@ type UpdatePlayersResponse struct {
 	Status        PlayerStatus           `protobuf:"varint,7,opt,name=status,proto3,enum=team.PlayerStatus" json:"status,omitempty"`
 	Height        float32                `protobuf:"fixed32,8,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,9,opt,name=weight,proto3" json:"weight,omitempty"`
-	City          string                 `protobuf:"bytes,10,opt,name=city,proto3" json:"city,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2522,13 +2513,6 @@ func (x *UpdatePlayersResponse) GetWeight() float32 {
 		return x.Weight
 	}
 	return 0
-}
-
-func (x *UpdatePlayersResponse) GetCity() string {
-	if x != nil {
-		return x.City
-	}
-	return ""
 }
 
 type PlayerList struct {
@@ -5746,7 +5730,6 @@ type AddPlayerRes_PlayerDetails struct {
 	PresignedUrl  string                 `protobuf:"bytes,7,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	Height        float32                `protobuf:"fixed32,8,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,9,opt,name=weight,proto3" json:"weight,omitempty"`
-	City          string                 `protobuf:"bytes,10,opt,name=city,proto3" json:"city,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5842,13 +5825,6 @@ func (x *AddPlayerRes_PlayerDetails) GetWeight() float32 {
 		return x.Weight
 	}
 	return 0
-}
-
-func (x *AddPlayerRes_PlayerDetails) GetCity() string {
-	if x != nil {
-		return x.City
-	}
-	return ""
 }
 
 type AddPlayerRes_UserDetails struct {
@@ -6591,10 +6567,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\fAddPlayerReq\x12<\n" +
 	"\x0eplayer_details\x18\x01 \x01(\v2\x13.team.PlayerDetailsH\x00R\rplayerDetails\x120\n" +
 	"\x13player_image_chunks\x18\x02 \x01(\fH\x00R\x11playerImageChunksB\b\n" +
-	"\x06player\"\x84\x06\n" +
+	"\x06player\"\xf0\x05\n" +
 	"\fAddPlayerRes\x12G\n" +
 	"\x0eplayer_details\x18\x01 \x01(\v2 .team.AddPlayerRes.PlayerDetailsR\rplayerDetails\x12A\n" +
-	"\fuser_details\x18\x02 \x01(\v2\x1e.team.AddPlayerRes.UserDetailsR\vuserDetails\x1a\xa7\x02\n" +
+	"\fuser_details\x18\x02 \x01(\v2\x1e.team.AddPlayerRes.UserDetailsR\vuserDetails\x1a\x93\x02\n" +
 	"\rPlayerDetails\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x10\n" +
@@ -6604,9 +6580,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\rprefered_foot\x18\x06 \x01(\tR\fpreferedFoot\x12#\n" +
 	"\rpresigned_url\x18\a \x01(\tR\fpresignedUrl\x12\x16\n" +
 	"\x06height\x18\b \x01(\x02R\x06height\x12\x16\n" +
-	"\x06weight\x18\t \x01(\x02R\x06weight\x12\x12\n" +
-	"\x04city\x18\n" +
-	" \x01(\tR\x04city\x1a\xbd\x02\n" +
+	"\x06weight\x18\t \x01(\x02R\x06weight\x1a\xbd\x02\n" +
 	"\vUserDetails\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
@@ -6615,7 +6589,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\faccess_token\x18\x04 \x01(\tR\vaccessToken\x12J\n" +
 	"\x13access_token_expiry\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\x11accessTokenExpiry\x12#\n" +
 	"\rrefresh_token\x18\x06 \x01(\tR\frefreshToken\x12L\n" +
-	"\x14refresh_token_expiry\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"\xb2\x04\n" +
+	"\x14refresh_token_expiry\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x12refreshTokenExpiry\"\x90\x04\n" +
 	"\x13UpdatePlayerRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12 \n" +
 	"\tfull_name\x18\x02 \x01(\tH\x00R\bfullName\x88\x01\x01\x12C\n" +
@@ -6625,9 +6599,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0epreferred_foot\x18\x06 \x01(\x0e2\x13.team.PreferredFootH\x04R\rpreferredFoot\x88\x01\x01\x12/\n" +
 	"\x06status\x18\a \x01(\x0e2\x12.team.PlayerStatusH\x05R\x06status\x88\x01\x01\x12\x1b\n" +
 	"\x06height\x18\b \x01(\x02H\x06R\x06height\x88\x01\x01\x12\x1b\n" +
-	"\x06weight\x18\t \x01(\x02H\aR\x06weight\x88\x01\x01\x12\x17\n" +
-	"\x04city\x18\n" +
-	" \x01(\tH\bR\x04city\x88\x01\x01B\f\n" +
+	"\x06weight\x18\t \x01(\x02H\aR\x06weight\x88\x01\x01B\f\n" +
 	"\n" +
 	"_full_nameB\x10\n" +
 	"\x0e_date_of_birthB\v\n" +
@@ -6636,8 +6608,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0f_preferred_footB\t\n" +
 	"\a_statusB\t\n" +
 	"\a_heightB\t\n" +
-	"\a_weightB\a\n" +
-	"\x05_city\"\x8d\x03\n" +
+	"\a_weight\"\xf9\x02\n" +
 	"\x15UpdatePlayersResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12>\n" +
@@ -6647,9 +6618,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0epreferred_foot\x18\x06 \x01(\x0e2\x13.team.PreferredFootR\rpreferredFoot\x12*\n" +
 	"\x06status\x18\a \x01(\x0e2\x12.team.PlayerStatusR\x06status\x12\x16\n" +
 	"\x06height\x18\b \x01(\x02R\x06height\x12\x16\n" +
-	"\x06weight\x18\t \x01(\x02R\x06weight\x12\x12\n" +
-	"\x04city\x18\n" +
-	" \x01(\tR\x04city\"\xca\x01\n" +
+	"\x06weight\x18\t \x01(\x02R\x06weight\"\xca\x01\n" +
 	"\n" +
 	"PlayerList\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
