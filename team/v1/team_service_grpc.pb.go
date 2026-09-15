@@ -427,6 +427,7 @@ const (
 	PlayerService_GetPlayerPresignedUrl_FullMethodName = "/team.PlayerService/GetPlayerPresignedUrl"
 	PlayerService_RemovePlayerImage_FullMethodName     = "/team.PlayerService/RemovePlayerImage"
 	PlayerService_PlayerProfile_FullMethodName         = "/team.PlayerService/PlayerProfile"
+	PlayerService_GetMyTeams_FullMethodName            = "/team.PlayerService/GetMyTeams"
 )
 
 // PlayerServiceClient is the client API for PlayerService service.
@@ -441,6 +442,7 @@ type PlayerServiceClient interface {
 	GetPlayerPresignedUrl(ctx context.Context, in *GetPlayerPresignedUrlReq, opts ...grpc.CallOption) (*GetPlayerPresignedUrlRes, error)
 	RemovePlayerImage(ctx context.Context, in *RemovePlayerImageReq, opts ...grpc.CallOption) (*RemovePlayerImageRes, error)
 	PlayerProfile(ctx context.Context, in *PlayerProfileReq, opts ...grpc.CallOption) (*PlayerProfileRes, error)
+	GetMyTeams(ctx context.Context, in *GetMyTeamsReq, opts ...grpc.CallOption) (*GetMyTeamsRes, error)
 }
 
 type playerServiceClient struct {
@@ -537,6 +539,16 @@ func (c *playerServiceClient) PlayerProfile(ctx context.Context, in *PlayerProfi
 	return out, nil
 }
 
+func (c *playerServiceClient) GetMyTeams(ctx context.Context, in *GetMyTeamsReq, opts ...grpc.CallOption) (*GetMyTeamsRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMyTeamsRes)
+	err := c.cc.Invoke(ctx, PlayerService_GetMyTeams_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlayerServiceServer is the server API for PlayerService service.
 // All implementations must embed UnimplementedPlayerServiceServer
 // for forward compatibility.
@@ -549,6 +561,7 @@ type PlayerServiceServer interface {
 	GetPlayerPresignedUrl(context.Context, *GetPlayerPresignedUrlReq) (*GetPlayerPresignedUrlRes, error)
 	RemovePlayerImage(context.Context, *RemovePlayerImageReq) (*RemovePlayerImageRes, error)
 	PlayerProfile(context.Context, *PlayerProfileReq) (*PlayerProfileRes, error)
+	GetMyTeams(context.Context, *GetMyTeamsReq) (*GetMyTeamsRes, error)
 	mustEmbedUnimplementedPlayerServiceServer()
 }
 
@@ -582,6 +595,9 @@ func (UnimplementedPlayerServiceServer) RemovePlayerImage(context.Context, *Remo
 }
 func (UnimplementedPlayerServiceServer) PlayerProfile(context.Context, *PlayerProfileReq) (*PlayerProfileRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlayerProfile not implemented")
+}
+func (UnimplementedPlayerServiceServer) GetMyTeams(context.Context, *GetMyTeamsReq) (*GetMyTeamsRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMyTeams not implemented")
 }
 func (UnimplementedPlayerServiceServer) mustEmbedUnimplementedPlayerServiceServer() {}
 func (UnimplementedPlayerServiceServer) testEmbeddedByValue()                       {}
@@ -726,6 +742,24 @@ func _PlayerService_PlayerProfile_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlayerService_GetMyTeams_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMyTeamsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerServiceServer).GetMyTeams(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerService_GetMyTeams_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerServiceServer).GetMyTeams(ctx, req.(*GetMyTeamsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlayerService_ServiceDesc is the grpc.ServiceDesc for PlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -756,6 +790,10 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PlayerProfile",
 			Handler:    _PlayerService_PlayerProfile_Handler,
+		},
+		{
+			MethodName: "GetMyTeams",
+			Handler:    _PlayerService_GetMyTeams_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

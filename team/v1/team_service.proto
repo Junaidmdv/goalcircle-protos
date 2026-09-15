@@ -230,78 +230,6 @@ service TeamService {
    rpc GetLogoPresignedUrl(GetPresignedUrlReq)returns(GetPresignedUrlRes);
 }
 
-
-
-message PlayerDetails{
-  string full_name=1; 
-  google.protobuf.Timestamp dob=2; 
-  string natinality=3;  
-  PlayerPosition position=4; 
-  PreferredFoot prefered_foot=5;
-  string user_id=6; 
-  string refresh_token=7;
-}
-
-
-
-message AddPlayerReq{  
-   oneof player{
-      PlayerDetails player_details=1; 
-      bytes player_image_chunks=2;
-   }
-} 
-
-message AddPlayerRes{ 
-   message PlayerDetails{
-    string player_id=1; 
-    string full_name=2; 
-    string dob=3; 
-    string natinality=4;  
-    string position=5; 
-    string prefered_foot=6;
-    string presigned_url=7; 
-   } 
-   message UserDetails{
-      string session_id=1; 
-      string user_id=2;  
-      string email=3;  
-      string access_token=4;  
-      google.protobuf.Timestamp access_token_expiry=5; 
-      string refresh_token=6; 
-      google.protobuf.Timestamp refresh_token_expiry=7;
-   }
-
-   PlayerDetails player_details = 1; 
-   UserDetails user_details = 2;
-}
-
-message UpdatePlayerRequest {
-  string player_id = 1;
-  optional string full_name = 2;
-  optional google.protobuf.Timestamp date_of_birth = 3;
-  optional PlayerPosition position = 4;
-  optional string nationality=5;
-  optional PreferredFoot preferred_foot = 6; 
-  optional PlayerStatus status = 7; 
-  string user_id=8;
-}
-
-message UpdatePlayersResponse {
-  string player_id = 1;
-  string full_name = 2;
-  google.protobuf.Timestamp date_of_birth = 3;
-  string position = 4;
-  string preferred_foot = 5;
-  string status = 6;
-}
-
-
-message UpdatePlayerStatusRes{
-   string player_id=1; 
-   string player_status=2; 
-} 
-
-
 enum PlayerStatus {
   PLAYER_STATUS_UNSPECIFIED = 0;
 
@@ -322,7 +250,6 @@ enum PlayerPosition {
 
 enum PreferredFoot {
   PREFERRED_FOOT_UNSPECIFIED = 0;
-
   PREFERRED_FOOT_LEFT = 1;
   PREFERRED_FOOT_RIGHT = 2;
   PREFERRED_FOOT_BOTH = 3;
@@ -330,6 +257,80 @@ enum PreferredFoot {
 
 
 
+message PlayerDetails{
+  string full_name=1; 
+  google.protobuf.Timestamp dob=2; 
+  string nationality=3;  
+  PlayerPosition position=4; 
+  PreferredFoot prefered_foot=5; 
+  float height=6;
+  float weight=7;
+  string user_id=8; 
+  string city=9;
+  string refresh_token=10;
+}
+
+
+
+message AddPlayerReq{  
+   oneof player{
+      PlayerDetails player_details=1; 
+      bytes player_image_chunks=2;
+   }
+} 
+
+message AddPlayerRes{ 
+   message PlayerDetails{
+    string player_id=1; 
+    string full_name=2; 
+    string dob=3; 
+    string nationality=4;  
+    string position=5; 
+    string prefered_foot=6;
+    string presigned_url=7;  
+    float height=8; 
+    float weight=9;
+    string city=10;
+   } 
+   message UserDetails{
+      string session_id=1; 
+      string user_id=2;  
+      string email=3;  
+      string access_token=4;  
+      google.protobuf.Timestamp access_token_expiry=5; 
+      string refresh_token=6; 
+      google.protobuf.Timestamp refresh_token_expiry=7;
+   }
+
+   PlayerDetails player_details = 1; 
+   UserDetails user_details = 2;
+}
+
+message UpdatePlayerRequest {
+  string user_id = 1;
+  optional string full_name = 2;
+  optional google.protobuf.Timestamp date_of_birth = 3;
+  optional PlayerPosition position = 4;
+  optional string nationality=5;
+  optional PreferredFoot preferred_foot = 6; 
+  optional PlayerStatus status = 7;  
+  optional float height=8;
+  optional float weight=9; 
+  optional string city=10;
+}
+
+message UpdatePlayersResponse {
+   string user_id = 1;
+   string full_name = 2;
+   google.protobuf.Timestamp date_of_birth = 3;
+   PlayerPosition position = 4;
+   string nationality=5;
+   PreferredFoot preferred_foot = 6; 
+   PlayerStatus status = 7;  
+   float height=8;
+   float weight=9; 
+   string city=10;
+}
 
 message PlayerList{
    string player_id=1;
@@ -368,9 +369,6 @@ message  GetPlayerRes {
 }
 
 
-
-
-
 message UpdatePlayerImageMeta{
     string team_id=1; 
     string player_id=2;
@@ -386,21 +384,18 @@ message UpdatePlayerImageReq{
 }
 
 message UpdatePlayerImageRes{
-   string team_id=1; 
-   string player_id=2; 
-   string presigned_url=3; 
+   string user_id=1;
+   string presigned_url=2; 
 }
 
 
 message GetPlayerPresignedUrlReq{
-     string team_id=1; 
-     string player_id=2;
+     string player_id=1;
 }
 
 message GetPlayerPresignedUrlRes{
-     string team_id=1; 
-     string player_id=2; 
-     string presigned_url=3; 
+     string player_id=1; 
+     string presigned_url=2; 
 }
 
 message RemovePlayerImageReq{ 
@@ -415,19 +410,51 @@ message RemovePlayerImageRes{
 
 
 message ListPlayersReq{
-
+   string team_id=1; 
+   int32  page=2; 
+   int32 limit=3; 
+   optional PlayerPosition position=4;   
+   optional PlayerStatus player_status=5;
+   optional  string search=6;
 }
 
 message ListPlayerRes{
-
+   message PlayerDetails{
+      string player_id=1; 
+      string user_id=2; 
+      string nationality=3; 
+      string preferred_foot=4; 
+      string position=5;
+   }
 }
 
 message PlayerProfileReq{
-
+   string user_id=1;
 }
 
 message PlayerProfileRes{
+   string user_id = 1;
+   string full_name = 2;
+   google.protobuf.Timestamp date_of_birth = 3;
+   PlayerPosition position = 4;
+   string nationality=5;
+   PreferredFoot preferred_foot = 6; 
+   PlayerStatus status = 7;  
+   float height=8;
+   float weight=9; 
+   string city=10;
+}
 
+message GetMyTeamsReq{
+ string user_id=1;
+}
+
+message GetMyTeamsRes{
+   message TeamDetails{
+
+   }
+   string user_id=1; 
+   TeamDetails team_details = 2;
 }
 
 
@@ -442,10 +469,12 @@ service PlayerService{
   rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
   rpc RemovePlayerImage(RemovePlayerImageReq)returns(RemovePlayerImageRes);
   rpc PlayerProfile(PlayerProfileReq)returns(PlayerProfileRes);
+  rpc GetMyTeams(GetMyTeamsReq)returns(GetMyTeamsRes);
 }
 
 message GetTeamPlayerReq{
-
+   string team_id=1; 
+   string player_id=2;
 }
 
 message GetTeamPlayerRes{
@@ -460,7 +489,7 @@ message ReleasePlayerReq{
 
 
 message ReleasePlayerRes{
-   string id = 1;
+  string player_id = 1;
   string team_member_id = 2;
   string full_name = 3;
   int32 jersey_number = 4;
@@ -485,7 +514,7 @@ message ListTeamPlayerReq{
 }
 
 message SendPlayerRequestReq{
-
+   
 }
 
 message SendPlayerRequestRes{
