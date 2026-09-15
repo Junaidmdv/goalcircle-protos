@@ -257,10 +257,9 @@ message AddPlayerRes{
     string full_name=2; 
     string dob=3; 
     string natinality=4;  
-    PlayerPosition position=5; 
-    PreferredFoot prefered_foot=6;
+    string position=5; 
+    string prefered_foot=6;
     string presigned_url=7; 
-    string user_id=8;
    } 
    message UserDetails{
       string session_id=1; 
