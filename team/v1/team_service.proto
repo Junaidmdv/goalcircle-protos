@@ -427,8 +427,13 @@ message ListPlayerRes{
       string user_id=2; 
       string nationality=3; 
       string preferred_foot=4; 
-      string position=5;
+      string position=5; 
+      string profile_image_url=6;
    }
+
+
+   PaginationDetails pagination_details = 1; 
+   repeated PlayerDetails player_details = 2;
 }
 
 message PlayerProfileReq{
