@@ -3215,12 +3215,11 @@ func (x *RemovePlayerImageRes) GetSuccess() bool {
 
 type ListPlayersReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
-	Position      *PlayerPosition        `protobuf:"varint,4,opt,name=position,proto3,enum=team.PlayerPosition,oneof" json:"position,omitempty"`
-	PlayerStatus  *PlayerStatus          `protobuf:"varint,5,opt,name=player_status,json=playerStatus,proto3,enum=team.PlayerStatus,oneof" json:"player_status,omitempty"`
-	Search        *string                `protobuf:"bytes,6,opt,name=search,proto3,oneof" json:"search,omitempty"`
+	Page          int32                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Position      *PlayerPosition        `protobuf:"varint,3,opt,name=position,proto3,enum=team.PlayerPosition,oneof" json:"position,omitempty"`
+	PlayerStatus  *PlayerStatus          `protobuf:"varint,4,opt,name=player_status,json=playerStatus,proto3,enum=team.PlayerStatus,oneof" json:"player_status,omitempty"`
+	Search        *string                `protobuf:"bytes,5,opt,name=search,proto3,oneof" json:"search,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3253,13 +3252,6 @@ func (x *ListPlayersReq) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ListPlayersReq.ProtoReflect.Descriptor instead.
 func (*ListPlayersReq) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{41}
-}
-
-func (x *ListPlayersReq) GetTeamId() string {
-	if x != nil {
-		return x.TeamId
-	}
-	return ""
 }
 
 func (x *ListPlayersReq) GetPage() int32 {
@@ -6728,14 +6720,13 @@ const file_team_service_proto_rawDesc = "" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tplayer_id\x18\x03 \x01(\tR\bplayerId\"0\n" +
 	"\x14RemovePlayerImageRes\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x8f\x02\n" +
-	"\x0eListPlayersReq\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x14\n" +
-	"\x05limit\x18\x03 \x01(\x05R\x05limit\x125\n" +
-	"\bposition\x18\x04 \x01(\x0e2\x14.team.PlayerPositionH\x00R\bposition\x88\x01\x01\x12<\n" +
-	"\rplayer_status\x18\x05 \x01(\x0e2\x12.team.PlayerStatusH\x01R\fplayerStatus\x88\x01\x01\x12\x1b\n" +
-	"\x06search\x18\x06 \x01(\tH\x02R\x06search\x88\x01\x01B\v\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"\xf6\x01\n" +
+	"\x0eListPlayersReq\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x05R\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x125\n" +
+	"\bposition\x18\x03 \x01(\x0e2\x14.team.PlayerPositionH\x00R\bposition\x88\x01\x01\x12<\n" +
+	"\rplayer_status\x18\x04 \x01(\x0e2\x12.team.PlayerStatusH\x01R\fplayerStatus\x88\x01\x01\x12\x1b\n" +
+	"\x06search\x18\x05 \x01(\tH\x02R\x06search\x88\x01\x01B\v\n" +
 	"\t_positionB\x10\n" +
 	"\x0e_player_statusB\t\n" +
 	"\a_search\"Q\n" +

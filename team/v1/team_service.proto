@@ -407,12 +407,11 @@ message RemovePlayerImageRes{
 
 
 message ListPlayersReq{
-   string team_id=1; 
-   int32  page=2; 
-   int32 limit=3; 
-   optional PlayerPosition position=4;   
-   optional PlayerStatus player_status=5;
-   optional  string search=6;
+   int32  page=1; 
+   int32 limit=2; 
+   optional PlayerPosition position=3;   
+   optional PlayerStatus player_status=4;
+   optional  string search=5;
 }
 
 message ListPlayerReq{
