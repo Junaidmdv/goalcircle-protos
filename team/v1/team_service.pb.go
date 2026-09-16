@@ -5991,10 +5991,9 @@ type ListPlayerRes_PlayerDetails struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	PlayerId        string                 `protobuf:"bytes,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	UserId          string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	Nationality     string                 `protobuf:"bytes,3,opt,name=nationality,proto3" json:"nationality,omitempty"`
-	PreferredFoot   string                 `protobuf:"bytes,4,opt,name=preferred_foot,json=preferredFoot,proto3" json:"preferred_foot,omitempty"`
-	Position        string                 `protobuf:"bytes,5,opt,name=position,proto3" json:"position,omitempty"`
-	ProfileImageUrl string                 `protobuf:"bytes,6,opt,name=profile_image_url,json=profileImageUrl,proto3" json:"profile_image_url,omitempty"`
+	PreferredFoot   string                 `protobuf:"bytes,3,opt,name=preferred_foot,json=preferredFoot,proto3" json:"preferred_foot,omitempty"`
+	Position        string                 `protobuf:"bytes,4,opt,name=position,proto3" json:"position,omitempty"`
+	ProfileImageUrl string                 `protobuf:"bytes,5,opt,name=profile_image_url,json=profileImageUrl,proto3" json:"profile_image_url,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -6039,13 +6038,6 @@ func (x *ListPlayerRes_PlayerDetails) GetPlayerId() string {
 func (x *ListPlayerRes_PlayerDetails) GetUserId() string {
 	if x != nil {
 		return x.UserId
-	}
-	return ""
-}
-
-func (x *ListPlayerRes_PlayerDetails) GetNationality() string {
-	if x != nil {
-		return x.Nationality
 	}
 	return ""
 }
@@ -6757,17 +6749,16 @@ const file_team_service_proto_rawDesc = "" +
 	"\rListPlayerReq\x12\x14\n" +
 	"\x05limit\x18\x01 \x01(\x05R\x05limit\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x16\n" +
-	"\x06search\x18\x03 \x01(\tR\x06search\"\xfa\x02\n" +
+	"\x06search\x18\x03 \x01(\tR\x06search\"\xd8\x02\n" +
 	"\rListPlayerRes\x12F\n" +
 	"\x12pagination_details\x18\x01 \x01(\v2\x17.team.PaginationDetailsR\x11paginationDetails\x12H\n" +
-	"\x0eplayer_details\x18\x02 \x03(\v2!.team.ListPlayerRes.PlayerDetailsR\rplayerDetails\x1a\xd6\x01\n" +
+	"\x0eplayer_details\x18\x02 \x03(\v2!.team.ListPlayerRes.PlayerDetailsR\rplayerDetails\x1a\xb4\x01\n" +
 	"\rPlayerDetails\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12 \n" +
-	"\vnationality\x18\x03 \x01(\tR\vnationality\x12%\n" +
-	"\x0epreferred_foot\x18\x04 \x01(\tR\rpreferredFoot\x12\x1a\n" +
-	"\bposition\x18\x05 \x01(\tR\bposition\x12*\n" +
-	"\x11profile_image_url\x18\x06 \x01(\tR\x0fprofileImageUrl\"+\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12%\n" +
+	"\x0epreferred_foot\x18\x03 \x01(\tR\rpreferredFoot\x12\x1a\n" +
+	"\bposition\x18\x04 \x01(\tR\bposition\x12*\n" +
+	"\x11profile_image_url\x18\x05 \x01(\tR\x0fprofileImageUrl\"+\n" +
 	"\x10PlayerProfileReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x88\x03\n" +
 	"\x10PlayerProfileRes\x12\x17\n" +

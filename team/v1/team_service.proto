@@ -425,10 +425,9 @@ message ListPlayerRes{
    message PlayerDetails{
       string player_id=1; 
       string user_id=2; 
-      string nationality=3; 
-      string preferred_foot=4; 
-      string position=5; 
-      string profile_image_url=6;
+      string preferred_foot=3; 
+      string position=4; 
+      string profile_image_url=5;
    }
 
 
