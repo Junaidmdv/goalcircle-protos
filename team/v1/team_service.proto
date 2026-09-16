@@ -360,9 +360,10 @@ message  GetPlayerRes {
   string position = 4;
   string preferred_foot = 5;
   string nationality = 6;
-  string status = 7;
-  google.protobuf.Timestamp created_at = 8;
-
+  string status = 7; 
+  float Weight =8; 
+  float Height =9;
+  google.protobuf.Timestamp created_at = 10;
 }
 
 
@@ -396,9 +397,7 @@ message GetPlayerPresignedUrlRes{
 }
 
 message RemovePlayerImageReq{ 
-     string  team_id=1; 
-     string  user_id=2; 
-     string player_id=3;
+     string user_id=1;
 }
 
 message RemovePlayerImageRes{
@@ -448,8 +447,8 @@ message PlayerProfileRes{
    PreferredFoot preferred_foot = 6; 
    PlayerStatus status = 7;  
    float height=8;
-   float weight=9; 
-   string city=10;
+   float weight=9;  
+   google.protobuf.Timestamp created_at = 10;
 }
 
 message GetMyTeamsReq{
