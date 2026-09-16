@@ -438,17 +438,18 @@ message PlayerProfileReq{
    string user_id=1;
 }
 
-message PlayerProfileRes{
-   string user_id = 1;
-   string full_name = 2;
-   google.protobuf.Timestamp date_of_birth = 3;
-   PlayerPosition position = 4;
-   string nationality=5;
-   PreferredFoot preferred_foot = 6; 
-   PlayerStatus status = 7;  
-   float height=8;
-   float weight=9;  
-   google.protobuf.Timestamp created_at = 10;
+message PlayerProfileRes{ 
+   string player_id=1;
+   string user_id = 2;
+   string full_name = 3;
+   google.protobuf.Timestamp date_of_birth = 4;
+   string position = 5;
+   string nationality=6;
+   string preferred_foot = 7; 
+   string status = 8;  
+   float height=9;
+   float weight=10;  
+   google.protobuf.Timestamp created_at = 11;
 }
 
 message GetMyTeamsReq{
