@@ -2837,9 +2837,7 @@ func (x *GetPlayerRes) GetCreatedAt() *timestamppb.Timestamp {
 
 type UpdatePlayerImageMeta struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2872,20 +2870,6 @@ func (x *UpdatePlayerImageMeta) ProtoReflect() protoreflect.Message {
 // Deprecated: Use UpdatePlayerImageMeta.ProtoReflect.Descriptor instead.
 func (*UpdatePlayerImageMeta) Descriptor() ([]byte, []int) {
 	return file_team_service_proto_rawDescGZIP(), []int{34}
-}
-
-func (x *UpdatePlayerImageMeta) GetTeamId() string {
-	if x != nil {
-		return x.TeamId
-	}
-	return ""
-}
-
-func (x *UpdatePlayerImageMeta) GetPlayerId() string {
-	if x != nil {
-		return x.PlayerId
-	}
-	return ""
 }
 
 func (x *UpdatePlayerImageMeta) GetUserId() string {
@@ -6725,11 +6709,9 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06Height\x18\t \x01(\x02R\x06Height\x129\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"f\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"0\n" +
 	"\x15UpdatePlayerImageMeta\x12\x17\n" +
-	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x1b\n" +
-	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12\x17\n" +
-	"\auser_id\x18\x03 \x01(\tR\x06userId\"k\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"k\n" +
 	"\x14UpdatePlayerImageReq\x121\n" +
 	"\x04meta\x18\x01 \x01(\v2\x1b.team.UpdatePlayerImageMetaH\x00R\x04meta\x12\x18\n" +
 	"\x06chunks\x18\x02 \x01(\fH\x00R\x06chunksB\x06\n" +
