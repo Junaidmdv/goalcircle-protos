@@ -411,12 +411,7 @@ message ListPlayersReq{
    optional  string search=5;
 }
 
-message ListPlayerReq{
-   int32 limit=1; 
-   int32 page=2; 
-   string search=3; 
-   
-}
+
 
 message ListPlayerRes{
    message PlayerDetails{
@@ -468,7 +463,7 @@ message GetMyTeamsRes{
 service PlayerService{
   rpc AddNewPlayer(stream AddPlayerReq)returns(AddPlayerRes); 
   rpc UpdatePlayerDetails(UpdatePlayerRequest)returns(UpdatePlayersResponse); 
-  rpc ListPlayer(ListPlayerReq)returns(ListPlayerRes);
+  rpc ListPlayers(ListPlayersReq)returns(ListPlayerRes);
   rpc GetPlayer(GetPlayerReq)returns(GetPlayerRes);  
   rpc UpdatePlayerImage(stream UpdatePlayerImageReq)returns(UpdatePlayerImageRes); 
   rpc GetPlayerPresignedUrl(GetPlayerPresignedUrlReq)returns(GetPlayerPresignedUrlRes);  
