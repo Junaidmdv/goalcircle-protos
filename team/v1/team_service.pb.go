@@ -2418,6 +2418,7 @@ type UpdatePlayersResponse struct {
 	Status        string                 `protobuf:"bytes,7,opt,name=status,proto3" json:"status,omitempty"`
 	Height        float32                `protobuf:"fixed32,8,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,9,opt,name=weight,proto3" json:"weight,omitempty"`
+	Code          string                 `protobuf:"bytes,10,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2513,6 +2514,13 @@ func (x *UpdatePlayersResponse) GetWeight() float32 {
 		return x.Weight
 	}
 	return 0
+}
+
+func (x *UpdatePlayersResponse) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
 }
 
 type PlayerList struct {
@@ -2731,6 +2739,7 @@ type GetPlayerRes struct {
 	Weight        float32                `protobuf:"fixed32,8,opt,name=Weight,proto3" json:"Weight,omitempty"`
 	Height        float32                `protobuf:"fixed32,9,opt,name=Height,proto3" json:"Height,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Code          string                 `protobuf:"bytes,11,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2833,6 +2842,13 @@ func (x *GetPlayerRes) GetCreatedAt() *timestamppb.Timestamp {
 		return x.CreatedAt
 	}
 	return nil
+}
+
+func (x *GetPlayerRes) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
 }
 
 type UpdatePlayerImageMeta struct {
@@ -3382,6 +3398,7 @@ type PlayerProfileRes struct {
 	Height        float32                `protobuf:"fixed32,9,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,10,opt,name=weight,proto3" json:"weight,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	Code          string                 `protobuf:"bytes,12,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3491,6 +3508,13 @@ func (x *PlayerProfileRes) GetCreatedAt() *timestamppb.Timestamp {
 		return x.CreatedAt
 	}
 	return nil
+}
+
+func (x *PlayerProfileRes) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
 }
 
 type GetMyTeamsReq struct {
@@ -5730,6 +5754,7 @@ type AddPlayerRes_PlayerDetails struct {
 	PresignedUrl  string                 `protobuf:"bytes,7,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	Height        float32                `protobuf:"fixed32,8,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,9,opt,name=weight,proto3" json:"weight,omitempty"`
+	Code          string                 `protobuf:"bytes,10,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5825,6 +5850,13 @@ func (x *AddPlayerRes_PlayerDetails) GetWeight() float32 {
 		return x.Weight
 	}
 	return 0
+}
+
+func (x *AddPlayerRes_PlayerDetails) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
 }
 
 type AddPlayerRes_UserDetails struct {
@@ -6567,10 +6599,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\fAddPlayerReq\x12<\n" +
 	"\x0eplayer_details\x18\x01 \x01(\v2\x13.team.PlayerDetailsH\x00R\rplayerDetails\x120\n" +
 	"\x13player_image_chunks\x18\x02 \x01(\fH\x00R\x11playerImageChunksB\b\n" +
-	"\x06player\"\xf0\x05\n" +
+	"\x06player\"\x84\x06\n" +
 	"\fAddPlayerRes\x12G\n" +
 	"\x0eplayer_details\x18\x01 \x01(\v2 .team.AddPlayerRes.PlayerDetailsR\rplayerDetails\x12A\n" +
-	"\fuser_details\x18\x02 \x01(\v2\x1e.team.AddPlayerRes.UserDetailsR\vuserDetails\x1a\x93\x02\n" +
+	"\fuser_details\x18\x02 \x01(\v2\x1e.team.AddPlayerRes.UserDetailsR\vuserDetails\x1a\xa7\x02\n" +
 	"\rPlayerDetails\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12\x10\n" +
@@ -6580,7 +6612,9 @@ const file_team_service_proto_rawDesc = "" +
 	"\rprefered_foot\x18\x06 \x01(\tR\fpreferedFoot\x12#\n" +
 	"\rpresigned_url\x18\a \x01(\tR\fpresignedUrl\x12\x16\n" +
 	"\x06height\x18\b \x01(\x02R\x06height\x12\x16\n" +
-	"\x06weight\x18\t \x01(\x02R\x06weight\x1a\xbd\x02\n" +
+	"\x06weight\x18\t \x01(\x02R\x06weight\x12\x12\n" +
+	"\x04code\x18\n" +
+	" \x01(\tR\x04code\x1a\xbd\x02\n" +
 	"\vUserDetails\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\x12\x17\n" +
@@ -6608,7 +6642,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0f_preferred_footB\t\n" +
 	"\a_statusB\t\n" +
 	"\a_heightB\t\n" +
-	"\a_weight\"\xba\x02\n" +
+	"\a_weight\"\xce\x02\n" +
 	"\x15UpdatePlayersResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12>\n" +
@@ -6618,7 +6652,9 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0epreferred_foot\x18\x06 \x01(\tR\rpreferredFoot\x12\x16\n" +
 	"\x06status\x18\a \x01(\tR\x06status\x12\x16\n" +
 	"\x06height\x18\b \x01(\x02R\x06height\x12\x16\n" +
-	"\x06weight\x18\t \x01(\x02R\x06weight\"\xca\x01\n" +
+	"\x06weight\x18\t \x01(\x02R\x06weight\x12\x12\n" +
+	"\x04code\x18\n" +
+	" \x01(\tR\x04code\"\xca\x01\n" +
 	"\n" +
 	"PlayerList\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
@@ -6636,7 +6672,7 @@ const file_team_service_proto_rawDesc = "" +
 	"total_item\x18\x04 \x01(\x03R\ttotalItem\"D\n" +
 	"\fGetPlayerReq\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
-	"\ateam_id\x18\x02 \x01(\tR\x06teamId\"\xf0\x02\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\"\x84\x03\n" +
 	"\fGetPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12>\n" +
@@ -6649,7 +6685,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06Height\x18\t \x01(\x02R\x06Height\x129\n" +
 	"\n" +
 	"created_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"0\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x12\n" +
+	"\x04code\x18\v \x01(\tR\x04code\"0\n" +
 	"\x15UpdatePlayerImageMeta\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"k\n" +
 	"\x14UpdatePlayerImageReq\x121\n" +
@@ -6687,7 +6724,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\bposition\x18\x04 \x01(\tR\bposition\x12*\n" +
 	"\x11profile_image_url\x18\x05 \x01(\tR\x0fprofileImageUrl\"+\n" +
 	"\x10PlayerProfileReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x8d\x03\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xa1\x03\n" +
 	"\x10PlayerProfileRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
@@ -6701,7 +6738,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06weight\x18\n" +
 	" \x01(\x02R\x06weight\x129\n" +
 	"\n" +
-	"created_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"(\n" +
+	"created_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x12\n" +
+	"\x04code\x18\f \x01(\tR\x04code\"(\n" +
 	"\rGetMyTeamsReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"{\n" +
 	"\rGetMyTeamsRes\x12\x17\n" +
