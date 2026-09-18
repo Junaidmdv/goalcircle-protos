@@ -5966,6 +5966,7 @@ type ListPlayerRes_PlayerDetails struct {
 	PreferredFoot   string                 `protobuf:"bytes,3,opt,name=preferred_foot,json=preferredFoot,proto3" json:"preferred_foot,omitempty"`
 	Position        string                 `protobuf:"bytes,4,opt,name=position,proto3" json:"position,omitempty"`
 	ProfileImageUrl string                 `protobuf:"bytes,5,opt,name=profile_image_url,json=profileImageUrl,proto3" json:"profile_image_url,omitempty"`
+	Code            string                 `protobuf:"bytes,6,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -6031,6 +6032,13 @@ func (x *ListPlayerRes_PlayerDetails) GetPosition() string {
 func (x *ListPlayerRes_PlayerDetails) GetProfileImageUrl() string {
 	if x != nil {
 		return x.ProfileImageUrl
+	}
+	return ""
+}
+
+func (x *ListPlayerRes_PlayerDetails) GetCode() string {
+	if x != nil {
+		return x.Code
 	}
 	return ""
 }
@@ -6722,16 +6730,17 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06search\x18\x05 \x01(\tH\x02R\x06search\x88\x01\x01B\v\n" +
 	"\t_positionB\x10\n" +
 	"\x0e_player_statusB\t\n" +
-	"\a_search\"\xd8\x02\n" +
+	"\a_search\"\xec\x02\n" +
 	"\rListPlayerRes\x12F\n" +
 	"\x12pagination_details\x18\x01 \x01(\v2\x17.team.PaginationDetailsR\x11paginationDetails\x12H\n" +
-	"\x0eplayer_details\x18\x02 \x03(\v2!.team.ListPlayerRes.PlayerDetailsR\rplayerDetails\x1a\xb4\x01\n" +
+	"\x0eplayer_details\x18\x02 \x03(\v2!.team.ListPlayerRes.PlayerDetailsR\rplayerDetails\x1a\xc8\x01\n" +
 	"\rPlayerDetails\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12%\n" +
 	"\x0epreferred_foot\x18\x03 \x01(\tR\rpreferredFoot\x12\x1a\n" +
 	"\bposition\x18\x04 \x01(\tR\bposition\x12*\n" +
-	"\x11profile_image_url\x18\x05 \x01(\tR\x0fprofileImageUrl\"+\n" +
+	"\x11profile_image_url\x18\x05 \x01(\tR\x0fprofileImageUrl\x12\x12\n" +
+	"\x04code\x18\x06 \x01(\tR\x04code\"+\n" +
 	"\x10PlayerProfileReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xa1\x03\n" +
 	"\x10PlayerProfileRes\x12\x1b\n" +

@@ -422,7 +422,8 @@ message ListPlayerRes{
       string user_id=2; 
       string preferred_foot=3; 
       string position=4; 
-      string profile_image_url=5;
+      string profile_image_url=5; 
+      string code=6;
    }
 
 
