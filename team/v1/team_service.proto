@@ -327,7 +327,8 @@ message UpdatePlayersResponse {
    string status = 7;  
    float height=8;
    float weight=9;  
-   string code=10;
+   string code=10; 
+   string player_id=11;
 }
 
 message PlayerList{

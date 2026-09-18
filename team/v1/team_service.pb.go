@@ -2419,6 +2419,7 @@ type UpdatePlayersResponse struct {
 	Height        float32                `protobuf:"fixed32,8,opt,name=height,proto3" json:"height,omitempty"`
 	Weight        float32                `protobuf:"fixed32,9,opt,name=weight,proto3" json:"weight,omitempty"`
 	Code          string                 `protobuf:"bytes,10,opt,name=code,proto3" json:"code,omitempty"`
+	PlayerId      string                 `protobuf:"bytes,11,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2519,6 +2520,13 @@ func (x *UpdatePlayersResponse) GetWeight() float32 {
 func (x *UpdatePlayersResponse) GetCode() string {
 	if x != nil {
 		return x.Code
+	}
+	return ""
+}
+
+func (x *UpdatePlayersResponse) GetPlayerId() string {
+	if x != nil {
+		return x.PlayerId
 	}
 	return ""
 }
@@ -6642,7 +6650,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x0f_preferred_footB\t\n" +
 	"\a_statusB\t\n" +
 	"\a_heightB\t\n" +
-	"\a_weight\"\xce\x02\n" +
+	"\a_weight\"\xeb\x02\n" +
 	"\x15UpdatePlayersResponse\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12>\n" +
@@ -6654,7 +6662,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06height\x18\b \x01(\x02R\x06height\x12\x16\n" +
 	"\x06weight\x18\t \x01(\x02R\x06weight\x12\x12\n" +
 	"\x04code\x18\n" +
-	" \x01(\tR\x04code\"\xca\x01\n" +
+	" \x01(\tR\x04code\x12\x1b\n" +
+	"\tplayer_id\x18\v \x01(\tR\bplayerId\"\xca\x01\n" +
 	"\n" +
 	"PlayerList\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12$\n" +
