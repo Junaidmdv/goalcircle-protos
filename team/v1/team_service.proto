@@ -282,7 +282,7 @@ message AddPlayerRes{
    message PlayerDetails{
     string player_id=1; 
     string full_name=2; 
-    string dob=3; 
+    google.protobuf.Timestamp dob=3; 
     string nationality=4;  
     string position=5; 
     string prefered_foot=6;
@@ -423,7 +423,8 @@ message ListPlayerRes{
       string preferred_foot=3; 
       string position=4; 
       string profile_image_url=5; 
-      string code=6;
+      string code=6; 
+      string player_status=7;
    }
 
 
