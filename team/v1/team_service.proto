@@ -312,7 +312,6 @@ message UpdatePlayerRequest {
   optional PlayerPosition position = 4;
   optional string nationality=5;
   optional PreferredFoot preferred_foot = 6; 
-  optional PlayerStatus status = 7;  
   optional float height=8;
   optional float weight=9; 
 }
@@ -324,7 +323,6 @@ message UpdatePlayersResponse {
    string position = 4;
    string nationality=5;
    string preferred_foot = 6; 
-   string status = 7;  
    float height=8;
    float weight=9;  
    string code=10; 
@@ -362,7 +360,6 @@ message  GetPlayerRes {
   string position = 4;
   string preferred_foot = 5;
   string nationality = 6;
-  string status = 7; 
   float Weight =8; 
   float Height =9;
   google.protobuf.Timestamp created_at = 10; 
@@ -410,8 +407,7 @@ message ListPlayersReq{
    int32  page=1; 
    int32 limit=2; 
    optional PlayerPosition position=3;   
-   optional PlayerStatus player_status=4;
-   optional  string search=5;
+   optional  string search=4;
 }
 
 
@@ -424,7 +420,6 @@ message ListPlayerRes{
       string position=4; 
       string profile_image_url=5; 
       string code=6; 
-      string player_status=7;
    }
 
 
@@ -444,11 +439,10 @@ message PlayerProfileRes{
    string position = 5;
    string nationality=6;
    string preferred_foot = 7; 
-   string status = 8;  
-   float height=9;
-   float weight=10;  
-   google.protobuf.Timestamp created_at = 11; 
-   string code=12;
+   float height=8;
+   float weight=9;  
+   google.protobuf.Timestamp created_at = 10; 
+   string code=11;
 }
 
 message GetMyTeamsReq{
