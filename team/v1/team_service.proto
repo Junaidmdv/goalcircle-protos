@@ -363,7 +363,8 @@ message  GetPlayerRes {
   float Weight =8; 
   float Height =9;
   google.protobuf.Timestamp created_at = 10; 
-  string code=11;
+  string code=11; 
+  string presigned_url=12;
 }
 
 
@@ -442,7 +443,8 @@ message PlayerProfileRes{
    float height=8;
    float weight=9;  
    google.protobuf.Timestamp created_at = 10; 
-   string code=11;
+   string code=11; 
+   string presigned_url=12;
 }
 
 message GetMyTeamsReq{

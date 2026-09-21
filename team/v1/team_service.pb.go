@@ -2731,6 +2731,7 @@ type GetPlayerRes struct {
 	Height        float32                `protobuf:"fixed32,9,opt,name=Height,proto3" json:"Height,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	Code          string                 `protobuf:"bytes,11,opt,name=code,proto3" json:"code,omitempty"`
+	PresignedUrl  string                 `protobuf:"bytes,12,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2831,6 +2832,13 @@ func (x *GetPlayerRes) GetCreatedAt() *timestamppb.Timestamp {
 func (x *GetPlayerRes) GetCode() string {
 	if x != nil {
 		return x.Code
+	}
+	return ""
+}
+
+func (x *GetPlayerRes) GetPresignedUrl() string {
+	if x != nil {
+		return x.PresignedUrl
 	}
 	return ""
 }
@@ -3374,6 +3382,7 @@ type PlayerProfileRes struct {
 	Weight        float32                `protobuf:"fixed32,9,opt,name=weight,proto3" json:"weight,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	Code          string                 `protobuf:"bytes,11,opt,name=code,proto3" json:"code,omitempty"`
+	PresignedUrl  string                 `protobuf:"bytes,12,opt,name=presigned_url,json=presignedUrl,proto3" json:"presigned_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -3481,6 +3490,13 @@ func (x *PlayerProfileRes) GetCreatedAt() *timestamppb.Timestamp {
 func (x *PlayerProfileRes) GetCode() string {
 	if x != nil {
 		return x.Code
+	}
+	return ""
+}
+
+func (x *PlayerProfileRes) GetPresignedUrl() string {
+	if x != nil {
+		return x.PresignedUrl
 	}
 	return ""
 }
@@ -6646,7 +6662,7 @@ const file_team_service_proto_rawDesc = "" +
 	"total_item\x18\x04 \x01(\x03R\ttotalItem\"D\n" +
 	"\fGetPlayerReq\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
-	"\ateam_id\x18\x02 \x01(\tR\x06teamId\"\xec\x02\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\"\x91\x03\n" +
 	"\fGetPlayerRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x1b\n" +
 	"\tfull_name\x18\x02 \x01(\tR\bfullName\x12>\n" +
@@ -6659,7 +6675,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x12\n" +
-	"\x04code\x18\v \x01(\tR\x04code\"0\n" +
+	"\x04code\x18\v \x01(\tR\x04code\x12#\n" +
+	"\rpresigned_url\x18\f \x01(\tR\fpresignedUrl\"0\n" +
 	"\x15UpdatePlayerImageMeta\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"k\n" +
 	"\x14UpdatePlayerImageReq\x121\n" +
@@ -6696,7 +6713,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\x11profile_image_url\x18\x05 \x01(\tR\x0fprofileImageUrl\x12\x12\n" +
 	"\x04code\x18\x06 \x01(\tR\x04code\"+\n" +
 	"\x10PlayerProfileReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"\x89\x03\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xae\x03\n" +
 	"\x10PlayerProfileRes\x12\x1b\n" +
 	"\tplayer_id\x18\x01 \x01(\tR\bplayerId\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1b\n" +
@@ -6710,7 +6727,8 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x12\n" +
-	"\x04code\x18\v \x01(\tR\x04code\"(\n" +
+	"\x04code\x18\v \x01(\tR\x04code\x12#\n" +
+	"\rpresigned_url\x18\f \x01(\tR\fpresignedUrl\"(\n" +
 	"\rGetMyTeamsReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"{\n" +
 	"\rGetMyTeamsRes\x12\x17\n" +
