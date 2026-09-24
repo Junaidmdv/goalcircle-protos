@@ -517,7 +517,8 @@ message ListTeamPlayerReq{
 
 message SendPlayerRequestReq{
    string sender_user_id=1; 
-   string player_id=2;
+   string player_id=2; 
+   string team_id=3;
 }
 
 message SendPlayerRequestRes{

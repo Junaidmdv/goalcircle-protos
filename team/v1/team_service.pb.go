@@ -3985,6 +3985,7 @@ type SendPlayerRequestReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SenderUserId  string                 `protobuf:"bytes,1,opt,name=sender_user_id,json=senderUserId,proto3" json:"sender_user_id,omitempty"`
 	PlayerId      string                 `protobuf:"bytes,2,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,3,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4029,6 +4030,13 @@ func (x *SendPlayerRequestReq) GetSenderUserId() string {
 func (x *SendPlayerRequestReq) GetPlayerId() string {
 	if x != nil {
 		return x.PlayerId
+	}
+	return ""
+}
+
+func (x *SendPlayerRequestReq) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
 	}
 	return ""
 }
@@ -6893,10 +6901,11 @@ const file_team_service_proto_rawDesc = "" +
 	"\x06search\x18\x06 \x01(\tH\x02R\x06search\x88\x01\x01B\v\n" +
 	"\t_positionB\x10\n" +
 	"\x0e_player_statusB\t\n" +
-	"\a_search\"Y\n" +
+	"\a_search\"r\n" +
 	"\x14SendPlayerRequestReq\x12$\n" +
 	"\x0esender_user_id\x18\x01 \x01(\tR\fsenderUserId\x12\x1b\n" +
-	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\"\x8e\x01\n" +
+	"\tplayer_id\x18\x02 \x01(\tR\bplayerId\x12\x17\n" +
+	"\ateam_id\x18\x03 \x01(\tR\x06teamId\"\x8e\x01\n" +
 	"\x14SendPlayerRequestRes\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x1b\n" +
