@@ -812,10 +812,11 @@ var PlayerService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	TeamPlayerService_GetTeamPlayer_FullMethodName  = "/team.TeamPlayerService/GetTeamPlayer"
-	TeamPlayerService_ReleasePlayer_FullMethodName  = "/team.TeamPlayerService/ReleasePlayer"
-	TeamPlayerService_ListTeamPlayer_FullMethodName = "/team.TeamPlayerService/ListTeamPlayer"
-	TeamPlayerService_SendPlayerReq_FullMethodName  = "/team.TeamPlayerService/SendPlayerReq"
+	TeamPlayerService_GetTeamPlayer_FullMethodName     = "/team.TeamPlayerService/GetTeamPlayer"
+	TeamPlayerService_ReleasePlayer_FullMethodName     = "/team.TeamPlayerService/ReleasePlayer"
+	TeamPlayerService_ListTeamPlayer_FullMethodName    = "/team.TeamPlayerService/ListTeamPlayer"
+	TeamPlayerService_SendPlayerReq_FullMethodName     = "/team.TeamPlayerService/SendPlayerReq"
+	TeamPlayerService_PlayerRequestList_FullMethodName = "/team.TeamPlayerService/PlayerRequestList"
 )
 
 // TeamPlayerServiceClient is the client API for TeamPlayerService service.
@@ -826,6 +827,7 @@ type TeamPlayerServiceClient interface {
 	ReleasePlayer(ctx context.Context, in *ReleasePlayerReq, opts ...grpc.CallOption) (*ReleasePlayerRes, error)
 	ListTeamPlayer(ctx context.Context, in *ListTeamPlayerReq, opts ...grpc.CallOption) (*ListTeamPlayerRes, error)
 	SendPlayerReq(ctx context.Context, in *SendPlayerRequestReq, opts ...grpc.CallOption) (*SendPlayerRequestRes, error)
+	PlayerRequestList(ctx context.Context, in *PlayerRequestListReq, opts ...grpc.CallOption) (*PlayerRequestListRes, error)
 }
 
 type teamPlayerServiceClient struct {
@@ -876,6 +878,16 @@ func (c *teamPlayerServiceClient) SendPlayerReq(ctx context.Context, in *SendPla
 	return out, nil
 }
 
+func (c *teamPlayerServiceClient) PlayerRequestList(ctx context.Context, in *PlayerRequestListReq, opts ...grpc.CallOption) (*PlayerRequestListRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PlayerRequestListRes)
+	err := c.cc.Invoke(ctx, TeamPlayerService_PlayerRequestList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TeamPlayerServiceServer is the server API for TeamPlayerService service.
 // All implementations must embed UnimplementedTeamPlayerServiceServer
 // for forward compatibility.
@@ -884,6 +896,7 @@ type TeamPlayerServiceServer interface {
 	ReleasePlayer(context.Context, *ReleasePlayerReq) (*ReleasePlayerRes, error)
 	ListTeamPlayer(context.Context, *ListTeamPlayerReq) (*ListTeamPlayerRes, error)
 	SendPlayerReq(context.Context, *SendPlayerRequestReq) (*SendPlayerRequestRes, error)
+	PlayerRequestList(context.Context, *PlayerRequestListReq) (*PlayerRequestListRes, error)
 	mustEmbedUnimplementedTeamPlayerServiceServer()
 }
 
@@ -905,6 +918,9 @@ func (UnimplementedTeamPlayerServiceServer) ListTeamPlayer(context.Context, *Lis
 }
 func (UnimplementedTeamPlayerServiceServer) SendPlayerReq(context.Context, *SendPlayerRequestReq) (*SendPlayerRequestRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendPlayerReq not implemented")
+}
+func (UnimplementedTeamPlayerServiceServer) PlayerRequestList(context.Context, *PlayerRequestListReq) (*PlayerRequestListRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayerRequestList not implemented")
 }
 func (UnimplementedTeamPlayerServiceServer) mustEmbedUnimplementedTeamPlayerServiceServer() {}
 func (UnimplementedTeamPlayerServiceServer) testEmbeddedByValue()                           {}
@@ -999,6 +1015,24 @@ func _TeamPlayerService_SendPlayerReq_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TeamPlayerService_PlayerRequestList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlayerRequestListReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TeamPlayerServiceServer).PlayerRequestList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TeamPlayerService_PlayerRequestList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TeamPlayerServiceServer).PlayerRequestList(ctx, req.(*PlayerRequestListReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TeamPlayerService_ServiceDesc is the grpc.ServiceDesc for TeamPlayerService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1021,6 +1055,10 @@ var TeamPlayerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SendPlayerReq",
 			Handler:    _TeamPlayerService_SendPlayerReq_Handler,
+		},
+		{
+			MethodName: "PlayerRequestList",
+			Handler:    _TeamPlayerService_PlayerRequestList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -516,14 +516,25 @@ message ListTeamPlayerReq{
 }
 
 message SendPlayerRequestReq{
-   
+   string sender_user_id=1; 
+   string player_id=2;
 }
 
 message SendPlayerRequestRes{
+   string id=1; 
+   string team_id=2; 
+   string player_id=3; 
+   string status=4; 
+   string created=5; 
+}
+
+message PlayerRequestListReq{
 
 }
 
+message PlayerRequestListRes{
 
+}
 
 
 
@@ -531,7 +542,8 @@ service  TeamPlayerService {
   rpc GetTeamPlayer(GetTeamPlayerReq)returns(GetTeamPlayerRes);
   rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
   rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes); 
-  rpc SendPlayerReq(SendPlayerRequestReq)returns(SendPlayerRequestRes);
+  rpc SendPlayerReq(SendPlayerRequestReq)returns(SendPlayerRequestRes); 
+  rpc PlayerRequestList(PlayerRequestListReq)returns(PlayerRequestListRes);
 }
 
 
