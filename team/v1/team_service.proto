@@ -515,19 +515,35 @@ message ListTeamPlayerReq{
    optional  string search=6;
 }
 
+
+
+
+
+
+service  TeamPlayerService {
+  rpc GetTeamPlayer(GetTeamPlayerReq)returns(GetTeamPlayerRes);
+  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
+  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes); 
+
+}
+
 message SendPlayerRequestReq{
    string sender_user_id=1; 
    string player_id=2; 
-   string team_id=3;
+   string team_id=3;  
+   optional int32 offered_jersey_num=4;  
+   optional string message=5; 
+
 }
 
 message SendPlayerRequestRes{
-   string id=1; 
-   string team_id=2; 
-   string player_id=3; 
-   string status=4; 
-   string created=5; 
+    string request_id=1; 
+    string status=2; 
+    google.protobuf.Timestamp created_at=3; 
+   google.protobuf.Timestamp expirest_at=4;
 }
+
+
 
 message PlayerRequestListReq{
 
@@ -538,15 +554,10 @@ message PlayerRequestListRes{
 }
 
 
-
-service  TeamPlayerService {
-  rpc GetTeamPlayer(GetTeamPlayerReq)returns(GetTeamPlayerRes);
-  rpc ReleasePlayer(ReleasePlayerReq)returns(ReleasePlayerRes);  
-  rpc ListTeamPlayer(ListTeamPlayerReq)returns(ListTeamPlayerRes); 
+service PlayerInviteService{
   rpc SendPlayerReq(SendPlayerRequestReq)returns(SendPlayerRequestRes); 
-  rpc PlayerRequestList(PlayerRequestListReq)returns(PlayerRequestListRes);
+  rpc PlayerRequestList(PlayerRequestListReq)returns(PlayerRequestListRes); 
 }
-
 
 enum StaffDesignation {
   STAFF_DESIGNATION_UNSPECIFIED = 0;
