@@ -527,7 +527,7 @@ service  TeamPlayerService {
 
 }
 
-message SendPlayerRequestReq{
+message SendPlayerInviteReq{
    string sender_user_id=1; 
    string player_id=2; 
    string team_id=3;  
@@ -536,7 +536,7 @@ message SendPlayerRequestReq{
 
 }
 
-message SendPlayerRequestRes{
+message SendPlayerInviteRes{
     string request_id=1; 
     string status=2; 
     google.protobuf.Timestamp created_at=3; 
@@ -545,18 +545,18 @@ message SendPlayerRequestRes{
 
 
 
-message PlayerRequestListReq{
+message PlayerInviteListReq{
 
 }
 
-message PlayerRequestListRes{
+message PlayerInviteListRes{
 
 }
 
 
 service PlayerInviteService{
-  rpc SendPlayerReq(SendPlayerRequestReq)returns(SendPlayerRequestRes); 
-  rpc PlayerRequestList(PlayerRequestListReq)returns(PlayerRequestListRes); 
+  rpc SendPlayerInvitation(SendPlayerInviteReq)returns(SendPlayerInviteRes); 
+  rpc PlayerInviteList(PlayerInviteListReq)returns(PlayerInviteListRes); 
 }
 
 enum StaffDesignation {

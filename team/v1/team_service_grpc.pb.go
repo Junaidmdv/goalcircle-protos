@@ -990,16 +990,16 @@ var TeamPlayerService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	PlayerInviteService_SendPlayerReq_FullMethodName     = "/team.PlayerInviteService/SendPlayerReq"
-	PlayerInviteService_PlayerRequestList_FullMethodName = "/team.PlayerInviteService/PlayerRequestList"
+	PlayerInviteService_SendPlayerInvitation_FullMethodName = "/team.PlayerInviteService/SendPlayerInvitation"
+	PlayerInviteService_PlayerInviteList_FullMethodName     = "/team.PlayerInviteService/PlayerInviteList"
 )
 
 // PlayerInviteServiceClient is the client API for PlayerInviteService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlayerInviteServiceClient interface {
-	SendPlayerReq(ctx context.Context, in *SendPlayerRequestReq, opts ...grpc.CallOption) (*SendPlayerRequestRes, error)
-	PlayerRequestList(ctx context.Context, in *PlayerRequestListReq, opts ...grpc.CallOption) (*PlayerRequestListRes, error)
+	SendPlayerInvitation(ctx context.Context, in *SendPlayerInviteReq, opts ...grpc.CallOption) (*SendPlayerInviteRes, error)
+	PlayerInviteList(ctx context.Context, in *PlayerInviteListReq, opts ...grpc.CallOption) (*PlayerInviteListRes, error)
 }
 
 type playerInviteServiceClient struct {
@@ -1010,20 +1010,20 @@ func NewPlayerInviteServiceClient(cc grpc.ClientConnInterface) PlayerInviteServi
 	return &playerInviteServiceClient{cc}
 }
 
-func (c *playerInviteServiceClient) SendPlayerReq(ctx context.Context, in *SendPlayerRequestReq, opts ...grpc.CallOption) (*SendPlayerRequestRes, error) {
+func (c *playerInviteServiceClient) SendPlayerInvitation(ctx context.Context, in *SendPlayerInviteReq, opts ...grpc.CallOption) (*SendPlayerInviteRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SendPlayerRequestRes)
-	err := c.cc.Invoke(ctx, PlayerInviteService_SendPlayerReq_FullMethodName, in, out, cOpts...)
+	out := new(SendPlayerInviteRes)
+	err := c.cc.Invoke(ctx, PlayerInviteService_SendPlayerInvitation_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *playerInviteServiceClient) PlayerRequestList(ctx context.Context, in *PlayerRequestListReq, opts ...grpc.CallOption) (*PlayerRequestListRes, error) {
+func (c *playerInviteServiceClient) PlayerInviteList(ctx context.Context, in *PlayerInviteListReq, opts ...grpc.CallOption) (*PlayerInviteListRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PlayerRequestListRes)
-	err := c.cc.Invoke(ctx, PlayerInviteService_PlayerRequestList_FullMethodName, in, out, cOpts...)
+	out := new(PlayerInviteListRes)
+	err := c.cc.Invoke(ctx, PlayerInviteService_PlayerInviteList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1034,8 +1034,8 @@ func (c *playerInviteServiceClient) PlayerRequestList(ctx context.Context, in *P
 // All implementations must embed UnimplementedPlayerInviteServiceServer
 // for forward compatibility.
 type PlayerInviteServiceServer interface {
-	SendPlayerReq(context.Context, *SendPlayerRequestReq) (*SendPlayerRequestRes, error)
-	PlayerRequestList(context.Context, *PlayerRequestListReq) (*PlayerRequestListRes, error)
+	SendPlayerInvitation(context.Context, *SendPlayerInviteReq) (*SendPlayerInviteRes, error)
+	PlayerInviteList(context.Context, *PlayerInviteListReq) (*PlayerInviteListRes, error)
 	mustEmbedUnimplementedPlayerInviteServiceServer()
 }
 
@@ -1046,11 +1046,11 @@ type PlayerInviteServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedPlayerInviteServiceServer struct{}
 
-func (UnimplementedPlayerInviteServiceServer) SendPlayerReq(context.Context, *SendPlayerRequestReq) (*SendPlayerRequestRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SendPlayerReq not implemented")
+func (UnimplementedPlayerInviteServiceServer) SendPlayerInvitation(context.Context, *SendPlayerInviteReq) (*SendPlayerInviteRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SendPlayerInvitation not implemented")
 }
-func (UnimplementedPlayerInviteServiceServer) PlayerRequestList(context.Context, *PlayerRequestListReq) (*PlayerRequestListRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PlayerRequestList not implemented")
+func (UnimplementedPlayerInviteServiceServer) PlayerInviteList(context.Context, *PlayerInviteListReq) (*PlayerInviteListRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayerInviteList not implemented")
 }
 func (UnimplementedPlayerInviteServiceServer) mustEmbedUnimplementedPlayerInviteServiceServer() {}
 func (UnimplementedPlayerInviteServiceServer) testEmbeddedByValue()                             {}
@@ -1073,38 +1073,38 @@ func RegisterPlayerInviteServiceServer(s grpc.ServiceRegistrar, srv PlayerInvite
 	s.RegisterService(&PlayerInviteService_ServiceDesc, srv)
 }
 
-func _PlayerInviteService_SendPlayerReq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SendPlayerRequestReq)
+func _PlayerInviteService_SendPlayerInvitation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SendPlayerInviteReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PlayerInviteServiceServer).SendPlayerReq(ctx, in)
+		return srv.(PlayerInviteServiceServer).SendPlayerInvitation(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PlayerInviteService_SendPlayerReq_FullMethodName,
+		FullMethod: PlayerInviteService_SendPlayerInvitation_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerInviteServiceServer).SendPlayerReq(ctx, req.(*SendPlayerRequestReq))
+		return srv.(PlayerInviteServiceServer).SendPlayerInvitation(ctx, req.(*SendPlayerInviteReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlayerInviteService_PlayerRequestList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PlayerRequestListReq)
+func _PlayerInviteService_PlayerInviteList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlayerInviteListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PlayerInviteServiceServer).PlayerRequestList(ctx, in)
+		return srv.(PlayerInviteServiceServer).PlayerInviteList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PlayerInviteService_PlayerRequestList_FullMethodName,
+		FullMethod: PlayerInviteService_PlayerInviteList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerInviteServiceServer).PlayerRequestList(ctx, req.(*PlayerRequestListReq))
+		return srv.(PlayerInviteServiceServer).PlayerInviteList(ctx, req.(*PlayerInviteListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1117,12 +1117,12 @@ var PlayerInviteService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PlayerInviteServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SendPlayerReq",
-			Handler:    _PlayerInviteService_SendPlayerReq_Handler,
+			MethodName: "SendPlayerInvitation",
+			Handler:    _PlayerInviteService_SendPlayerInvitation_Handler,
 		},
 		{
-			MethodName: "PlayerRequestList",
-			Handler:    _PlayerInviteService_PlayerRequestList_Handler,
+			MethodName: "PlayerInviteList",
+			Handler:    _PlayerInviteService_PlayerInviteList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
