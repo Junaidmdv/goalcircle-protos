@@ -579,14 +579,31 @@ message RejectPlayerInviteRes{
 
 }
 
+message TeamInvitesReq{
+
+} 
+
+message TeamInvitesRes{
+
+}
 
 
+message CancelTeamInviteReq{
+
+} 
+
+message CancelTeamInviteRes{
+
+}
 
 service PlayerInviteService{
   rpc SendPlayerInvitation(SendPlayerInviteReq)returns(SendPlayerInviteRes); 
-  rpc PlayerInviteList(PlayerInviteListReq)returns(PlayerInviteListRes);  
+  rpc TeamInviteList(PlayerInviteListReq)returns(PlayerInviteListRes);  
   rpc AcceptPlayerInvite(AcceptPlayerInviteReq)returns(AcceptPlayerInviteRes); 
-  rpc RejectPlayerInvite(RejectPlayerInviteReq)returns(RejectPlayerInviteRes);
+  rpc RejectPlayerInvite(RejectPlayerInviteReq)returns(RejectPlayerInviteRes);   
+  rpc TeamInvites(TeamInvitesReq)returns(TeamInvitesRes); 
+  rpc CancelTeamInvites(CancelTeamInviteReq)returns(CancelTeamInviteRes);
+
 }
 
 enum StaffDesignation {
