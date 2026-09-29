@@ -537,7 +537,7 @@ message SendPlayerInviteReq{
 }
 
 message SendPlayerInviteRes{
-    string request_id=1; 
+    string invite_id=1; 
     string status=2; 
     google.protobuf.Timestamp created_at=3; 
    google.protobuf.Timestamp expirest_at=4;
@@ -553,10 +553,40 @@ message PlayerInviteListRes{
 
 }
 
+message AcceptPlayerInviteReq{
+  string invite_id=1; 
+  string user_id=2; 
+  optional string jersey_number=3;   
+}  
+
+
+
+
+message AcceptPlayerInviteRes{
+   string invite_id=1;
+   string status=2; 
+   google.protobuf.Timestamp responded_at=3; 
+   string team_id=4; 
+}
+
+
+message RejectPlayerInviteReq{
+
+}
+
+
+message RejectPlayerInviteRes{
+
+}
+
+
+
 
 service PlayerInviteService{
   rpc SendPlayerInvitation(SendPlayerInviteReq)returns(SendPlayerInviteRes); 
-  rpc PlayerInviteList(PlayerInviteListReq)returns(PlayerInviteListRes); 
+  rpc PlayerInviteList(PlayerInviteListReq)returns(PlayerInviteListRes);  
+  rpc AcceptPlayerInvite(AcceptPlayerInviteReq)returns(AcceptPlayerInviteRes); 
+  rpc RejectPlayerInvite(RejectPlayerInviteReq)returns(RejectPlayerInviteRes);
 }
 
 enum StaffDesignation {

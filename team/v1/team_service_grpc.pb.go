@@ -992,6 +992,8 @@ var TeamPlayerService_ServiceDesc = grpc.ServiceDesc{
 const (
 	PlayerInviteService_SendPlayerInvitation_FullMethodName = "/team.PlayerInviteService/SendPlayerInvitation"
 	PlayerInviteService_PlayerInviteList_FullMethodName     = "/team.PlayerInviteService/PlayerInviteList"
+	PlayerInviteService_AcceptPlayerInvite_FullMethodName   = "/team.PlayerInviteService/AcceptPlayerInvite"
+	PlayerInviteService_RejectPlayerInvite_FullMethodName   = "/team.PlayerInviteService/RejectPlayerInvite"
 )
 
 // PlayerInviteServiceClient is the client API for PlayerInviteService service.
@@ -1000,6 +1002,8 @@ const (
 type PlayerInviteServiceClient interface {
 	SendPlayerInvitation(ctx context.Context, in *SendPlayerInviteReq, opts ...grpc.CallOption) (*SendPlayerInviteRes, error)
 	PlayerInviteList(ctx context.Context, in *PlayerInviteListReq, opts ...grpc.CallOption) (*PlayerInviteListRes, error)
+	AcceptPlayerInvite(ctx context.Context, in *AcceptPlayerInviteReq, opts ...grpc.CallOption) (*AcceptPlayerInviteRes, error)
+	RejectPlayerInvite(ctx context.Context, in *RejectPlayerInviteReq, opts ...grpc.CallOption) (*RejectPlayerInviteRes, error)
 }
 
 type playerInviteServiceClient struct {
@@ -1030,12 +1034,34 @@ func (c *playerInviteServiceClient) PlayerInviteList(ctx context.Context, in *Pl
 	return out, nil
 }
 
+func (c *playerInviteServiceClient) AcceptPlayerInvite(ctx context.Context, in *AcceptPlayerInviteReq, opts ...grpc.CallOption) (*AcceptPlayerInviteRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AcceptPlayerInviteRes)
+	err := c.cc.Invoke(ctx, PlayerInviteService_AcceptPlayerInvite_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *playerInviteServiceClient) RejectPlayerInvite(ctx context.Context, in *RejectPlayerInviteReq, opts ...grpc.CallOption) (*RejectPlayerInviteRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(RejectPlayerInviteRes)
+	err := c.cc.Invoke(ctx, PlayerInviteService_RejectPlayerInvite_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlayerInviteServiceServer is the server API for PlayerInviteService service.
 // All implementations must embed UnimplementedPlayerInviteServiceServer
 // for forward compatibility.
 type PlayerInviteServiceServer interface {
 	SendPlayerInvitation(context.Context, *SendPlayerInviteReq) (*SendPlayerInviteRes, error)
 	PlayerInviteList(context.Context, *PlayerInviteListReq) (*PlayerInviteListRes, error)
+	AcceptPlayerInvite(context.Context, *AcceptPlayerInviteReq) (*AcceptPlayerInviteRes, error)
+	RejectPlayerInvite(context.Context, *RejectPlayerInviteReq) (*RejectPlayerInviteRes, error)
 	mustEmbedUnimplementedPlayerInviteServiceServer()
 }
 
@@ -1051,6 +1077,12 @@ func (UnimplementedPlayerInviteServiceServer) SendPlayerInvitation(context.Conte
 }
 func (UnimplementedPlayerInviteServiceServer) PlayerInviteList(context.Context, *PlayerInviteListReq) (*PlayerInviteListRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlayerInviteList not implemented")
+}
+func (UnimplementedPlayerInviteServiceServer) AcceptPlayerInvite(context.Context, *AcceptPlayerInviteReq) (*AcceptPlayerInviteRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AcceptPlayerInvite not implemented")
+}
+func (UnimplementedPlayerInviteServiceServer) RejectPlayerInvite(context.Context, *RejectPlayerInviteReq) (*RejectPlayerInviteRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RejectPlayerInvite not implemented")
 }
 func (UnimplementedPlayerInviteServiceServer) mustEmbedUnimplementedPlayerInviteServiceServer() {}
 func (UnimplementedPlayerInviteServiceServer) testEmbeddedByValue()                             {}
@@ -1109,6 +1141,42 @@ func _PlayerInviteService_PlayerInviteList_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlayerInviteService_AcceptPlayerInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AcceptPlayerInviteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerInviteServiceServer).AcceptPlayerInvite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerInviteService_AcceptPlayerInvite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerInviteServiceServer).AcceptPlayerInvite(ctx, req.(*AcceptPlayerInviteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PlayerInviteService_RejectPlayerInvite_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RejectPlayerInviteReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlayerInviteServiceServer).RejectPlayerInvite(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlayerInviteService_RejectPlayerInvite_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlayerInviteServiceServer).RejectPlayerInvite(ctx, req.(*RejectPlayerInviteReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlayerInviteService_ServiceDesc is the grpc.ServiceDesc for PlayerInviteService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -1123,6 +1191,14 @@ var PlayerInviteService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PlayerInviteList",
 			Handler:    _PlayerInviteService_PlayerInviteList_Handler,
+		},
+		{
+			MethodName: "AcceptPlayerInvite",
+			Handler:    _PlayerInviteService_AcceptPlayerInvite_Handler,
+		},
+		{
+			MethodName: "RejectPlayerInvite",
+			Handler:    _PlayerInviteService_RejectPlayerInvite_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
