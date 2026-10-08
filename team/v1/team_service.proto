@@ -592,7 +592,9 @@ message TeamInviteListRes{
      google.protobuf.Timestamp expires_at=9; 
      google.protobuf.Timestamp responded_at=10;
    }
-  
+   
+   TeamInviteListRes.Paginate paginate=1; 
+   TeamInviteListRes.InvitationDetails invitation_details=2;
 
 
 }
