@@ -994,7 +994,7 @@ const (
 	PlayerInviteService_TeamInviteList_FullMethodName       = "/team.PlayerInviteService/TeamInviteList"
 	PlayerInviteService_AcceptPlayerInvite_FullMethodName   = "/team.PlayerInviteService/AcceptPlayerInvite"
 	PlayerInviteService_RejectPlayerInvite_FullMethodName   = "/team.PlayerInviteService/RejectPlayerInvite"
-	PlayerInviteService_TeamInvites_FullMethodName          = "/team.PlayerInviteService/TeamInvites"
+	PlayerInviteService_PlayerInvites_FullMethodName        = "/team.PlayerInviteService/PlayerInvites"
 	PlayerInviteService_CancelTeamInvites_FullMethodName    = "/team.PlayerInviteService/CancelTeamInvites"
 )
 
@@ -1003,10 +1003,10 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PlayerInviteServiceClient interface {
 	SendPlayerInvitation(ctx context.Context, in *SendPlayerInviteReq, opts ...grpc.CallOption) (*SendPlayerInviteRes, error)
-	TeamInviteList(ctx context.Context, in *PlayerInviteListReq, opts ...grpc.CallOption) (*PlayerInviteListRes, error)
+	TeamInviteList(ctx context.Context, in *TeamInviteListReq, opts ...grpc.CallOption) (*TeamInviteListRes, error)
 	AcceptPlayerInvite(ctx context.Context, in *AcceptPlayerInviteReq, opts ...grpc.CallOption) (*AcceptPlayerInviteRes, error)
 	RejectPlayerInvite(ctx context.Context, in *RejectPlayerInviteReq, opts ...grpc.CallOption) (*RejectPlayerInviteRes, error)
-	TeamInvites(ctx context.Context, in *TeamInvitesReq, opts ...grpc.CallOption) (*TeamInvitesRes, error)
+	PlayerInvites(ctx context.Context, in *PlayerInvitesReq, opts ...grpc.CallOption) (*PlayerInvitesRes, error)
 	CancelTeamInvites(ctx context.Context, in *CancelTeamInviteReq, opts ...grpc.CallOption) (*CancelTeamInviteRes, error)
 }
 
@@ -1028,9 +1028,9 @@ func (c *playerInviteServiceClient) SendPlayerInvitation(ctx context.Context, in
 	return out, nil
 }
 
-func (c *playerInviteServiceClient) TeamInviteList(ctx context.Context, in *PlayerInviteListReq, opts ...grpc.CallOption) (*PlayerInviteListRes, error) {
+func (c *playerInviteServiceClient) TeamInviteList(ctx context.Context, in *TeamInviteListReq, opts ...grpc.CallOption) (*TeamInviteListRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PlayerInviteListRes)
+	out := new(TeamInviteListRes)
 	err := c.cc.Invoke(ctx, PlayerInviteService_TeamInviteList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -1058,10 +1058,10 @@ func (c *playerInviteServiceClient) RejectPlayerInvite(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *playerInviteServiceClient) TeamInvites(ctx context.Context, in *TeamInvitesReq, opts ...grpc.CallOption) (*TeamInvitesRes, error) {
+func (c *playerInviteServiceClient) PlayerInvites(ctx context.Context, in *PlayerInvitesReq, opts ...grpc.CallOption) (*PlayerInvitesRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TeamInvitesRes)
-	err := c.cc.Invoke(ctx, PlayerInviteService_TeamInvites_FullMethodName, in, out, cOpts...)
+	out := new(PlayerInvitesRes)
+	err := c.cc.Invoke(ctx, PlayerInviteService_PlayerInvites_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1083,10 +1083,10 @@ func (c *playerInviteServiceClient) CancelTeamInvites(ctx context.Context, in *C
 // for forward compatibility.
 type PlayerInviteServiceServer interface {
 	SendPlayerInvitation(context.Context, *SendPlayerInviteReq) (*SendPlayerInviteRes, error)
-	TeamInviteList(context.Context, *PlayerInviteListReq) (*PlayerInviteListRes, error)
+	TeamInviteList(context.Context, *TeamInviteListReq) (*TeamInviteListRes, error)
 	AcceptPlayerInvite(context.Context, *AcceptPlayerInviteReq) (*AcceptPlayerInviteRes, error)
 	RejectPlayerInvite(context.Context, *RejectPlayerInviteReq) (*RejectPlayerInviteRes, error)
-	TeamInvites(context.Context, *TeamInvitesReq) (*TeamInvitesRes, error)
+	PlayerInvites(context.Context, *PlayerInvitesReq) (*PlayerInvitesRes, error)
 	CancelTeamInvites(context.Context, *CancelTeamInviteReq) (*CancelTeamInviteRes, error)
 	mustEmbedUnimplementedPlayerInviteServiceServer()
 }
@@ -1101,7 +1101,7 @@ type UnimplementedPlayerInviteServiceServer struct{}
 func (UnimplementedPlayerInviteServiceServer) SendPlayerInvitation(context.Context, *SendPlayerInviteReq) (*SendPlayerInviteRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendPlayerInvitation not implemented")
 }
-func (UnimplementedPlayerInviteServiceServer) TeamInviteList(context.Context, *PlayerInviteListReq) (*PlayerInviteListRes, error) {
+func (UnimplementedPlayerInviteServiceServer) TeamInviteList(context.Context, *TeamInviteListReq) (*TeamInviteListRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TeamInviteList not implemented")
 }
 func (UnimplementedPlayerInviteServiceServer) AcceptPlayerInvite(context.Context, *AcceptPlayerInviteReq) (*AcceptPlayerInviteRes, error) {
@@ -1110,8 +1110,8 @@ func (UnimplementedPlayerInviteServiceServer) AcceptPlayerInvite(context.Context
 func (UnimplementedPlayerInviteServiceServer) RejectPlayerInvite(context.Context, *RejectPlayerInviteReq) (*RejectPlayerInviteRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RejectPlayerInvite not implemented")
 }
-func (UnimplementedPlayerInviteServiceServer) TeamInvites(context.Context, *TeamInvitesReq) (*TeamInvitesRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TeamInvites not implemented")
+func (UnimplementedPlayerInviteServiceServer) PlayerInvites(context.Context, *PlayerInvitesReq) (*PlayerInvitesRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PlayerInvites not implemented")
 }
 func (UnimplementedPlayerInviteServiceServer) CancelTeamInvites(context.Context, *CancelTeamInviteReq) (*CancelTeamInviteRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelTeamInvites not implemented")
@@ -1156,7 +1156,7 @@ func _PlayerInviteService_SendPlayerInvitation_Handler(srv interface{}, ctx cont
 }
 
 func _PlayerInviteService_TeamInviteList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PlayerInviteListReq)
+	in := new(TeamInviteListReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1168,7 +1168,7 @@ func _PlayerInviteService_TeamInviteList_Handler(srv interface{}, ctx context.Co
 		FullMethod: PlayerInviteService_TeamInviteList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerInviteServiceServer).TeamInviteList(ctx, req.(*PlayerInviteListReq))
+		return srv.(PlayerInviteServiceServer).TeamInviteList(ctx, req.(*TeamInviteListReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1209,20 +1209,20 @@ func _PlayerInviteService_RejectPlayerInvite_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlayerInviteService_TeamInvites_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TeamInvitesReq)
+func _PlayerInviteService_PlayerInvites_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PlayerInvitesReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PlayerInviteServiceServer).TeamInvites(ctx, in)
+		return srv.(PlayerInviteServiceServer).PlayerInvites(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: PlayerInviteService_TeamInvites_FullMethodName,
+		FullMethod: PlayerInviteService_PlayerInvites_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlayerInviteServiceServer).TeamInvites(ctx, req.(*TeamInvitesReq))
+		return srv.(PlayerInviteServiceServer).PlayerInvites(ctx, req.(*PlayerInvitesReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1269,8 +1269,8 @@ var PlayerInviteService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _PlayerInviteService_RejectPlayerInvite_Handler,
 		},
 		{
-			MethodName: "TeamInvites",
-			Handler:    _PlayerInviteService_TeamInvites_Handler,
+			MethodName: "PlayerInvites",
+			Handler:    _PlayerInviteService_PlayerInvites_Handler,
 		},
 		{
 			MethodName: "CancelTeamInvites",

@@ -545,11 +545,15 @@ message SendPlayerInviteRes{
 
 
 
-message PlayerInviteListReq{
-
+message TeamInviteListReq{ 
+  string team_id=1; 
+  int32 page=2; 
+  int32 limit=3; 
+  string status=4;  
+  optional string search=5;
 }
 
-message PlayerInviteListRes{
+message TeamInviteListRes{
 
 }
 
@@ -570,38 +574,56 @@ message AcceptPlayerInviteRes{
 }
 
 
-message RejectPlayerInviteReq{
+message RejectPlayerInviteReq{  
+   string invite_id=1; 
+   string user_id=2; 
+   string reason=3;
 
 }
 
 
 message RejectPlayerInviteRes{
-
+    string invited_id=1; 
+    google.protobuf.Timestamp responded_at=2;
 }
 
-message TeamInvitesReq{
-
+message PlayerInvitesReq{
+   string user_id=1;
 } 
 
-message TeamInvitesRes{
+message PlayerInvitesRes{  
+   message  InviteDetails {
+     string invite_id=1;  
+     string invited_by_user=2;  
+     string team_id=3; 
+     string offerred_jersey_number=4;  
+     string message=5; 
+     google.protobuf.Timestamp created_at = 6;
+   }
+   string user_id=1;  
+   PlayerInvitesRes.InviteDetails invite_details=2;
+
 
 }
 
 
 message CancelTeamInviteReq{
-
+   string invite_id=1; 
+   string user_id=2; 
+   string team_id=3; 
 } 
 
 message CancelTeamInviteRes{
-
+  string invite_id=1;  
+  google.protobuf.Timestamp responded_at=2;
 }
 
 service PlayerInviteService{
   rpc SendPlayerInvitation(SendPlayerInviteReq)returns(SendPlayerInviteRes); 
-  rpc TeamInviteList(PlayerInviteListReq)returns(PlayerInviteListRes);  
+  rpc TeamInviteList(TeamInviteListReq)returns(TeamInviteListRes);  
   rpc AcceptPlayerInvite(AcceptPlayerInviteReq)returns(AcceptPlayerInviteRes); 
   rpc RejectPlayerInvite(RejectPlayerInviteReq)returns(RejectPlayerInviteRes);   
-  rpc TeamInvites(TeamInvitesReq)returns(TeamInvitesRes); 
+  rpc PlayerInvites(PlayerInvitesReq)returns(PlayerInvitesRes); 
   rpc CancelTeamInvites(CancelTeamInviteReq)returns(CancelTeamInviteRes);
 
 }
