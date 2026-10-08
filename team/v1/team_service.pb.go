@@ -4315,7 +4315,6 @@ type AcceptPlayerInviteReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	InviteId      string                 `protobuf:"bytes,1,opt,name=invite_id,json=inviteId,proto3" json:"invite_id,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	JerseyNumber  *string                `protobuf:"bytes,3,opt,name=jersey_number,json=jerseyNumber,proto3,oneof" json:"jersey_number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4360,13 +4359,6 @@ func (x *AcceptPlayerInviteReq) GetInviteId() string {
 func (x *AcceptPlayerInviteReq) GetUserId() string {
 	if x != nil {
 		return x.UserId
-	}
-	return ""
-}
-
-func (x *AcceptPlayerInviteReq) GetJerseyNumber() string {
-	if x != nil && x.JerseyNumber != nil {
-		return *x.JerseyNumber
 	}
 	return ""
 }
@@ -4596,9 +4588,9 @@ func (x *PlayerInvitesReq) GetUserId() string {
 }
 
 type PlayerInvitesRes struct {
-	state         protoimpl.MessageState          `protogen:"open.v1"`
-	UserId        string                          `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	InviteDetails *PlayerInvitesRes_InviteDetails `protobuf:"bytes,2,opt,name=invite_details,json=inviteDetails,proto3" json:"invite_details,omitempty"`
+	state         protoimpl.MessageState            `protogen:"open.v1"`
+	UserId        string                            `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	InviteDetails []*PlayerInvitesRes_InviteDetails `protobuf:"bytes,2,rep,name=invite_details,json=inviteDetails,proto3" json:"invite_details,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4640,7 +4632,7 @@ func (x *PlayerInvitesRes) GetUserId() string {
 	return ""
 }
 
-func (x *PlayerInvitesRes) GetInviteDetails() *PlayerInvitesRes_InviteDetails {
+func (x *PlayerInvitesRes) GetInviteDetails() []*PlayerInvitesRes_InviteDetails {
 	if x != nil {
 		return x.InviteDetails
 	}
@@ -7867,12 +7859,10 @@ const file_team_service_proto_rawDesc = "" +
 	"\n" +
 	"expires_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x12=\n" +
 	"\fresponded_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\vrespondedAt\"\x89\x01\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\vrespondedAt\"M\n" +
 	"\x15AcceptPlayerInviteReq\x12\x1b\n" +
 	"\tinvite_id\x18\x01 \x01(\tR\binviteId\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\x12(\n" +
-	"\rjersey_number\x18\x03 \x01(\tH\x00R\fjerseyNumber\x88\x01\x01B\x10\n" +
-	"\x0e_jersey_number\"\xa4\x01\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\xa4\x01\n" +
 	"\x15AcceptPlayerInviteRes\x12\x1b\n" +
 	"\tinvite_id\x18\x01 \x01(\tR\binviteId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\x12=\n" +
@@ -7890,7 +7880,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"\xf3\x02\n" +
 	"\x10PlayerInvitesRes\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12K\n" +
-	"\x0einvite_details\x18\x02 \x01(\v2$.team.PlayerInvitesRes.InviteDetailsR\rinviteDetails\x1a\xf8\x01\n" +
+	"\x0einvite_details\x18\x02 \x03(\v2$.team.PlayerInvitesRes.InviteDetailsR\rinviteDetails\x1a\xf8\x01\n" +
 	"\rInviteDetails\x12\x1b\n" +
 	"\tinvite_id\x18\x01 \x01(\tR\binviteId\x12&\n" +
 	"\x0finvited_by_user\x18\x02 \x01(\tR\rinvitedByUser\x12\x17\n" +
@@ -8488,7 +8478,6 @@ func file_team_service_proto_init() {
 	file_team_service_proto_msgTypes[52].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[53].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[55].OneofWrappers = []any{}
-	file_team_service_proto_msgTypes[57].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[65].OneofWrappers = []any{}
 	file_team_service_proto_msgTypes[68].OneofWrappers = []any{
 		(*UpdateStaffImageReq_Meta)(nil),

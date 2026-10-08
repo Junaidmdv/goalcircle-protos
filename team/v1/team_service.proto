@@ -601,8 +601,7 @@ message TeamInviteListRes{
 
 message AcceptPlayerInviteReq{
   string invite_id=1; 
-  string user_id=2; 
-  optional string jersey_number=3;   
+  string user_id=2;   
 }  
 
 
@@ -643,7 +642,7 @@ message PlayerInvitesRes{
      google.protobuf.Timestamp created_at = 6;
    }
    string user_id=1;  
-   PlayerInvitesRes.InviteDetails invite_details=2;
+   repeated PlayerInvitesRes.InviteDetails invite_details=2;
 
 
 }
