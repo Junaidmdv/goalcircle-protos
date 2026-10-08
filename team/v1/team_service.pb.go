@@ -7018,7 +7018,7 @@ type PlayerInvitesRes_InviteDetails struct {
 	InviteId             string                 `protobuf:"bytes,1,opt,name=invite_id,json=inviteId,proto3" json:"invite_id,omitempty"`
 	InvitedByUser        string                 `protobuf:"bytes,2,opt,name=invited_by_user,json=invitedByUser,proto3" json:"invited_by_user,omitempty"`
 	TeamId               string                 `protobuf:"bytes,3,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
-	OfferredJerseyNumber string                 `protobuf:"bytes,4,opt,name=offerred_jersey_number,json=offerredJerseyNumber,proto3" json:"offerred_jersey_number,omitempty"`
+	OfferredJerseyNumber int32                  `protobuf:"varint,4,opt,name=offerred_jersey_number,json=offerredJerseyNumber,proto3" json:"offerred_jersey_number,omitempty"`
 	Message              string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
 	CreatedAt            *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	unknownFields        protoimpl.UnknownFields
@@ -7076,11 +7076,11 @@ func (x *PlayerInvitesRes_InviteDetails) GetTeamId() string {
 	return ""
 }
 
-func (x *PlayerInvitesRes_InviteDetails) GetOfferredJerseyNumber() string {
+func (x *PlayerInvitesRes_InviteDetails) GetOfferredJerseyNumber() int32 {
 	if x != nil {
 		return x.OfferredJerseyNumber
 	}
-	return ""
+	return 0
 }
 
 func (x *PlayerInvitesRes_InviteDetails) GetMessage() string {
@@ -7885,7 +7885,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\tinvite_id\x18\x01 \x01(\tR\binviteId\x12&\n" +
 	"\x0finvited_by_user\x18\x02 \x01(\tR\rinvitedByUser\x12\x17\n" +
 	"\ateam_id\x18\x03 \x01(\tR\x06teamId\x124\n" +
-	"\x16offerred_jersey_number\x18\x04 \x01(\tR\x14offerredJerseyNumber\x12\x18\n" +
+	"\x16offerred_jersey_number\x18\x04 \x01(\x05R\x14offerredJerseyNumber\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x129\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"d\n" +

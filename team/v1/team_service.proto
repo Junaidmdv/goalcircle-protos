@@ -637,7 +637,7 @@ message PlayerInvitesRes{
      string invite_id=1;  
      string invited_by_user=2;  
      string team_id=3; 
-     string offerred_jersey_number=4;  
+     int32 offerred_jersey_number=4;  
      string message=5; 
      google.protobuf.Timestamp created_at = 6;
    }
