@@ -4260,9 +4260,9 @@ func (x *TeamInviteListReq) GetSearch() string {
 }
 
 type TeamInviteListRes struct {
-	state             protoimpl.MessageState               `protogen:"open.v1"`
-	Paginate          *TeamInviteListRes_Paginate          `protobuf:"bytes,1,opt,name=paginate,proto3" json:"paginate,omitempty"`
-	InvitationDetails *TeamInviteListRes_InvitationDetails `protobuf:"bytes,2,opt,name=invitation_details,json=invitationDetails,proto3" json:"invitation_details,omitempty"`
+	state             protoimpl.MessageState                 `protogen:"open.v1"`
+	Paginate          *TeamInviteListRes_Paginate            `protobuf:"bytes,1,opt,name=paginate,proto3" json:"paginate,omitempty"`
+	InvitationDetails []*TeamInviteListRes_InvitationDetails `protobuf:"bytes,2,rep,name=invitation_details,json=invitationDetails,proto3" json:"invitation_details,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -4304,7 +4304,7 @@ func (x *TeamInviteListRes) GetPaginate() *TeamInviteListRes_Paginate {
 	return nil
 }
 
-func (x *TeamInviteListRes) GetInvitationDetails() *TeamInviteListRes_InvitationDetails {
+func (x *TeamInviteListRes) GetInvitationDetails() []*TeamInviteListRes_InvitationDetails {
 	if x != nil {
 		return x.InvitationDetails
 	}
@@ -7841,7 +7841,7 @@ const file_team_service_proto_rawDesc = "" +
 	"\a_search\"\x80\a\n" +
 	"\x11TeamInviteListRes\x12<\n" +
 	"\bpaginate\x18\x01 \x01(\v2 .team.TeamInviteListRes.PaginateR\bpaginate\x12X\n" +
-	"\x12invitation_details\x18\x02 \x01(\v2).team.TeamInviteListRes.InvitationDetailsR\x11invitationDetails\x1ai\n" +
+	"\x12invitation_details\x18\x02 \x03(\v2).team.TeamInviteListRes.InvitationDetailsR\x11invitationDetails\x1ai\n" +
 	"\bPaginate\x12\x1d\n" +
 	"\n" +
 	"total_page\x18\x01 \x01(\x05R\ttotalPage\x12\x12\n" +

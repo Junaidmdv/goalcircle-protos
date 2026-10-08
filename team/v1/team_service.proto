@@ -594,7 +594,7 @@ message TeamInviteListRes{
    }
    
    TeamInviteListRes.Paginate paginate=1; 
-   TeamInviteListRes.InvitationDetails invitation_details=2;
+   repeated TeamInviteListRes.InvitationDetails invitation_details=2;
 
 
 }
