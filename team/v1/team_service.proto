@@ -536,7 +536,6 @@ enum PlayerInvitationStatus {
   PLAYER_INVITATION_STATUS_REJECTED = 3;
   PLAYER_INVITATION_STATUS_CANCELLED = 4;
   PLAYER_INVITATION_STATUS_EXPIRED = 5;
-  PLAYER_INVITATION_STATUS_INVALID = 6;
 }
 
 message SendPlayerInviteReq{
@@ -565,7 +564,36 @@ message TeamInviteListReq{
   optional string search=5;
 }
 
-message TeamInviteListRes{
+message TeamInviteListRes{ 
+   message Paginate{
+      int32 total_page=1; 
+      int32 page=2; 
+      int32 limit=3;  
+      int64 total=4;
+   }   
+
+   message PlayerDetail{
+      string player_id=1; 
+      string user_id=2; 
+      string position=5; 
+      string preferred_foot=6; 
+      string Code=7;
+   }
+
+   message InvitationDetails{
+     string InviteID =1; 
+     string InvitedBy=2; 
+     PlayerDetail player=3; 
+     int32 jersey_number=4; 
+     string status=5; 
+     string invite_message=6; 
+     string reject_reason=7; 
+     google.protobuf.Timestamp created_at = 8; 
+     google.protobuf.Timestamp expires_at=9; 
+     google.protobuf.Timestamp responded_at=10;
+   }
+  
+
 
 }
 
